@@ -1,6 +1,6 @@
 <master>
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 <p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt__When_youre_done_clic#
 
@@ -40,12 +40,12 @@
 <if @immediate_approve_p@ ne 0>
 <tr>
   <th align=right><font color=red>#news.Release_Date#</font></th>
-  <td colspan=2>@publish_date_select@</td>
+  <td colspan=2>@publish_date_select;noquote@</td>
 </tr>
 
 <tr>
   <th align=right>#news.Archive_Date#</th>
-  <td colspan=2>@archive_date_select@<br>
+  <td colspan=2>@archive_date_select;noquote@<br>
     <input type=checkbox name=permanent_p value=t>
     <b>#news.never#</b> #news.show_it_permanently#</td>
 </tr>

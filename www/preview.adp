@@ -1,6 +1,6 @@
 <master>
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 <p>
 <ul>
@@ -23,14 +23,14 @@
 
 </p>
 
-   <include src=news publish_body=@publish_body@ 
-                     publish_title=@publish_title@
-                     creator_link = @creator_link@>
+   <include src=news publish_body=@publish_body;noquote@ 
+                     publish_title=@publish_title;noquote@
+                     creator_link = @creator_link;noquote@>
 
 
 <p>
-    @form_action@
-    @hidden_vars@
+    @form_action;noquote@
+    @hidden_vars;noquote@
     <center>
      <input type=submit value="#news.Confirm#">
     </center>

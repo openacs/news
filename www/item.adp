@@ -1,7 +1,7 @@
 <master>
 
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 
 <if @item_exist_p@ eq "0">
@@ -9,10 +9,10 @@
 </if>
 <else>
 <include src=news
-    item_id=@item_id@
-    publish_title=@publish_title@
-    publish_body=@publish_body@
-    creator_link=@creator_link@>
+    item_id=@item_id;noquote@
+    publish_title=@publish_title;noquote@
+    publish_body=@publish_body;noquote@
+    creator_link=@creator_link;noquote@>
 
 <if @comments@ ne "">
 <h3>#news.Comments#</h3>

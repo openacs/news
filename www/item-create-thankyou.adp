@@ -1,7 +1,7 @@
 <master>
 
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 <p>
  	#news.Your_news_item# <i><b>@publish_title@</b></i>

@@ -1,6 +1,6 @@
 <master>
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 <p>
 <dd><li><a href=revision-add?item_id=@item_id@>#news.Add_a_new_revision#</a>	

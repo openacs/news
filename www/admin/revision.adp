@@ -1,6 +1,6 @@
 <master>
-<property name="context">@context@</property>
-<property name="title">@title@</property>
+<property name="context">@context;noquote@</property>
+<property name="title">@title;noquote@</property>
 
 
 <if @item_exist_p@ eq "0">
@@ -24,9 +24,9 @@
 <p>
 <br>
 <include src=news
-    publish_title="@publish_title@ (#news.rev# @revision_no@)"
-    publish_body=@publish_body@
-    creator_link=@creator_link@
+    publish_title="@publish_title;noquote@ (#news.rev# @revision_no;noquote@)"
+    publish_body=@publish_body;noquote@
+    creator_link=@creator_link;noquote@
 >
 </else>
 
