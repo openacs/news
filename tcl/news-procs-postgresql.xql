@@ -39,6 +39,7 @@
 	  select site_node__url(node_id) as url_stub
           from site_nodes
           where object_id=:package_id      
+          limit 1
 	
       </querytext>
 </fullquery>
