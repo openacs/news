@@ -94,10 +94,7 @@ ad_proc news__datasource {
     @author Robert Locke
 } {
 
-    array set datasource [acs_sc_call FtsContentProvider \
-	    datasource [list $object_id] content_revision]
-
-    return [array get datasource]
+    return [content_search__datasource $object_id]
 
 }
 
