@@ -19,4 +19,5 @@
 	where news_id=:object_id
 	</querytext>
 </fullquery>
+
 </queryset>

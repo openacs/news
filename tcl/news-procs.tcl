@@ -108,7 +108,7 @@ ad_proc news__url {
     @author Robert Locke
 } {
 
-    set package_id [db_string get_package_id {*SQL*}
+    set package_id [db_string get_package_id {*SQL*}]
     set url_stub [news_util_get_url news]
 
     db_1row get_item_id "
