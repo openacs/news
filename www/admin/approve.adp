@@ -9,7 +9,13 @@
      <th>#news.Author#</th>
 </tr>
  <multiple name=items>
- <tr><td><a href="revision?item_id=@items.item_id@&revision_id=@items.revision_id@">@items.publish_title@</a></td>
+  <if @items.rownum@ odd>
+  <tr class="odd">
+  </if>
+  <else>
+  <tr class="even">
+  </else>
+  <td><a href="revision?item_id=@items.item_id@&revision_id=@items.revision_id@">@items.publish_title@</a></td>
        <td>@items.creation_date@</td>
        <td>@items.item_creator@</td>
  </tr>
@@ -24,25 +30,18 @@
 @hidden_vars;noquote@
 <input type=hidden name=revision_id value="<multiple name=items>@items.revision_id@ </multiple>">
 
-<table border=1>
-<tr>
-  <th align=right><font color=red>#news.Publication_Date#</font></th>
-  <td colspan=2>@publish_date_select;noquote@</td>
-</tr>
-<tr>
-  <th align=right>#news.Archive_Date#</th>
-  <td colspan=2>@archive_date_select;noquote@ <br>
-    <input type=checkbox name=permanent_p value=t>
-    <b>#news.never#</b> #news.show_it_permanently#</td>
-</tr>
-</table>
+<p class="formLabel"><label for="publish_date">#news.Release_Date#</label></p>
+<p class="formWidget">@publish_date_select;noquote@</p>
+
+<p class="formLabel"><label for="archive_date">#news.Archive_Date#</p>
+<p class="formWidget">@archive_date_select;noquote@<br />
+<input type=checkbox name=permanent_p value=t id="never"> <b><label for="never">#news.never#</label></b> #news.show_it_permanently#</p>
+
 
 <p>
 
-<center>
 <input type=submit value="#news.Release#">
-</center>
-
+</p>
 </form>
 
 

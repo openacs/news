@@ -3,73 +3,52 @@
 <property name="title">@title;noquote@</property>
 
 
-<p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt_When_youre_done_click#
-<p>
+<p>Use the following form to define your news item.Note that the fields marked with <span class="formRequired">*</span> are required.
+When you're done click 'Preview' to see how the news item will look and to choose an image for the article.</p>
 
-<form action=../preview method=post enctype=multipart/form-data>
+<form action="../preview" method="post" enctype="multipart/form-data">
 @hidden_vars;noquote@
-<table border=0>
-  <tr>
-    <th align=right><font color=red>#news.Title#</font></th>
-    <td><input type=text size=80 maxlength=400 name=publish_title value="@publish_title@"></td>
-  </tr>
 
- <tr>
-  <th align=right valign=top><font color=red>#news.Body#</font></th>
-  <td colspan=2><textarea name=publish_body cols=80 rows=20 wrap=soft>@publish_body@</textarea></td>
- </tr>
+<p class="formLabel"><label for="publish_title">#news.Title#</label><span class="formRequired">*</span></p>
+<p class="formWidget"><input type=text size=63 maxlength=400 id="publish_title" name=publish_title value="@publish_title@"></p>
 
- <tr>
-  <td> </td>
-  <td colspan=2>
-    <table>
-     <tr><td>#news.or_upload_text_file# </td></tr>
-     <tr><td><input type=file name=text_file size=40></td></tr>
-    </table>
-   </td>
- </tr>
+<p class="formLabel"><label for="publish_lead">#news.Lead#</label></p>
+<p class="formWidget"><textarea id="publish_lead" name=publish_lead cols=50 rows=3>@publish_lead@</textarea></p>
 
-  <tr>
-    <td> </td>
-    <td>#news.The_text_is_formatted_as# 
+<p class="formLabel"><label for="publish_body">#news.Body#</label><span class="formRequired">*</span></p>
+<p class="formWidget"><textarea id="publish_body" name=publish_body cols=50 rows=20>@publish_body@</textarea><br />
+<span class="advancedAdmin"><label for="text_file">#news.or_upload_text_file#</label><br /></span>
+<p class="formWidget"><span class="advancedAdmin"><input type=file id="text_file" name=text_file size=40><br /></span>
+#news.The_text_is_formatted_as# &nbsp;
       <if @html_p@ not nil and @html_p@ ne "f"> 
-        <input type=radio name=html_p value="f"> #news.Plain_text#&nbsp;
-        <input type=radio name=html_p value="t" checked> #news.HTML#
+        <input type=radio name=html_p value="f" id="plain"> <label for="plain">#news.Plain_text#</label>&nbsp;
+        <input type=radio name=html_p value="t" id="html" checked> <label for="html">#news.HTML#</label>
       </if>
       <else>
-        <input type=radio name=html_p value="f" checked> #news.Plain_text#&nbsp;
-        <input type=radio name=html_p value="t"> #news.HTML#
+        <input type=radio name=html_p value="f" id="plain" checked> <label for="plain">#news.Plain_text#</label>&nbsp;
+        <input type=radio name=html_p value="t" id="html"> <label for="html">#news.HTML#</label>
       </else>
-    </td>
-  </tr>
+</p>
 
-  <tr>
-    <th align=right><font color=red>#news.Release_Date#</font></th>
-    <td>@publish_date_select;noquote@</td>
-  </tr>
+<p class="formLabel">Image</p>
+<p class="formWidget"><if @image_url@ not nil><img src="@image_url@"></if>
+      [use 'preview' to revise image]
+</p>
 
-  <tr>
-    <th align=right>#news.Archive_Date#</th>
-    <td>@archive_date_select;noquote@ <br>
-        @never_checkbox;noquote@
-      <b>#news.never#</b> #news.show_it_permanently#</td>
-  </tr>
+<p class="formLabel">#news.Release_Date#</p>
+<p class="formWidget">@publish_date_select;noquote@</p>
 
-  <tr>
-    <th align=right><font color=red>#news.Revision_log#</font></th>
-    <td><input type=text size=80 maxlength=400 name=revision_log value=""><br>
-  </tr>
+<p class="formLabel">#news.Archive_Date#</p>
+<p class="formWidget">@archive_date_select;noquote@<br />
+<input type=checkbox name=permanent_p value=t id="never"> <b><label for="never">#news.never#</label></b> #news.show_it_permanently#</p>
+
+<p class="formLabel"><label for="revision_log">#news.Revision_log#</label><span class="formRequired">*</span></p>
+<p class="formWidget"><input type=text size=63 maxlength=400 id="revision_log" name=revision_log value=""></p>
 
 
-  <tr>
-  <th></th>
-  <td align=left>
-   <input type=submit value="#news.Preview#">
-  </td>
-  </tr>
-</table>
 
-<p>
+<p>   <input type=submit value="#news.Preview#">
+</p>
 </form>
 
 

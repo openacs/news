@@ -5,13 +5,15 @@
 
 
   <if @item_exist_p@ false>
-    <h3>#news.lt_Could_not_find_the_re#</h3>
+    <p>#news.lt_Could_not_find_the_re#</p>
   </if>
   <else>
     <include src=news
       item_id=@item_id;noquote@
       publish_title=@publish_title;noquote@
+      publish_lead=@publish_lead@
       publish_body=@publish_body;noquote@
+      publish_image=@publish_image@
       creator_link=@creator_link;noquote@>
 
       <if @comments@ ne "">

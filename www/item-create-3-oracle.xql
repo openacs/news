@@ -9,6 +9,7 @@
 begin
 :1 := news.new(
 title           => :publish_title,
+lead            => :publish_lead,
 publish_date    => :publish_date_ansi, 
 archive_date    => :archive_date_ansi,
 mime_type       => :mime_type,        

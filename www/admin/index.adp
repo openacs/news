@@ -33,43 +33,33 @@
         </tr>
         <multiple name=news_items>
         <if @news_items.rownum@ odd>
-        <tr>
+        <tr class="odd">
         </if>
         <else>
-        <tr bgcolor=#eeeeee>
+        <tr class="even">
         </else>
-          <td align=center bgcolor=white><input type=checkbox name=n_items  value=@news_items.item_id@></td>
-          <td align=left><a href=item?item_id=@news_items.item_id@>@news_items.item_id@</a></td>
-          <td>@news_items.publish_title@ (#news.rev# @news_items.revision_no@) [<a href=revision-add?item_id=@news_items.item_id@>#news.revise#</a>]</td>
+          <td align=center><input type=checkbox name=n_items  value=@news_items.item_id@></td>
+          <td><a href=item?item_id=@news_items.item_id@>@news_items.item_id@</a></td>
+          <td class="adminLink">@news_items.publish_title@ (#news.rev# @news_items.revision_no@) <a href=revision-add?item_id=@news_items.item_id@>#news.revise#</a></td>
           <td><a href=/shared/community-member?user_id=@news_items.creation_user@>@news_items.item_creator@</a></td>
-          <td align=left>@news_items.publish_date_pretty@</td>
-          <td align=left>@news_items.archive_date_pretty@</td>
+          <td>@news_items.publish_date_pretty@</td>
+          <td>@news_items.archive_date_pretty@</td>
           <td>@news_items.pretty_status@</td>
          </tr>
          </multiple>
        </table>
-      </td>
-   </tr>
-   <tr>
-    <td>
-     #news.lt_Click_on_item_ID_to_a#<br>
-     #news.lt_Click_on_revise_to_ed#
-    </td>
-   </tr>
-   <tr>
-     <td>
+ 
      <if @view@ ne "all">
+     <p>
       #news.lt_Do_the_following_to_t#
       <select name=action>
 	@select_actions;noquote@
        <option value=delete>#news.Delete#</option>	
        </select>
        <input type=submit value="#news.Go#">
+       </p>
      </if>
        </form>
-     </td>
-   </tr> 
- </table>
 </else>
 
 

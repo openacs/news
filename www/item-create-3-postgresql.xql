@@ -1,7 +1,9 @@
+
+
 <?xml version="1.0"?>
 
 <queryset>
-   <rdbms><type>postgresql</type><version>7.1</version></rdbms>
+   <rdbms><type>postgresql</type><version>7.3</version></rdbms>
 
 <fullquery name="create_news_item">      
       <querytext>
@@ -22,7 +24,8 @@
         null,               -- p_relation_tag
         :creation_ip,       -- p_creation_ip
         :user_id,           -- p_creation_user
-        :live_revision_p    -- p_is_live_p
+        :live_revision_p,    -- p_is_live_p
+        :publish_lead      -- p_lead
     );
 
       </querytext>

@@ -8,6 +8,7 @@
 select item_id,
        live_revision,
        publish_title,
+       publish_lead,
        html_p,
        publish_date,
        publish_body,

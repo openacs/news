@@ -4,21 +4,29 @@ ad_page_contract {
 
     Final insert into database to create a news item
     (no double-click protection, see bboard for discussion)
+
     @author stefan@arsdigita.com
     @creation-date 2000-12-14
     @cvs-id $Id$
-    
 } {
-
     publish_title:notnull
     publish_body:notnull,allhtml,trim
+    {publish_lead {}}
     {publish_date_ansi:trim "[db_null]"}
     {archive_date_ansi:trim "[db_null]"}
     html_p:notnull
     permanent_p:notnull
-    
+    imgfile:optional
+} -validate {
+     imgfile_valid {
+         if { [exists_and_not_null imgfile]
+              && ![ImageMagick::validate_tmp_file $imgfile] } {
+             ad_complain
+         }
+     }
+} -errors {
+     imgfile_valid {Image file invalid}
 }  -properties {
-    
     title:onevalue
     context:onevalue
 }
@@ -72,22 +80,7 @@ if {[string match $html_p t]} {
 
 # do insert: unfortunately the publish_body cannot be supplied through the PL/SQL function
 # we therefore have to do this in a second step 
-set news_id [db_exec_plsql create_news_item "
-begin
-:1 := news.new(
-title           => :publish_title,
-publish_date    => :publish_date_ansi, 
-archive_date    => :archive_date_ansi,
-mime_type       => :mime_type,        
-package_id      => :package_id,       
-approval_user   => :approval_user,     
-approval_date   => :approval_date,      
-approval_ip     => :approval_ip,   
-creation_ip     => :creation_ip,    
-creation_user   => :user_id,     
-is_live_p       => :live_revision_p    
-);
-end;"]
+set news_id [db_exec_plsql create_news_item {}]
 
 #
 # RAL: For postgres, we need NOT store the data in a blob.  The
@@ -100,6 +93,17 @@ if {![string match $content_add ""]} {
     set    content = empty_blob()
     where  revision_id = :news_id
     returning content into :1" -blobs  [list $publish_body]
+}
+
+# if an image is specified, we add it here.
+if {[exists_and_not_null imgfile]} {
+    # ImageMagick package will check its tmp directory for the file, so no
+    # need to expand the path.
+    db_1row item {
+        select item_id from cr_revisions where revision_id = :news_id
+    }
+    ImageMagick::util::create_image_item -file $imgfile -parent_id $item_id
+    ImageMagick::delete_tmp_file $imgfile
 }
 
     #update RSS if it is enabled

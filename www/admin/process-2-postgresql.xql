@@ -19,7 +19,7 @@
  
 <fullquery name="archive_next_month">      
       <querytext>
-      select (last_day(current_timestamp)+1)::date
+      select (last_day(current_timestamp)+'1 day')::date
       </querytext>
 </fullquery>
 

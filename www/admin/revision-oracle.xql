@@ -10,6 +10,7 @@
            revision_id,
            content_revision.get_number(:revision_id) as revision_no,
            publish_title,
+           publish_lead,
            html_p,
            publish_date,
            archive_date,

@@ -11,6 +11,7 @@
             item_id       => :item_id,
             publish_date  => :publish_date_ansi,
             title         => :publish_title,   
+            lead          => :publish_lead,
             description   => :revision_log,
             mime_type     => :mime_type,
             package_id    => [ad_conn package_id],

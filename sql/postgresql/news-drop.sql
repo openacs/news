@@ -4,7 +4,6 @@
 -- @created 2000-12-20
 -- $Id$
 
-
 -- unregister content_types from folder
 create function inline_0 ()
 returns integer as '
@@ -66,21 +65,10 @@ drop function inline_0 ();
 -- delete pertinent info from cr_news
 --drop table cr_news;
 
+\i news-views-drop.sql
 
+\i news-package-drop.sql
 
--- drop package news
-select drop_package('news');
-
-
--- delete news views
-drop view news_items_approved;
-drop view news_items_live_or_submitted;
-drop view news_items_unapproved;
-drop view news_item_revisions;
-drop view news_item_unapproved;
-drop view news_item_full_active;
-
-drop function news__status (timestamptz, timestamptz);
 
 -- drop CR content_type
 select content_type__drop_type(
@@ -145,3 +133,4 @@ select acs_sc_impl__delete(
 	   'FtsContentProvider',		-- impl_contract_name
            'news'				-- impl_name
 );
+

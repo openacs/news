@@ -21,7 +21,8 @@
 	    current_timestamp,    -- p_creation_date
             :creation_ip,         -- p_creation_ip
             :creation_user,       -- p_creation_user
-            :active_revision_p    -- p_make_active_revision_p
+            :active_revision_p,    -- p_make_active_revision_p
+            :publish_lead        -- p_lead
 	);
       </querytext>
 </fullquery>

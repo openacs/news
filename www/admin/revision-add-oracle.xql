@@ -11,6 +11,7 @@ select
     package_id,   
     revision_id,
     publish_title,
+    publish_lead,
     html_p,
     publish_date,
     NVL(archive_date, sysdate+[ad_parameter ActiveDays "news" 14]) as archive_date,

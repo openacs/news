@@ -12,6 +12,7 @@ ad_page_contract {
 } { 
     item_id:integer
     publish_title:notnull
+    publish_lead
     publish_body:notnull,allhtml,trim
     html_p:notnull
     revision_log:notnull

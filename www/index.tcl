@@ -47,7 +47,7 @@ set search_url [site_node_closest_ancestor_package_url -package_key search -defa
 # view switch in live | archived news
 if { [string equal "live" $view] } {
 
-    set title "[_ news.News]"
+    set title [apm_instance_name_from_id $package_id]
     set view_clause [db_map view_clause_live]
 
     if { [db_string archived_p "
@@ -63,7 +63,7 @@ if { [string equal "live" $view] } {
     
 } else {
     
-    set title "[_ news.News_Archive]"
+    set title [apm_instance_name_from_id $package_id]
     set view_clause [db_map view_clause_archived]
 
     if { [db_string live_p "
@@ -104,13 +104,13 @@ db_multirow -extend { publish_date } news_items item_list {} {
 if { $count < [expr $start + $max_dspl] } {
     set next_start ""
 } else {
-    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>[_ news.next]<a/>"
+    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>Next<a/>"
 }
 
 if { $start == 1 } {
     set prev_start ""
 } else {
-    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>[_ news.prev]</a>"
+    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>Previous</a>"
 }
 
 if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {

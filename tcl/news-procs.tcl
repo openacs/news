@@ -85,6 +85,39 @@ ad_proc news_util_get_url {
 
 }
 
+ad_proc test_file_type {
+    imgsrc
+} {
+    Used in form validation to check that the uploaded file type really is
+    what it's meant to be (invokes 'identify' on the file).
+
+    @author Tom Ayles (tom@beatniq.net)
+} {
+    set mime_types [split \
+                        [parameter::get -parameter ImageUploadTypes] \
+                        {,}]
+    if {[catch \
+             {array set img_props [ImageMagick::identify $imgsrc]} \
+             errmsg]} {
+        return 0
+    }
+    set mime_type "image/[string tolower $img_props(format)]"
+    if {[lsearch $mime_types $mime_type] < 0} {
+        return 0
+    }
+    return 1
+}
+
+
+ad_proc news_get_image_id {
+    item_id
+} {
+    Retrieves the image associated with the given news item.
+
+    @author Tom Ayles (tom@beatniq.net)
+} {
+    return [db_string img {} -default {}]
+}
 
 ad_proc news__datasource {
     object_id

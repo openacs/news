@@ -16,8 +16,10 @@ ad_page_contract {
     context:onevalue 
     item_exist_p:onevalue
     publish_title:onevalue
+    publish_lead:onevalue
     publish_date:onevalue
     publish_body:onevalue
+    publish_image:onevalue
     html_p:onevalue
     creator_link:onevalue
     comments:onevalue
@@ -38,6 +40,7 @@ set item_exist_p [db_0or1row one_item "
 select item_id,
        live_revision,
        publish_title,
+       publish_lead,
        html_p,
        publish_date,
        '<a href=\"/shared/community-member?user_id=' || creation_user || '\">' || item_creator ||  '</a>' as creator_link
@@ -79,6 +82,14 @@ if { $item_exist_p } {
     } else {
         set comment_link ""
         set comments ""
+    }
+
+    # get image info, if any
+    set image_id [news_get_image_id $item_id]
+    if {![empty_string_p $image_id]} {
+        set publish_image "image/$image_id"
+    } else {
+        set publish_image {}
     }
 
     if {[permission::permission_p -object_id $item_id -privilege write] } {

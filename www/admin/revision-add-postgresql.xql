@@ -11,6 +11,7 @@ select
     package_id,   
     revision_id,
     publish_title,
+    publish_lead,
     html_p,
     to_char(publish_date, 'YYYY-MM-DD') as publish_date,
     publish_body,

@@ -7,18 +7,18 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="5.1.0b2" url="http://openacs.org/repository/download/apm/news-5.1.0b2.apm">
+    <version name="5.2.0d2" url="http://openacs.org/repository/download/apm/news-5.2.0d2.apm">
         <owner url="http://opeancs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
         <release-date>2003-11-10</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
 
-        <provides url="news" version="5.1.0b2"/>
-        <requires url="acs-content-repository" version="5.0.0b4"/>
+        <provides url="news" version="5.2.0d2"/>
+        <requires url="acs-content-repository" version="5.2.0d1"/>
         <requires url="acs-datetime" version="4.0"/>
-        <requires url="acs-kernel" version="5.0.0b4"/>
-        <requires url="general-comments" version="4.1"/>
+        <requires url="acs-kernel" version="5.2.0d2"/>
+        <requires url="general-comments" version="4.6.1"/>
         <requires url="rss-support" version="0.3d5"/>
 
 
@@ -35,6 +35,8 @@
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="SolicitCommentsP"  default="1" description="Whether we allow comments on news items."/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageFormat"  default="jpg" description="Image format to use when converting images, e.g. png, gif, jpg"/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageGeometry"  default="120x150" description="Geometry specification for scaling images in news, e.g. 120x150 scales images to have a maximum width of 120 px and a maximum height of 150 px."/>
         </parameters>
 
     </version>

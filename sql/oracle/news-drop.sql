@@ -54,21 +54,10 @@ show errors
 
 
 
-drop package news;
-
 -- delete news views
+@@ drop-news-view.sql
 
-drop view news_items_approved;
-
-drop view news_items_live_or_submitted;
-
-drop view news_items_unapproved;
-
-drop view news_item_revisions;
-
-drop view news_item_unapproved;
-
-drop view news_item_full_active;
+drop package news;
 
 -- drop indices to avoid lock situation through parent table
 

@@ -21,6 +21,7 @@ ad_page_contract {
     publish_date:onevalue
     publish_date_desc:onevalue
     publish_title:onevalue
+    publish_lead:onevalue
     publish_body:onevalue
     html_p:onevalue
     archive_date:onevalue
@@ -38,7 +39,7 @@ db_1row news_item_info {
     where item_id = :item_id
 }
 
-set title "[_ news.lt_One_Item_-_add_revisi]"
+set title "Add revision"
 set context [list $title]
 
 # get active revision of news item
@@ -48,6 +49,7 @@ select
     package_id,   
     revision_id,
     publish_title,
+    publish_lead,
     html_p,
     publish_date,
     NVL(archive_date, sysdate+[ad_parameter ActiveDays "news" 14]) as archive_date,
@@ -83,6 +85,8 @@ set archive_date_select [dt_widget_datetime -default $archive_date archive_date 
 set action "[_ news.Revision]"
 set hidden_vars [export_form_vars item_id action]
 
+set image_id [news_get_image_id $item_id]
+if {![empty_string_p $image_id]} { set image_url "../image/$image_id" }
 
 ad_return_template
 
