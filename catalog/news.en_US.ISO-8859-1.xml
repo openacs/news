@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<message_catalog package_key="news" package_version="5.0d1" locale="en_US" charset="ISO-8859-1">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<message_catalog package_key="news" package_version="5.0d2" locale="en_US" charset="ISO-8859-1">
 
   <msg key="active">active</msg>
   <msg key="Active_Revision">Active Revision</msg>
@@ -35,6 +35,8 @@
   <msg key="It_will_go_live_on">It will go live on</msg>
   <msg key="It_will_move_into_archive_on">It will move into the archive on</msg>
   <msg key="Log_Entry">Log Entry</msg>
+  <msg key="lt__When_youre_done_clic">. 
+When you're done click 'Preview' to see how the news item will appear.</msg>
   <msg key="lt_And_be_live_until_rev">And be live until revoked.</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Archive as of Next Month</msg>
   <msg key="lt_Archive_as_of_Next_We">Archive as of Next Week</msg>

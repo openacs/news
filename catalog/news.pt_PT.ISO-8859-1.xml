@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<message_catalog package_key="news" package_version="5.0d1" locale="pt_PT" charset="ISO-8859-1">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<message_catalog package_key="news" package_version="5.0d2" locale="pt_PT" charset="ISO-8859-1">
 
   <msg key="active">activo</msg>
   <msg key="Active_Revision">Revisão Activa</msg>
@@ -29,10 +29,13 @@
   <msg key="Delete">Eliminar</msg>
   <msg key="Error">Erro</msg>
   <msg key="Go">Continuar</msg>
+  <msg key="going_live_no_archive">Estará activo em %n_days_until_publish% dias, sem data de arquivo agendada</msg>
+  <msg key="going_live_with_archive">Estará activo em %n_days_until_publish% dias, agendado para ser arquivado em %n_days_until_archive% dias</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Será activada em </msg>
   <msg key="It_will_move_into_archive_on">Será arquivada em</msg>
   <msg key="Log_Entry">Entrada no Registo</msg>
+  <msg key="lt__When_youre_done_clic">. Quando tiver acabado clique 'Antevisão' para ver como a noticia irá aparecer.</msg>
   <msg key="lt_And_be_live_until_rev">E estará activa até ser revogada.</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Arquivar como do Próximo Mês</msg>
   <msg key="lt_Archive_as_of_Next_We">Arquivar como da Próxima Semana</msg>
@@ -85,6 +88,8 @@
   <msg key="Preview_news_item">Antever noticia</msg>
   <msg key="Publication_Date">Data de Publicação</msg>
   <msg key="Published">Publicado</msg>
+  <msg key="published_no_archive">Publicado, não agendado para arquivo</msg>
+  <msg key="published_scheduled_for_archive">Publicado, agendado para arquivo em %n_days_until_archive% dias</msg>
   <msg key="Release">Disponibilização</msg>
   <msg key="Release_Date">Data de Disponibilização</msg>
   <msg key="rev">rev.</msg>
