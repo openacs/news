@@ -8,7 +8,7 @@
     <p>#news.lt_Could_not_find_the_re#</p>
   </if>
   <else>
-    <include src=news
+    <include src="/packages/news/www/news"
       item_id=@item_id;noquote@
       publish_title=@publish_title;noquote@
       publish_lead=@publish_lead@
