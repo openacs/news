@@ -78,6 +78,7 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Make_Permanent">Make Permanent</msg>
   <msg key="manage">manage</msg>
   <msg key="never">never</msg>
+  <msg key="Never_archive">Never archive</msg>
   <msg key="News">News</msg>
   <msg key="News_Archive">News Archive</msg>
   <msg key="News_item">News Item</msg>
@@ -98,9 +99,12 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="published_scheduled_for_archive">Published, archived in %n_days_until_archive% days</msg>
   <msg key="Release">Release</msg>
   <msg key="Release_Date">Release Date</msg>
+  <msg key="Rev">Rev.</msg>
   <msg key="rev">rev.</msg>
   <msg key="revise">revise</msg>
   <msg key="Revision">Revision</msg>
+  <msg key="History">History</msg>
+  <msg key="Revision_history">Revision history</msg>
   <msg key="Revision_log">Revision log</msg>
   <msg key="Revision_number">Revision Number</msg>
   <msg key="revoke">revoke</msg>
