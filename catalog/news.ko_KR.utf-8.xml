@@ -29,6 +29,7 @@
   <msg key="Delete">삭제</msg>
   <msg key="Error">오류</msg>
   <msg key="Go">가기</msg>
+  <msg key="going_live_no_archive">%n_days_until_publish% 일동안 활동중이고, 기록을 위한 예정은 없음</msg>
   <msg key="HTML">HTML </msg>
   <msg key="It_will_go_live_on">존속될 것입니다.</msg>
   <msg key="It_will_move_into_archive_on">기록으로 옮겨질 것입니다.</msg>

@@ -29,6 +29,7 @@
   <msg key="Delete">Slet</msg>
   <msg key="Error">Fejl</msg>
   <msg key="Go">Videre</msg>
+  <msg key="going_live_no_archive">Går live om %n_days_until_publish% dage, bliver ikke arkiveret</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Den vil blive synlig den</msg>
   <msg key="It_will_move_into_archive_on">Nyheden vil flytte til arkivet den</msg>

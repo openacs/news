@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <message_catalog package_key="news" package_version="5.0d2" locale="ch_zh" charset="utf-8">
 
+  <msg key="Active_Revision">活动修订本</msg>
+  <msg key="Add_a_new_revision">增加新修订本</msg>
   <msg key="Author">恬宀</msg>
+  <msg key="Creation_IP">Creation IP </msg>
+  <msg key="Log_Entry">登陆日记</msg>
+  <msg key="lt_And_be_live_until_rev">并且撤回之前总处于活动状态</msg>
+  <msg key="lt_Click_on_item_ID_to_a">单击item ID#批准/撤消条目</msg>
+  <msg key="lt_Could_not_find_corres">找不到申请新闻条目的相应修订本</msg>
+  <msg key="lt_One_Item_-_add_revisi">一个条目——增加修订本</msg>
+  <msg key="lt_Please_check_the_item">请检查要处理的条目。</msg>
+  <msg key="lt_Please_supply_the_bod">请提供新闻内容。</msg>
+  <msg key="lt_Please_supply_the_tit">请提供新闻标题。</msg>
+  <msg key="lt_Publish_body_is_missi">发布内容丢失。重新上传文件或在文本区域输入内容。</msg>
+  <msg key="lt_red_fields_are_requir">红色区域必填</msg>
+  <msg key="lt_See_details_for_the_e">查看下面错误信息的详细资料</msg>
+  <msg key="lt_The_database_did_not_">数据库没有接受你的输入。</msg>
+  <msg key="lt_To_the_readers_it_wil">面向读者的外观：</msg>
+  <msg key="lt_You_must_supply_a_rev">必须提供修订本的日志信息。</msg>
+  <msg key="lt_Your_document_is_larg">文档大于系统允许的最大长度</msg>
+  <msg key="lt_Your_news_item_will_b">新闻条目的显示将使用news.adp中定义的默认模板。</msg>
+  <msg key="News_item_submitted">已提交的新闻条目</msg>
+  <msg key="One_Revision">一个修订本</msg>
+  <msg key="Revision">修订本</msg>
+  <msg key="Revision_log">修订本日志</msg>
+  <msg key="Revision_number">修订本号</msg>
   <msg key="Title">炎籾</msg>
+  <msg key="Your_news_item">新闻条目</msg>
 </message_catalog>
