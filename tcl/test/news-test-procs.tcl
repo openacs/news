@@ -11,7 +11,8 @@ namespace eval news {}
 namespace eval news::test {}
 
 aa_register_case news_pretty_status_key {
-    Test the news_pretty_status_key proc.
+    Test the news_pretty_status_key Tcl proc and
+    the news__status PLSQL function.
 
     @author Peter Marklund
 } {
@@ -27,44 +28,57 @@ aa_register_case news_pretty_status_key {
     news::test::assert_status_pretty \
         -publish_date $future_date \
         -archive_date "" \
-        -expect_key news.going_live_no_archive
+        -status going_live_no_archive
 
     # Scheduled for publish and archive
     news::test::assert_status_pretty \
         -publish_date $future_date \
         -archive_date $future_date \
-        -expect_key news.going_live_with_archive
+        -status going_live_with_archive
 
     # Published, no archive
     news::test::assert_status_pretty \
         -publish_date $past_date \
         -archive_date "" \
-        -expect_key news.published_no_archive
+        -status published_no_archive
 
     # Published scheduled archived
     news::test::assert_status_pretty \
         -publish_date $past_date \
         -archive_date $future_date \
-        -expect_key news.published_scheduled_for_archive
+        -status published_with_archive
 
     # Published and archived
     news::test::assert_status_pretty \
         -publish_date $past_date \
         -archive_date $past_date \
-        -expect_key news.Archived
+        -status archived
 
     # Not scheduled for publish
     news::test::assert_status_pretty \
         -publish_date "" \
         -archive_date "" \
-        -expect_key news.Unapproved
+        -status unapproved
 }
 
 ad_proc -private news::test::assert_status_pretty {
     {-publish_date:required}
     {-archive_date:required}
-    {-expect_key:required}
+    {-status:required}
 } {
-    aa_equals "publish_date \"$publish_date\" archive_date \"$archive_date\"" \
-        [news_pretty_status_key -publish_date $publish_date -archive_date $archive_date] $expect_key
+    set pretty_status [news_pretty_status -publish_date $publish_date -archive_date $archive_date -status $status]
+    aa_true "publish_date=\"$publish_date\" archive_date=\"$archive_date\" status=\"$status\" pretty_status=\"$pretty_status\"" \
+        [expr ![empty_string_p $pretty_status]]
+
+    set db_news_status [news::test::get_news_status \
+                           -publish_date $publish_date \
+                           -archive_date $archive_date]
+    aa_equals "publish_date=\"$publish_date\" archive_date=\"$archive_date\"" $db_news_status $status
+}
+
+ad_proc -private news::test::get_news_status {
+    {-publish_date:required}
+    {-archive_date:required}
+} {
+    return [db_string select_status {}]
 }

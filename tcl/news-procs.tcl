@@ -122,21 +122,28 @@ ad_proc news__url {
     return $url
 }
 
-ad_proc news_pretty_status_key {
+ad_proc news_pretty_status { 
     {-publish_date:required}
     {-archive_date:required}
+    {-status:required}
 } {
-    Given the the publish and archive date of a news item, return
-    a human readable and localized string explaining the publish and archive status
-    of the item. For example, "Published, scheduled to be archived in 5 days"
+    Given the publish status of a news items  return a localization human readable
+    sentence for the status.
 
-    @param publish_date The publish date on ANSI format
-    @param archive_date The archive date on ANSI format
-
-    @return The message key (package_key.message_key) for the text.
+    @param status Publish status short name. Valid values are returned
+    by the plsql function news_status.
 
     @author Peter Marklund
 } {
+    array set news_status_keys {
+        unapproved news.Unapproved
+        going_live_no_archive news.going_live_no_archive
+        going_live_with_archive news.going_live_with_archive
+        published_no_archive news.published_no_archive
+        published_with_archive news.published_scheduled_for_archive
+        archived news.Archived
+    }
+
     set now_seconds [clock scan now]
     if { ![empty_string_p $archive_date] } { 
         set archive_date_seconds [clock scan $archive_date]
@@ -155,36 +162,9 @@ ad_proc news_pretty_status_key {
             # Will be published in the future
 
             set n_days_until_publish [expr ($publish_date_seconds - $now_seconds) / 86400]
-
-            if { [empty_string_p $archive_date] } { 
-                # Not scheduled for archive
-                # Message with vars n_days_until_publish
-                set status_key news.going_live_no_archive
-            } else {
-                # Scheduled for archive
-                # Message with vars n_days_until_publish, n_days_until_archive
-                set status_key news.going_live_with_archive
-            }
-        } else {
-            # Has already been published
-
-            if { [empty_string_p $archive_date] } { 
-                # Not scheduled for archive
-                set status_key news.published_no_archive
-            } elseif { $archive_date_seconds > $now_seconds } {                
-                # Scheduled for archive
-                # Message with vars n_days_until_archive
-                set status_key news.published_scheduled_for_archive
-            } else {
-                # Already archived
-                set status_key news.Archived
-            }            
         }
-
-    } else {
-        # Item has no publish date - it's unapproved
-        set status_key news.Unapproved
     }
 
-    return $status_key
+    # Message lookup may use vars n_days_until_archive and n_days_until_publis
+    return [_ $news_status_keys($status)]
 }

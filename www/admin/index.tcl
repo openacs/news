@@ -9,13 +9,10 @@ ad_page_contract {
     @cvs-id $Id$
 
 } {
-
   {orderby: "item_id"}
   {view: "published"}
   {column_names:array ""}
-
 } -properties {
-
     title:onevalue
     context:onevalue
     view_link:onevalue
@@ -33,7 +30,7 @@ set view_slider [list \
     [list view "[_ news.News_Items]" published [list \
 	[list published "[_ news.Published]" {where "status like 'published%'"}] \
 	[list unapproved "[_ news.Unapproved]" {where "status = 'unapproved'"}] \
-	[list approved "[_ news.Approved]" {where "status like 'going live%'"}] \
+	[list approved "[_ news.Approved]" {where "status like 'going_live%'"}] \
 	[list archived "[_ news.Archived]"     {where "status = 'archived'"}] \
         [list all "[_ news.All]"               {} ] \
     ]]
@@ -62,24 +59,14 @@ set context {}
 
 
 # administrator sees all news items
-db_multirow -extend { publish_date archive_date } news_items itemlist {} {
+db_multirow -extend { publish_date archive_date pretty_status } news_items itemlist {} {
     set publish_date [lc_time_fmt $publish_date_ansi "%x"]
     set archive_date [lc_time_fmt $archive_date_ansi "%x"]
+    set pretty_status [news_pretty_status \
+                           -publish_date $publish_date \
+                           -archive_date $archive_date \
+                           -status $status]
 }
 
 
 ad_return_template
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -41,7 +41,7 @@
           <td><a href=/shared/community-member?user_id=@news_items.creation_user@>@news_items.item_creator@</a></td>
           <td align=left>@news_items.publish_date@</td>
           <td align=left>@news_items.archive_date@</td>
-          <td>@news_items.status@</td>
+          <td>@news_items.pretty_status@</td>
          </tr>
          </multiple>
        </table>

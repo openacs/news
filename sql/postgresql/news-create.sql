@@ -467,64 +467,38 @@ end;
 
 -- the status function returns information on the puplish or archive status
 -- it does not make any checks on the order of publish_date and archive_date
-create function news__status (integer)
+create function news__status (timestamptz, timestamptz)
 returns varchar as '
 declare
-    p_news_id alias for $1;
-    v_archive_date timestamptz;
-    v_publish_date timestamptz;
+    p_publish_date alias for $1;
+    p_archive_date alias for $2;
 begin
-    -- populate variables
-    select archive_date into v_archive_date 
-    from   cr_news 
-    where  news_id = p_news_id;
-    --
-    select publish_date into v_publish_date
-    from   cr_revisions
-    where  revision_id = p_news_id;
-    
-    -- if publish_date is not null the item is approved, otherwise it is not
-    if v_publish_date is not null then
-        if v_publish_date > current_timestamp  then
-            -- to be published (2 cases)
-            -- archive date could be null if it has not been decided when to archive
-	    -- RAL: the nasty ''extract'' code below was the only way I could figure
-	    -- to get the same result as Oracle (eg, 2.4 days)
-            if v_archive_date is null then 
-                return ''going live in ''
-                || to_char(extract(days from (v_publish_date - current_timestamp))
-	    + extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
-	    || '' days'';
+    if p_publish_date is not null then
+        if p_publish_date > current_timestamp then
+            -- Publishing in the future
+            if p_archive_date is null then 
+                return ''going_live_no_archive'';
             else 
-                return ''going live in ''
-                || to_char(extract(days from (v_publish_date - current_timestamp))
-		+ extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
-		|| '' days'' || '', archived in ''
-                || to_char(extract(days from (v_archive_date - current_timestamp))
-		+ extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
-                || '' days'';
+                return ''going_live_with_archive'';
             end if;  
         else
-            -- already released or even archived (3 cases)
-            if v_archive_date is null then
-                 return ''published, not scheduled for archive'';
+            -- Published in the past
+            if p_archive_date is null then
+                 return ''published_no_archive'';
             else
-                if v_archive_date - current_timestamp > 0 then
-                     return ''published, archived in ''
-		     || to_char(extract(days from (v_archive_date - current_timestamp))
-		     + extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
-		     || '' days'';
+                if p_archive_date > current_timestamp then
+                     return ''published_with_archive'';
                 else 
                     return ''archived'';
                 end if;
-             end if;
-        end if;     
-    else 
+            end if;
+        end if;
+    else
+        -- publish_date null
         return ''unapproved'';
     end if;
 end;
 ' language 'plpgsql';
-
 
 create function news__name (integer)
 returns varchar as '
@@ -788,7 +762,7 @@ select
     ps.first_names || ' ' || ps.last_name as item_creator,
     ao.creation_date::date as creation_date,
     ci.live_revision,
-    news__status(cn.news_id) as status
+    news__status(cr.publish_date, cn.archive_date) as status
 from 
     cr_items ci, 
     cr_revisions cr,
@@ -856,9 +830,12 @@ select
     cr.mime_type as mime_type,
     cn.package_id,
     ao.creation_date::date as creation_date,
-    news__status(news_id) as status,
-    case when exists (select 1 from cr_news where news_id = revision_id 
-         and news__status(news_id) = 'unapproved') then 1 else 0 end 
+    news__status(cr.publish_date, cn.archive_date) as status,
+    case when exists (select 1 
+                      from cr_revisions cr2
+                      where cr2.revision_id = cn.news_id
+                        and cr2.publish_date is null
+                      ) then 1 else 0 end 
          as
          approval_needed_p,
     ps.first_names || ' ' || ps.last_name as item_creator,
@@ -915,7 +892,7 @@ select
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
     cr.publish_date,
     cn.archive_date,
-    news__status(cr.revision_id) as status,
+    news__status(cr.publish_date, cn.archive_date) as status,
     ci.name as item_name,
     ps.person_id as creator_id,
     ps.first_names || ' ' || ps.last_name as item_creator
