@@ -45,6 +45,7 @@ array set action_msg_key {
     "archive next week" news.lt_Archive_as_of_Next_We
     "archive next month" news.lt_Archive_as_of_Next_Mo
     "make permanent" news.Make_Permanent
+    "delete" news.Delete
 }
 
 set action_pretty [_ $action_msg_key($action)]
