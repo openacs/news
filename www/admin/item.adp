@@ -3,10 +3,8 @@
 <property name="title">@title;noquote@</property>
 
 <p>
-<dd><li><a href=revision-add?item_id=@item_id@>#news.Add_a_new_revision#</a>	
 
-
-@hidden_vars@
+<a href=revision-add?item_id=@item_id@>#news.Add_a_new_revision#</a>	
 
    <table width=100% border=0>
     <tr>

@@ -7,7 +7,7 @@
 <p>
 
 <form action=../preview method=post enctype=multipart/form-data>
-@hidden_vars@
+@hidden_vars;noquote@
 <table border=0>
   <tr>
     <th align=right><font color=red>#news.Title#</font></th>
@@ -45,13 +45,13 @@
 
   <tr>
     <th align=right><font color=red>#news.Release_Date#</font></th>
-    <td>@publish_date_select@</td>
+    <td>@publish_date_select;noquote@</td>
   </tr>
 
   <tr>
     <th align=right>#news.Archive_Date#</th>
-    <td>@archive_date_select@ <br>
-        @never_checkbox@
+    <td>@archive_date_select;noquote@ <br>
+        @never_checkbox;noquote@
       <b>#news.never#</b> #news.show_it_permanently#</td>
   </tr>
 

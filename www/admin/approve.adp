@@ -21,17 +21,17 @@
 
 
 <form action=approve-2 method=post enctype=multipart/form-data>
-@hidden_vars@
+@hidden_vars;noquote@
 <input type=hidden name=revision_id value="<multiple name=items>@items.revision_id@ </multiple>">
 
 <table border=1>
 <tr>
   <th align=right><font color=red>#news.Publication_Date#</font></th>
-  <td colspan=2>@publish_date_select@</td>
+  <td colspan=2>@publish_date_select;noquote@</td>
 </tr>
 <tr>
   <th align=right>#news.Archive_Date#</th>
-  <td colspan=2>@archive_date_select@ <br>
+  <td colspan=2>@archive_date_select;noquote@ <br>
     <input type=checkbox name=permanent_p value=t>
     <b>#news.never#</b> #news.show_it_permanently#</td>
 </tr>

@@ -61,7 +61,7 @@ if { $item_exist_p } {
 	set publish_body "<pre>[ad_quotehtml $publish_body]</pre>"
     }
     set title "[_ news.One_Revision]"
-    set context [list $title]
+    set context [list [list "item?[export_vars -url item_id]" [_ news.One_Item]] $title]
     
 } else {
     set context {}

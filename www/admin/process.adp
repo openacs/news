@@ -34,7 +34,7 @@
 	
 <center>   
   <form method=post action=process-2>	
-   @hidden_vars@
+   @hidden_vars;noquote@
    <input type=submit value="#news.Yes#">
   </form>
 </center>

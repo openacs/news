@@ -18,7 +18,6 @@ ad_page_contract {
 
     title:onevalue
     context:onevalue
-    hidden_vars:onevalue
     item_name:onevalue
     item_creator:onevalue
     item_creation_ip:onevalue
@@ -35,9 +34,6 @@ set package_id [ad_conn package_id]
 
 set title "[_ news.One_Item]"
 set context [list $title]
-
-
-set hidden_vars [export_form_vars item_id return_url]
 
 
 # get revisions of the item

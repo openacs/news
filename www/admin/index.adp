@@ -9,7 +9,7 @@
 
 <p>
 
-@view_link@
+@view_link;noquote@
 <if @news_items:rowcount@ eq 0>
  <i>#news.lt_There_are_no_items_av#</i><p>
 </if>
