@@ -47,7 +47,7 @@ set search_url [apm_package_url_from_key search]
 # view switch in live | archived news
 if { [string equal "live" $view] } {
 
-    set title "[_ news.News]"
+    set title "News"
     set view_clause [db_map view_clause_live]
 
     if { [db_string archived_p "
@@ -56,14 +56,14 @@ if { [string equal "live" $view] } {
     where  publish_date < sysdate 
     and    archive_date < sysdate
     and    package_id = :package_id"]} {
-	set view_switch_link "<a href=?view=archive>[_ news.Show_archived_news]</a>"
+	set view_switch_link "<a href=?view=archive>Show archived news</a>"
     } else { 
 	set view_switch_link ""
     }
     
 } else {
     
-    set title "[_ news.News_Archive]"
+    set title "News Archive"
     set view_clause [db_map view_clause_archived]
 
     if { [db_string live_p "
@@ -73,7 +73,7 @@ if { [string equal "live" $view] } {
     and    (archive_date is null 
             or archive_date > sysdate) 
     and    package_id = :package_id"] } {
-	set view_switch_link "<a href=?view=live>[_ news.Show_live_news]</a>"
+	set view_switch_link "<a href=?view=live>Show live news</a>"
     } else {
 	set view_switch_link ""
     }    
@@ -87,7 +87,16 @@ set count 0
 
 # use template::query to limit result to allowed number of rows.
 
-db_multirow -extend { publish_date } news_items item_list {} {
+db_multirow news_items item_list "
+select item_id,
+       package_id,
+       publish_title,
+       publish_date
+from   news_items_approved
+where  $view_clause   
+and    package_id = :package_id
+order  by publish_date desc, item_id desc" {
+
     # this code block enables paging counter, no direct data manipulation 
     # alternatives are: <multiple ... -startrow=.. and -max_rows=.. if it worked
     # in Oracle (best for large number of rows): select no .. (select rownum as no.. (select...)))
@@ -95,8 +104,6 @@ db_multirow -extend { publish_date } news_items item_list {} {
     incr count
     if { $count < $start } continue
     if { $count >= [expr $start + $max_dspl] } break
-
-    set publish_date [lc_time_fmt $publish_date_ansi "%x"]
 }
 
 
@@ -104,13 +111,13 @@ db_multirow -extend { publish_date } news_items item_list {} {
 if { $count < [expr $start + $max_dspl] } {
     set next_start ""
 } else {
-    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>[_ news.next]<a/>"
+    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>next<a/>"
 }
 
 if { $start == 1 } {
     set prev_start ""
 } else {
-    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>[_ news.prev]</a>"
+    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>prev</a>"
 }
 
 if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {
@@ -122,9 +129,3 @@ if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {
 set pagination_link "$prev_start$divider$next_start"
 
 ad_return_template
-
-
-
-
-
-
