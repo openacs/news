@@ -22,7 +22,7 @@
 <if @comment_link@ ne "">
 <ul>
 <li>
-@comment_link@
+@comment_link;noquote@
 </ul>
 </if>
 
