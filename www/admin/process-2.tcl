@@ -8,7 +8,7 @@ ad_page_contract {
     
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
-    @$Id$
+    @cvs-id $Id$
 
 } {
  

@@ -6,7 +6,7 @@ ad_library {
     
     @author stefan@arsdigita.com
     @creation-date 12-14-00
-    @cvs-id $Id$ 
+    @cvs-id $Id$
 }
 
 
