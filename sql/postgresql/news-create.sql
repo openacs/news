@@ -122,7 +122,7 @@ create  index cr_news_appuser_id_fk on cr_news(approval_user);
 begin;
     select content_type__create_type (
         'news',       -- content_type
-	null,         -- supertype
+	'content_revision',         -- supertype
 	'News Article',  -- pretty_name
 	'News Articles', -- pretty_plural
 	'cr_news',    -- table_name
