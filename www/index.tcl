@@ -42,7 +42,7 @@ set news_create_p [ad_permission_p $package_id news_create]
 
 # switch for showing interface to site-wide-search for news
 set allow_search_p [parameter::get -package_id $package_id -parameter ShowSearchInterfaceP  -default 1]
-set search_url [site_node_closest_ancestor_package_url search]
+set search_url [site_node_closest_ancestor_package_url -package_key search -default ""]
 
 # view switch in live | archived news
 if { [string equal "live" $view] } {
