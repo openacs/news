@@ -56,7 +56,7 @@ if { $item_exist_p } {
 
     # text-only body
     if {[info exists html_p] && [string equal $html_p "f"]} {
-	set publish_body "[ad_text_to_html $publish_body]"
+	set publish_body [ad_text_to_html -- $publish_body]
     }
     
     if { [ad_parameter SolicitCommentsP "news" 0] &&
