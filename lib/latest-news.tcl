@@ -50,6 +50,7 @@ if { ![exists_and_not_null base_url] } {
 set script "# /packages/news/lib/latest-news.tcl
 set max_age_filter {$max_age_filter}
 set n $n
+set package_id $package_id
 db_list_of_lists ls {} -bind { package_id $package_id max_age $max_age max_age_pg {$max_age days} }"
 
 multirow create news item_id title lead publish_date url date
