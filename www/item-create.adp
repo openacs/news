@@ -2,7 +2,7 @@
 <property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
 
-<p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt__When_youre_done_clic#
+<p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt_When_youre_done_click#
 
 
 <form action=preview method=post enctype=multipart/form-data>
