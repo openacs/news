@@ -41,7 +41,7 @@
 <p>
 
 <center>
-  @pagination_link@
+  @pagination_link;noquote@
 </center>
 </else>
 
@@ -61,7 +61,7 @@
 
 <if @view_switch_link@ ne "">
 <ul>
-  <li>@view_switch_link@
+  <li>@view_switch_link;noquote@
 </ul>
 </if>
 
