@@ -492,16 +492,16 @@ begin
 	    -- to get the same result as Oracle (eg, 2.4 days)
             if v_archive_date is null then 
                 return ''going live in ''
-                || text(round(extract(days from (v_publish_date - current_timestamp))
-		+ extract(hours from (v_publish_date - current_timestamp))/24,1))
-		|| '' days'';
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+	    + extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
+	    || '' days'';
             else 
                 return ''going live in ''
-                || text(round(extract(days from (v_publish_date - current_timestamp))
-		+ extract(hours from (v_publish_date - current_timestamp))/24,1))
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+		+ extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
 		|| '' days'' || '', archived in ''
-                || text(round(extract(days from (v_archive_date - current_timestamp))
-		+ extract(hours from (v_archive_date - current_timestamp))/24,1))
+                || to_char(extract(days from (v_archive_date - current_timestamp))
+		+ extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
                 || '' days'';
             end if;  
         else
@@ -511,8 +511,8 @@ begin
             else
                 if v_archive_date - current_timestamp > 0 then
                      return ''published, archived in ''
-		     || text(round(extract(days from (v_archive_date - current_timestamp))
-		     + extract(hours from (v_archive_date - current_timestamp))/24,1))
+		     || to_char(extract(days from (v_archive_date - current_timestamp))
+		     + extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
 		     || '' days'';
                 else 
                     return ''archived'';
