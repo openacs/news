@@ -112,12 +112,15 @@ if { $news_admin_p == 1 } {
 
 
 # if uploaded file, read it into publish_body and massage it
-if { $file_size > 0 } {
-    set publish_body [read [open ${text_file.tmpfile}]]
-}
 
-# close any open HTML tags in any case
-set  publish_body [util_close_html_tags $publish_body]
+if {[info exists file_size]} {
+    if { $file_size > 0 } {
+        set publish_body [read [open ${text_file.tmpfile}]]
+    }
+
+    # close any open HTML tags in any case
+    set  publish_body [util_close_html_tags $publish_body]
+}
 
 
 if { [string match $action "News Item"] } {
