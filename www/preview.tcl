@@ -105,7 +105,10 @@ set context [list $title]
 if { $news_admin_p == 1 } {
     
     set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
-    set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"    
+    set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
+
+    set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
+    set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
     
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
 	ad_return_error "[_ news.Scheduling_Error]" \

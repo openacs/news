@@ -6,13 +6,13 @@
 <ul>
   <li>#news.lt_Your_news_item_will_b#
   <if @news_admin_p@ ne 0>
-   <li>#news.It_will_go_live_on# @publish_date_ansi@.
+   <li>#news.It_will_go_live_on# @publish_date_pretty@.
    <li>
     <if @permanent_p@ eq "t">
       #news.lt_And_be_live_until_rev#
     </if>
     <else>	
-      #news.It_will_move_into_archive_on# @archive_date_ansi@.
+      #news.It_will_move_into_archive_on# @archive_date_pretty@.
     </else>
   </if>
   <else>

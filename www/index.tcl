@@ -87,16 +87,7 @@ set count 0
 
 # use template::query to limit result to allowed number of rows.
 
-db_multirow news_items item_list "
-select item_id,
-       package_id,
-       publish_title,
-       publish_date
-from   news_items_approved
-where  $view_clause   
-and    package_id = :package_id
-order  by publish_date desc, item_id desc" {
-
+db_multirow -extend { publish_date } news_items item_list {} {
     # this code block enables paging counter, no direct data manipulation 
     # alternatives are: <multiple ... -startrow=.. and -max_rows=.. if it worked
     # in Oracle (best for large number of rows): select no .. (select rownum as no.. (select...)))
@@ -104,6 +95,8 @@ order  by publish_date desc, item_id desc" {
     incr count
     if { $count < $start } continue
     if { $count >= [expr $start + $max_dspl] } break
+
+    set publish_date [lc_time_fmt $publish_date_ansi "%x"]
 }
 
 

@@ -8,7 +8,7 @@
 select item_id,
        package_id,
        publish_title,
-       publish_date
+       to_char(news_items_approved.publish_date, 'YYYY-MM-DD HH24:MI:SS') as publish_date_ansi
 from   news_items_approved
 where  $view_clause   
 and    package_id = :package_id

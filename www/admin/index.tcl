@@ -62,25 +62,10 @@ set context {}
 
 
 # administrator sees all news items
-db_multirow news_items itemlist "
-select
-    item_id,
-    content_item.get_best_revision(item_id) as revision_id,
-    content_revision.get_number(news_id) as revision_no,
-    publish_title,
-    html_p,
-    publish_date,
-    archive_date,
-    creation_user,
-    item_creator,
-    package_id,
-    status
-from 
-    news_items_live_or_submitted
-where 
-    package_id = :package_id    
-    $view_option
-order by item_id desc"
+db_multirow -extend { publish_date archive_date } news_items itemlist {} {
+    set publish_date [lc_time_fmt $publish_date_ansi "%x"]
+    set archive_date [lc_time_fmt $archive_date_ansi "%x"]
+}
 
 
 ad_return_template

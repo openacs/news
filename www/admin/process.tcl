@@ -55,18 +55,7 @@ for {set i 0} {$i < [llength $n_items]} {incr i} {
 # 'archive' or 'making permanent' only after release possible 
 if {[regexp -nocase {archive|permanent} $action ]} {             
  
-
-    db_multirow unapproved unapproved_list "
-    select    
-        item_id,
-        publish_title,
-        creation_date,
-        item_creator
-    from 
-        news_items_unapproved
-    where 
-        item_id in ([join $bind_id_list ","])"
-
+    db_multirow unapproved unapproved_list {}
     set halt_p [array size unapproved]
 
 } 
@@ -74,35 +63,12 @@ if {[regexp -nocase {archive|permanent} $action ]} {
 # proceed if no errors
 if { ![info exist halt_p] || $halt_p==0 } {
 
-    db_multirow news_items item_list "
-    select
-        item_id,
-        content_item.get_best_revision(item_id) as revision_id,
-        package_id,
-        publish_title,
-        creation_date,
-        item_creator
-    from 
-        news_items_live_or_submitted
-    where
-        item_id in ([join  $bind_id_list ","])" 
+    db_multirow news_items item_list {} {
+        set creation_date [lc_time_fmt $creation_date "%x"]
+    }
 	
 }
 
 set hidden_vars [export_form_vars action n_items item_id]
 
 ad_return_template
-
-
-
-
-
-
-
-
-
-
-
-
-
-
