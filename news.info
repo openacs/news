@@ -22,7 +22,6 @@ Beta release. </description>
         <requires url="acs-content" version="4.0"/>
         <requires url="acs-content-repository" version="4.0.1"/>
         <requires url="acs-datetime" version="4.0"/>
-        <requires url="acs-interface" version="4.0.1"/>
         <requires url="acs-kernel" version="4.0"/>
         <requires url="general-comments" version="4.0"/>
 
@@ -107,12 +106,12 @@ Beta release. </description>
             <file type="query_file" path="www/preview.xql"/>
         </files>
         <parameters>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="DisplayMax"  default="10" description="Number of news item headlines displayed per page at most."/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ApprovalPolicy"  default="wait" description="Approval policy of submitted news items. It must be either of [open|wait|closed]. Submission by the administrator are ApprovalPolicy = 'open'.This approval policy applies only, if we let 'registered users' upload news items."/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="SolicitCommentsP"  default="1" description="Whether we allow comments on news items."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ApprovalPolicy"  default="wait" description="Approval policy of submitted news items. It must be either of [open|wait|closed]. Submission by the administrator are ApprovalPolicy = 'open'.This approval policy applies only, if we let 'registered users' upload news items."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="DisplayMax"  default="10" description="Number of news item headlines displayed per page at most."/>
         </parameters>
 
     </version>

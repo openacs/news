@@ -86,7 +86,6 @@ set max_dspl [ad_parameter DisplayMax "news" 10]
 set count 0
 
 # use template::query to limit result to allowed number of rows.
-set db [ns_db gethandle]
 
 db_multirow news_items item_list "
 select item_id,
