@@ -24,7 +24,7 @@
   <msg key="Create_a_news_item">Rapportera en nyhet</msg>
   <msg key="Create_News_Item">Rapportera en nyhet</msg>
   <msg key="Creation_Date">Rapporterad den</msg>
-  <msg key="Creation_IP">Creation IP</msg>
+  <msg key="Creation_IP">Skapar-IP</msg>
   <msg key="Database_Error">Databasfel</msg>
   <msg key="Delete">Radera</msg>
   <msg key="Error">Fel</msg>
@@ -71,7 +71,7 @@
   <msg key="lt_Your_news_item_will_b">Din nyhet kommer att presenteras med hjälp av standardmallen definierad i news.adp.</msg>
   <msg key="make_active">gör aktiv</msg>
   <msg key="Make_Permanent">Gör permanent</msg>
-  <msg key="manage">behandla</msg>
+  <msg key="manage">hantera</msg>
   <msg key="never">aldrig</msg>
   <msg key="News">Nyheter</msg>
   <msg key="News_Archive">Nyhetsarkiv</msg>
@@ -82,7 +82,7 @@
   <msg key="One_Item">En nyhet</msg>
   <msg key="One_Revision">En revision</msg>
   <msg key="or_upload_text_file">eller ladda upp en textfil:</msg>
-  <msg key="Plain_text">Enkel text</msg>
+  <msg key="Plain_text">Vanlig text</msg>
   <msg key="prev">föregående</msg>
   <msg key="Preview">Förhandsgranska</msg>
   <msg key="Preview_news_item">Förhandsgranska nyheten</msg>
