@@ -56,6 +56,19 @@ select inline_0 ();
 drop function inline_0 ();
 
 
+
+-- Til: after adding content_type__drop_type above, dropping the table
+-- and the index explicitely was not necessary anymore. Leaving the calls
+-- commented out here though, so that they can be reactivated in case the lock
+-- situation mentioned in the original comment below occurs for some reason.
+
+-- drop indices to avoid lock situation through parent table
+--drop index cr_news_appuser_id_fk;
+-- delete pertinent info from cr_news
+--drop table cr_news;
+
+
+
 -- drop package news
 drop function news__new (integer,varchar,timestamptz,text,varchar,varchar,
        varchar,integer,timestamptz,integer,timestamptz,varchar,varchar,
@@ -66,7 +79,6 @@ drop function news__archive (integer,timestamptz);
 drop function news__archive (integer);
 drop function news__set_approve(integer,varchar,timestamptz,
        timestamptz,integer,timestamptz,varchar,boolean);
-drop function news__status (integer);
 drop function news__name (integer);
 drop function news__revision_new (integer,timestamptz,text,varchar,text,
        varchar,integer,timestamptz,integer,timestamptz,varchar,timestamptz,varchar,
@@ -77,13 +89,14 @@ drop function news__clone (integer,integer);
 
 
 -- delete news views
-
 drop view news_items_approved;
 drop view news_items_live_or_submitted;
 drop view news_items_unapproved;
 drop view news_item_revisions;
 drop view news_item_unapproved;
 drop view news_item_full_active;
+
+drop function news__status (integer);
 
 
 -- drop attributes
@@ -113,22 +126,15 @@ select content_type__drop_attribute (
     'approval_ip', -- attribute_name
     'f'            -- drop_column
 );
--- delete content_type 'news'
-select acs_object_type__drop_type (
-    'news', -- object_type
-    't'     -- cascade_p
+
+-- drop CR content_type
+select content_type__drop_type(
+        'news',    -- content_type
+        't',       -- drop_children_p
+        't'        -- drop_table_p
 );
 
 end;
-
-
--- drop indices to avoid lock situation through parent table
-
-drop index cr_news_appuser_id_fk;
-
--- delete pertinent info from cr_news
-
-drop table cr_news;
 
 
 -- delete privileges;
