@@ -2,7 +2,11 @@
 --
 -- @author stefan@arsdigita.com
 -- @created 2000-12-13
+<<<<<<< news-create.sql
 -- @cvs-id $Id$
+=======
+-- @cvs-id $Id$
+>>>>>>> 1.14
 --
 -- OpenACS Port: Robert Locke (rlocke@infiniteinfo.com)
 --
@@ -25,11 +29,6 @@ begin;
     select acs_privilege__create_privilege('news_delete', null, null);
     select acs_privilege__create_privilege('news_admin', 'News Administrator', null);
 
-    -- temporarily drop this trigger to avoid a data-change violation 
-    -- on acs_privilege_hierarchy_index while updating the child privileges.
-
-    drop trigger acs_priv_hier_ins_del_tr on acs_privilege_hierarchy;
-
     -- bind privileges to global names  
     select acs_privilege__add_child('read', 'news_read');
     select acs_privilege__add_child('create', 'news_create');
@@ -40,13 +39,6 @@ begin;
     select acs_privilege__add_child('admin', 'news_admin');
     select acs_privilege__add_child('news_admin', 'news_read');
     select acs_privilege__add_child('news_admin', 'news_create');
-
-    -- re-enable the trigger before the last insert to force the 
-    -- acs_privilege_hierarchy_index table to be updated.
-
-    create trigger acs_priv_hier_ins_del_tr after insert or delete
-    on acs_privilege_hierarchy for each row
-    execute procedure acs_priv_hier_ins_del_tr ();
 
     select acs_privilege__add_child('news_admin', 'news_delete');
 
@@ -282,7 +274,7 @@ begin
         p_locale,             -- locale
         current_timestamp,    -- creation_date
         p_creation_user,      -- creation_user
-	null,                 -- context_id
+	p_package_id,         -- context_id
         p_creation_ip,        -- creation_ip
         ''content_item'',     -- item_subtype
         ''news'',             -- content_type
@@ -479,7 +471,7 @@ end;
 
 -- the status function returns information on the puplish or archive status
 -- it does not make any checks on the order of publish_date and archive_date
-create function news__status (integer)
+create or replace function news__status (integer)
 returns varchar as '
 declare
     p_news_id alias for $1;
@@ -504,16 +496,16 @@ begin
 	    -- to get the same result as Oracle (eg, 2.4 days)
             if v_archive_date is null then 
                 return ''going live in ''
-                || text(round(extract(days from (v_publish_date - current_timestamp))
-		+ extract(hours from (v_publish_date - current_timestamp))/24,1))
-		|| '' days'';
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+	    + extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
+	    || '' days'';
             else 
                 return ''going live in ''
-                || text(round(extract(days from (v_publish_date - current_timestamp))
-		+ extract(hours from (v_publish_date - current_timestamp))/24,1))
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+		+ extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
 		|| '' days'' || '', archived in ''
-                || text(round(extract(days from (v_archive_date - current_timestamp))
-		+ extract(hours from (v_archive_date - current_timestamp))/24,1))
+                || to_char(extract(days from (v_archive_date - current_timestamp))
+		+ extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
                 || '' days'';
             end if;  
         else
@@ -523,8 +515,8 @@ begin
             else
                 if v_archive_date - current_timestamp > 0 then
                      return ''published, archived in ''
-		     || text(round(extract(days from (v_archive_date - current_timestamp))
-		     + extract(hours from (v_archive_date - current_timestamp))/24,1))
+		     || to_char(extract(days from (v_archive_date - current_timestamp))
+		     + extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
 		     || '' days'';
                 else 
                     return ''archived'';
@@ -536,7 +528,6 @@ begin
     end if;
 end;
 ' language 'plpgsql';
-
 
 create function news__name (integer)
 returns varchar as '
@@ -761,7 +752,7 @@ select
     cr.content as publish_body,
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
     to_char(cr.publish_date, 'Mon dd, yyyy') as pretty_publish_date,
-    cr.publish_date::date as publish_date,
+    cr.publish_date,
     ao.creation_user,
     ps.first_names || ' ' || ps.last_name as item_creator,
     cn.archive_date::date as archive_date    
@@ -791,8 +782,8 @@ select
     ci.item_id as item_id,
     cn.news_id,
     cn.package_id,
-    to_char(cr.publish_date,'MM-DD-yyyy') as publish_date,
-    to_char(cn.archive_date,'MM-DD-yyyy') as archive_date,
+    cr.publish_date,
+    cn.archive_date,
     cr.title as publish_title,
     cr.content as publish_body,
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
@@ -861,8 +852,8 @@ select
     ci.live_revision,
     cr.title as publish_title,
     cr.content as publish_body,
-    cr.publish_date::date as publish_date,
-    cn.archive_date::date as archive_date,
+    cr.publish_date,
+    cn.archive_date,
     cr.description as log_entry,
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
     cr.mime_type as mime_type,
@@ -925,8 +916,8 @@ select
     title as publish_title,
     cr.content as publish_body,
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
-    cr.publish_date::date as publish_date,
-    cn.archive_date::date as archive_date,
+    cr.publish_date,
+    cn.archive_date,
     news__status(cr.revision_id) as status,
     ci.name as item_name,
     ps.person_id as creator_id,
