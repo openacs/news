@@ -5,7 +5,8 @@
 ################################################################################
 
 ad_library {
-  Test script file for database configuration/API checks for the news package.
+  acs-automated-testing test definitions for the news package to be sourced on
+  server startup.
 
   @author peter.harper@open-msg.com
   @creation-date 2001-11-18
