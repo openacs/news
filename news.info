@@ -19,6 +19,7 @@
         <description format="text/plain">News publication tool for corporate and website news in HTML and plain text format.
 Beta release. </description>
 
+        <provides url="news" version="4.1.0b"/>
         <requires url="acs-content" version="4.0"/>
         <requires url="acs-content-repository" version="4.0.1"/>
         <requires url="acs-datetime" version="4.0"/>
