@@ -91,7 +91,7 @@ ad_page_contract {
     edit_action:onevalue
 }
 
-set user_id [ad_maybe_redirect_for_registration]
+set user_id [auth::require_login]
 set package_id [ad_conn package_id]
 
 # only people with at least write-permission beyond this point
