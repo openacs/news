@@ -12,7 +12,7 @@
 <fullquery name="_news__i_mount-news-package.package-delete">
   <querytext>
     begin
-      apm_package.delete(:p_package_id);
+      apm_package.del(:p_package_id);
     end;
   </querytext>
 </fullquery>
@@ -20,7 +20,7 @@
 <fullquery name="_news__d_mount-news-package.package-delete">
   <querytext>
     begin
-      apm_package.delete(:p_package_id);
+      apm_package.del(:p_package_id);
     end;
   </querytext>
 </fullquery>
@@ -126,7 +126,7 @@
 <fullquery name="_news__c_db-news-item-delete.item-delete">
   <querytext>
     begin
-      news.delete(:p_item_id);
+      news.del(:p_item_id);
     end;
   </querytext>
 </fullquery>

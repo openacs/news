@@ -220,7 +220,7 @@ as
         is_live_p               in varchar2                       default 'f' 
     ) return cr_news.news_id%TYPE;
 
-    procedure delete (
+    procedure del (
         item_id in cr_items.item_id%TYPE
     );  
 
@@ -421,7 +421,7 @@ create or replace package body news
 
 
     -- deletes a news item along with all its revisions and possibnle attachements
-    procedure delete (
+    procedure del (
         item_id in cr_items.item_id%TYPE
     ) is
     v_item_id   cr_items.item_id%TYPE;
@@ -433,7 +433,7 @@ create or replace package body news
         and    ao.context_id = v_item_id;
 
     begin
-    v_item_id := news.delete.item_id;
+    v_item_id := news.del.item_id;
 	dbms_output.put_line('Deleting associated comments...');
 	-- delete acs_messages, images, comments to news item
 	for v_cm in  comment_cursor loop
@@ -442,7 +442,7 @@ create or replace package body news
         	where image_id in (select latest_revision
                                    from cr_items 
                                    where parent_id = v_cm.message_id);
-	    acs_message.delete(v_cm.message_id);
+	    acs_message.del(v_cm.message_id);
             delete from general_comments
 		where comment_id = v_cm.message_id;	 
         end loop;
@@ -450,8 +450,8 @@ create or replace package body news
         where news_id in (select revision_id 
                           from   cr_revisions 
                           where  item_id = v_item_id);
-        content_item.delete(v_item_id);
-    end delete;
+        content_item.del(v_item_id);
+    end del;
 
 
     -- (re)-publish a news item out of the archive by nulling the archive_date
@@ -756,7 +756,7 @@ create or replace package body news
         delete from cr_news
         where  news_id = news.revision_delete.revision_id;
         -- delete revision
-        content_revision.delete(
+        content_revision.del(
             revision_id => news.revision_delete.revision_id
         );
     end revision_delete;

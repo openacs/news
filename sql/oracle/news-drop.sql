@@ -25,7 +25,7 @@ begin
     LOOP
         FETCH item_cursor into v_item_id;
 	-- all attached types/item are deleted in news.delete - modify there
-       	news.delete(v_item_id);    
+       	news.del(v_item_id);    
         EXIT WHEN item_cursor%NOTFOUND;
     END LOOP;
     CLOSE item_cursor;
@@ -46,7 +46,7 @@ begin
 delete from cr_folder_type_map where content_type = 'news';  
 
 -- delete news folder
-    content_folder.delete(v_folder_id);
+    content_folder.del(v_folder_id);
 
 end;
 /

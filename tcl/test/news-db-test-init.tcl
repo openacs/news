@@ -74,7 +74,7 @@ aa_log "here"
         set p_package_id $_news_package_id
         db_exec_plsql package-delete {
           begin
-            apm_package.delete(:p_package_id);
+            apm_package.del(:p_package_id);
           end;
         }
       }
@@ -101,7 +101,7 @@ aa_log "here"
     set p_package_id $_news_package_id
     db_exec_plsql package-delete {
       begin
-        apm_package.delete(:p_package_id)
+        apm_package.del(:p_package_id)
     }
   }
 }
@@ -194,7 +194,7 @@ aa_register_component "db-news-item-delete" {
   aa_export_vars {p_item_id}
   db_exec_plsql item-delete {
     begin
-      news.delete(:p_item_id);
+      news.del(:p_item_id);
     end;
   }
 }

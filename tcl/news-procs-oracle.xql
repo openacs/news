@@ -31,7 +31,7 @@
       <querytext>
       
 	    begin
-	        news.delete(:id);
+	        news.del(:id);
 	    end;
 	
       </querytext>

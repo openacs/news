@@ -59,7 +59,7 @@ ad_proc news_items_delete { id_list } {
     foreach id $id_list {
 	db_exec_plsql news_item_delete {
 	    begin
-	        news.delete(:id);
+	        news.del(:id);
 	    end;
 	}
     }
