@@ -63,8 +63,9 @@ aa_register_init_class "mount-news-package" {
     # Create the _test directory if it doesn't already exist.
 aa_log "here"
     if {$_test_node_id == -1} {
-      set _test_node_id [site_node_create $_root_node_id "_test"]
-    }
+        set _test_node_id [site_node::new \
+                               -name "_test" \
+                               -parent_id $_root_node_id ]
     # If an old news package exists, delete it.
     if {$_news_node_id != -1} {
       aa_log "Deleting existing node instance."
@@ -81,8 +82,12 @@ aa_log "here"
     }
 
     # Mount the new news package and lookup the new node_id.
-    set _news_package_id [site_node_mount_application $_test_node_id "news" \
-                                                      "news" "News test"]
+    set _news_package_id [site_node::instantiate_and_mount \
+                -parent_node_id $_test_node_id \
+                -node_name news \
+                -package_name "News test" \
+                -package_key news]
+
     set _news_node_id [site_node_id "/_test/news/"]
   } _news_package_mounted_err]} {
     set _news_node_id -1

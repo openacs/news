@@ -33,7 +33,7 @@ ad_page_contract {
 
     content_html -requires {publish_body html_p} {
         if { [string equal $html_p "t"] } {
-            set complaint [ad_check_for_naughty_html $publish_body]
+            set complaint [ad_html_security_check $publish_body]
             if { ![empty_string_p $complaint] } {
                 ad_complain $complaint
 		return
