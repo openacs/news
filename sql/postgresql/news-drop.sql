@@ -73,6 +73,7 @@ drop function news__revision_new (integer,timestamp,text,varchar,text,
        integer,boolean);
 drop function news__revision_set_active (integer);
 drop function news__revision_delete (integer);
+drop function news__clone (integer,integer);
 
 
 -- delete news views
