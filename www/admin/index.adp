@@ -51,7 +51,8 @@
    </tr>
    <tr>
     <td>
-     Click on item ID# to revise or approve an item.<br>
+     Click on item ID# to approve/revoke an item.<br>
+     Click on "revise" to edit an item.
     </td>
    </tr>
    <tr>
