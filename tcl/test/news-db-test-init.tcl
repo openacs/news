@@ -66,6 +66,7 @@ aa_log "here"
         set _test_node_id [site_node::new \
                                -name "_test" \
                                -parent_id $_root_node_id ]
+    }
     # If an old news package exists, delete it.
     if {$_news_node_id != -1} {
       aa_log "Deleting existing node instance."
