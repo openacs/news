@@ -96,7 +96,7 @@ drop view news_item_revisions;
 drop view news_item_unapproved;
 drop view news_item_full_active;
 
-drop function news__status (integer);
+drop function news__status (timestamptz, timestamptz);
 
 
 -- drop attributes
