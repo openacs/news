@@ -148,7 +148,7 @@ where  user_id = :user_id"]
 set creator_link "<a href=\"/shared/community-member?user_id=$user_id\">$creator_name</a>"
 
 if { [info exists html_p] && [string match $html_p "f"] } {
-    set publish_body "<pre>[ad_quotehtml $publish_body]</pre>"
+    set publish_body "[ad_text_to_html $publish_body]"
 }
 
 ad_return_template

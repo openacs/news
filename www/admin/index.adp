@@ -5,8 +5,6 @@
 
 <ul>
   <li><a href="../item-create">Create a news item</a>
-  <li><a href="/permissions/one?object_id=@package_id@">Set permissions</a>
-  <li><a href="/admin/site-map/parameter-set?package_id=@package_id@">Set parameters</a>
 </ul>
 
 <p>

@@ -56,7 +56,7 @@ if { $item_exist_p } {
 
     # text-only body
     if {[info exists html_p] && [string equal $html_p "f"]} {
-	set publish_body "<pre>[ad_quotehtml $publish_body]</pre>"
+	set publish_body "[ad_text_to_html $publish_body]"
     }
     
     if { [ad_parameter SolicitCommentsP "news" 0] &&
@@ -71,6 +71,7 @@ if { $item_exist_p } {
 
     set title $publish_title
     set context [list $title]
+    set publish_title {}
 
 } else {
     set context {}
@@ -78,7 +79,7 @@ if { $item_exist_p } {
 }
 
 
-ad_return_template
+
 
 
 
