@@ -98,6 +98,7 @@ aa_log "here"
   #
   if {$_news_package_mounted_p} {
     site_map_unmount_application -delete_p t $_news_node_id 
+    site_node::delete -node_id $_test_node_id
     set p_package_id $_news_package_id
     db_exec_plsql package-delete {
       begin
