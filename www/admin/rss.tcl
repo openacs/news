@@ -35,7 +35,8 @@ if {[rss_support::subscription_exists \
     set subscr_id [rss_support::add_subscription \
                        -summary_context_id $package_id \
                        -impl_name "news" \
-                       -lastbuild "now"]
+                       -lastbuild "now" \
+                       -owner "news"]
     rss_gen_report $subscr_id
     set message "RSS feed activated"
 }
