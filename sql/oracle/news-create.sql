@@ -368,6 +368,7 @@ create or replace package body news
             item_id       => v_id,
             name          => v_name,
             parent_id     => v_parent_id,
+            context_id    => package_id,
             locale        => locale,
             item_subtype  => item_subtype,
             content_type  => content_type,
@@ -375,7 +376,7 @@ create or replace package body news
             nls_language  => nls_language,
             relation_tag  => relation_tag,
             creation_date => creation_date,
-            creation_ip   => creation_ip,
+            creation_ip   => creation_ip,        
             creation_user => creation_user
         );
         v_revision_id := content_revision.new(

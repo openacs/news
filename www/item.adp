@@ -19,12 +19,10 @@
 @comments@
 </if>
 
-<if @comment_link@ ne "">
 <ul>
 <li>
 @comment_link;noquote@
 </ul>
-</if>
 
 </else>
 
