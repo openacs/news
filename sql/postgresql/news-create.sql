@@ -887,7 +887,7 @@ select
     ci.item_id as item_id,
     cn.package_id as package_id,
     revision_id,        
-    title as publish_title,
+    cr.title as publish_title,
     cr.content as publish_body,
     (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
     cr.publish_date,
