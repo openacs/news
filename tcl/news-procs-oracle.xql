@@ -44,6 +44,7 @@
 	    select site_node.url(node_id) as url_stub
             from site_nodes
             where object_id=:package_id      
+            and rownum = 1
 	
       </querytext>
 </fullquery>
