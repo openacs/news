@@ -284,7 +284,7 @@ begin
         p_creation_user,      -- creation_user
 	null,                 -- context_id
         p_creation_ip,        -- creation_ip
-        ''content_revision'', -- item_subtype
+        ''content_item'',     -- item_subtype
         ''news'',             -- content_type
 	null,                 -- title
 	null,                 -- description
