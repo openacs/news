@@ -925,7 +925,7 @@ select
     ci.item_id as item_id,
     cn.package_id as package_id,
     revision_id,        
-    title as publish_title,
+    cr.title as publish_title,
     content.blob_to_string(cr.content) as publish_body,
     decode(cr.mime_type,'text/html','t','f') as html_p,
     cr.publish_date,

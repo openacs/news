@@ -80,6 +80,7 @@ drop view news_item_revisions;
 drop view news_item_unapproved;
 drop view news_item_full_active;
 
+drop function news__status (timestamptz, timestamptz);
 
 -- drop CR content_type
 select content_type__drop_type(
