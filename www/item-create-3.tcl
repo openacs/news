@@ -50,6 +50,12 @@ if { $news_admin_p == 1 || [string equal $approval_policy "open"] } {
 
 }
 
+# RAL: This was missing and allows the user to "never expire" a news
+# item.
+if {[string equal $permanent_p "t"] } {
+    set archive_date_ansi [db_null]
+} 
+
 # get creation_foo
 set creation_date [dt_sysdate]
 set creation_ip [ad_conn "peeraddr"]
@@ -83,12 +89,17 @@ is_live_p       => :live_revision_p
 );
 end;"]
 
-db_dml content_add "
-update cr_revisions
-set    content = empty_blob()
-where  revision_id = :news_id
-returning content into :1" -blobs  [list $publish_body]
-
+#
+# RAL: For postgres, we need NOT store the data in a blob.  The
+# news item body is stored in the prior news__new call.
+#
+if {![string match [db_type] "postgresql"]} {
+    db_dml content_add "
+    update cr_revisions
+    set    content = empty_blob()
+    where  revision_id = :news_id
+    returning content into :1" -blobs  [list $publish_body]
+}
 
 if { !$news_admin_p } {
     

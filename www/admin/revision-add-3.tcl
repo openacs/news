@@ -64,22 +64,24 @@ if [catch {
             creation_user => :creation_user,
             make_active_revision_p => :active_revision_p);
     end;"]
-    
-    db_dml content_add "
-    update cr_revisions
-    set    content = empty_blob()
-    where  revision_id = :revision_id
-    returning content into :1" -blobs  [list $publish_body]
+
+    if {![string match [db_type] "postgresql"]} {    
+	db_dml content_add "
+	update cr_revisions
+	set    content = empty_blob()
+	where  revision_id = :revision_id
+	returning content into :1" -blobs  [list $publish_body]
+    }
    
-    } errmsg ] {
+} errmsg ] {
 	
-	set complaint " The database did not accept your input. 
-	See details for the error message below\n\n\t<p><b>$errmsg</b>"
-        ad_return_error "Database Error" "$complaint" 
-	return -code return
+    set complaint " The database did not accept your input. 
+    See details for the error message below\n\n\t<p><b>$errmsg</b>"
+    ad_return_error "Database Error" "$complaint" 
+    return -code return
 	
-    } else {
+} else {
 	
-	ad_returnredirect "item?item_id=$item_id"
+    ad_returnredirect "item?item_id=$item_id"
 	
-    }    
+}    

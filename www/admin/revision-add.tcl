@@ -60,9 +60,11 @@ where
 # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
 # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
 #
-set publish_body [db_string get_content "select  content
-from    cr_revisions
-where   revision_id = :revision_id"]
+if {![string match [db_type] "postgresql"]} {
+    set publish_body [db_string get_content "select  content
+    from    cr_revisions
+    where   revision_id = :revision_id"]
+}
 
 
 set never_checkbox "<input type=checkbox name=permanent_p value=t"

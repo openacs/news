@@ -48,9 +48,7 @@ set allow_search_p [ad_parameter ShowSearchInterfaceP "news" 1]
 if { [string equal "live" $view] } {
 
     set title "News"
-    set view_clause "
-    publish_date < sysdate 
-    and (archive_date is null or archive_date > sysdate)"
+    set view_clause [db_map view_clause_live]
 
     if { [db_string archived_p "
     select decode(count(*),0,0,1) 
@@ -66,9 +64,7 @@ if { [string equal "live" $view] } {
 } else {
     
     set title "News Archive"
-    set view_clause "
-    publish_date < sysdate
-    and archive_date < sysdate"
+    set view_clause [db_map view_clause_archived]
 
     if { [db_string live_p "
     select decode(count(*),0,0,1) 

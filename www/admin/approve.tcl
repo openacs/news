@@ -42,7 +42,7 @@ for {set i 0} {$i < [llength $n_items]} {incr i} {
 
 # get most likely revision_id if not supplied
 if {[empty_string_p $revision_id]} {
-    set revision_select "content_item.get_best_revision(item_id) as revision_id,"
+    set revision_select [db_map revision_select]
 } else {
     set revision_select "'$revision_id' as revision_id,"
 }

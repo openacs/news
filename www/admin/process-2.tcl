@@ -29,17 +29,17 @@ switch $action {
     }
     
     "archive now" {
-	set when [db_string publish_now "select sysdate from dual"]
+	set when [db_string archive_now "select sysdate from dual"]
 	news_items_archive $n_items $when
     }
     
     "archive next week" {
-	set when [db_string publish_now "select next_day(sysdate,'Monday') from dual"]
+	set when [db_string archive_next_week "select next_day(sysdate,'Monday') from dual"]
 	news_items_archive $n_items $when
     }
 
     "archive next month" {
-	set when [db_string publish_now "select last_day(sysdate)+1 from dual"]
+	set when [db_string archive_next_month "select last_day(sysdate)+1 from dual"]
 	news_items_archive $n_items $when
     }
 
