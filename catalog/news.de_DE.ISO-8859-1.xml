@@ -48,7 +48,7 @@
   <msg key="lt_Could_not_find_the_re">Die gewünschte Ankündigung konnte nicht gefunden werden.</msg>
   <msg key="lt_Do_the_following_to_t">An den ausgewählten Elementen folgende Aktion ausführen:</msg>
   <msg key="lt_Do_you_really_want_to">Wollen Sie wirklich folgende Aktion ausführen:</msg>
-  <msg key="lt_has_been_submitted_an">Der Eintrag wurde gesendet und wird veröffentlicht, sobald er freigegeben wurde.</msg>
+  <msg key="lt_has_been_submitted_an">Der Eintrag wurde abgeschickt und wird veröffentlicht, sobald er freigegeben wurde.</msg>
   <msg key="lt_It_will_go_live_after">Der Eintrag wird veröffentlicht, sobald er vom Ankündigungsadministrator freigegeben wurde.</msg>
   <msg key="lt_Manage_the_items_indi">Legen Sie zunächst für jede einzelne Ankündigung die Freigabedaten fest.</msg>
   <msg key="lt_on_the_following_news">an folgenden Ankündigungen ausführen?</msg>
@@ -77,7 +77,7 @@
   <msg key="News">Ankündigungen</msg>
   <msg key="News_Archive">Ankündigungsarchiv</msg>
   <msg key="News_item">Ankündigung</msg>
-  <msg key="News_item_submitted">Ankündigung gesendet</msg>
+  <msg key="News_item_submitted">Ankündigung abgeschickt</msg>
   <msg key="News_Items">Ankündigungen</msg>
   <msg key="next">Weiter</msg>
   <msg key="One_Item">Einzelne Ankündigung</msg>
