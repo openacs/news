@@ -57,19 +57,19 @@ drop function inline_0 ();
 
 
 -- drop package news
-drop function news__new (integer,varchar,timestamp,text,varchar,varchar,
-       varchar,integer,timestamp,integer,timestamp,varchar,varchar,
+drop function news__new (integer,varchar,timestamptz,text,varchar,varchar,
+       varchar,integer,timestamptz,integer,timestamptz,varchar,varchar,
        varchar,integer,boolean);
 drop function news__delete (integer);
 drop function news__make_permanent (integer);
-drop function news__archive (integer,timestamp);
+drop function news__archive (integer,timestamptz);
 drop function news__archive (integer);
-drop function news__set_approve(integer,varchar,timestamp,
-       timestamp,integer,timestamp,varchar,boolean);
+drop function news__set_approve(integer,varchar,timestamptz,
+       timestamptz,integer,timestamptz,varchar,boolean);
 drop function news__status (integer);
 drop function news__name (integer);
-drop function news__revision_new (integer,timestamp,text,varchar,text,
-       varchar,integer,timestamp,integer,timestamp,varchar,timestamp,varchar,
+drop function news__revision_new (integer,timestamptz,text,varchar,text,
+       varchar,integer,timestamptz,integer,timestamptz,varchar,timestamptz,varchar,
        integer,boolean);
 drop function news__revision_set_active (integer);
 drop function news__revision_delete (integer);

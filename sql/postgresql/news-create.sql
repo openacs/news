@@ -92,12 +92,12 @@ create table cr_news (
     -- regarding news item
     -- *** support for dates when items are displayed or archived ***
     -- unarchived news items have archive_date null
-    archive_date                timestamp,
+    archive_date                timestamptz,
     -- support for approval
     approval_user               integer
                                 constraint cr_news_approval_user_fk
                                 references users,
-    approval_date               timestamp,
+    approval_date               timestamptz,
     approval_ip                 varchar(50)
 );
 
@@ -205,8 +205,8 @@ drop function inline_0 ();
 
 
 -- *** PACKAGE NEWS, plsql to create content_item ***
-create function news__new (integer,varchar,timestamp,text,varchar,varchar,
-       varchar,integer,timestamp,integer,timestamp,varchar,varchar,
+create function news__new (integer,varchar,timestamptz,text,varchar,varchar,
+       varchar,integer,timestamptz,integer,timestamptz,varchar,varchar,
        varchar,integer,boolean)
 returns integer as '
 declare
@@ -380,7 +380,7 @@ end;
 
 -- archive a news item
 -- this only applies to the currently active revision
-create function news__archive (integer,timestamp)
+create function news__archive (integer,timestamptz)
 returns integer as '
 declare
     p_item_id alias for $1;
@@ -408,8 +408,8 @@ end;
 
 -- approve/unapprove a specific revision
 -- approving a revision makes it also the active revision
-create function news__set_approve(integer,varchar,timestamp,
-       timestamp,integer,timestamp,varchar,boolean)
+create function news__set_approve(integer,varchar,timestamptz,
+       timestamptz,integer,timestamptz,varchar,boolean)
 returns integer as '
 declare
     p_revision_id     alias for $1;
@@ -471,8 +471,8 @@ create function news__status (integer)
 returns varchar as '
 declare
     p_news_id alias for $1;
-    v_archive_date timestamp;
-    v_publish_date timestamp;
+    v_archive_date timestamptz;
+    v_publish_date timestamptz;
 begin
     -- populate variables
     select archive_date into v_archive_date 
@@ -545,8 +545,8 @@ end;
 -- 
 -- API for Revision management
 -- 
-create function news__revision_new (integer,timestamp,text,varchar,text,
-       varchar,integer,timestamp,integer,timestamp,varchar,timestamp,varchar,
+create function news__revision_new (integer,timestamptz,text,varchar,text,
+       varchar,integer,timestamptz,integer,timestamptz,varchar,timestamptz,varchar,
        integer,boolean)
 returns integer as '
 declare
