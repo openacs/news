@@ -127,9 +127,7 @@ if { $news_admin_p == 1 } {
     }                     
 }                                                
 
-
 # if uploaded file, read it into publish_body and massage it
-
 if {[info exists file_size]} {
     if { $file_size > 0 } {
         set publish_body [read [open ${text_file.tmpfile}]]
@@ -139,20 +137,20 @@ if {[info exists file_size]} {
     set  publish_body [util_close_html_tags $publish_body]
 }
 
-
 if { [string match $action "News Item"] } {
 
     # form variables for confirmation step
     set hidden_vars [export_form_vars publish_title publish_body \
 	    publish_date_ansi archive_date_ansi html_p permanent_p]
-    set form_action "<form method=post action=item-create-3>"
+
+    set form_action "<form method=post action=item-create-3 enctype=multipart/form-data>"
     
 } else {
     
     # Form vars to carry through Confirmation Page
-    set hidden_vars [export_form_vars item_id revision_log publish_title publish_body \
+    set hidden_vars [export_form_vars item_id revision_log publish_title publish_body\
 	    publish_date_ansi archive_date_ansi permanent_p html_p]
-    set form_action "<form method=post action=admin/revision-add-3>"
+    set form_action "<form method=post action=admin/revision-add-3 enctype=multipart/form-data>"
 
 }
 
@@ -168,9 +166,3 @@ if { [info exists html_p] && [string match $html_p "f"] } {
 }
 
 ad_return_template
-
-
-
-
-
-
