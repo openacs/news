@@ -29,6 +29,8 @@
   <msg key="Delete">삭제</msg>
   <msg key="Error">오류</msg>
   <msg key="Go">가기</msg>
+  <msg key="going_live_no_archive">%n_days_until_publish% 일동안 활동중이고, 기록을 위한 예정은 없음</msg>
+  <msg key="going_live_with_archive">%n_days_until_publish% 일 동안 활동중이고, %n_days_until_archive% 일 안에 기록을 위한 예정이 있음</msg>
   <msg key="HTML">HTML </msg>
   <msg key="It_will_go_live_on">존속될 것입니다.</msg>
   <msg key="It_will_move_into_archive_on">기록으로 옮겨질 것입니다.</msg>
@@ -85,7 +87,10 @@
   <msg key="Preview">미리보기</msg>
   <msg key="Preview_news_item">뉴스 항목 미리보기</msg>
   <msg key="Publication_Date">출판일</msg>
+  <msg key="Publish">출판하다</msg>
   <msg key="Published">발표된</msg>
+  <msg key="published_no_archive">출판되었지만, 기록을 위한 예정이 없음</msg>
+  <msg key="published_scheduled_for_archive">출판되었고, %n_days_until_archive% 일 안에 기록됨</msg>
   <msg key="Release">배포</msg>
   <msg key="Release_Date">배포일</msg>
   <msg key="rev">개정</msg>

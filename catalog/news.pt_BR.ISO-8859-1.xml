@@ -29,6 +29,8 @@
   <msg key="Delete">Apague</msg>
   <msg key="Error">Erro</msg>
   <msg key="Go">Continuar</msg>
+  <msg key="going_live_no_archive">Vem a público em %n_days_until_publish%, arquivamento não agendado</msg>
+  <msg key="going_live_with_archive">Vem a público em %n_days_until_publish% dias, arquivamento em %n_days_until_archive% dias</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Será publicada em</msg>
   <msg key="It_will_move_into_archive_on">Será movida para o arquivo em</msg>
@@ -85,7 +87,10 @@
   <msg key="Preview">Prever</msg>
   <msg key="Preview_news_item">Prever notícia</msg>
   <msg key="Publication_Date">Data de Publicação</msg>
+  <msg key="Publish">Publicar</msg>
   <msg key="Published">Publicado</msg>
+  <msg key="published_no_archive">Publicada, arquivamento não agendado</msg>
+  <msg key="published_scheduled_for_archive">Publicada, será arquivada em %n_days_until_archive% dias</msg>
   <msg key="Release">Release</msg>
   <msg key="Release_Date">Data de Liberação</msg>
   <msg key="rev">rev.</msg>
