@@ -14,8 +14,8 @@ ad_page_contract {
     {publish_body:allhtml,trim ""}
     {revision_log: ""}
     html_p:notnull,trim
-    {text_file:trim ""}
-    {text_file.tmpfile:tmpfile ""}
+    text_file:optional
+    text_file.tmpfile:optional,tmpfile
     {publish_date:array ""}
     {archive_date:array ""}
     {permanent_p: "f"}
@@ -44,7 +44,7 @@ ad_page_contract {
 	}
     }
 
-    check_upload_one -requires {publish_body text_file} {
+    check_upload_one -requires {publish_body text_file.tmpfile text_file} {
 	set file_size [file size ${text_file.tmpfile}]
 	# !XOR condition (don't want to have both)
 	if { [empty_string_p $publish_body] && $file_size==0 } {
@@ -56,12 +56,12 @@ ad_page_contract {
 	} 
     }
 
-    max_size -requires {text_file} {
+    max_size -requires {text_file.tmpfile text_file} {
 	set b [file size ${text_file.tmpfile}]
 	
 	set b_max [expr 1000*[ad_parameter MaxFileSizeKb "news" 1024]]
 	if { $b > $b_max } {
-	    ad_complain "Your Word document is larger than the maximum size allowed ([util_commify_number $b_max] bytes)"
+	    ad_complain "Your document is larger than the maximum size allowed ([util_commify_number $b_max] bytes)"
 	    return
 	}
     }
