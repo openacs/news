@@ -81,13 +81,11 @@ ad_page_contract {
     form_action:onevalue
 }
 
-
+set user_id [ad_maybe_redirect_for_registration]
 set package_id [ad_conn package_id]
-
 
 # only people with at least write-permission beyond this point
 ad_require_permission $package_id news_create
-
 
 set news_admin_p [ad_permission_p $package_id news_admin]
 
@@ -104,12 +102,24 @@ set context [list $title]
 # with news_admin privilege fill in publish and archive dates
 if { $news_admin_p == 1 } {
     
-    set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
-    set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
+    if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } { 
+	set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
+    } else {
+	set publish_date_ansi ""
+    }
+    if { [info exists archive_date(year)] && [info exists archive_date(month)] && [info exists archive_date(day)] } { 
+	set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
+    } else {
+	set archive_date_ansi ""
+    }
 
-    set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
-    set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
-    
+    if { ![template::util::date::validate $publish_date_ansi ""] } {
+	set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
+    }
+    if { ![template::util::date::validate $archive_date_ansi ""] } {
+	set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
+    }
+
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
 	ad_return_error "[_ news.Scheduling_Error]" \
 		"[_ news.lt_The_archive_date_must]"
@@ -147,7 +157,6 @@ if { [string match $action "News Item"] } {
 }
 
 # creator link 
-set user_id [ad_maybe_redirect_for_registration]
 set creator_name [db_string creator "
 select first_names || ' ' || last_name 
 from   cc_users 
