@@ -39,8 +39,8 @@
           <td align=left><a href=item?item_id=@news_items.item_id@>@news_items.item_id@</a></td>
           <td>@news_items.publish_title@ (#news.rev# @news_items.revision_no@) [<a href=revision-add?item_id=@news_items.item_id@>#news.revise#</a>]</td>
           <td><a href=/shared/community-member?user_id=@news_items.creation_user@>@news_items.item_creator@</a></td>
-          <td align=left>@news_items.publish_date@</td>
-          <td align=left>@news_items.archive_date@</td>
+          <td align=left>@news_items.publish_date_pretty@</td>
+          <td align=left>@news_items.archive_date_pretty@</td>
           <td>@news_items.pretty_status@</td>
          </tr>
          </multiple>
@@ -58,7 +58,7 @@
      <if @view@ ne "all">
       #news.lt_Do_the_following_to_t#
       <select name=action>
-	@select_actions@
+	@select_actions;noquote@
        <option value=delete>#news.Delete#</option>	
        </select>
        <input type=submit value="#news.Go#">

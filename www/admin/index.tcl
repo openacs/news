@@ -40,9 +40,15 @@ set view_option [ad_dimensional_sql $view_slider]
 
 # define action on selected views, unapproved, archived, approved need restriction
 switch $view {
-    "unapproved" { set select_actions "<option value=\"publish\">Publish" }
-    "archived"   { set select_actions "<option value=\"publish\">Re-Publish" }
-    "approved"   { set select_actions "<option value=\"make permanent\">Make Permanent" }
+    "unapproved" { 
+        set select_actions "<option value=\"publish\">[_ news.Publish]" 
+    }
+    "archived"   { 
+        set select_actions "<option value=\"publish\">[_ news.Publish]" 
+    }
+    "approved"   { 
+        set select_actions "<option value=\"make permanent\">[_ news.Make_Permanent]" 
+    }
     default      {
 	set select_actions "
 	<option value=\"archive now\" selected>[_ news.Archive_Now]</option>
@@ -52,21 +58,17 @@ switch $view {
     }
 }
 
-
-
 set title "[_ news.Administration]" 
 set context {}
 
 
 # administrator sees all news items
-db_multirow -extend { publish_date archive_date pretty_status } news_items itemlist {} {
-    set publish_date [lc_time_fmt $publish_date_ansi "%x"]
-    set archive_date [lc_time_fmt $archive_date_ansi "%x"]
+db_multirow -extend { publish_date_pretty archive_date_pretty pretty_status } news_items itemlist {} {
+    set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
+    set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
     set pretty_status [news_pretty_status \
-                           -publish_date $publish_date \
-                           -archive_date $archive_date \
+                           -publish_date $publish_date_ansi \
+                           -archive_date $archive_date_ansi \
                            -status $status]
 }
 
-
-ad_return_template

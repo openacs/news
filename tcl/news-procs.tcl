@@ -145,6 +145,8 @@ ad_proc news_pretty_status {
     }
 
     set now_seconds [clock scan now]
+    set n_days_until_archive {}
+
     if { ![empty_string_p $archive_date] } { 
         set archive_date_seconds [clock scan $archive_date]
 

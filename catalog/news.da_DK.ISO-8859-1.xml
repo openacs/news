@@ -15,7 +15,7 @@
   <msg key="Archived">Arkiveret</msg>
   <msg key="Author">Forfatter</msg>
   <msg key="Back_to_news_list">Tilbage til nyhedslisten</msg>
-  <msg key="Body">Nyhedstekst</msg>
+  <msg key="Body">Inhold</msg>
   <msg key="bytes">bytes</msg>
   <msg key="Comments">Kommentarer</msg>
   <msg key="Confirm">Bekræft</msg>
@@ -29,6 +29,8 @@
   <msg key="Delete">Slet</msg>
   <msg key="Error">Fejl</msg>
   <msg key="Go">Videre</msg>
+  <msg key="going_live_no_archive">Bliver publiceret om %n_days_until_publish% dage; bliver ikke arkiveret</msg>
+  <msg key="going_live_with_archive">Bliver publiceret om %n_days_until_publish% dage; bliver arkiveret om %n_days_until_archive% dage</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Den vil blive synlig den</msg>
   <msg key="It_will_move_into_archive_on">Nyheden vil flytte til arkivet den</msg>
@@ -48,7 +50,7 @@
   <msg key="lt_has_been_submitted_an">er blevet indsendt og vil blive aktiv, når den godkendes.</msg>
   <msg key="lt_It_will_go_live_after">Nyheden vil blive synlig efter den er godkendt af Nyhedsadministratoren.</msg>
   <msg key="lt_Manage_the_items_indi">Håndtér nyheder individuelt først med henblik på godkendelse.</msg>
-  <msg key="lt_on_the_following_news">på de(t) følgende nyhedsemne(r)?</msg>
+  <msg key="lt_on_the_following_news">på følgende nyheder?</msg>
   <msg key="lt_One_Item_-_add_revisi">En Nyhed - tilføj revision</msg>
   <msg key="lt_Please_check_the_item">Afkryds venligst de nyheder, du vil have gennemgået.</msg>
   <msg key="lt_Please_supply_the_bod">Angiv venligst en nyhedstekst til nyheden.</msg>
@@ -85,7 +87,10 @@
   <msg key="Preview">Vis</msg>
   <msg key="Preview_news_item">Vis nyhed</msg>
   <msg key="Publication_Date">Udgivelsesdato</msg>
+  <msg key="Publish">Publicer</msg>
   <msg key="Published">Udgivet</msg>
+  <msg key="published_no_archive">Publiceret; bliver ikke arkiveret</msg>
+  <msg key="published_scheduled_for_archive">Publiceret, vil blive arkiveret om %n_days_until_archive% dage</msg>
   <msg key="Release">Udgiv</msg>
   <msg key="Release_Date">Udgivelsesdato</msg>
   <msg key="rev">revision</msg>

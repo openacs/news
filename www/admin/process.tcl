@@ -12,16 +12,11 @@ ad_page_contract {
     @cvs-id $Id$
     
 } {
- 
     n_items:multiple,notnull
     action:notnull
-
 } -errors {
-
     n_items:notnull "[_ news.lt_Please_check_the_item]"
-
 } -properties {
-
     title:onevalue
     context:onevalue
     action:onevalue
@@ -30,7 +25,6 @@ ad_page_contract {
     n_items:onevalue
     halt_p:onevalue
     news_items:multirow
-
 }
 
 
@@ -44,6 +38,16 @@ if {[string equal "publish" $action]} {
 set title "[_ news.Confirm_Action] $action"
 set context [list $title]
 
+array set action_msg_key {
+    publish news.Publish
+    "make permanent" news.Make_Permanent
+    "archive now" news.Archive_Now
+    "archive next week" news.lt_Archive_as_of_Next_We
+    "archive next month" news.lt_Archive_as_of_Next_Mo
+    "make permanent" news.Make_Permanent
+}
+
+set action_pretty [_ $action_msg_key($action)]
 
 # produce bind_id_list     
 for {set i 0} {$i < [llength $n_items]} {incr i} {
@@ -55,7 +59,10 @@ for {set i 0} {$i < [llength $n_items]} {incr i} {
 # 'archive' or 'making permanent' only after release possible 
 if {[regexp -nocase {archive|permanent} $action ]} {             
  
-    db_multirow unapproved unapproved_list {}
+    db_multirow -extend { creation_date_pretty }  unapproved unapproved_list {} {
+        set creation_date_pretty [lc_time_fmt $creation_date "%x"]
+    }
+    
     set halt_p [array size unapproved]
 
 } 
@@ -63,8 +70,24 @@ if {[regexp -nocase {archive|permanent} $action ]} {
 # proceed if no errors
 if { ![info exist halt_p] || $halt_p==0 } {
 
-    db_multirow news_items item_list {} {
-        set creation_date [lc_time_fmt $creation_date "%x"]
+    template::list::create \
+        -name news_items \
+        -multirow news_items \
+        -elements {
+            publish_title {
+                label \#news.Title\#
+            }
+            creation_date {
+                label \#news.Creation_Date\#
+                display_col creation_date_pretty
+            }
+            item_creator {
+                label \#news.Author\#
+            }
+        }
+
+    db_multirow -extend { creation_date_pretty } news_items item_list {} {
+        set creation_date_pretty [lc_time_fmt $creation_date "%x"]
     }
 	
 }
