@@ -29,8 +29,6 @@
   <msg key="Delete">إحذف</msg>
   <msg key="Error">خطأً</msg>
   <msg key="Go">إذهب</msg>
-  <msg key="going_live_no_archive">الذهاب على الهواء في %n_days_until_publish% أيام، ليس مدرج للأرشيف</msg>
-  <msg key="going_live_with_archive">الذهاب على الهواء في %n_days_until_publish% أيام، مدرج للأرشيف في %n_days_until_archive% أيام </msg>
   <msg key="HTML">إتش تي إم إل</msg>
   <msg key="It_will_go_live_on">سيصبح حيّاً في</msg>
   <msg key="It_will_move_into_archive_on">سينتقل إلى الأرشيف في</msg>
@@ -88,8 +86,6 @@
   <msg key="Preview_news_item">عاينْ بند الأخبار</msg>
   <msg key="Publication_Date">تاريخ النشر</msg>
   <msg key="Published">مَنْشُور</msg>
-  <msg key="published_no_archive">منشور، ليس مدرج للأرشيف</msg>
-  <msg key="published_scheduled_for_archive">منشور، مؤرشف في %n_days_until_archive% يوم</msg>
   <msg key="Release">إصدار</msg>
   <msg key="Release_Date">تاريخ الإصدار</msg>
   <msg key="rev">المراجعة</msg>
