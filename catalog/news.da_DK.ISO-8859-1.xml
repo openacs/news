@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="da_DK" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.0d1" locale="da_DK" charset="ISO-8859-1">
 
   <msg key="active">aktiv</msg>
   <msg key="Active_Revision">Aktiv Revision</msg>
   <msg key="Add_a_new_revision">Tilføj en ny revision</msg>
   <msg key="Administer">Administrér</msg>
-  <msg key="administer_item">administrér nyhed</msg>
   <msg key="Administration">Administration</msg>
   <msg key="All">Alt</msg>
   <msg key="approve">godkend</msg>

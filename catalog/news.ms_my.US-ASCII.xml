@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="ms_my" charset="US-ASCII">
+<message_catalog package_key="news" package_version="5.0d1" locale="ms_my" charset="US-ASCII">
 
   <msg key="active">aktif</msg>
   <msg key="Administer">Menyelia</msg>
-  <msg key="administer_item">menyelia bahan</msg>
   <msg key="Administration">Penyeliaan</msg>
   <msg key="All">Semua</msg>
   <msg key="approve">lulus</msg>

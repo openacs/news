@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="fi_FI" charset="utf-8">
+<message_catalog package_key="news" package_version="5.0d1" locale="fi_FI" charset="utf-8">
 
   <msg key="active">aktiivinen</msg>
   <msg key="Active_Revision">Aktiivinen versio</msg>
   <msg key="Add_a_new_revision">Lisää uusi versio</msg>
   <msg key="Administer">Uutisten hallinta</msg>
-  <msg key="administer_item">muokkaa kohdetta</msg>
   <msg key="Administration">Ylläpito</msg>
   <msg key="All">Kaikki</msg>
   <msg key="approve">hyväksy</msg>

@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="nl_NL" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.0d1" locale="nl_NL" charset="ISO-8859-1">
 
   <msg key="active">actuele</msg>
   <msg key="Active_Revision">Actuele Wijziging</msg>
   <msg key="Add_a_new_revision">Doorvoeren nieuwe Wijziging</msg>
   <msg key="Administer">Beheer</msg>
-  <msg key="administer_item">beheer onderwerp</msg>
   <msg key="Administration">Beheer</msg>
   <msg key="All">Alle</msg>
   <msg key="approve">toestaan</msg>

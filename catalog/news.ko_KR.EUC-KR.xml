@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="ko_KR" charset="EUC-KR">
+<message_catalog package_key="news" package_version="5.0d1" locale="ko_KR" charset="EUC-KR">
 
   <msg key="active">액티브한</msg>
   <msg key="Active_Revision">액티브한 개정</msg>
   <msg key="Add_a_new_revision">새로운 개정을 추가</msg>
   <msg key="Administer">관리하다</msg>
-  <msg key="administer_item">항목을 관리하다</msg>
   <msg key="Administration">관리</msg>
   <msg key="All">전부</msg>
   <msg key="approve">승인하다</msg>

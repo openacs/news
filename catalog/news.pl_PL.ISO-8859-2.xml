@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="pl_PL" charset="ISO-8859-2">
+<message_catalog package_key="news" package_version="5.0d1" locale="pl_PL" charset="ISO-8859-2">
 
   <msg key="active">aktywne</msg>
   <msg key="Active_Revision">Aktywn Wersja</msg>
   <msg key="Add_a_new_revision">Dodaj now± wersjê</msg>
   <msg key="Administer">Administruj</msg>
-  <msg key="administer_item">administruj wiadomo¶ci±</msg>
   <msg key="Administration">Administracja</msg>
   <msg key="All">Wszystkie</msg>
   <msg key="approve">zatwierd¼</msg>

@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="no_NO" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.0d1" locale="no_NO" charset="ISO-8859-1">
 
   <msg key="active">aktiv</msg>
   <msg key="Active_Revision">Aktiv utgave</msg>
   <msg key="Add_a_new_revision">Legg til ny utgave</msg>
   <msg key="Administer">Administrer</msg>
-  <msg key="administer_item">administrer innlegg</msg>
   <msg key="Administration">Administrasjon</msg>
   <msg key="All">Hele</msg>
   <msg key="approve">godkjenn</msg>

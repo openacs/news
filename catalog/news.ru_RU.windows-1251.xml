@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="ru_RU" charset="windows-1251">
+<message_catalog package_key="news" package_version="5.0d1" locale="ru_RU" charset="windows-1251">
 
   <msg key="active">активная</msg>
   <msg key="Active_Revision">Активная Версия</msg>
   <msg key="Add_a_new_revision">Добавить новую версию</msg>
   <msg key="Administer">Администрировать</msg>
-  <msg key="administer_item">администрирование новости</msg>
   <msg key="Administration">Администрирование</msg>
   <msg key="All">Все</msg>
   <msg key="approve">подтвердить</msg>

@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
-<message_catalog package_key="news" package_version="4.6" locale="pt_BR" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.0d1" locale="pt_BR" charset="ISO-8859-1">
 
   <msg key="active">ativo</msg>
   <msg key="Active_Revision">Revisão Ativa</msg>
   <msg key="Add_a_new_revision">Adicione nova revisão</msg>
   <msg key="Administer">Administre</msg>
-  <msg key="administer_item">administre ítem</msg>
   <msg key="Administration">Administração</msg>
   <msg key="All">Todos</msg>
   <msg key="approve">aprove</msg>
@@ -27,7 +26,6 @@
   <msg key="Creation_Date">Data de Criação</msg>
   <msg key="Creation_IP">IP de Criação</msg>
   <msg key="Database_Error">Erro no banco de dados</msg>
-  <msg key="days">dias</msg>
   <msg key="Delete">Apague</msg>
   <msg key="Error">Erro</msg>
   <msg key="Go">Continuar</msg>

@@ -1,11 +1,10 @@
 <?xml version="?.?"?>
-<message_catalog package_key="news" package_version="?.?" locale="AR_LB" charset="ISO-????-?">
+<message_catalog package_key="news" package_version="?.?d?" locale="AR_LB" charset="ISO-????-?">
 
   <msg key="active">זÔך×</msg>
   <msg key="Active_Revision">ÇהוÑÇÌÙÉ ÇהזÔך×É</msg>
   <msg key="Add_a_new_revision">ÃÖבע וÑÇÌÙÉכ ÌÏךÏÉכ</msg>
   <msg key="Administer">ÃÏÑע</msg>
-  <msg key="administer_item">ÃÏÑע ÈזÏÇכ</msg>
   <msg key="Administration">ÇהÅÏÇÑÉ</msg>
   <msg key="All">דסה</msg>
   <msg key="approve">טÇבג</msg>
