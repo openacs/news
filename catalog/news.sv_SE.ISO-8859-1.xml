@@ -29,6 +29,8 @@
   <msg key="Delete">Radera</msg>
   <msg key="Error">Fel</msg>
   <msg key="Go">OK</msg>
+  <msg key="going_live_no_archive">Går live om %n_days_until_publish% dagar, ej schemalagd för arkivering</msg>
+  <msg key="going_live_with_archive">Går live om %n_days_until_publish% dagar, schemalagd för arkivering om %n_days_until_archive% dagar</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Kommer att publiceras den</msg>
   <msg key="It_will_move_into_archive_on">Kommer att arkiveras den</msg>
@@ -85,7 +87,10 @@
   <msg key="Preview">Förhandsgranska</msg>
   <msg key="Preview_news_item">Förhandsgranska nyheten</msg>
   <msg key="Publication_Date">Publiceringsdatum</msg>
+  <msg key="Publish">Publicera</msg>
   <msg key="Published">Publicerad</msg>
+  <msg key="published_no_archive">Publicerad, ej schemalagd för arkivering</msg>
+  <msg key="published_scheduled_for_archive">Publicerad, arkiveras om %n_days_until_archive% dagar</msg>
   <msg key="Release">Publicera</msg>
   <msg key="Release_Date">Publiceringsdatum</msg>
   <msg key="rev">rev.</msg>
