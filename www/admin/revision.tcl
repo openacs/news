@@ -49,7 +49,8 @@ if { $item_exist_p } {
     # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
     # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
     #
-    if {![string match [db_type] "postgresql"]} {
+    set get_content [db_map get_content]
+    if {![string match $get_content ""]} {
 	set publish_body [db_string get_content "select  content
 	from    cr_revisions
 	where   revision_id = :revision_id"]

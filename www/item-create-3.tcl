@@ -93,7 +93,8 @@ end;"]
 # RAL: For postgres, we need NOT store the data in a blob.  The
 # news item body is stored in the prior news__new call.
 #
-if {![string match [db_type] "postgresql"]} {
+set content_add [db_map content_add]
+if {![string match $content_add ""]} {
     db_dml content_add "
     update cr_revisions
     set    content = empty_blob()

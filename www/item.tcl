@@ -47,7 +47,8 @@ if { $item_exist_p } {
     #
     # RAL: publish_body is already snagged in the 1st query above for postgres.
     #
-    if {![string match [db_type] "postgresql"]} {
+    set get_content [db_map get_content]
+    if {![string match "" $get_content]} {
 	set publish_body [db_string get_content "select  content
 	from    cr_revisions
 	where   revision_id = :live_revision"]

@@ -65,7 +65,8 @@ if [catch {
             make_active_revision_p => :active_revision_p);
     end;"]
 
-    if {![string match [db_type] "postgresql"]} {    
+    set content_add [db_map content_add]
+    if {![string match $content_add ""]} {    
 	db_dml content_add "
 	update cr_revisions
 	set    content = empty_blob()

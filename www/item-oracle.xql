@@ -16,5 +16,13 @@ where  item_id = :item_id
       </querytext>
 </fullquery>
 
+
+<fullquery name="get_content">      
+      <querytext>
+      select  content
+    from    cr_revisions
+    where   revision_id = :live_revision
+      </querytext>
+</fullquery>
  
 </queryset>

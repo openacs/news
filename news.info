@@ -77,7 +77,6 @@ Beta release. </description>
             <file type="content_page" path="www/admin/revision-set-active.tcl"/>
             <file type="content_page" path="www/admin/revision.adp"/>
             <file type="content_page" path="www/admin/revision.tcl"/>
-            <file type="query_file" path="www/admin/revision.xql"/>
             <file type="query_file" db_type="oracle" path="www/admin/revoke-oracle.xql"/>
             <file type="query_file" db_type="postgresql" path="www/admin/revoke-postgresql.xql"/>
             <file type="content_page" path="www/admin/revoke.tcl"/>
@@ -101,7 +100,6 @@ Beta release. </description>
             <file type="query_file" db_type="postgresql" path="www/item-postgresql.xql"/>
             <file type="content_page" path="www/item.adp"/>
             <file type="content_page" path="www/item.tcl"/>
-            <file type="query_file" path="www/item.xql"/>
             <file type="content_page" path="www/master.adp"/>
             <file type="content_page" path="www/news.adp"/>
             <file type="content_page" path="www/preview.adp"/>
@@ -109,12 +107,12 @@ Beta release. </description>
             <file type="query_file" path="www/preview.xql"/>
         </files>
         <parameters>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="SolicitCommentsP"  default="1" description="Whether we allow comments on news items."/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>
-            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ApprovalPolicy"  default="wait" description="Approval policy of submitted news items. It must be either of [open|wait|closed]. Submission by the administrator are ApprovalPolicy = 'open'.This approval policy applies only, if we let 'registered users' upload news items."/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="DisplayMax"  default="10" description="Number of news item headlines displayed per page at most."/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ApprovalPolicy"  default="wait" description="Approval policy of submitted news items. It must be either of [open|wait|closed]. Submission by the administrator are ApprovalPolicy = 'open'.This approval policy applies only, if we let 'registered users' upload news items."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
+            <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="SolicitCommentsP"  default="1" description="Whether we allow comments on news items."/>
         </parameters>
 
     </version>
