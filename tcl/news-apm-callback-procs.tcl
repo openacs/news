@@ -54,7 +54,7 @@ ad_proc -public ::news::install::after_mount {
                        -summary_context_id $package_id \
                        -impl_name "news" \
                        -owner "news" \
-                       -lastbuild "now"]
+                       -lastbuild ""]
     rss_gen_report $subscr_id
 }
 
