@@ -16,7 +16,7 @@
 
 <if @comments@ ne "">
 <h3>#news.Comments#</h3>
-@comments@
+@comments;noquote@
 </if>
 
 <ul>
