@@ -30,7 +30,7 @@ set package_id [ad_conn package_id]
 
 
 set view_slider [list \
-    [list view "News Items" published [list \
+    [list view "[_ news.News_Items]" published [list \
 	[list published "[_ news.Published]" {where "status like 'published%'"}] \
 	[list unapproved "[_ news.Unapproved]" {where "status = 'unapproved'"}] \
 	[list approved "[_ news.Approved]" {where "status like 'going live%'"}] \
