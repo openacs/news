@@ -10,5 +10,5 @@
 	Thank You!
 </p>
 
-<a href="">Back to news list</a>
+<a href=".">Back to news list</a>
 
