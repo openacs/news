@@ -191,3 +191,98 @@ ad_proc -private news::sc::register_news_fts_impl {} {
 
     acs_sc::impl::new_from_spec -spec $spec
 }
+
+
+ad_proc -public news__last_updated {
+    package_id
+} {
+    
+    Return the timestamp of the most recent item in this news instance
+    
+    @author Dave Bauer (dave@thedesignexperience.org)
+    @creation-date 2005-01-22
+    
+    @param package_id
+
+    @return 
+    
+    @error 
+} {
+    return [db_string get_last_updated ""]
+}
+
+ad_proc -private news__rss_datasource {
+    summary_context_id
+} {
+    This procedure implements the "datasource" operation of the 
+    RssGenerationSubscriber service contract.  
+
+    @author Dave Bauer (dave@thedesignexperience.org)
+} {
+    # TODO make limit a parameter
+    set limit 15 
+
+    set items [list]
+    set counter 0
+    set package_url [news_util_get_url $summary_context_id]
+    db_foreach get_news_items {} {
+        set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
+        
+        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain $content]
+        # for now, support only full content in feed
+        set description $content_as_text
+
+        # Always convert timestamp to GMT
+        set entry_date_ansi [lc_time_tz_convert -from [lang::system::timezone] -to "Etc/GMT" -time_value $last_modified]
+        set entry_timestamp "[clock format [clock scan $entry_date_ansi] -format "%a, %d %b %Y %H:%M:%S"] GMT"
+
+        lappend items [list \
+                           link $entry_url \
+                           title $title \
+                           description $description \
+                           value $content_as_text \
+                           timestamp $entry_timestamp]
+
+        if { $counter == 0 } {
+            set column_array(channel_lastBuildDate) $entry_timestamp
+            incr counter
+        }
+    }
+    set column_array(channel_title) "News"
+    set column_array(channel_description) "News"
+    set column_array(items) $items
+    set column_array(channel_language) ""
+    set column_array(channel_copyright) ""
+    set column_array(channel_managingEditor) ""
+    set column_array(channel_webMaster) ""
+    set column_array(channel_rating) ""
+    set column_array(channel_skipDays) ""
+    set column_array(channel_skipHours) ""
+    set column_array(version) 2.0
+    set column_array(image) ""
+    set column_array(channel_link) "$package_url"
+    return [array get column_array]
+}
+
+ad_proc -private news_update_rss {
+    -summary_context_id
+} {
+    
+    Regenerate RSS feed
+    
+    @author Dave Bauer (dave@thedesignexperience.org)
+    @creation-date 2005-02-04
+    
+    @param summary_context_id
+
+    @return 
+    
+    @error 
+} {
+    set subscr_id [rss_support::get_subscr_id \
+                       -summary_context_id $summary_context_id \
+                       -impl_name "news" \
+                       -owner "news"]
+    rss_gen_report $subscr_id
+}
+

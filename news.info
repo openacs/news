@@ -7,22 +7,26 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="5.0d6" url="http://openacs.org/repository/download/apm/news-5.0d6.apm">
+    <version name="5.1.0b2" url="http://openacs.org/repository/download/apm/news-5.1.0b2.apm">
         <owner url="http://opeancs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
         <release-date>2003-11-10</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
 
-        <provides url="news" version="5.0d6"/>
+        <provides url="news" version="5.1.0b2"/>
         <requires url="acs-content-repository" version="5.0.0b4"/>
         <requires url="acs-datetime" version="4.0"/>
         <requires url="acs-kernel" version="5.0.0b4"/>
         <requires url="general-comments" version="4.1"/>
+        <requires url="rss-support" version="0.3d5"/>
 
-       <callbacks>
-            <callback type="after-install"  proc="news::sc::register_news_fts_impl"/>
+
+        <callbacks>
+            <callback type="after-install"  proc="news::install::after_install"/>
             <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
+            <callback type="after-mount"  proc="news::install::after_mount"/>
+            <callback type="after-upgrade"  proc="news::install::after_upgrade"/>
         </callbacks>
         <parameters>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>

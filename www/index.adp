@@ -25,7 +25,10 @@
         <li> @news_items.publish_date@: <a href="item?item_id=@news_items.item_id@">@news_items.publish_title@</a></li>
       </multiple>
     </ul>
-
+    <if @rss_exists@ true>
+      <p><a href="@rss_url@">#rss-support.Syndication_Feed# <img
+            src="/resources/rss-support/xml.gif" alt="Subscribe via RSS" /></a></p></if>
+    
     <p>@pagination_link;noquote@</p>
   </else>
   <if @news_admin_p@ ne 0> 

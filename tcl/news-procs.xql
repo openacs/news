@@ -20,4 +20,13 @@
 	</querytext>
 </fullquery>
 
+<fullquery name="news__last_updated.get_last_updated">
+        <querytext>
+        select max(o.last_modified)
+        from acs_objects o, cr_news n
+        where n.package_id=:package_id
+        and o.object_id=n.news_id
+        </querytext>
+</fullquery>
+
 </queryset>

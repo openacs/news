@@ -120,7 +120,10 @@ if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {
 }
 
 set pagination_link "$prev_start$divider$next_start"
-
+set rss_exists [rss_support::subscription_exists \
+                    -summary_context_id $package_id \
+                    -impl_name news]
+set rss_url "[news_util_get_url $package_id]rss/rss.xml"
 ad_return_template
 
 

@@ -72,3 +72,8 @@ db_multirow -extend { publish_date_pretty archive_date_pretty pretty_status } ne
                            -status $status]
 }
 
+set rss_exists [rss_support::subscription_exists \
+                    -summary_context_id $package_id \
+                    -impl_name news]
+set rss_feed_url [news_util_get_url $package_id]rss/rss.xml
+
