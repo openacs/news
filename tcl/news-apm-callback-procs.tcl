@@ -53,6 +53,7 @@ ad_proc -public ::news::install::after_mount {
     set subscr_id [rss_support::add_subscription \
                        -summary_context_id $package_id \
                        -impl_name "news" \
+                       -owner "news" \
                        -lastbuild "now"]
     rss_gen_report $subscr_id
 }
