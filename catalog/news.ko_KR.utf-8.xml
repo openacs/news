@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.0d2" locale="ko_KR" charset="utf-8">
+<message_catalog package_key="news" package_version="5.0d5" locale="ko_KR" charset="utf-8">
 
   <msg key="active">액티브한</msg>
   <msg key="Active_Revision">액티브한 개정</msg>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.0d2" locale="zh_CN" charset="utf-8">
+<message_catalog package_key="news" package_version="5.0d5" locale="zh_CN" charset="utf-8">
 
   <msg key="active">活动的</msg>
   <msg key="Active_Revision">活动修订本</msg>
