@@ -123,8 +123,8 @@ begin;
     select content_type__create_type (
         'news',       -- content_type
 	null,         -- supertype
-	'News Item',  -- pretty_name
-	'News Items', -- pretty_plural
+	'News Article',  -- pretty_name
+	'News Articles', -- pretty_plural
 	'cr_news',    -- table_name
 	'news_id',    -- id_column
 	'news__name'   -- name_method
