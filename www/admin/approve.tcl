@@ -24,7 +24,7 @@ ad_page_contract {
 }
 
 
-set title "Approve item(s)"
+set title "[_ news.Approve_items]"
 set context [list $title]
 
 
@@ -63,3 +63,9 @@ db_multirow items item_list "
 set hidden_vars [export_form_vars return_url]
 
 ad_return_template
+
+
+
+
+
+

@@ -22,8 +22,8 @@ ad_page_contract {
    
 } -errors {
 
-    publish_title:notnull "Please supply the title of the news item."
-    publish_body:notnull "Please supply the body of the news item."
+    publish_title:notnull "[_ news.lt_Please_supply_the_tit]"
+    publish_body:notnull "[_ news.lt_Please_supply_the_bod]"
 
 } -validate {
 
@@ -39,7 +39,7 @@ ad_page_contract {
     
     check_revision_log -requires {action revision_log} {
 	if { ![string match $action "News Item"] && [empty_string_p $revision_log]} {
-	    ad_complain "You must supply a revision log information."
+	    ad_complain "[_ news.lt_You_must_supply_a_rev]"
 	    return
 	}
     }
@@ -48,10 +48,10 @@ ad_page_contract {
 	set file_size [file size ${text_file.tmpfile}]
 	# !XOR condition (don't want to have both)
 	if { [empty_string_p $publish_body] && $file_size==0 } {
-	    ad_complain "Publish body is missing. Either upload file or enter something in the textarea."
+	    ad_complain "[_ news.lt_Publish_body_is_missi]"
 	    return
 	} elseif { ![empty_string_p $publish_body] && $file_size > 0 } {
-	    ad_complain "Can't upload a publication in the text-field and a non-empty file."
+	    ad_complain "[_ news.lt_Cant_upload_a_publica]"
 	    return
 	} 
     }
@@ -61,7 +61,7 @@ ad_page_contract {
 	
 	set b_max [expr 1000*[ad_parameter MaxFileSizeKb "news" 1024]]
 	if { $b > $b_max } {
-	    ad_complain "Your document is larger than the maximum size allowed ([util_commify_number $b_max] bytes)"
+	    ad_complain "[_ news.lt_Your_document_is_larg] ([util_commify_number $b_max] [_ news.bytes])"
 	    return
 	}
     }
@@ -91,7 +91,11 @@ ad_require_permission $package_id news_create
 
 set news_admin_p [ad_permission_p $package_id news_admin]
 
-set title "Preview $action"
+if { [string match $action "News Item"] } {
+    set title "[_ news.Preview_news_item]"
+} else {
+    set title "[_ news.Preview] $action"
+}
 set context [list $title]
 
 
@@ -104,8 +108,8 @@ if { $news_admin_p == 1 } {
     set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"    
     
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
-	ad_return_error "Scheduling Error" \
-		"The archive date must be AFTER the release date."
+	ad_return_error "[_ news.Scheduling_Error]" \
+		"[_ news.lt_The_archive_date_must]"
 	return 
     }                     
 }                                                
@@ -152,4 +156,9 @@ if { [info exists html_p] && [string match $html_p "f"] } {
 }
 
 ad_return_template
+
+
+
+
+
 

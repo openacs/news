@@ -4,21 +4,21 @@
 
 <p>
 <ul>
-  <li>Your news item will be presented using the Default template defined in news.adp.
+  <li>#news.lt_Your_news_item_will_b#
   <if @news_admin_p@ ne 0>
-   <li>It will go live on @publish_date_ansi@.
+   <li>#news.It_will_go_live_on# @publish_date_ansi@.
    <li>
     <if @permanent_p@ eq "t">
-      And be live until revoked.
+      #news.lt_And_be_live_until_rev#
     </if>
     <else>	
-      It will move into the archive on @archive_date_ansi@.
+      #news.It_will_move_into_archive_on# @archive_date_ansi@.
     </else>
   </if>
   <else>
-    <li>It will go live after it is approved by the News Administrator.
+    <li>#news.lt_It_will_go_live_after#
   </else>
-  <li>To the readers it will look like:
+  <li>#news.lt_To_the_readers_it_wil#
 </ul>
 
 </p>
@@ -32,9 +32,13 @@
     @form_action@
     @hidden_vars@
     <center>
-     <input type=submit value=Confirm>
+     <input type=submit value=#news.Confirm#>
     </center>
   </form>
 </p>
+
+
+
+
 
 

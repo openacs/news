@@ -33,7 +33,7 @@ ad_page_contract {
 set package_id [ad_conn package_id]
 
 
-set title "One Item"
+set title "[_ news.One_Item]"
 set context [list $title]
 
 
@@ -61,4 +61,10 @@ order by revision_id desc
 } 
 
 ad_return_template
+
+
+
+
+
+
 

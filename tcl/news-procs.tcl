@@ -122,3 +122,9 @@ ad_proc news__url {
 
     return $url
 }
+
+
+
+
+
+

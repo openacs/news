@@ -60,12 +60,13 @@ if { $item_exist_p } {
     if {[info exists html_p] && ![string equal $html_p "t"]} {
 	set publish_body "<pre>[ad_quotehtml $publish_body]</pre>"
     }
-    set title "One Revision"
+    set title "[_ news.One_Revision]"
     set context [list $title]
     
 } else {
     set context {}
-    set title "Error"
+    set title "[_ news.Error]"
 }
 
 ad_return_template
+

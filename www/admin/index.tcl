@@ -29,15 +29,15 @@ ad_page_contract {
 set package_id [ad_conn package_id]
 
 
-set view_slider {
-    {view "News Items" published {
-	{published "Published"   {where "status like 'published%'"}}
-	{unapproved "Unapproved" {where "status = 'unapproved'"}}
-	{approved "Approved"     {where "status like 'going live%'"}}
-	{archived "Archived"     {where "status = 'archived'"}}
-        {all "All"               {} }
-    }}
-}
+set view_slider [list \
+    [list view "News Items" published [list \
+	[list published "[_ news.Published]" {where "status like 'published%'"}] \
+	[list unapproved "[_ news.Unapproved]" {where "status = 'unapproved'"}] \
+	[list approved "[_ news.Approved]" {where "status like 'going live%'"}] \
+	[list archived "[_ news.Archived]"     {where "status = 'archived'"}] \
+        [list all "[_ news.All]"               {} ] \
+    ]]
+]
 set view_link [ad_dimensional $view_slider]
 set view_option [ad_dimensional_sql $view_slider]
 
@@ -48,16 +48,16 @@ switch $view {
     "approved"   { set select_actions "<option value=\"make permanent\">Make Permanent" }
     default      {
 	set select_actions "
-	<option value=\"archive now\" selected>Archive Now</option>
-	<option value=\"archive next week\">Archive as of Next Week</option>
-	<option value=\"archive next month\">Archive as of Next Month</option>
-	<option value=\"make permanent\">Make Permanent"
+	<option value=\"archive now\" selected>[_ news.Archive_Now]</option>
+	<option value=\"archive next week\">[_ news.lt_Archive_as_of_Next_We]</option>
+	<option value=\"archive next month\">[_ news.lt_Archive_as_of_Next_Mo]</option>
+	<option value=\"make permanent\">[_ news.Make_Permanent]"
     }
 }
 
 
 
-set title "Administration" 
+set title "[_ news.Administration]" 
 set context {}
 
 
@@ -84,6 +84,12 @@ order by item_id desc"
 
 
 ad_return_template
+
+
+
+
+
+
 
 
 

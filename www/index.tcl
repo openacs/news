@@ -47,7 +47,7 @@ set search_url [news_util_get_url search]
 # view switch in live | archived news
 if { [string equal "live" $view] } {
 
-    set title "News"
+    set title "[_ news.News]"
     set view_clause [db_map view_clause_live]
 
     if { [db_string archived_p "
@@ -56,14 +56,14 @@ if { [string equal "live" $view] } {
     where  publish_date < sysdate 
     and    archive_date < sysdate
     and    package_id = :package_id"]} {
-	set view_switch_link "<a href=?view=archive>Show archived news</a>"
+	set view_switch_link "<a href=?view=archive>[_ news.Show_archived_news]</a>"
     } else { 
 	set view_switch_link ""
     }
     
 } else {
     
-    set title "News Archive"
+    set title "[_ news.News_Archive]"
     set view_clause [db_map view_clause_archived]
 
     if { [db_string live_p "
@@ -73,7 +73,7 @@ if { [string equal "live" $view] } {
     and    (archive_date is null 
             or archive_date > sysdate) 
     and    package_id = :package_id"] } {
-	set view_switch_link "<a href=?view=live>Show live news</a>"
+	set view_switch_link "<a href=?view=live>[_ news.Show_live_news]</a>"
     } else {
 	set view_switch_link ""
     }    
@@ -111,13 +111,13 @@ order  by publish_date desc, item_id desc" {
 if { $count < [expr $start + $max_dspl] } {
     set next_start ""
 } else {
-    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>next<a/>"
+    set next_start "<a href=index?start=[expr $start + $max_dspl]&view=$view>[_ news.next]<a/>"
 }
 
 if { $start == 1 } {
     set prev_start ""
 } else {
-    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>prev</a>"
+    set prev_start "<a href=index?start=[expr $start - $max_dspl]&view=$view>[_ news.prev]</a>"
 }
 
 if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {
@@ -129,3 +129,9 @@ if { ![empty_string_p $next_start] && ![empty_string_p $prev_start] } {
 set pagination_link "$prev_start$divider$next_start"
 
 ad_return_template
+
+
+
+
+
+

@@ -27,3 +27,9 @@ db_exec_plsql news_item_revoke {
 ad_returnredirect "item?item_id=$item_id"
 
 
+
+
+
+
+
+

@@ -75,8 +75,13 @@ if { $item_exist_p } {
 
 } else {
     set context {}
-    set title "Error"
+    set title "[_ news.Error]"
 }
+
+
+
+
+
 
 
 

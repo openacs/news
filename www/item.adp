@@ -5,7 +5,7 @@
 
 
 <if @item_exist_p@ eq "0">
-   <h3>Could not find the requested news item</h3>
+   <h3>#news.lt_Could_not_find_the_re#</h3>
 </if>
 <else>
 <include src=news
@@ -15,7 +15,7 @@
     creator_link=@creator_link@>
 
 <if @comments@ ne "">
-<h3>Comments</h3>
+<h3>#news.Comments#</h3>
 @comments@
 </if>
 
@@ -27,4 +27,8 @@
 </if>
 
 </else>
+
+
+
+
 

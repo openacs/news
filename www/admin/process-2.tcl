@@ -17,7 +17,7 @@ ad_page_contract {
 
 } -errors {
 
-    n_items:notnull "Please check the items you want to process."
+    n_items:notnull "[_ news.lt_Please_check_the_item]"
 
 }
 
@@ -50,6 +50,12 @@ switch $action {
 }
 
 ad_returnredirect ""
+
+
+
+
+
+
 
 
 

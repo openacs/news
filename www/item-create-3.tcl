@@ -106,7 +106,7 @@ if { !$news_admin_p } {
     
     if { ![string equal "open" [ad_parameter ApprovalPolicy "news" "wait"]] } {
 	# case: user submitted news item, is returned to a Thank-you page
-	set title "News item submitted"
+	set title "[_ news.News_item_submitted]"
 	set context [list $title]
 	ad_return_template item-create-thankyou 
     }
@@ -115,3 +115,5 @@ if { !$news_admin_p } {
     # case: administrator returned to index page
     ad_returnredirect ""
 }
+
+

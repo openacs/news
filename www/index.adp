@@ -7,7 +7,7 @@
     <table width="100%">
      <tr>
       <th align=right>
-       [<a href="admin/">Administer</a>]
+       [<a href="admin/">#news.Administer#</a>]
       </th>
      </tr>
     </table>	
@@ -15,14 +15,14 @@
 
 
 <if @news_items:rowcount@ eq 0>
- <p><i>There are no news items available.</i>
+ <p><i>#news.lt_There_are_no_news_ite#</i>
 </if>
 <else>
 <p>
  <if @allow_search_p@ eq "1" and @search_url@ ne "">
  <table>
   <tr valign=top> 
-      <td>Search</td>
+      <td>#news.Search#</td>
       <td > 
       <form action=@search_url@search>
       <input type=text  name=q value="">
@@ -48,13 +48,13 @@
 <p>
 <if @news_admin_p@ ne 0> 
 <ul>
-  <li><a href=item-create>Create a news item</a>
+  <li><a href=item-create>#news.Create_a_news_item#</a>
 </ul>  
 </if>
 <else>
    <if @news_create_p@ ne 0> 
     <ul>
-     <li><a href=item-create>Submit a news item</a>
+     <li><a href=item-create>#news.Submit_a_news_item#</a>
     </ul>
    </if>
 </else>
@@ -64,3 +64,7 @@
   <li>@view_switch_link@
 </ul>
 </if>
+
+
+
+

@@ -4,11 +4,15 @@
 <property name="title">@title@</property>
 
 <p>
- 	Your news item <i><b>@publish_title@</b></i>
-	has been submitted and will go live as soon as it is approved.
+ 	#news.Your_news_item# <i><b>@publish_title@</b></i>
+	#news.lt_has_been_submitted_an#
 	<br><br>
-	Thank You!
+	#news.Thank_You#
 </p>
 
-<a href=".">Back to news list</a>
+<a href=".">#news.Back_to_news_list#</a>
+
+
+
+
 

@@ -33,7 +33,7 @@ if { [ad_permission_p $package_id news_admin] || [string equal "open" [ad_parame
     set immediate_approve_p 0
 }
 
-set title "Create News Item"
+set title "[_ news.Create_News_Item]"
 set context [list $title]
 
 set proj_archival_date [db_string week "select sysdate + [ad_parameter ActiveDays "news" 14] from dual"]
@@ -42,3 +42,8 @@ set publish_date_select [dt_widget_datetime -default now publish_date days]
 set archive_date_select [dt_widget_datetime -default $proj_archival_date archive_date days]
 
 ad_return_template
+
+
+
+
+

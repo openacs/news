@@ -76,9 +76,9 @@ if [catch {
    
 } errmsg ] {
 	
-    set complaint " The database did not accept your input. 
-    See details for the error message below\n\n\t<p><b>$errmsg</b>"
-    ad_return_error "Database Error" "$complaint" 
+    set complaint " [_ news.lt_The_database_did_not_]
+    [_ news.lt_See_details_for_the_e]\n\n\t<p><b>$errmsg</b>"
+    ad_return_error "[_ news.Database_Error]" "$complaint" 
     ad_script_abort
 	
 } else {
@@ -86,3 +86,9 @@ if [catch {
     ad_returnredirect "item?item_id=$item_id"
 	
 }    
+
+
+
+
+
+

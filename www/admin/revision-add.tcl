@@ -38,7 +38,7 @@ db_1row news_item_info {
     where item_id = :item_id
 }
 
-set title "One Item - add revision"
+set title "[_ news.lt_One_Item_-_add_revisi]"
 set context [list $title]
 
 # get active revision of news item
@@ -80,8 +80,14 @@ set publish_date_select [dt_widget_datetime -default $publish_date publish_date 
 set archive_date_select [dt_widget_datetime -default $archive_date archive_date days]
 
 
-set action "Revision"
+set action "[_ news.Revision]"
 set hidden_vars [export_form_vars item_id action]
 
 
 ad_return_template
+
+
+
+
+
+

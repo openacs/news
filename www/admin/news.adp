@@ -5,5 +5,9 @@
 
 @publish_body@
 
-<p>Contributed by @creator_link@
+<p>#news.Contributed_by# @creator_link@
 </blockquote>
+
+
+
+

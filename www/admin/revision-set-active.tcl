@@ -23,3 +23,9 @@ db_exec_plsql update_forum {
 }
     
 ad_returnredirect "item?item_id=$item_id"
+
+
+
+
+
+

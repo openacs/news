@@ -32,8 +32,8 @@ if {[string equal $permanent_p "t"]} {
     set archive_date_ansi $archive_date(date)
 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
-	ad_return_error "Scheduling Error" \
-		"The archive date must be AFTER the release date."
+	ad_return_error "[_ news.Scheduling_Error]" \
+		"[_ news.lt_The_archive_date_must]"
         ad_script_abort
     }                     
 
@@ -66,4 +66,10 @@ foreach id $revision_id {
 
 
 ad_returnredirect "$return_url"
+
+
+
+
+
+
 

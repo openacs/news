@@ -18,7 +18,7 @@ ad_page_contract {
 
 } -errors {
 
-    n_items:notnull "Please check the items which you want to process."
+    n_items:notnull "[_ news.lt_Please_check_the_item]"
 
 } -properties {
 
@@ -41,7 +41,7 @@ if {[string equal "publish" $action]} {
     ad_script_abort
 }
 
-set title "Confirm Action: $action"
+set title "[_ news.Confirm_Action] $action"
 set context [list $title]
 
 
@@ -92,6 +92,12 @@ if { ![info exist halt_p] || $halt_p==0 } {
 set hidden_vars [export_form_vars action n_items item_id]
 
 ad_return_template
+
+
+
+
+
+
 
 
 
