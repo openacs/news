@@ -25,7 +25,12 @@ ad_page_contract {
 }
 
 
-ad_require_permission [ad_conn package_id] news_read
+set user_id [ad_conn untrusted_user_id]
+
+permission::require_permission \
+    -object_id $item_id \
+    -party_id  $user_id \
+    -privilege read
 
 
 # live view of a news item in its active revision
@@ -68,6 +73,13 @@ if { $item_exist_p } {
 	set comment_link ""
         set comments ""
     }
+
+    if {[permission::permission_p -object_id $item_id -privilege write] } {
+        set edit_link "<a href=\"admin/revision-add?item_id=$item_id\">Revise</a>"
+    } else {
+        set edit_link ""
+    }
+
 
     set title $publish_title
     set context [list $title]

@@ -20,8 +20,10 @@
 </if>
 
 <ul>
-<li>
-@comment_link;noquote@
+<li>@comment_link;noquote@</li>
+<if @edit_link@ not nil>
+  <li>@edit_link;noquote@</li>
+</if>
 </ul>
 
 </else>
