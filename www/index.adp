@@ -19,12 +19,12 @@
 </if>
 <else>
 <p>
- <if @allow_search_p@ eq "1">
+ <if @allow_search_p@ eq "1" and @search_url@ ne "">
  <table>
   <tr valign=top> 
       <td>Search</td>
       <td > 
-      <form action=<%= [news_util_get_url search] %>search>
+      <form action=@search_url@search>
       <input type=text  name=q value="">
       </form> </td>
   </tr>

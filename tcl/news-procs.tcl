@@ -75,6 +75,8 @@ ad_proc news_util_get_url {
 
     set package_id [apm_package_id_from_key $package_key]
 
+    set url_stub ""
+
     db_0or1row get_url_stub "
         select site_node__url(node_id) as url_stub
         from site_nodes
