@@ -16,7 +16,6 @@ declare
     -- v_gc_id       general_comments.comment_id%TYPE;
     -- v_gc_msg_id   acs_messages.message_id%TYPE;
     v_item_cursor RECORD;
-        
 begin
     select content_item__get_id(''news'', null, ''f'') into v_folder_id from dual;
 
@@ -70,22 +69,7 @@ drop function inline_0 ();
 
 
 -- drop package news
-drop function news__new (integer,varchar,timestamptz,text,varchar,varchar,
-       varchar,integer,timestamptz,integer,timestamptz,varchar,varchar,
-       varchar,integer,boolean);
-drop function news__delete (integer);
-drop function news__make_permanent (integer);
-drop function news__archive (integer,timestamptz);
-drop function news__archive (integer);
-drop function news__set_approve(integer,varchar,timestamptz,
-       timestamptz,integer,timestamptz,varchar,boolean);
-drop function news__name (integer);
-drop function news__revision_new (integer,timestamptz,text,varchar,text,
-       varchar,integer,timestamptz,integer,timestamptz,varchar,timestamptz,varchar,
-       integer,boolean);
-drop function news__revision_set_active (integer);
-drop function news__revision_delete (integer);
-drop function news__clone (integer,integer);
+select drop_package('news');
 
 
 -- delete news views
@@ -96,36 +80,6 @@ drop view news_item_revisions;
 drop view news_item_unapproved;
 drop view news_item_full_active;
 
-drop function news__status (integer);
-
-
--- drop attributes
-begin;
-
--- website archive date of news release
-select content_type__drop_attribute (
-    'news',         -- content_type
-    'archive_date', -- attribute_name
-    'f'             -- drop_column
-);
--- assignement to an authorized user for approval
-select content_type__drop_attribute (
-    'news',          -- content_type
-    'approval_user', -- attribute_name
-    'f'              -- drop_column
-);
--- approval date
-select content_type__drop_attribute (
-    'news',          -- content_type
-    'approval_date', -- attribute_name
-    'f'              -- drop_column
-);
--- approval IP address
-select content_type__drop_attribute (
-    'news',        -- content_type
-    'approval_ip', -- attribute_name
-    'f'            -- drop_column
-);
 
 -- drop CR content_type
 select content_type__drop_type(
@@ -133,8 +87,6 @@ select content_type__drop_type(
         't',       -- drop_children_p
         't'        -- drop_table_p
 );
-
-end;
 
 
 -- delete privileges;
