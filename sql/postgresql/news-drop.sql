@@ -177,3 +177,8 @@ end;
 
 select inline_0 ();
 drop function inline_0 ();
+
+
+-- *** Search contract de-registration ***
+--
+\i news-sc-drop.sql

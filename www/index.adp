@@ -24,9 +24,8 @@
   <tr valign=top> 
       <td>Search</td>
       <td > 
-      <form action=[sws_package_url]search>
-      <input type=hidden value="<%= [ad_conn package_id] %>" name=subsites>
-      <input type=text  name=query_string value="">
+      <form action=<%= [news_util_get_url search] %>search>
+      <input type=text  name=q value="">
       </form> </td>
   </tr>
  </table>

@@ -67,5 +67,56 @@ ad_proc news_items_delete { id_list } {
 }
 
 
+ad_proc news_util_get_url {
+    package_key
+} {
+    @author Robert Locke
+} {
+
+    set package_id [apm_package_id_from_key $package_key]
+
+    db_0or1row get_url_stub "
+        select site_node__url(node_id) as url_stub
+        from site_nodes
+        where object_id=:package_id
+    "
+
+    return $url_stub
+
+}
 
 
+ad_proc news__datasource {
+    object_id
+} {
+    We currently use the default content repository
+    datasource proc.
+    @author Robert Locke
+} {
+
+    array set datasource [acs_sc_call FtsContentProvider \
+	    datasource [list $object_id] content_revision]
+
+    return [array get datasource]
+
+}
+
+
+ad_proc news__url {
+    object_id
+} {
+    @author Robert Locke
+} {
+
+    set url_stub [news_util_get_url news]
+
+    db_1row get_item_id "
+        select item_id
+        from cr_revisions
+        where revision_id=:object_id
+    "
+
+    set url "${url_stub}item?item_id=$item_id"
+
+    return $url
+}

@@ -32,5 +32,16 @@
       </querytext>
 </fullquery>
 
+
+<fullquery name="news_util_get_url.get_url_stub">
+      <querytext>
+
+	  select site_node__url(node_id) as url_stub
+          from site_nodes
+          where object_id=:package_id      
+	
+      </querytext>
+</fullquery>
+
  
 </queryset>

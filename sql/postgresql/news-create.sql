@@ -886,3 +886,8 @@ and ao.creation_user = ps.person_id;
 
 -- plsql for searches: will be covered by site-wide search
 -- no additional code necessary for news  items right now.
+
+
+-- *** Search contract registration ***
+--
+\i news-sc-create.sql

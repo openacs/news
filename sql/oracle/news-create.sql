@@ -210,7 +210,7 @@ as
                                                                   default null,
         --
         item_subtype            in acs_object_types.object_type%TYPE 
-                                                                  default 'content_item',
+                                                                  default 'content_revision',
         content_type            in acs_object_types.object_type%TYPE 
                                                                   default 'news',
         creation_date           in acs_objects.creation_date%TYPE default sysdate,
@@ -324,7 +324,7 @@ create or replace package body news
         relation_tag            in cr_child_rels.relation_tag%TYPE   default null,
         --
         item_subtype            in acs_object_types.object_type%TYPE default 
-                                                                     'content_item',
+                                                                     'content_revision',
         content_type            in acs_object_types.object_type%TYPE default 'news',
         creation_date           in acs_objects.creation_date%TYPE    default sysdate,
         creation_ip             in acs_objects.creation_ip%TYPE      default null,
