@@ -10,7 +10,7 @@ select item_id,
        publish_title,
        html_p,
        publish_date,
-       '<a href=/shared/community-member?user_id=' || creation_user || '>' || item_creator ||  '</a>' as creator_link
+       '<a href="/shared/community-member?user_id=' || creation_user || '">' || item_creator ||  '</a>' as creator_link
 from   news_items_live_or_submitted
 where  item_id = :item_id
       </querytext>
