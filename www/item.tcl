@@ -68,7 +68,7 @@ if { $item_exist_p } {
 	set comment_link ""
         set comments ""
     }
-    
+
     set title $publish_title
     set context_bar [list $title]
 
