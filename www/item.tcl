@@ -59,13 +59,20 @@ if { $item_exist_p } {
 	set publish_body [ad_text_to_html -- $publish_body]
     }
     
-    if { [ad_parameter SolicitCommentsP "news" 0] &&
-         [ad_permission_p $item_id general_comments_create] } {
-	set comment_link [general_comments_create_link $item_id "[ad_conn package_url]item?item_id=$item_id"]
-	set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
-		$item_id "[ad_conn package_url]item?item_id=$item_id"]
+    if { [ad_parameter SolicitCommentsP "news" 0]} {
+
+        if {[permission::permission_p -object_id $item_id -privilege general_comments_create] } {
+	    set comment_link [general_comments_create_link $item_id "[ad_conn package_url]item?item_id=$item_id"]
+
+	} else {
+            set comment_link "Log in to add a comment"
+        }
+
+        set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
+                          $item_id "[ad_conn package_url]item?item_id=$item_id"]
+
     } else {
-	set comment_link ""
+        set comment_link ""
         set comments ""
     }
 
