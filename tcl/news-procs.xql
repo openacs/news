@@ -11,5 +11,12 @@
 
       </querytext>
 </fullquery>
- 
+
+<fullquery name="news__url.get_package_id">
+	<querytext>
+	select package_i
+	from cr_news
+	where news_id=:object_id
+	</querytext>
+</fullquery>
 </queryset>
