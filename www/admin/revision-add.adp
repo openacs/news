@@ -3,8 +3,7 @@
 <property name="title">@title@</property>
 
 
-<p>#news.lt_Use_the_following_for#<br>
-#news.Note_that_the# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt_When_youre_done_click#
+<p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt_When_youre_done_click#
 <p>
 
 <form action=../preview method=post enctype=multipart/form-data>
@@ -32,7 +31,7 @@
 
   <tr>
     <td> </td>
-    <td>#news.lt_The_text_is_formatted# 
+    <td>#news.The_text_is_formatted_as# 
       <if @html_p@ not nil and @html_p@ ne "f"> 
         <input type=radio name=html_p value="f"> #news.Plain_text#&nbsp;
         <input type=radio name=html_p value="t" checked> #news.HTML#
