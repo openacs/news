@@ -179,19 +179,8 @@ ad_proc news__url {
 } {
     @author Robert Locke
 } {
-
-    set package_id [db_string get_package_id {}]
-    set url_stub [news_util_get_url $package_id]
-
-    db_1row get_item_id "
-        select item_id
-        from cr_revisions
-        where revision_id=:object_id
-    "
-
-    set url "${url_stub}item/$item_id"
-
-    return $url
+    db_1row get {}
+    return "[ad_url][news_util_get_url $package_id]item/$item_id"
 }
 
 ad_proc news_pretty_status { 

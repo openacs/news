@@ -2,22 +2,13 @@
 
 <queryset>
 
-<fullquery name="news__url.get_item_id">
+<fullquery name="news__url.get">
       <querytext>
-
-	select item_id
-        from cr_revisions
-        where revision_id=:object_id
-
+	select r.item_id, n.package_id
+        from cr_revisions r, cr_news n
+        where (r.revision_id=:object_id or r.item_id = :object_id)
+          and r.revision_id = n.news_id
       </querytext>
-</fullquery>
-
-<fullquery name="news__url.get_package_id">
-	<querytext>
-	select package_id
-	from cr_news
-	where news_id=:object_id
-	</querytext>
 </fullquery>
 
 <fullquery name="news__last_updated.get_last_updated">
