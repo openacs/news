@@ -62,3 +62,99 @@ begin
  return 0;
 end;
 ' language 'plpgsql';
+
+-- added for openacs.org
+
+create or replace function news__status (integer)
+returns varchar as '
+declare
+    p_news_id alias for $1;
+    v_archive_date timestamptz;
+    v_publish_date timestamptz;
+begin
+    -- populate variables
+    select archive_date into v_archive_date 
+    from   cr_news 
+    where  news_id = p_news_id;
+    --
+    select publish_date into v_publish_date
+    from   cr_revisions
+    where  revision_id = p_news_id;
+    
+    -- if publish_date is not null the item is approved, otherwise it is not
+    if v_publish_date is not null then
+        if v_publish_date > current_timestamp  then
+            -- to be published (2 cases)
+            -- archive date could be null if it has not been decided when to archive
+	    -- RAL: the nasty ''extract'' code below was the only way I could figure
+	    -- to get the same result as Oracle (eg, 2.4 days)
+            if v_archive_date is null then 
+                return ''going live in ''
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+	    + extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
+	    || '' days'';
+            else 
+                return ''going live in ''
+                || to_char(extract(days from (v_publish_date - current_timestamp))
+		+ extract(hours from (v_publish_date - current_timestamp))/24,''999D9'')
+		|| '' days'' || '', archived in ''
+                || to_char(extract(days from (v_archive_date - current_timestamp))
+		+ extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
+                || '' days'';
+            end if;  
+        else
+            -- already released or even archived (3 cases)
+            if v_archive_date is null then
+                 return ''published, not scheduled for archive'';
+            else
+                if v_archive_date - current_timestamp > 0 then
+                     return ''published, archived in ''
+		     || to_char(extract(days from (v_archive_date - current_timestamp))
+		     + extract(hours from (v_archive_date - current_timestamp))/24,''999D9'')
+		     || '' days'';
+                else 
+                    return ''archived'';
+                end if;
+             end if;
+        end if;     
+    else 
+        return ''unapproved'';
+    end if;
+end;
+' language 'plpgsql';
+
+
+create view news_items_live_or_submitted
+as 
+select
+    ci.item_id as item_id,
+    cn.news_id,
+    cn.package_id,
+    cr.publish_date,
+    cn.archive_date,
+    cr.title as publish_title,
+    cr.content as publish_body,
+    (case when cr.mime_type = 'text/html' then 't' else 'f' end) as html_p,
+    ao.creation_user,
+    ps.first_names || ' ' || ps.last_name as item_creator,
+    ao.creation_date::date as creation_date,
+    ci.live_revision,
+    news__status(cn.news_id) as status
+from 
+    cr_items ci, 
+    cr_revisions cr,
+    cr_news cn,
+    acs_objects ao,
+    persons ps
+where
+    (ci.item_id = cr.item_id
+    and ci.live_revision = cr.revision_id 
+    and cr.revision_id = cn.news_id 
+    and cr.revision_id = ao.object_id
+    and ao.creation_user = ps.person_id)
+or (ci.live_revision is null 
+    and ci.item_id = cr.item_id
+    and cr.revision_id = content_item__get_latest_revision(ci.item_id)
+    and cr.revision_id = cn.news_id
+    and cr.revision_id = ao.object_id
+    and ao.creation_user = ps.person_id);
