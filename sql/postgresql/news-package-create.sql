@@ -405,20 +405,24 @@ returns integer as '
 declare
     p_revision_id alias for $1;
     v_news_item_p boolean;
+    v_item_id cr_items.item_id%TYPE;
+    v_title acs_objects.title%TYPE;
     -- could be used to check if really a ''news'' item
 begin
-    update
-        cr_items
-    set
-        live_revision = p_revision_id,
+
+    select item_id, title into v_item_id, v_title
+    from cr_revisions
+    where revision_id = p_revision_id;
+
+    update cr_items
+    set live_revision = p_revision_id,
         publish_status = ''ready''
-    where
-        item_id = (select
-                       item_id
-                   from
-                       cr_revisions
-                   where
-                       revision_id = p_revision_id);
+    where item_id = v_item_id;
+
+    -- We update the acs_objects title as well.
+
+    update acs_objects set title = v_title
+    where object_id = v_item_id and (title != v_title or title is null);
 
     return 0;
 end;
