@@ -7,7 +7,7 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
 
-    <version name="5.0d1" url="http://www.openacs.org/repository/download/apm/news-5.0d1.apm">
+    <version name="5.0d2" url="http://www.openacs.org/repository/download/apm/news-5.0d2.apm">
     <database-support>
         <database>oracle</database>
         <database>postgresql</database>
@@ -19,10 +19,10 @@
         <description format="text/plain">News publication tool for corporate and website news in HTML and plain text format.
 Beta release. </description>
 
-        <provides url="news" version="5.0d1"/>
-        <requires url="acs-content-repository" version="4.7d6"/>
+        <provides url="news" version="5.0d2"/>
+        <requires url="acs-content-repository" version="5.0d1"/>
         <requires url="acs-datetime" version="4.0"/>
-        <requires url="acs-kernel" version="5.0d11"/>
+        <requires url="acs-kernel" version="5.0d13"/>
         <requires url="general-comments" version="4.1"/>
 
         <parameters>
