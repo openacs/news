@@ -4,12 +4,3 @@
 <if @publish_lead@ not nil><p class="newsLead">@publish_lead@</p></if>
 <div class="newsBody">@publish_body;noquote@</div>
 <p class="newsCredit">#news.Contributed_by# @creator_link;noquote@</p>
-
-
-
-
-
-
-
-
-

@@ -1,9 +1,7 @@
 # /packages/news/tcl/news-procs.tcl
-
 ad_library {
-
     Utility functions for News Application
-    
+
     @author stefan@arsdigita.com
     @creation-date 12-14-00
     @cvs-id $Id$
@@ -12,14 +10,14 @@ ad_library {
 
 # News specific db-API wrapper functions and interpreters
 
-ad_proc news_items_archive { id_list when } { 
-    
+ad_proc news_items_archive { id_list when } {
+
     immediately gives all news items in list id_list
     a status of archived as of ANSI date in when, i.e. when must be like 2000-10-11.
-    
+
 } {
-   
-    foreach id $id_list {	
+
+    foreach id $id_list {
 	db_exec_plsql news_item_archive {
 	    begin
 	    news.archive(
@@ -27,24 +25,24 @@ ad_proc news_items_archive { id_list when } {
 	        archive_date => :when);
 	    end;
 	}
-    }   
+    }
 
 }
 
 
-ad_proc news_items_make_permanent { id_list } {    
+ad_proc news_items_make_permanent { id_list } {
 
     immediately gives all news items in list id_list
     a status of permanently published
 
 } {
-    
+
     foreach id  $id_list {
 	db_exec_plsql news_item_make_permanent {
 	    begin
 	        news.make_permanent(:id);
 	    end;
-	}	    
+	}
     }
 
 }
@@ -122,13 +120,57 @@ ad_proc news_get_image_id {
 ad_proc news__datasource {
     object_id
 } {
-    We currently use the default content repository
-    datasource proc.
-    @author Robert Locke
+    
+
+    @author Jeff Davis (davis@xarg.net)
 } {
+    db_1row get {
+        select
+        item_id,
+        package_id,
+        live_revision,
+        publish_title,
+        publish_lead,
+        html_p,
+        publish_date,
+        publish_body,
+        creation_user,
+        item_creator
+        from news_items_live_or_submitted
+        where item_id = :object_id
+        or item_id = (select item_id from cr_revisions where revision_id = :object_id)}
 
-    return [content_search__datasource $object_id]
+    set url_stub [news_util_get_url $package_id]
+    set url "[ad_url]${url_stub}item/$item_id"
 
+    if {[empty_string_p $publish_lead]} {
+        set publish_lead $publish_body
+    }
+
+    set content [template::adp_include /packages/news/www/news \
+                     [list \
+                          item_id $object_id \
+                          publish_title $publish_title \
+                          publish_title $publish_lead \
+                          publish_body $publish_body \
+                          publish_image {} \
+                          creator_link $item_creator ]]
+
+    return [list \
+                object_id $object_id \
+                title $publish_title \
+                content $content \
+                mime text/html \
+                keywords {} \
+                storage_type text \
+                syndication [list link $url \
+                                 description $publish_lead \
+                                 author $item_creator \
+                                 category News \
+                                 guid "[ad_url]/o/$item_id" \
+                                 pubDate $publish_date \
+                                ] \
+               ]
 }
 
 
@@ -147,7 +189,7 @@ ad_proc news__url {
         where revision_id=:object_id
     "
 
-    set url "${url_stub}item?item_id=$item_id"
+    set url "${url_stub}item/$item_id"
 
     return $url
 }
@@ -229,17 +271,17 @@ ad_proc -private news::sc::register_news_fts_impl {} {
 ad_proc -public news__last_updated {
     package_id
 } {
-    
+
     Return the timestamp of the most recent item in this news instance
-    
+
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-22
-    
+
     @param package_id
 
-    @return 
-    
-    @error 
+    @return
+
+    @error
 } {
     return [db_string get_last_updated ""]
 }
@@ -260,7 +302,7 @@ ad_proc -private news__rss_datasource {
     set package_url [news_util_get_url $summary_context_id]
     db_foreach get_news_items {} {
         set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
-        
+
         set content_as_text [ad_html_text_convert -from $mime_type -to text/plain $content]
         # for now, support only full content in feed
         set description $content_as_text
@@ -300,17 +342,16 @@ ad_proc -private news__rss_datasource {
 ad_proc -private news_update_rss {
     -summary_context_id
 } {
-    
     Regenerate RSS feed
-    
+
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-02-04
-    
+
     @param summary_context_id
 
-    @return 
-    
-    @error 
+    @return
+
+    @error
 } {
     set subscr_id [rss_support::get_subscr_id \
                        -summary_context_id $summary_context_id \
