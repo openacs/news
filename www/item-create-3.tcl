@@ -127,5 +127,4 @@ if {$live_revision_p \
             -summary_context_id $package_id \
             -impl_name news]} {
     news_update_rss -summary_context_id $package_id
-    }
 }
