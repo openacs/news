@@ -67,4 +67,9 @@
         </querytext>
 </fullquery>
  
+<fullquery name="news_revision_set_image_id.set_image_rel">
+        <querytext>
+select acs_rel__new(null, 'relationship', :revision_id, :image_id, null, :creation_user, :peeraddr)
+        </querytext>
+</fullquery>
 </queryset>

@@ -74,4 +74,15 @@
         </querytext>
 </fullquery>
  
+<fullquery name="news_revision_set_image_id.set_image_rel">
+        <querytext>
+        begin
+            :1 := acs_rel.new(rel_type => 'relationship',
+                        object_id_one => :revision_id,
+                        object_id_two => :image_id,
+                        creation_user => :creation_user,
+                        creation_ip => :peeraddr);
+        end;
+        </querytext>
+</fullquery>
 </queryset>

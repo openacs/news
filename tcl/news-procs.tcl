@@ -106,6 +106,29 @@ ad_proc test_file_type {
     return 1
 }
 
+ad_proc news_revision_set_image_id {
+    revision_id
+    image_id
+} {
+    Associates an image with a revision of a news item.
+    
+    @author simon@simonbuckle.com
+} {
+    set creation_user [ad_conn user_id]
+    set peeraddr [ad_conn peeraddr]
+
+    db_exec_plsql set_image_rel {}
+}
+
+ad_proc news_revision_get_image_id {
+    revision_id
+} {
+    Returns the image id if there is one associated with this image, empty string otherwise
+    
+    @author simon@simonbuckle.com
+} {
+    return [relation::get_object_two -object_id_one $revision_id -rel_type "relationship"]
+}
 
 ad_proc news_get_image_id {
     item_id
