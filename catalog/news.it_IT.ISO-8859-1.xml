@@ -29,6 +29,8 @@
   <msg key="Delete">Cancella</msg>
   <msg key="Error">Errore</msg>
   <msg key="Go">Vai</msg>
+  <msg key="going_live_no_archive">Pubblicazione prevista tra %n_days_until_publish% giorni, archiviazione non prevista.</msg>
+  <msg key="going_live_with_archive">Pubblicazione prevista tra %n_days_until_publish% giorni, archiviazione prevista tra %n_days_until_archive% giorni</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Sar&amp;agrave; pubblicata il</msg>
   <msg key="It_will_move_into_archive_on">sar&amp;agrave; trasferita nell'archivio il</msg>
@@ -85,7 +87,10 @@
   <msg key="Preview">Anteprima</msg>
   <msg key="Preview_news_item">Anteprima news</msg>
   <msg key="Publication_Date">Data di pubblicazione</msg>
+  <msg key="Publish">Pubblica</msg>
   <msg key="Published">Pubblicato</msg>
+  <msg key="published_no_archive">Pubblicazione avventua, archiviazione non programmata</msg>
+  <msg key="published_scheduled_for_archive">Pubblicazione avvenuta, archiviazione prevista tra %n_days_until_archive% giorni</msg>
   <msg key="Release">Release</msg>
   <msg key="Release_Date">Data Release</msg>
   <msg key="rev">rev.</msg>

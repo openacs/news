@@ -87,7 +87,10 @@
   <msg key="Preview">Voorvertoning</msg>
   <msg key="Preview_news_item">Voorvertoning nieuwsitem</msg>
   <msg key="Publication_Date">Publicatiedatum</msg>
+  <msg key="Publish">Openbaar maken</msg>
   <msg key="Published">Gepubliseerd</msg>
+  <msg key="published_no_archive">Openbaar maken, niet gepland voor archivering</msg>
+  <msg key="published_scheduled_for_archive">Openbaar maken, gepland voor archivering over %n_days_until_archive% dagen</msg>
   <msg key="Release">Vrijgeven</msg>
   <msg key="Release_Date">Datum van vrijgave</msg>
   <msg key="rev">wijzig.</msg>

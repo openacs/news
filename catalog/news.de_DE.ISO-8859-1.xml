@@ -88,7 +88,9 @@
   <msg key="Preview">Vorschau</msg>
   <msg key="Preview_news_item">Ankündigung in der Vorschau anzeigen</msg>
   <msg key="Publication_Date">Veröffentlichungsdatum</msg>
+  <msg key="Publish">Veröffentlichen</msg>
   <msg key="Published">Veröffentlicht</msg>
+  <msg key="published_no_archive">Veröffentlicht, kein Archivierungsdatum festgelegt</msg>
   <msg key="published_scheduled_for_archive">Veröffentlicht, Archivierung in %n_days_until_archive% Tagen</msg>
   <msg key="Release">Freigeben</msg>
   <msg key="Release_Date">Veröffentlichungsdatum</msg>
