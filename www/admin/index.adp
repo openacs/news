@@ -39,7 +39,7 @@
         </else>
           <td align=center bgcolor=white><input type=checkbox name=n_items  value=@news_items.item_id@></td>
           <td align=left><a href=item?item_id=@news_items.item_id@>@news_items.item_id@</a></td>
-          <td>@news_items.publish_title@ (rev. @news_items.revision_no@)</td>
+          <td>@news_items.publish_title@ (rev. @news_items.revision_no@) [<a href=revision-add?item_id=@news_items.item_id@>revise</a>]</td>
           <td><a href=/shared/community-member?user_id=@news_items.creation_user@>@news_items.item_creator@</a></td>
           <td align=left>@news_items.publish_date@</td>
           <td align=left>@news_items.archive_date@</td>
