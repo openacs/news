@@ -17,7 +17,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     hidden_vars:onevalue
     item_name:onevalue
     item_creator:onevalue
@@ -34,7 +34,7 @@ set package_id [ad_conn package_id]
 
 
 set title "One Item"
-set context_bar [list $title]
+set context [list $title]
 
 
 set hidden_vars [export_form_vars item_id return_url]

@@ -20,7 +20,7 @@ ad_page_contract {
 }  -properties {
     
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
 }
 
 
@@ -107,7 +107,7 @@ if { !$news_admin_p } {
     if { ![string equal "open" [ad_parameter ApprovalPolicy "news" "wait"]] } {
 	# case: user submitted news item, is returned to a Thank-you page
 	set title "News item submitted"
-	set context_bar [list $title]
+	set context [list $title]
 	ad_return_template item-create-thankyou }
 
 } else {    

@@ -17,7 +17,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     view_link:onevalue
     hidden_vars:onevalue
     select_actions:onevalue
@@ -58,7 +58,7 @@ switch $view {
 
 
 set title "Administration" 
-set context_bar {}
+set context {}
 
 
 # administrator sees all news items

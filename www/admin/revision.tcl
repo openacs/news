@@ -15,7 +15,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     news_admin_p:onevalue
     item_exist_p:onevalue
     publish_title:onevalue
@@ -60,11 +60,11 @@ if { $item_exist_p } {
     if {[info exists html_p] && ![string equal $html_p "t"]} {
 	set publish_body "<pre>[ad_quotehtml $publish_body]</pre>"
     }
-    set title "One Item"
-    set context_bar [list $title]
+    set title "One Revision"
+    set context [list $title]
     
 } else {
-    set context_bar {}
+    set context {}
     set title "Error"
 }
 

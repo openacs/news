@@ -17,7 +17,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     publish_date:onevalue
     publish_date_desc:onevalue
     publish_title:onevalue
@@ -39,7 +39,7 @@ db_1row news_item_info {
 }
 
 set title "One Item - add revision"
-set context_bar [list $title]
+set context [list $title]
 
 # get active revision of news item
 db_1row item  "

@@ -23,7 +23,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     action:onevalue
     hidden_vars:onevalue
     unapproved:multirow
@@ -42,7 +42,7 @@ if {[string equal "publish" $action]} {
 }
 
 set title "Confirm Action: $action"
-set context_bar [list $title]
+set context [list $title]
 
 
 # produce bind_id_list     

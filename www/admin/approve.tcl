@@ -17,7 +17,7 @@ ad_page_contract {
     
     items:multirow
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     publish_date_select:onevalue
     archive_date_select:onevalue
     hidden_vars:onevalue
@@ -25,7 +25,7 @@ ad_page_contract {
 
 
 set title "Approve item(s)"
-set context_bar [list $title]
+set context [list $title]
 
 
 # pre-set date widgets with defaults

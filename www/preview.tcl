@@ -70,7 +70,7 @@ ad_page_contract {
 }  -properties {
     
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     publish_title:onevalue
     publish_body:onevalue
     publish_location:onevalue
@@ -92,7 +92,7 @@ ad_require_permission $package_id news_create
 set news_admin_p [ad_permission_p $package_id news_admin]
 
 set title "Preview $action"
-set context_bar [list $title]
+set context [list $title]
 
 
 # deal with Dates, granularity is 'day'

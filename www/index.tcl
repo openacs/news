@@ -17,7 +17,7 @@ ad_page_contract {
 
    
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     news_admin_p:onevalue
     news_create_p:onevalue 
     news_items:multirow
@@ -32,7 +32,7 @@ set package_id [ad_conn package_id]
 ad_require_permission $package_id news_read
 
 
-set context_bar {} 
+set context {} 
 
 
 # switches for privilege-enabled links: admin for news_admin, submit for registered users

@@ -13,7 +13,7 @@ ad_page_contract {
 
 } -properties {
     title:onevalue
-    context_bar:onevalue 
+    context:onevalue 
     item_exist_p:onevalue
     publish_title:onevalue
     publish_date:onevalue
@@ -70,10 +70,10 @@ if { $item_exist_p } {
     }
 
     set title $publish_title
-    set context_bar [list $title]
+    set context [list $title]
 
 } else {
-    set context_bar {}
+    set context {}
     set title "Error"
 }
 

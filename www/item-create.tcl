@@ -13,7 +13,7 @@ ad_page_contract {
 } -properties {
 
     title:onevalue
-    context_bar:onevalue
+    context:onevalue
     publish_date_select:onevalue
     archive_date_select:onevalue
     immediate_approve_p:onevalue
@@ -34,7 +34,7 @@ if { [ad_permission_p $package_id news_admin] || [string equal "open" [ad_parame
 }
 
 set title "Create News Item"
-set context_bar [list $title]
+set context [list $title]
 
 set proj_archival_date [db_string week "select sysdate + [ad_parameter ActiveDays "news" 14] from dual"]
 
