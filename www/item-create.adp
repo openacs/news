@@ -1,11 +1,12 @@
 <master>
 <property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
+<property name="focus">news.publish_title</property>
 
 <p>#news.lt_Use_the_following_for# <font color=red>#news.lt_red_fields_are_requir#</font>#news.lt_When_youre_done_click#
 
 
-<form action=preview method=post enctype=multipart/form-data>
+<form action=preview method=post enctype=multipart/form-data name=news>
 
 <table border=0>
 <tr>
