@@ -159,7 +159,7 @@
 <fullquery name="_news__c_db-news-status.get-status">
   <querytext>
     begin
-      :1 := news.status(:p_news_id);
+      :1 := news.status(to_date(:p_publish_date, 'YYYY-MM-DD'), to_date(:p_archive_date, 'YYYY-MM-DD'));
     end;
   </querytext>
 </fullquery>

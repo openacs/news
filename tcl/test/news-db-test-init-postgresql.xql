@@ -126,7 +126,7 @@
 
 <fullquery name="_news__c_db-news-status.get-status">
   <querytext>
-     select news__status(:p_news_id);
+     select news__status(to_timestamptz(:p_publish_date, 'YYYY-MM-DD'), to_timestamptz(:p_archive_date, 'YYYY-MM-DD'));
   </querytext>
 </fullquery>
 

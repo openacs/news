@@ -486,12 +486,9 @@ aa_register_component "db-news-status" {
   Calls the news packages status function.
   p_news_id<br>
 } {
-  aa_export_vars {p_news_id status}
-  set status [db_exec_plsql get-status {
-    begin
-      :1 := news.status(:p_news_id);
-    end;
-  }]
+  aa_export_vars {p_publish_date p_archive_date status}
+
+  set status [db_exec_plsql get-status {}]
 }
 
 
@@ -1320,13 +1317,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be unapproved"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Status string is \"$status\""
-    aa_true "Check status string contains \"unapproved\"" \
-                                            {[string first "unapproved" $status] != -1}
+    aa_equals "Unapproved status" $status unapproved
 
     #
     # Approve revision 1 and set it as the live revision.
@@ -1345,15 +1338,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be going live and not scheduled for archive"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Returned status = \"$status\""
-    aa_true "Check status string contains \"going live in\"" \
-                                           {[string first "going live in" $status] != -1}
-    aa_true "Check status string doesn't contain \"archived in\"" \
-                                           {[string first "archived in" $status] == -1}
+    aa_equals "Going live no archive status" $status going_live_no_archive
 
     #
     # Approve revision 1 and set it as the live revision.
@@ -1372,15 +1359,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be going live and scheduled for archive"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Returned status = \"$status\""
-    aa_true "Check status string contains \"going live in\"" \
-                                           {[string first "going live in" $status] != -1}
-    aa_true "Check status string contains \"archived in\"" \
-                                           {[string first "archived in" $status] != -1}
+    aa_equals "Going live scheduled for archive status" $status going_live_with_archive
 
     #
     # Approve revision 1 and set it as the live revision.
@@ -1399,15 +1380,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be published, and not scheduled for archive"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Returned status = \"$status\""
-    aa_true "Check status string contains \"published\"" \
-                                           {[string first "published" $status] != -1}
-    aa_true "Check status string contains \"not scheduled for archive\"" \
-                               {[string first "not scheduled for archive" $status] != -1}
+    aa_equals "Published no archive status" $status published_no_archive
 
     #
     # Approve revision 1 and set it as the live revision.
@@ -1426,13 +1401,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be archived"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Returned status = \"$status\""
-    aa_true "Check status string contains \"archived in\"" \
-                                         {[string first "archived" $status] != -1}
+    aa_equals "Archived status" $status archived
 
     #
     # Approve revision 1 and set it as the live revision.
@@ -1451,15 +1422,9 @@ aa_register_case -cats {
     #
     # Check the status of revision 1.
     #
-    aa_log "Calling news.status function on revision 1"
-    aa_log "Should be published, schedule for archive in future"
     set p_news_id $revision1_id
     aa_call_component db-news-status
-    aa_log "Returned status = \"$status\""
-    aa_true "Check status string contains \"published\"" \
-                                           {[string first "published" $status] != -1}
-    aa_true "Check status string contains \"archived in\"" \
-                                         {[string first "archived in" $status] != -1}
+    aa_equals "Published with archive" $status published_with_archive
   }
 } {
   #
