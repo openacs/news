@@ -108,7 +108,8 @@ if { !$news_admin_p } {
 	# case: user submitted news item, is returned to a Thank-you page
 	set title "News item submitted"
 	set context [list $title]
-	ad_return_template item-create-thankyou }
+	ad_return_template item-create-thankyou 
+    }
 
 } else {    
     # case: administrator returned to index page

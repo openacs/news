@@ -38,7 +38,7 @@ ad_page_contract {
 if {[string equal "publish" $action]} {
     
     ad_returnredirect "approve?[export_url_vars n_items]"
-    return
+    ad_script_abort
 }
 
 set title "Confirm Action: $action"

@@ -79,7 +79,7 @@ if [catch {
     set complaint " The database did not accept your input. 
     See details for the error message below\n\n\t<p><b>$errmsg</b>"
     ad_return_error "Database Error" "$complaint" 
-    return -code return
+    ad_script_abort
 	
 } else {
 	

@@ -34,7 +34,7 @@ if {[string equal $permanent_p "t"]} {
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
 	ad_return_error "Scheduling Error" \
 		"The archive date must be AFTER the release date."
-	return 
+        ad_script_abort
     }                     
 
 }
