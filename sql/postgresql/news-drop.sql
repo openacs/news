@@ -141,4 +141,7 @@ drop function inline_0 ();
 
 -- *** Search contract de-registration ***
 --
-\i news-sc-drop.sql
+select acs_sc_impl__delete(
+	   'FtsContentProvider',		-- impl_contract_name
+           'news'				-- impl_name
+);

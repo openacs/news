@@ -921,4 +921,5 @@ and ao.creation_user = ps.person_id;
 
 -- *** Search contract registration ***
 --
-\i news-sc-create.sql
+-- JCD: bind in tcl instead.
+-- \i news-sc-create.sql

@@ -20,7 +20,9 @@
         <requires url="acs-kernel" version="5.0.0b4"/>
         <requires url="general-comments" version="4.1"/>
 
-        <callbacks>
+       <callbacks>
+            <callback type="after-install"  proc="news::sc::register_news_fts_impl"/>
+            <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
         </callbacks>
         <parameters>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>

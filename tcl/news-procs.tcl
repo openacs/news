@@ -167,3 +167,27 @@ ad_proc news_pretty_status {
     # Message lookup may use vars n_days_until_archive and n_days_until_publis
     return [_ $news_status_keys($status)]
 }
+
+
+# register news search implementation
+namespace eval news::sc {}
+
+ad_proc -private news::sc::unregister_news_fts_impl {} {
+    db_transaction {
+        acs_sc::impl::delete -contract_name FtsContentProvider -impl_name news
+    }
+}
+
+ad_proc -private news::sc::register_news_fts_impl {} {
+    set spec {
+        name "news"
+        aliases {
+            datasource news__datasource
+            url news__url
+        }
+        contract_name FtsContentProvider
+        owner news
+    }
+
+    acs_sc::impl::new_from_spec -spec $spec
+}
