@@ -40,7 +40,7 @@ if { $news_admin_p == 1 || [string equal $approval_policy "open"] } {
     set approval_ip [ad_conn "peeraddr"]
     set approval_date [dt_sysdate]
     set live_revision_p "t"
-    
+
 } else {
     
     set approval_user [db_null]
@@ -102,6 +102,8 @@ if {![string match $content_add ""]} {
     returning content into :1" -blobs  [list $publish_body]
 }
 
+    #update RSS if it is enabled
+
 if { !$news_admin_p } {
     
     if { ![string equal "open" [ad_parameter ApprovalPolicy "news" "wait"]] } {
@@ -116,4 +118,10 @@ if { !$news_admin_p } {
     ad_returnredirect ""
 }
 
-
+if {$live_revision_p \
+    && [rss_support::subscription_exists \
+            -summary_context_id $package_id \
+            -impl_name news]} {
+    news_update_rss -summary_context_id $package_id
+    }
+}

@@ -5,7 +5,10 @@
 
 <ul>
   <li><a href="../item-create">#news.Create_a_news_item#</a>
-</ul>
+  <li><if @rss_exists@ true>#rss-support.Rss_feed_active# [<a
+  href="rss">#rss-support.Remove_feed#</a>]</if><else>#rss-support.Rss_feed_inactive#[<a href="rss">
+  #rss-support.Create_feed#</a>]</else>
+    </ul>
 
 <p>
 

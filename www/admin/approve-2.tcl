@@ -63,8 +63,12 @@ foreach id $revision_id {
     }       
 
 }
-
-
+set package_id [ad_conn package_id]
+if {[rss_support::subscription_exists \
+            -summary_context_id $package_id \
+            -impl_name news]} {
+    news_update_rss -summary_context_id $package_id
+}
 ad_returnredirect "$return_url"
 
 
