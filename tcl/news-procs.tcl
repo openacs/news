@@ -109,7 +109,7 @@ ad_proc news__url {
 } {
 
     set package_id [db_string get_package_id {*SQL*}]
-    set url_stub [news_util_get_url news]
+    set url_stub [news_util_get_url $package_id]
 
     db_1row get_item_id "
         select item_id
