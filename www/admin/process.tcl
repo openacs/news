@@ -14,9 +14,8 @@ ad_page_contract {
 } {
     n_items:multiple,notnull
     action:notnull
-} -errors {
-    n_items:notnull "[_ news.lt_Please_check_the_item]"
-} -properties {
+} -errors [list n_items:notnull [_ news.lt_Please_check_the_item]] \
+  -properties {
     title:onevalue
     context:onevalue
     action:onevalue
