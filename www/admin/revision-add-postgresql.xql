@@ -14,7 +14,7 @@ select
     html_p,
     publish_date,
     publish_body,
-    coalesce(archive_date, current_timestamp+[ad_parameter ActiveDays "news" 14]) as archive_date,
+    coalesce(archive_date, current_timestamp + interval '[ad_parameter ActiveDays "news" 14] days') as archive_date,
     status
 from   
     news_item_full_active    
