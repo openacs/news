@@ -25,11 +25,6 @@ begin;
     select acs_privilege__create_privilege('news_delete', null, null);
     select acs_privilege__create_privilege('news_admin', 'News Administrator', null);
 
-    -- temporarily drop this trigger to avoid a data-change violation 
-    -- on acs_privilege_hierarchy_index while updating the child privileges.
-
-    drop trigger acs_priv_hier_ins_del_tr on acs_privilege_hierarchy;
-
     -- bind privileges to global names  
     select acs_privilege__add_child('read', 'news_read');
     select acs_privilege__add_child('create', 'news_create');
@@ -40,13 +35,6 @@ begin;
     select acs_privilege__add_child('admin', 'news_admin');
     select acs_privilege__add_child('news_admin', 'news_read');
     select acs_privilege__add_child('news_admin', 'news_create');
-
-    -- re-enable the trigger before the last insert to force the 
-    -- acs_privilege_hierarchy_index table to be updated.
-
-    create trigger acs_priv_hier_ins_del_tr after insert or delete
-    on acs_privilege_hierarchy for each row
-    execute procedure acs_priv_hier_ins_del_tr ();
 
     select acs_privilege__add_child('news_admin', 'news_delete');
 
