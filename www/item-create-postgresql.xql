@@ -5,7 +5,7 @@
 
 <fullquery name="week">      
       <querytext>
-      select localtimestamp(0) + interval '[ad_parameter ActiveDays "news" 14] days'
+      select to_char(current_timestamp + interval '[ad_parameter ActiveDays "news" 14] days', 'YYYY-MM-DD') 
       </querytext>
 </fullquery>
 
