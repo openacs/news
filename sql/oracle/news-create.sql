@@ -294,6 +294,10 @@ as
        revision_id in cr_revisions.revision_id%TYPE
     );
 
+    procedure clone (
+        new_package_id          in cr_news.package_id%TYPE 	  default null,
+        old_package_id          in cr_news.package_id%TYPE 	  default null
+    );
 
 end news;
 /
@@ -684,6 +688,62 @@ create or replace package body news
     end revision_set_active; 
 
 
+    procedure clone   (
+        new_package_id    in cr_news.package_id%TYPE    default null,
+        old_package_id    in cr_news.package_id%TYPE    default null
+    )
+    is
+      new_news_id integer;
+    begin
+        for one_news in (select
+                            publish_date,
+                            content.blob_to_string(cr.content) as text,
+                            cr.nls_language,
+                            cr.title as title,
+                            cr.mime_type,
+                            cn.package_id,
+                            archive_date,
+                            approval_user,
+                            approval_date,
+                            approval_ip,
+                            ao.creation_date,
+                            ao.creation_ip,
+                            ao.creation_user
+                        from 
+                            cr_items ci, 
+                            cr_revisions cr,
+                            cr_news cn,
+                            acs_objects ao
+                        where
+                            (ci.item_id = cr.item_id
+                            and ci.live_revision = cr.revision_id 
+                            and cr.revision_id = cn.news_id 
+                            and cr.revision_id = ao.object_id)
+                        or (ci.live_revision is null 
+                            and ci.item_id = cr.item_id
+                            and cr.revision_id = content_item.get_latest_revision(ci.item_id)
+                            and cr.revision_id = cn.news_id
+                            and cr.revision_id = ao.object_id))
+        loop
+
+            new_news_id := news.new(
+                publish_date      => one_news.publish_date,
+                text              => one_news.text,
+                nls_language      => one_news.nls_language,
+                title             => one_news.title,
+                mime_type         => one_news.mime_type,
+                package_id        => news.clone.new_package_id,
+                archive_date      => one_news.archive_date,
+                approval_user     => one_news.approval_user,
+                approval_date     => one_news.approval_date,
+                approval_ip       => one_news.approval_ip,
+                creation_date     => one_news.creation_date,
+                creation_ip       => one_news.creation_ip,
+                creation_user     => one_news.creation_user
+            );
+
+        end loop;
+    end clone;
 
     -- currently not used, because we want to audit revisions
     procedure revision_delete (
