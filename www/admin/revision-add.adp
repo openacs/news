@@ -65,7 +65,7 @@
   <tr>
   <th></th>
   <td align=left>
-   <input type=submit value=#news.Preview#>
+   <input type=submit value="#news.Preview#">
   </td>
   </tr>
 </table>

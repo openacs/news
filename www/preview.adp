@@ -32,7 +32,7 @@
     @form_action@
     @hidden_vars@
     <center>
-     <input type=submit value=#news.Confirm#>
+     <input type=submit value="#news.Confirm#">
     </center>
   </form>
 </p>

@@ -61,7 +61,7 @@
 	@select_actions@
        <option value=delete>#news.Delete#</option>	
        </select>
-       <input type=submit value=#news.Go#>
+       <input type=submit value="#news.Go#">
      </if>
        </form>
      </td>

@@ -55,7 +55,7 @@
   <td></td>
   <td align=left>
    <input type=hidden name=action value="News Item">
-   <input type=submit value=#news.Preview#>	
+   <input type=submit value="#news.Preview#">	
   </td>
 </tr>
 </table>

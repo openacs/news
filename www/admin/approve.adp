@@ -40,7 +40,7 @@
 <p>
 
 <center>
-<input type=submit value=#news.Release#>
+<input type=submit value="#news.Release#">
 </center>
 
 </form>
