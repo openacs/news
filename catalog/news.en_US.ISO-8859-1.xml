@@ -15,6 +15,7 @@
   <msg key="Archive_Date">Archive Date</msg>
   <msg key="Archive_Now">Archive Now</msg>
   <msg key="Archived">Archived</msg>
+  <msg key="archived_in">archived in</msg>
   <msg key="Author">Author</msg>
   <msg key="Back_to_news_list">Back to news list</msg>
   <msg key="Body">Body</msg>
@@ -29,8 +30,11 @@
   <msg key="Creation_IP">Creation IP</msg>
   <msg key="Database_Error">Database Error</msg>
   <msg key="Delete">Delete</msg>
+  <msg key="days">days</msg>
   <msg key="Error">Error</msg>
   <msg key="Go">Go</msg>
+  <msg key="going_live_no_archive">Going live in %n_days_until_publish% days, not scheduled for archive</msg>
+  <msg key="going_live_with_archive">Going live in %n_days_until_publish% days, scheduled for archive in %n_days_until_archive% days</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">It will go live on</msg>
   <msg key="It_will_move_into_archive_on">It will move into the archive on</msg>
@@ -92,6 +96,8 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Preview_news_item">Preview news item</msg>
   <msg key="Publication_Date">Publication Date</msg>
   <msg key="Published">Published</msg>
+  <msg key="published_no_archive">Published, not scheduled for archive</msg>
+  <msg key="published_scheduled_for_archive">Published, archived in %n_days_until_archive% days</msg>
   <msg key="Release">Release</msg>
   <msg key="Release_Date">Release Date</msg>
   <msg key="rev">rev.</msg>
