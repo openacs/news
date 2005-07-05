@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="news" package_version="5.0d2" locale="AR_EG" charset="utf-8">
+
+  <msg key="All">الكل</msg>
+  <msg key="Author">المؤلّف</msg>
+  <msg key="Go">اذهب</msg>
+  <msg key="never">أبداً</msg>
+  <msg key="News">الأخبار</msg>
+  <msg key="Search">ابحث</msg>
+  <msg key="Thank_You">!شكراًً </msg>
+  <msg key="Yes">نعم</msg>
+</message_catalog>
