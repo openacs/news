@@ -40,3 +40,14 @@ ad_proc -callback merge::MergePackageUser -impl news {
 
     return $result
 }
+
+ad_proc -public -callback datamanager::move_new -impl datamanager {
+     -object_id:required
+     -selected_community:required
+} {
+    Move a new to another class or community
+} {
+db_dml update_news {}
+db_dml update_news_acs_objects_1 {}
+db_dml update_news_acs_objects_2 {}
+}
