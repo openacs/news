@@ -29,14 +29,14 @@
 
 <fullquery name="_news__c_db-news-item-create.item-create">
   <querytext>
-    select news__new(
+   select news__new(
       null,
       null,
       current_timestamp, :p_text, null, :p_title, 'text/plain',
       :p_package_id, :p_archive_date, :p_approval_user, :p_approval_date, :p_approval_ip,
       null,
       null,null,
-      :p_is_live
+      :p_is_live,null
     );
   </querytext>
 </fullquery>
