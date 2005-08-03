@@ -56,7 +56,7 @@
       'text/plain', :p_package_id, :p_archive_date, :p_approval_user, :p_approval_date,
                                                                       :p_approval_ip,
       current_timestamp, null, null,
-      :p_make_active_revision_p
+      :p_make_active_revision_p, null
     );
   </querytext>
 </fullquery>
