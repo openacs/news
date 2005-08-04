@@ -75,3 +75,22 @@ ad_proc -private news::install::after_upgrade {
 	    }
 	}
 }
+
+ad_proc -private news::install::before_uninstantiate {
+    -package_id
+} {
+    Delete RSS feed per package instance
+    Delete News items per package instance
+
+    @author Stan Kaufman (skaufman@epimetrics.com)
+    @creation-date 2005-08-03
+    
+    @param package_id
+
+    @return 
+    
+    @error 
+} {
+    news_items_delete [db_list dead_news ""]
+    rss_support::del_subscription -summary_context_id $package_id -owner news -impl_name news
+}
