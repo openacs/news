@@ -74,6 +74,7 @@ aa_register_init_class "mount-news-package" {
             if {$_news_package_id != -1} {
                 aa_log "Deleting existing package instance."
                 set p_package_id $_news_package_id
+                rss_support::del_subscription -summary_context_id $p_package_id -owner news -impl_name news
                 db_exec_plsql package-delete {
                     begin
                     apm_package.del(:p_package_id);
@@ -106,6 +107,7 @@ aa_register_init_class "mount-news-package" {
         site_map_unmount_application -delete_p t $_news_node_id 
         site_node::delete -node_id $_test_node_id
         set p_package_id $_news_package_id
+        rss_support::del_subscription -summary_context_id $p_package_id -owner news -impl_name news
         db_exec_plsql package-delete {
             begin
             apm_package.del(:p_package_id)
