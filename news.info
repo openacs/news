@@ -7,14 +7,14 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="5.2.0d3" url="http://openacs.org/repository/download/apm/news-5.2.0d3.apm">
+    <version name="5.2.0d4" url="http://openacs.org/repository/download/apm/news-5.2.0d4.apm">
         <owner url="http://opeancs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
         <release-date>2003-11-10</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
 
-        <provides url="news" version="5.2.0d3"/>
+        <provides url="news" version="5.2.0d4"/>
         <requires url="acs-content-repository" version="5.2.0d15"/>
         <requires url="acs-datetime" version="4.0"/>
         <requires url="acs-kernel" version="5.2.0d2"/>
@@ -25,7 +25,7 @@
         <callbacks>
             <callback type="after-install"  proc="news::install::after_install"/>
             <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
-            <callback type="after-mount"  proc="news::install::after_mount"/>
+            <callback type="after-instantitate"  proc="news::install::after_instantiate"/>
             <callback type="after-upgrade"  proc="news::install::after_upgrade"/>
         </callbacks>
         <parameters>

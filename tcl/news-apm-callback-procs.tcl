@@ -37,7 +37,7 @@ ad_proc -public ::news::install::after_install {
     acs_sc::impl::new_from_spec -spec $spec
 }
 
-ad_proc -public ::news::install::after_mount {
+ad_proc -public ::news::install::after_instantiate {
     -package_id
     -node_id
 } {
