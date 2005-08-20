@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="en_US" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.2.0d3" locale="en_US" charset="ISO-8859-1">
 
   <msg key="active">active</msg>
   <msg key="Active_Revision">Active Revision</msg>
@@ -31,6 +31,7 @@
   <msg key="Go">Go</msg>
   <msg key="going_live_no_archive">Going live in %n_days_until_publish% days, not scheduled for archive</msg>
   <msg key="going_live_with_archive">Going live in %n_days_until_publish% days, scheduled for archive in %n_days_until_archive% days</msg>
+  <msg key="History">History</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">It will go live on</msg>
   <msg key="It_will_move_into_archive_on">It will move into the archive on</msg>
@@ -103,7 +104,6 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="rev">rev.</msg>
   <msg key="revise">revise</msg>
   <msg key="Revision">Revision</msg>
-  <msg key="History">History</msg>
   <msg key="Revision_history">Revision history</msg>
   <msg key="Revision_log">Revision log</msg>
   <msg key="Revision_number">Revision Number</msg>
