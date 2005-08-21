@@ -57,7 +57,7 @@ ad_proc -public ::news::install::after_instantiate {
                        -impl_name "news" \
                        -owner "news" \
                        -lastbuild ""]
-    rss_gen_report $subscr_id
+
 }
 
 ad_proc -private news::install::after_upgrade {
