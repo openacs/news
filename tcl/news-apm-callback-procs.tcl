@@ -35,6 +35,17 @@ ad_proc -public ::news::install::after_install {
         owner "news"
     }
     acs_sc::impl::new_from_spec -spec $spec
+    
+    db_transaction {
+       		# Create the impl and aliases for a news item
+	        set impl_id [create_news_item_impl]
+
+    		# Create the notification type for a news item
+                set type_id [create_news_item_type $impl_id]
+
+                # Enable the delivery intervals and delivery methods for a news item
+                enable_intervals_and_methods $type_id
+     }
 }
 
 ad_proc -public ::news::install::after_instantiate {
@@ -73,5 +84,72 @@ ad_proc -private news::install::after_upgrade {
 	    5.1.0d1 5.1.0b1 {
                 news::install::after_install
 	    }
+	    5.2.0d3 5.2.0d4 {
+
+            }
+	    5.2.0d4 5.2.0d5 {
+
+       		# Create the impl and aliases for a news item
+	        set impl_id [create_news_item_impl]
+
+    		# Create the notification type for a news item
+                set type_id [create_news_item_type $impl_id]
+
+                # Enable the delivery intervals and delivery methods for a news item
+                enable_intervals_and_methods $type_id
+	    }
 	}
+}
+
+ad_proc -public create_news_item_impl { 
+
+} {
+    Register the service contract implementation and return the impl_id
+    @return impl_id of the created implementation
+} {
+         return [acs_sc::impl::new_from_spec -spec {
+            name news_item_notif_type
+            contract_name NotificationType
+            owner news
+            aliases {
+                GetURL news_notification_get_url
+                ProcessReply news_notification_process_reply
+            }
+         }]
+}
+
+ad_proc -public create_news_item_type {
+	impl_id
+} {
+    Create the notification type for one news item
+    @return the type_id of the created type
+} {
+    return [notification::type::new \
+                -sc_impl_id $impl_id \
+                -short_name one_news_item_notif \
+                -pretty_name "One News Item" \
+                -description "Notification of a new news item"]
+}
+
+
+ad_proc -public enable_intervals_and_methods {type_id} {
+    Enable the intervals and delivery methods of a specific type
+} {
+    # Enable the various intervals and delivery method
+    notification::type::interval_enable \
+	-type_id $type_id \
+	-interval_id [notification::interval::get_id_from_name -name instant]
+
+    notification::type::interval_enable \
+	-type_id $type_id \
+	-interval_id [notification::interval::get_id_from_name -name hourly]
+
+    notification::type::interval_enable \
+	-type_id $type_id \
+	-interval_id [notification::interval::get_id_from_name -name daily]
+
+    # Enable the delivery methods
+    notification::type::delivery_method_enable \
+	-type_id $type_id \
+	-delivery_method_id [notification::delivery::get_id -short_name email]
 }

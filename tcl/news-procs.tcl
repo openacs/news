@@ -7,7 +7,6 @@ ad_library {
     @cvs-id $Id$
 }
 
-
 # News specific db-API wrapper functions and interpreters
 
 ad_proc news_items_archive { id_list when } {
@@ -370,4 +369,36 @@ ad_proc -private news_update_rss {
                        -impl_name "news" \
                        -owner "news"]
     rss_gen_report $subscr_id
+}
+
+# add news notification
+ad_proc -public news_notification_get_url {
+       news_package_id
+} {
+       returns a full url to the news item.       
+} { 
+    return "[news_util_get_url $news_package_id]"
+}
+
+ad_proc -public news_do_notification {
+    news_package_id
+    news_id
+} { 
+
+    set package_id [ad_conn package_id]
+    # get the title and teaser for latest news item for the given package id
+    if { [db_0or1row "get_news" "select title, lead from cr_newsx where news_id = :news_id"] } {
+	set new_content "$title\n\n"
+	append new_content "$lead\n\n"
+ 	append new_content "Read more about it at [news_util_get_url $news_package_id]" 
+    }
+
+    # Notifies the users that requested notification for the specific news item
+
+    notification::new \
+        -type_id [notification::type::get_type_id -short_name one_news_item_notif] \
+        -object_id $news_package_id \
+        -notif_subject "Latest News" \
+        -notif_text $new_content
+
 }
