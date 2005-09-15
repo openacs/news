@@ -476,7 +476,7 @@ begin
                 				one_news.nls_language,
                 				one_news.title,
                 				one_news.mime_type,
-                				new_package_id,
+                				p_new_package_id,
                 				one_news.archive_date,
                 				one_news.approval_user,
                 				one_news.approval_date,
