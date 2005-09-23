@@ -51,3 +51,57 @@ db_dml update_news {}
 db_dml update_news_acs_objects_1 {}
 db_dml update_news_acs_objects_2 {}
 }
+
+ad_proc -public -callback datamanager::copy_new -impl datamanager {
+     -object_id:required
+     -selected_community:required
+} {
+    Copy a new to another class or community
+} {
+#get environment data
+    db_1row get_news_package_id {}
+    
+#get the revision's data
+
+    set news_revisions_list [db_list_of_lists get_news_revisions_data {}]
+    set news_revisions_number [llength $news_revisions_list]
+
+#do the first revision
+    set present_object_id [lindex [lindex $news_revisions_list 1] 0]
+    db_1row get_news_data {}    
+    set publish_date_ansi  [lindex [lindex $news_revisions_list 1] 1]
+    set publish_body  [lindex [lindex $news_revisions_list 1] 2]   
+    set mime_type     [lindex [lindex $news_revisions_list 1] 3]  
+    set publish_title [lindex [lindex $news_revisions_list 1] 4]     
+
+
+    set live_revision_p "t"
+
+#create the new
+    set news_id [db_exec_plsql create_news_item {}]
+
+#if there are revisions, they are included here   
+    for {set i 2} {$i < $news_revisions_number} {incr i} {
+ 
+        set present_object_id [lindex [lindex $news_revisions_list $i] 0]
+        db_1row get_news_data {}       
+        db_1row get_present_new_item {}       
+
+        set publish_date_ansi  [lindex [lindex $news_revisions_list $i] 1]
+        set publish_body  [lindex [lindex $news_revisions_list $i] 2]   
+        set mime_type     [lindex [lindex $news_revisions_list $i] 3]  
+        set publish_title [lindex [lindex $news_revisions_list $i] 4]         
+        set revision_log [lindex [lindex $news_revisions_list $i] 5]        
+#        db_1row get_live_revision {}           
+#        if {$live_revision == $present_object_id} {
+#            set active_revision_p "t"    
+#        } else {
+#            set active_revision_p "f"
+#        }                       
+set active_revision_p "t"    
+
+     db_exec_plsql create_news_item_revision {}
+    }  
+#does the new includes images?
+}
+
