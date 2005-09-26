@@ -26,6 +26,7 @@
             <callback type="after-install"  proc="news::install::after_install"/>
             <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
             <callback type="after-instantiate"  proc="news::install::after_instantiate"/>
+            <callback type="after-mount"  proc="news::install::after_mount"/>
             <callback type="after-upgrade"  proc="news::install::after_upgrade"/>
         </callbacks>
         <parameters>

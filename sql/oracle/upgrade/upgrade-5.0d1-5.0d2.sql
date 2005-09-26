@@ -67,7 +67,8 @@ as
 
 
     function status (
-        news_id in cr_news.news_id%TYPE
+        publish_date     in cr_revisions.publish_date%TYPE,
+        archive_date     in cr_news.archive_date%TYPE
     ) return varchar2;
 
 
@@ -359,42 +360,27 @@ create or replace package body news
     -- the status function returns information on the puplish or archive status
     -- it does not make any checks on the order of publish_date and archive_date
     function status (
-        news_id in cr_news.news_id%TYPE
+        publish_date     in cr_revisions.publish_date%TYPE,
+        archive_date     in cr_news.archive_date%TYPE
     ) return varchar2
     is
-        v_archive_date date;
-        v_publish_date date;
     begin
-        -- populate variables
-        select archive_date into v_archive_date 
-        from   cr_news 
-        where  news_id = news.status.news_id;
-        --
-        select publish_date into v_publish_date
-        from   cr_revisions
-        where  revision_id = news.status.news_id;
-        
-        -- if publish_date is not null the item is approved, otherwise it is not
-        if v_publish_date is not null then
-            if v_publish_date > sysdate  then
+
+        if publish_date is not null then
+            if publish_date > sysdate  then
                 -- to be published (2 cases)
-                -- archive date could be null if it has not been decided when to archive
-                if v_archive_date is null then 
-                    return 'going live in ' || 
-                    round(to_char(v_publish_date - sysdate),1) || ' days';
+                if archive_date is null then 
+                    return 'going_live_no_archive';
                 else 
-                    return 'going live in ' || 
-                    round(to_char(v_publish_date - sysdate),1) || ' days' ||
-                    ', archived in ' || round(to_char(v_archive_date - sysdate),1) || ' days';
+                    return 'going_live_with_archive';
                 end if;  
             else
                 -- already released or even archived (3 cases)
-                if v_archive_date is null then
-                     return 'published, not scheduled for archive';
+                if archive_date is null then
+                     return 'published_no_archive';
                 else
-                    if v_archive_date - sysdate > 0 then
-                         return 'published, archived in ' || 
-                         round(to_char(v_archive_date - sysdate),1) || ' days';
+                    if archive_date - sysdate > 0 then
+                        return 'published_with_archive';
                     else 
                         return 'archived';
                     end if;
@@ -583,6 +569,3 @@ create or replace package body news
 end news;
 /
 show errors
-
-
-

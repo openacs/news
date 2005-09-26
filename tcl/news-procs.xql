@@ -20,10 +20,12 @@
         </querytext>
 </fullquery>
 
-<fullquery name="news_get_image_id.img"><querytext>
-SELECT live_revision AS image_id
-FROM cr_items
-WHERE content_type = 'image' AND parent_id = :item_id
-</querytext></fullquery>
+<fullquery name="news_get_image_id.img">
+      <querytext>
+        SELECT live_revision AS image_id
+        FROM cr_items
+        WHERE content_type = 'image' AND parent_id = :item_id
+      </querytext>
+</fullquery>
 
 </queryset>
