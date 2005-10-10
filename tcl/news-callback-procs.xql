@@ -18,10 +18,10 @@
     </querytext>
   </fullquery>	
 
-  <fullquery name="callback::datamanager::move_new::impl::datamanager.update_news">
+<fullquery name="callback::datamanager::move_new::impl::datamanager.update_news">
 <querytext>
     update cr_news
-	set package_id = (select package_id	from dotlrn_community_applets where community_id = :selected_community and applet_id = (select applet_id from dotlrn_applets where applet_key = 'dotlrn_news'))
+	set package_id = :new_package_id
     where news_id in (select revision_id from cr_revisions where item_id = (select item_id from cr_items where live_revision=:object_id));
 </querytext>
 </fullquery>
@@ -31,9 +31,8 @@
 
 <querytext>
     update acs_objects
-    set package_id = (select package_id from dotlrn_community_applets where community_id = :selected_community and applet_id = (select applet_id from dotlrn_applets where applet_key = 'dotlrn_news')), 
-        context_id =  (select package_id from dotlrn_community_applets where community_id = :selected_community and applet_id = (select applet_id from dotlrn_applets where applet_key = 'dotlrn_news')) 
-    
+    set package_id = :new_package_id, 
+        context_id = :new_package_id  
     where object_id=(select item_id from cr_revisions  where revision_id=:object_id);
 </querytext>
 </fullquery>
@@ -41,21 +40,11 @@
 <fullquery name="callback::datamanager::move_new::impl::datamanager.update_news_acs_objects_1">
 <querytext>
     update acs_objects
-    set package_id = (select package_id 
-    	from dotlrn_community_applets
-    	where community_id = :selected_community and applet_id = (
-	        select applet_id from dotlrn_applets where applet_key = 'dotlrn_news'))
+    set package_id = :new_package_id
     where object_id in (select revision_id from cr_revisions where item_id = (select item_id from cr_revisions  where revision_id=:object_id));
 </querytext>
 </fullquery>
 
-<fullquery name="callback::datamanager::copy_new::impl::datamanager.get_news_package_id">
-<querytext>
-    SELECT b.object_id as package_id 
-    FROM acs_objects as a,acs_objects as b  
-    WHERE a.context_id=:selected_community and a.object_type='apm_package' and a.object_id=b.context_id and b.title='News';
-</querytext>
-</fullquery>
 
 <fullquery name="callback::datamanager::copy_new::impl::datamanager.get_news_data">
 <querytext>
@@ -153,6 +142,35 @@ ORDER BY a.revision_id
       </querytext>
 </fullquery>
 
+
+
+
+<fullquery name="callback::datamanager::delete_new::impl::datamanager.del_update_news">
+<querytext>
+    update cr_news
+	set package_id = :trash_package_id
+    where news_id in (select revision_id from cr_revisions where item_id = (select item_id from cr_items where live_revision=:object_id));
+</querytext>
+</fullquery>
+
+
+<fullquery name="callback::datamanager::delete_new::impl::datamanager.del_update_news_acs_objects_2">
+
+<querytext>
+    update acs_objects
+    set package_id = :trash_package_id, 
+        context_id = :trash_package_id  
+    where object_id=(select item_id from cr_revisions  where revision_id=:object_id);
+</querytext>
+</fullquery>
+
+<fullquery name="callback::datamanager::delete_new::impl::datamanager.del_update_news_acs_objects_1">
+<querytext>
+    update acs_objects
+    set package_id = :trash_package_id
+    where object_id in (select revision_id from cr_revisions where item_id = (select item_id from cr_revisions  where revision_id=:object_id));
+</querytext>
+</fullquery>
 
 
 </queryset>

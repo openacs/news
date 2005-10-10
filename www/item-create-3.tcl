@@ -76,11 +76,10 @@ if {[string match $html_p t]} {
 } else {
     set mime_type "text/plain"
 }
-
-
 # do insert: unfortunately the publish_body cannot be supplied through the PL/SQL function
 # we therefore have to do this in a second step 
 set news_id [db_exec_plsql create_news_item {}]
+
 
 #
 # RAL: For postgres, we need NOT store the data in a blob.  The

@@ -45,7 +45,6 @@ if {[string match $html_p t]} {
 # make new revision the active revision
 set active_revision_p "t"
 
-
 # Insert is 2-step process, same as in item-create-3.tcl
 if [catch { 
     set revision_id [db_exec_plsql create_news_item_revision "

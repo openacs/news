@@ -8,6 +8,24 @@ ad_library {
 }
 
 # News specific db-API wrapper functions and interpreters
+ad_proc news_get_package_id {
+    -community_id
+} {
+   Get the news package in the selected community 
+
+    @param community_id
+} {
+
+    if {[info exist community_id] == 0} {
+        set community_id [dotlrn_community::get_community_id]        
+    }
+
+    db_1row get_news_package_id {}
+
+    return $package_id
+}
+
+
 
 ad_proc news_items_archive { id_list when } {
 
@@ -369,7 +387,9 @@ ad_proc -private news_update_rss {
                        -impl_name "news" \
                        -owner "news"]
     rss_gen_report $subscr_id
+
 }
+
 
 # add news notification
 ad_proc -public news_notification_get_url {
@@ -402,3 +422,4 @@ ad_proc -public news_do_notification {
         -notif_text $new_content
 
 }
+

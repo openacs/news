@@ -28,4 +28,12 @@
       </querytext>
 </fullquery>
 
+<fullquery name="news_get_package_id.get_news_package_id">
+<querytext>
+    SELECT b.object_id as package_id 
+    FROM acs_objects as a,acs_objects as b  
+    WHERE a.context_id=:community_id and a.object_type='apm_package' and a.object_id=b.context_id and b.title='News';
+</querytext>
+</fullquery>
+
 </queryset>

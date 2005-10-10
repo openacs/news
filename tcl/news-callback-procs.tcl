@@ -47,6 +47,8 @@ ad_proc -public -callback datamanager::move_new -impl datamanager {
 } {
     Move a new to another class or community
 } {
+     set new_package_id [news_get_package_id -community_id $selected_community]
+
 db_dml update_news {}
 db_dml update_news_acs_objects_1 {}
 db_dml update_news_acs_objects_2 {}
@@ -59,8 +61,8 @@ ad_proc -public -callback datamanager::copy_new -impl datamanager {
     Copy a new to another class or community
 } {
 #get environment data
-    db_1row get_news_package_id {}
-    
+    set package_id [news_get_package_id -community_id $selected_community]
+
 #get the revision's data
 
     set news_revisions_list [db_list_of_lists get_news_revisions_data {}]
@@ -103,5 +105,18 @@ set active_revision_p "t"
      db_exec_plsql create_news_item_revision {}
     }  
 #does the new includes images?
+}
+
+
+ad_proc -public -callback datamanager::delete_new -impl datamanager {
+     -object_id:required
+} {
+    Move a new to the trash
+} {
+     set trash_package_id [datamanager::get_trash_package_id]
+
+db_dml del_update_news {}
+db_dml del_update_news_acs_objects_1 {}
+db_dml del_update_news_acs_objects_2 {}
 }
 
