@@ -134,5 +134,7 @@ if {$live_revision_p \
 
 # send out notifications
 if { $live_revision_p } {
-	news_do_notification $package_id
+	news_do_notification $package_id $news_id
 }
+
+ad_returnredirect ""
