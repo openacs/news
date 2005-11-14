@@ -32,7 +32,7 @@ ad_proc -public ::news::install::after_install {
 ad_proc -public ::news::install::register_rss {
 } {
     setup RSS support
-}
+} {
 set spec {
         name "news"
         aliases {
@@ -46,7 +46,9 @@ set spec {
 }
 
 ad_proc -public ::news::install::register_notifications {
-    
+} {
+    setup notifications
+} {
     db_transaction {
        		# Create the impl and aliases for a news item
 	        set impl_id [create_news_item_impl]
