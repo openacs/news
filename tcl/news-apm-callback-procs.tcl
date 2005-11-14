@@ -14,7 +14,7 @@ namespace eval ::news::install {}
 
 ad_proc -public ::news::install::after_install {
 } {
-    Setup RSS support service contract
+    Setup service contracts
     
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-20
@@ -24,8 +24,16 @@ ad_proc -public ::news::install::after_install {
     @error 
 } {
     news::sc::register_news_fts_impl
+    news::install::register_rss
+    news::install::register_notifications
 
-    set spec {
+}
+
+ad_proc -public ::news::install::register_rss {
+} {
+    setup RSS support
+}
+set spec {
         name "news"
         aliases {
             datasource news__rss_datasource
@@ -35,6 +43,9 @@ ad_proc -public ::news::install::after_install {
         owner "news"
     }
     acs_sc::impl::new_from_spec -spec $spec
+}
+
+ad_proc -public ::news::install::register_notifications {
     
     db_transaction {
        		# Create the impl and aliases for a news item
@@ -82,7 +93,8 @@ ad_proc -private news::install::after_upgrade {
 	-to_version_name $to_version_name \
 	-spec {
 	    5.1.0d1 5.1.0b1 {
-                news::install::after_install
+                news::install::register_rss
+                news::install::register_notifications
 	    }
 	    5.2.0d3 5.2.0d4 {
 
