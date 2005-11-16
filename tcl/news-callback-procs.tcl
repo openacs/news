@@ -80,7 +80,20 @@ ad_proc -public -callback datamanager::copy_new -impl datamanager {
     set live_revision_p "t"
 
 #create the new
-    set news_id [db_exec_plsql create_news_item {}]
+    set news_id [news_create_new -publish_body $publish_body \
+                                 -publish_title $publish_title \
+                                 -publish_date_ansi $publish_date_ansi \
+                                 -mime_type $mime_type \
+                                 -package_id $package_id \
+                                 -archive_date_ansi $archive_date_ansi \
+                                 -approval_user $approval_user \
+                                 -approval_date $approval_date \
+                                 -approval_ip $approval_ip \
+                                 -creation_ip $creation_ip \
+                                 -user_id $user_id \
+                                 -live_revision_p $live_revision_p \
+                                 -publish_lead $publish_lead ]
+
 
 #if there are revisions, they are included here   
     for {set i 2} {$i < $news_revisions_number} {incr i} {
