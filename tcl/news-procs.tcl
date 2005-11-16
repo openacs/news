@@ -25,6 +25,46 @@ ad_proc news_get_package_id {
     return $package_id
 }
 
+ad_proc news_create_new {
+        {-item_id "null"}
+        {-locale "null"}
+        -publish_date_ansi
+        {-publish_body "null"}
+        {-nsl_language "null"}
+        {-publish_title "null"}
+        {-mime_type "null"}
+        -package_id 
+        {-archive_date_ansi "null"}
+        {-approval_user "null"}
+        {-approval_date "null"}
+        {-approval_ip "null"}
+        {-relation_tag "null"}
+        -creation_ip
+        -user_id
+        {-live_revision_p "null"}
+        {-publish_lead "null"}
+} {
+  Create a New 
+} {
+
+    if {[info exist package_id] == 0} {
+        set package_id [dotlrn_community::get_package_id]        
+    }
+    if {[info exist user_id] == 0} {
+        set user_id [ad_conn user_id]
+    }
+    if {[info exist creation_ip] == 0} {
+        set creation_ip [ad_conn host]
+    }
+    if {[info exist publish_date_ansi] == 0} {
+        set publish_date_ansi [dt_systime]
+    }
+ 
+    set news_id [db_exec_plsql create_news_item {}]
+
+    return $news_id
+}
+
 
 
 ad_proc news_items_archive { id_list when } {
