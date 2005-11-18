@@ -118,6 +118,9 @@ set active_revision_p "t"
      db_exec_plsql create_news_item_revision {}
     }  
 #does the new includes images?
+
+
+return $news_id    
 }
 
 
