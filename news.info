@@ -21,7 +21,7 @@
         <requires url="acs-kernel" version="5.2.0d2"/>
         <requires url="general-comments" version="4.6.1"/>
         <requires url="rss-support" version="0.3d5"/>
-
+        <requires url="notifications" version="5.1.7" />
         <callbacks>
             <callback type="after-mount"  proc="news::install::after_mount"/>
             <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
