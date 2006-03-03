@@ -8,75 +8,6 @@ ad_library {
 }
 
 # News specific db-API wrapper functions and interpreters
-ad_proc news_get_package_id {
-    -community_id
-} {
-   Get the news package in the selected community 
-
-    @param community_id
-} {
-
-    if {[info exist community_id] == 0} {
-        set community_id [dotlrn_community::get_community_id]
-    }
-ns_log Notice "community_id: $community_id"
-    db_1row get_news_package_id {}
-
-    return $package_id
-}
-
-ad_proc news_create_new {
-
-        {-item_id "null"}
-        {-locale "null"}
-        -publish_date_ansi
-        {-publish_body "null"}
-        {-nsl_language "null"}
-        {-publish_title "null"}
-        {-mime_type "text/plain"}
-        -package_id:required 
-        -archive_date_ansi
-        -approval_user
-        -approval_date
-        -approval_ip
-        {-relation_tag "null"}
-        -creation_ip
-        -user_id
-        {-live_revision_p "t"}
-        {-publish_lead "null"}
-} {
-  Create a New 
-} {
-
-    if {[info exist user_id] == 0} {
-        set user_id [ad_conn user_id]
-    }
-    if {[info exist approval_user] == 0} {
-        set approval_user [ad_conn user_id]
-    }
-
-    if {[info exist creation_ip] == 0} {
-        set creation_ip [ad_conn host]
-    }
-    if {[info exist approval_ip] == 0} {
-        set approval_ip [ad_conn host]
-    }
-    if {[info exist publish_date_ansi] == 0} {
-        set publish_date_ansi [dt_systime]
-    }
-     if {[info exist archive_date_ansi] == 0} {
-        set archive_date_ansi [dt_systime]
-    }
-     if {[info exist approval_date] == 0} {
-        set approval_date [dt_systime]
-    }
-
-    set news_id [db_exec_plsql create_news_item {}]
-
-    return $news_id
-}
-
-
 
 ad_proc news_items_archive { id_list when } {
 
@@ -438,9 +369,7 @@ ad_proc -private news_update_rss {
                        -impl_name "news" \
                        -owner "news"]
     rss_gen_report $subscr_id
-
 }
-
 
 # add news notification
 ad_proc -public news_notification_get_url {
@@ -473,4 +402,3 @@ ad_proc -public news_do_notification {
         -notif_text $new_content
 
 }
-
