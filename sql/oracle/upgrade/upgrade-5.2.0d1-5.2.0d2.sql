@@ -1,4 +1,4 @@
-ALTER TABLE cr_news ADD COLUMN lead varchar(4000);
+ALTER TABLE cr_news MODIFY lead varchar(4000);
 
 declare
     attr_id acs_attributes.attribute_id%TYPE;
