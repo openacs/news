@@ -314,7 +314,7 @@ ad_proc -private news__rss_datasource {
     db_foreach get_news_items {} {
         set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
 
-        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain $content]
+        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain -- $content]
         # for now, support only full content in feed
         set description $content_as_text
 
@@ -334,8 +334,8 @@ ad_proc -private news__rss_datasource {
             incr counter
         }
     }
-    set column_array(channel_title) "News"
-    set column_array(channel_description) "News"
+    set column_array(channel_title) "OpenACS News"
+    set column_array(channel_description) "OpenACS News"
     set column_array(items) $items
     set column_array(channel_language) ""
     set column_array(channel_copyright) ""
@@ -346,7 +346,7 @@ ad_proc -private news__rss_datasource {
     set column_array(channel_skipHours) ""
     set column_array(version) 2.0
     set column_array(image) ""
-    set column_array(channel_link) "$package_url"
+    set column_array(channel_link) "[ad_url]$package_url"
     return [array get column_array]
 }
 
