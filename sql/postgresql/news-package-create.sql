@@ -455,7 +455,8 @@ begin
                             ao.creation_user,
 			    ci.locale,
 			    ci.live_revision,
-			    cr.revision_id
+			    cr.revision_id,
+			    cn.lead
                         from 
                             cr_items ci, 
                             cr_revisions cr,
@@ -490,7 +491,8 @@ begin
 						null,
                 				one_news.creation_ip,
                 				one_news.creation_user,
-						one_news.live_revision = one_news.revision_id
+						one_news.live_revision = one_news.revision_id,
+						one_news.lead
             );
 
         end loop;
