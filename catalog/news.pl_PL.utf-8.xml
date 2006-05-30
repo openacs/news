@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="pl_PL" charset="utf-8">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="pl_PL" charset="utf-8">
 
   <msg key="active">aktywne</msg>
   <msg key="Active_Revision">Aktywn Wersja</msg>
@@ -29,9 +29,13 @@
   <msg key="Delete">Usuń</msg>
   <msg key="Error">Błąd</msg>
   <msg key="Go">Przejdź</msg>
+  <msg key="going_live_no_archive">Będzie opublikowana za %n_days_until_publish% dni, archiwizacja niezaplanowana</msg>
+  <msg key="going_live_with_archive">Będzie opublikowana za %n_days_until_publish% dni, archiwizacja za %n_days_until_archive% dni</msg>
+  <msg key="History">Historia</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Będzie opublikowana </msg>
   <msg key="It_will_move_into_archive_on">Będzie zarchiwizowana </msg>
+  <msg key="Lead">Nagłówek</msg>
   <msg key="Log_Entry">Wpis Dziennika</msg>
   <msg key="lt__When_youre_done_clic">, Kliknij 'Podgląd' by zobaczyć jak wiadomość będzie wyglądać.</msg>
   <msg key="lt_And_be_live_until_rev">Będzie aktywna, aż do odwołania</msg>
@@ -72,6 +76,7 @@
   <msg key="Make_Permanent">Uczyń Stałym</msg>
   <msg key="manage">zarządzaj</msg>
   <msg key="never">nigdy</msg>
+  <msg key="Never_archive">Nigdy nie archiwizuj</msg>
   <msg key="News">Wiadomości</msg>
   <msg key="News_Archive">Archiwum Wiadomości</msg>
   <msg key="News_item">Wiadomość</msg>
@@ -86,12 +91,17 @@
   <msg key="Preview">Podgląd</msg>
   <msg key="Preview_news_item">Obejrzyj wiadomość</msg>
   <msg key="Publication_Date">Data Publikacji</msg>
+  <msg key="Publish">Publikuj</msg>
   <msg key="Published">Opublikowana</msg>
+  <msg key="published_no_archive">Opublikowany, archiwizacja niezaplanowana</msg>
+  <msg key="published_scheduled_for_archive">Opublikowane, archiwizacja za %n_days_until_archive% dni</msg>
   <msg key="Release">Wydanie</msg>
   <msg key="Release_Date">Data Wydania</msg>
+  <msg key="Rev">Wer.</msg>
   <msg key="rev">wer.</msg>
   <msg key="revise">sprawdź</msg>
   <msg key="Revision">Wersja</msg>
+  <msg key="Revision_history">Historia wersji</msg>
   <msg key="Revision_log">Dziennik Wersji</msg>
   <msg key="Revision_number">Numer Wersji</msg>
   <msg key="revoke">odwołaj</msg>

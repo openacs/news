@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="ru_RU" charset="utf-8">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="ru_RU" charset="utf-8">
 
   <msg key="active">активная</msg>
   <msg key="Active_Revision">Активная Версия</msg>
@@ -29,10 +29,13 @@
   <msg key="Delete">Удалить</msg>
   <msg key="Error">Ошибка</msg>
   <msg key="Go">Идти</msg>
+  <msg key="going_live_no_archive">К публикации через %n_days_until_publish% дней, без архивации</msg>
+  <msg key="going_live_with_archive">К публикации через %n_days_until_publish% дней, к архивации через %n_days_until_archive% дней.</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Вы сможете увидеть эту новость</msg>
   <msg key="It_will_move_into_archive_on">Она будет заархивирована</msg>
   <msg key="Log_Entry">Занести Запись в Журнал</msg>
+  <msg key="lt__When_youre_done_clic">. Нажмите &quot;Посмотреть&quot;, для того чтобы увидеть как новость будет отображена.</msg>
   <msg key="lt_And_be_live_until_rev">И будет показана до тех пор, пока не отменена.</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Заархивировать в Следующем Месяце</msg>
   <msg key="lt_Archive_as_of_Next_We">Заархивировать на Следующей Неделе</msg>
@@ -46,14 +49,47 @@
   <msg key="lt_Do_you_really_want_to">Вы уверены, что вы хотите это сделать?</msg>
   <msg key="lt_has_been_submitted_an">была послана и будет опубликована, как только подтверждена.</msg>
   <msg key="lt_It_will_go_live_after">Она будет опубликована, как только подтверждена Администратором Новостей.</msg>
+  <msg key="lt_on_the_following_news">для этой(их) новости(ей)</msg>
+  <msg key="lt_One_Item_-_add_revisi">Одна запись -- новая редакция</msg>
   <msg key="lt_Please_supply_the_bod">Пожалуйста, не забудьте написать текст.</msg>
   <msg key="lt_Please_supply_the_tit">Пожалуйста, напишите заголовок.</msg>
+  <msg key="lt_Publish_body_is_missi">Текст статьи отсутствует.  Либо укажите файл для загрузки, либо введите что-нибудь в зоне ввода.</msg>
   <msg key="lt_red_fields_are_requir">поля, помеченные красным, должны быть заполнены</msg>
+  <msg key="lt_See_details_for_the_e">Детали полученной ошибки приведены ниже</msg>
   <msg key="lt_Select_the_publicatio">Выберите дату публикации и архивизации:</msg>
   <msg key="lt_The_archive_date_must">Дата архивации должны быть ПОСЛЕ даты публикации.</msg>
   <msg key="lt_The_database_did_not_">База данных не может принять ваши данные.</msg>
   <msg key="lt_There_are_no_items_av">Нет новостей.</msg>
   <msg key="lt_There_are_no_news_ite">Нет новостей.</msg>
+  <msg key="lt_To_the_readers_it_wil">Ваши читатели увидят:</msg>
+  <msg key="lt_Use_the_following_for">Для того, что бы создать новость, заполните приведенную форму.  Обратите внимание, что </msg>
+  <msg key="lt_When_youre_done_click">. Нажмите &quot;Посмотреть&quot;, для того чтобы увидеть как новость будет отображена.</msg>
+  <msg key="lt_Your_document_is_larg">Ваш документ превышает разрешенный размер.</msg>
+  <msg key="lt_Your_news_item_will_b">Ваши новости будут отображены ц ицпользованием Стандартного шаблона, определенного в файле news.adp.</msg>
+  <msg key="make_active">активировать</msg>
+  <msg key="Make_Permanent">Сделать постоянным</msg>
+  <msg key="manage">управлять</msg>
+  <msg key="never">никогда</msg>
+  <msg key="News">Новости</msg>
+  <msg key="News_Archive">Архив новостей</msg>
+  <msg key="News_item">Новость</msg>
+  <msg key="News_item_submitted">Новость принята</msg>
+  <msg key="News_Items">Новости</msg>
+  <msg key="next">след.</msg>
+  <msg key="One_Item">Одна запись</msg>
+  <msg key="One_Revision">Редакция</msg>
+  <msg key="or_upload_text_file">или загрузите текстовый файл:</msg>
+  <msg key="Plain_text">Просто текст</msg>
+  <msg key="prev">пред.</msg>
+  <msg key="Preview">Посмотреть</msg>
+  <msg key="Preview_news_item">Посмотреть</msg>
+  <msg key="Publication_Date">Дата публикации</msg>
+  <msg key="Publish">Опубликовать</msg>
+  <msg key="Published">Опубликовано</msg>
+  <msg key="published_no_archive">Опубликовано, архивироваться не будет.</msg>
+  <msg key="published_scheduled_for_archive">Опубликовано, к архивации через %n_days_until_archive% дней.</msg>
+  <msg key="Release">Выпуск</msg>
+  <msg key="Release_Date">Дата выпуска</msg>
   <msg key="rev">верс.</msg>
   <msg key="revise">пересмотреть</msg>
   <msg key="Revision">Версия</msg>
@@ -62,5 +98,14 @@
   <msg key="revoke">отменить</msg>
   <msg key="Search">Найти</msg>
   <msg key="Select">Выбрать</msg>
+  <msg key="Show_archived_news">Показать архивные новости</msg>
+  <msg key="Show_live_news">Показать активные новости</msg>
+  <msg key="Status">Статус</msg>
+  <msg key="Thank_You">Спасибо!</msg>
+  <msg key="The_action">Действие</msg>
+  <msg key="The_text_is_formatted_as">Текст отформатирован как</msg>
+  <msg key="Title">Заголовок</msg>
+  <msg key="Unapproved">Не подтверждено</msg>
+  <msg key="Yes">Да</msg>
   <msg key="Your_news_item">Ваши новости</msg>
 </message_catalog>

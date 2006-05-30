@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="es_ES" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="es_ES" charset="ISO-8859-1">
 
   <msg key="active">activo</msg>
   <msg key="Active_Revision">Revisión actual</msg>
@@ -31,9 +31,11 @@
   <msg key="Go">Ir</msg>
   <msg key="going_live_no_archive">Será publicada en %n_days_until_publish% días, no está agendada para archivar</msg>
   <msg key="going_live_with_archive">Será publicada en %n_days_until_publish% días, agendada para archivar en %n_days_until_archive% días</msg>
+  <msg key="History">Histórico</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Saldrá publicado el</msg>
   <msg key="It_will_move_into_archive_on">Se moverá al archivo el</msg>
+  <msg key="Lead">Encabezado</msg>
   <msg key="Log_Entry">Registro</msg>
   <msg key="lt__When_youre_done_clic">. Una vez terminado, pulse 'Vista previa' para ver la noticias.</msg>
   <msg key="lt_And_be_live_until_rev">Y estará hasta que se revoque</msg>
@@ -73,6 +75,7 @@
   <msg key="Make_Permanent">Marcar como permanente</msg>
   <msg key="manage">administrar</msg>
   <msg key="never">nunca</msg>
+  <msg key="Never_archive">No archivar nunca</msg>
   <msg key="News">Noticias</msg>
   <msg key="News_Archive">Archivo de noticias</msg>
   <msg key="News_item">Noticia</msg>
@@ -93,9 +96,11 @@
   <msg key="published_scheduled_for_archive">Publicada, se archivará en %n_days_until_archive% días</msg>
   <msg key="Release">Publicar</msg>
   <msg key="Release_Date">Fecha de publicación</msg>
+  <msg key="Rev">Rev.</msg>
   <msg key="rev">rev.</msg>
   <msg key="revise">revisar</msg>
   <msg key="Revision">Revisión</msg>
+  <msg key="Revision_history">Histórico de Revisiones</msg>
   <msg key="Revision_log">Archivo de revisiones</msg>
   <msg key="Revision_number">Número de revisión</msg>
   <msg key="revoke">revocar</msg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message_catalog package_key="news" package_version="5.2.0d6" locale="ro_RO" charset="utf-8">
+
+  <msg key="active">active</msg>
+  <msg key="Administer">Administer</msg>
+  <msg key="Administration">Administration</msg>
+  <msg key="All">All</msg>
+  <msg key="approve">approve</msg>
+  <msg key="Author">Author</msg>
+  <msg key="Delete">Delete</msg>
+  <msg key="Error">Error</msg>
+  <msg key="HTML">HTML</msg>
+  <msg key="never">never</msg>
+  <msg key="News">News</msg>
+  <msg key="Select">Select</msg>
+  <msg key="Status">Status</msg>
+  <msg key="Thank_You">Thank You!</msg>
+  <msg key="Title">Title</msg>
+  <msg key="Yes">Yes</msg>
+</message_catalog>
