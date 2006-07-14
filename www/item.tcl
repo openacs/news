@@ -18,6 +18,7 @@ ad_page_contract {
     publish_title:onevalue
     publish_date:onevalue
     publish_body:onevalue
+    publish_image:onevalue
     html_p:onevalue
     creator_link:onevalue
     comments:onevalue
@@ -54,23 +55,23 @@ if { $item_exist_p } {
     #
     set get_content [db_map get_content]
     if {![string match "" $get_content]} {
-	set publish_body [db_string get_content "select  content
-	from    cr_revisions
-	where   revision_id = :live_revision"]
+        set publish_body [db_string get_content "select  content
+        from    cr_revisions
+        where   revision_id = :live_revision"]
     }
 
     # text-only body
     if {[info exists html_p] && [string equal $html_p "f"]} {
-	set publish_body [ad_text_to_html -- $publish_body]
+        set publish_body [ad_text_to_html -- $publish_body]
     }
     
     if { [ad_parameter SolicitCommentsP "news" 0] &&
          [ad_permission_p $item_id general_comments_create] } {
-	set comment_link [general_comments_create_link $item_id "[ad_conn package_url]item?item_id=$item_id"]
-	set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
-		$item_id "[ad_conn package_url]item?item_id=$item_id"]
+        set comment_link [general_comments_create_link $item_id "[ad_conn package_url]item?item_id=$item_id"]
+        set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
+                $item_id "[ad_conn package_url]item?item_id=$item_id"]
     } else {
-	set comment_link ""
+        set comment_link ""
         set comments ""
     }
 
@@ -85,6 +86,13 @@ if { $item_exist_p } {
     set context [list $title]
     set publish_title {}
 
+    set image_id [news_get_image_id $item_id]
+    set publish_image ""
+    if {![empty_string_p $image_id]} {
+         set image_url "image/$image_id"
+         set publish_image $image_url
+         ns_log Notice "$image_url"
+    }
 } else {
     set context {}
     set title "[_ news.Error]"
