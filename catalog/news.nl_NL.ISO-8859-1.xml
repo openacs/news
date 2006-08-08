@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="nl_NL" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="nl_NL" charset="ISO-8859-1">
 
   <msg key="active">actuele</msg>
-  <msg key="Active_Revision">Actuele versie</msg>
-  <msg key="Add_a_new_revision">Nieuwe versie toevoegen</msg>
+  <msg key="Active_Revision">Actuele herziening</msg>
+  <msg key="Add_a_new_revision">Nieuwe herziening toevoegen</msg>
   <msg key="Administer">Beheren</msg>
   <msg key="Administration">Administratie</msg>
   <msg key="All">Alle</msg>
@@ -31,6 +31,7 @@
   <msg key="Go">Verwerken</msg>
   <msg key="going_live_no_archive">Wordt openbaar over %n_days_until_publish% dagen, niet gepland voor archivering</msg>
   <msg key="going_live_with_archive">Wordt openbaar over %n_days_until_publish% dagen, gepland voor archivering over %n_days_until_archive% dagen</msg>
+  <msg key="History">Voorgeschiedenis</msg>
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Embargo tot</msg>
   <msg key="It_will_move_into_archive_on">Archivering is gepland op</msg>
@@ -42,8 +43,8 @@
   <msg key="lt_cannot_be_applied_to_">kan niet worden toegepast op de volgende berichten:</msg>
   <msg key="lt_Cant_upload_a_publica">Publicatie niet worden bewaard.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Op ID# klikken om bericht goed of niet goed te keuren</msg>
-  <msg key="lt_Click_on_revise_to_ed">Klik op &quot;Corrigeren&quot; om een bericht te bewerken</msg>
-  <msg key="lt_Could_not_find_corres">De corresponderende versie van het gevraagde bericht kon niet worden gevonden</msg>
+  <msg key="lt_Click_on_revise_to_ed">Klik op &quot;herzien&quot; om een bericht te bewerken</msg>
+  <msg key="lt_Could_not_find_corres">De corresponderende herziening van het gevraagde bericht kon niet worden gevonden</msg>
   <msg key="lt_Could_not_find_the_re">Het gevraagde bericht kon niet worden gevonden</msg>
   <msg key="lt_Do_the_following_to_t">Doe het volgende met de geselecteerde berichten:</msg>
   <msg key="lt_Do_you_really_want_to">Deze handeling echt uitvoeren?</msg>
@@ -51,7 +52,7 @@
   <msg key="lt_It_will_go_live_after">Het bericht zal openbaar worden nadat het is goedgekeurd door de berichtenbeheerder.</msg>
   <msg key="lt_Manage_the_items_indi">De berichten individueel beheren voordat ze worden goedkeurd.</msg>
   <msg key="lt_on_the_following_news">op de volgende berichten ? </msg>
-  <msg key="lt_One_Item_-_add_revisi">Één bericht - versie toevoegen </msg>
+  <msg key="lt_One_Item_-_add_revisi">Één bericht - herziening toevoegen </msg>
   <msg key="lt_Please_check_the_item">De berichten die u wilt verwerken graag markeren.</msg>
   <msg key="lt_Please_supply_the_bod">De kern van het bericht invoeren.</msg>
   <msg key="lt_Please_supply_the_tit">De titel van het bericht invoeren.</msg>
@@ -66,21 +67,22 @@
   <msg key="lt_To_the_readers_it_wil">Voor de lezers ziet het er als volgt uit</msg>
   <msg key="lt_Use_the_following_for">Het volgende formulier gebruiken om een bericht te maken. Merk op dat de </msg>
   <msg key="lt_When_youre_done_click">. Aan het eind op 'Voorvertoning' klikken om te zien hoe het bericht er uit zal zien.</msg>
-  <msg key="lt_You_must_supply_a_rev">Er moet een toelichting aan deze versie worden toegevoegd.</msg>
+  <msg key="lt_You_must_supply_a_rev">Er moet een toelichting aan deze herziening worden toegevoegd.</msg>
   <msg key="lt_Your_document_is_larg">Het document is groter dan de maximaal toegestane omvang</msg>
   <msg key="lt_Your_news_item_will_b">Het bericht zal worden vormgegeven met behulp van het standaardsjabloon in news.adp.</msg>
   <msg key="make_active">openbaar maken</msg>
   <msg key="Make_Permanent">Permanent maken</msg>
   <msg key="manage">beheren</msg>
   <msg key="never">nooit</msg>
+  <msg key="Never_archive">Nooit archiveren</msg>
   <msg key="News">Berichten</msg>
   <msg key="News_Archive">Berichtenarchief</msg>
   <msg key="News_item">Bericht</msg>
-  <msg key="News_item_submitted">Ingediende berichten</msg>
+  <msg key="News_item_submitted">Bericht verzonden</msg>
   <msg key="News_Items">Berichten</msg>
   <msg key="next">volgende</msg>
   <msg key="One_Item">Één bericht</msg>
-  <msg key="One_Revision">Één versie</msg>
+  <msg key="One_Revision">Één herziening</msg>
   <msg key="or_upload_text_file">of biedt een tekstbestand aan:</msg>
   <msg key="Plain_text">Platte tekst</msg>
   <msg key="prev">Voorvertoning</msg>
@@ -93,11 +95,13 @@
   <msg key="published_scheduled_for_archive">Openbaar gemaakt, gepland voor archivering over %n_days_until_archive% dagen</msg>
   <msg key="Release">Vrijgeven</msg>
   <msg key="Release_Date">Datum van vrijgave</msg>
+  <msg key="Rev">Herz.</msg>
   <msg key="rev">corr.</msg>
   <msg key="revise">corrigeren</msg>
-  <msg key="Revision">Versie</msg>
-  <msg key="Revision_log">Versiejournaal</msg>
-  <msg key="Revision_number">Versienummer</msg>
+  <msg key="Revision">Herziening</msg>
+  <msg key="Revision_history">Herzieningsgeschiedenis</msg>
+  <msg key="Revision_log">Herzieningenjournaal</msg>
+  <msg key="Revision_number">Herzieningnummer</msg>
   <msg key="revoke">Intrekken</msg>
   <msg key="Scheduling_Error">Fout bij planning</msg>
   <msg key="Search">Zoeken</msg>

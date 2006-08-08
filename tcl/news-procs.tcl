@@ -7,7 +7,6 @@ ad_library {
     @cvs-id $Id$
 }
 
-
 # News specific db-API wrapper functions and interpreters
 
 ad_proc news_items_archive { id_list when } {
@@ -315,7 +314,7 @@ ad_proc -private news__rss_datasource {
     db_foreach get_news_items {} {
         set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
 
-        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain $content]
+        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain -- $content]
         # for now, support only full content in feed
         set description $content_as_text
 
@@ -335,8 +334,8 @@ ad_proc -private news__rss_datasource {
             incr counter
         }
     }
-    set column_array(channel_title) "News"
-    set column_array(channel_description) "News"
+    set column_array(channel_title) "OpenACS News"
+    set column_array(channel_description) "OpenACS News"
     set column_array(items) $items
     set column_array(channel_language) ""
     set column_array(channel_copyright) ""
@@ -347,7 +346,7 @@ ad_proc -private news__rss_datasource {
     set column_array(channel_skipHours) ""
     set column_array(version) 2.0
     set column_array(image) ""
-    set column_array(channel_link) "$package_url"
+    set column_array(channel_link) "[ad_url]$package_url"
     return [array get column_array]
 }
 
@@ -372,3 +371,34 @@ ad_proc -private news_update_rss {
     rss_gen_report $subscr_id
 }
 
+# add news notification
+ad_proc -public news_notification_get_url {
+       news_package_id
+} {
+       returns a full url to the news item.       
+} { 
+    return "[news_util_get_url $news_package_id]"
+}
+
+ad_proc -public news_do_notification {
+    news_package_id
+    news_id
+} { 
+
+    set package_id [ad_conn package_id]
+    # get the title and teaser for latest news item for the given package id
+    if { [db_0or1row "get_news" "select title, lead from cr_newsx where news_id = :news_id"] } {
+	set new_content "$title\n\n"
+	append new_content "$lead\n\n"
+ 	append new_content "Read more about it at [news_util_get_url $news_package_id]" 
+    }
+
+    # Notifies the users that requested notification for the specific news item
+
+    notification::new \
+        -type_id [notification::type::get_type_id -short_name one_news_item_notif] \
+        -object_id $news_package_id \
+        -notif_subject "Latest News" \
+        -notif_text $new_content
+
+}

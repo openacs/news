@@ -75,8 +75,8 @@ begin
         null,                 -- text
 	null,                 -- data
         null,                 -- relation_tag
-        p_is_live_p           -- live_p
-	''text''	      -- storage_type
+        p_is_live_p,           -- live_p
+	''text'',	      -- storage_type
         p_package_id          -- package_id
     );
 

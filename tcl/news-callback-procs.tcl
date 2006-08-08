@@ -1,4 +1,6 @@
 ad_library {
+    Library for news's callback implementations
+
     Callbacks for search package.
 
     @author Dirk Gomez <openacs@dirkgomez.de>
@@ -6,103 +8,40 @@ ad_library {
     @cvs-id $Id$
 }
 
-##################
-# Search callbacks
-##################
-
-
-ad_proc -public -callback search::datasource -impl news {} {
-
-    @author openacs@dirkgomez.de
-    @creation_date 2005-06-13
-
-    returns a datasource for the search package
-    this is the content that will be indexed by the full text
-    search engine.
-
+ad_proc -callback merge::MergeShowUserInfo -impl news {
+    -user_id:required
 } {
-    # Dirk Gomez: This needs to be refactored urgently, best when
-    # somebody touches the news package anyway.  I copied this
-    # straight from packages/news/lib/item.tcl. This page should be
-    # put into a proc and then the search callback needs to be
-    # refactored to make use of the new proc.
+    Show the news items 
+} {
+    set msg "News items of $user_id"
+    ns_log Notice $msg
+    set result [list $msg]
 
-    set item_id $object_id
+    set news [db_list_of_lists getaprovednews { *SQL* }]
 
-    set item_exist_p [db_0or1row one_item "
-      select item_id,
-       live_revision,
-       publish_title,
-       publish_lead,
-       html_p,
-       publish_date,
-       creation_user,
-       item_creator,
-       publish_body
-         from   news_items_live_or_submitted
-         where  item_id = :item_id"]
-        
-    if { $item_exist_p } {
-	
-	# workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
-	# when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-	#
-	# RAL: publish_body is already snagged in the 1st query above for postgres.
-	#
-	set get_content [db_map get_content]
-	if {![string match "" $get_content]} {
-	    set publish_body [db_string get_content "select  content
-	      from    cr_revisions
-	      where   revision_id = :live_revision"]
-	}
-	
-	# text-only body
-	if {[info exists html_p] && [string equal $html_p "f"]} {
-	    set publish_body [ad_text_to_html -- $publish_body]
-	}
-	
-	if { [ad_parameter SolicitCommentsP "news" 0]} {
-	    set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
-			      $item_id "[ad_conn package_url]item?item_id=$item_id"]
-	} else {
-	    set comments ""
-	}
-	
-	# This is new, refactor everything above (Dirk Gomez)
-	set combined_content "$publish_title\n"
-	append combined_content "$publish_body\n"
-	append combined_content "$comments\n"
-	
-    } else {
-	set combined_content ""
-	set publish_title ""
-    }
+    lappend result $news
 
-    return [list object_id $object_id \
-                title $publish_title \
-                content $combined_content \
-                keywords {} \
-                storage_type text \
-                mime text/plain ]
+    return $result
 }
 
-ad_proc -public -callback search::url -impl news {} {
-
-    @author openacs@dirkgomez.de
-    @creation_date 2005-06-13
-
-    returns a url for a calendar item to the search package
-
+ad_proc -callback merge::MergePackageUser -impl news {
+    -from_user_id:required
+    -to_user_id:required
 } {
-    db_1row get {
-        select
-        package_id
-        from news_items_live_or_submitted
-        where item_id = :object_id
-        or item_id = (select item_id from cr_revisions where revision_id = :object_id)}
+    Merge the news of two users.
+} {
+    set msg "Merging news"
+    ns_log Notice $msg
+    set result [list $msg]
 
-    return "[ad_url][db_string select_news_package_url {}]item?item_id=$object_id"
+    db_dml update_from_news_approval { *SQL* }
+
+    lappend result "Merge of news is done"
+
+    return $result
 }
+
+#Callbacks for application-track
 
 ad_proc -callback application-track::getApplicationName -impl news {} { 
         callback implementation 
@@ -110,31 +49,29 @@ ad_proc -callback application-track::getApplicationName -impl news {} {
         return "news"
     }    
     
-    ad_proc -callback application-track::getGeneralInfo -impl news {} { 
+ad_proc -callback application-track::getGeneralInfo -impl news {} { 
         callback implementation 
     } {
 	db_1row my_query {
-    		SELECT count(1) as result
-		FROM news_items_approved news,dotlrn_communities_full com
-		WHERE community_id=:comm_id
-		and apm_package__parent_id(news.package_id) = com.package_id		
+    		select count(n.item_id) as result
+		FROM news_items_approved n, dotlrn_class_instances_full com
+		WHERE class_instance_id=:comm_id
+		and apm_package__parent_id(n.package_id) = com.package_id		
 	}
 	
 	return "$result"
     }      
     
  
-    ad_proc -callback application-track::getSpecificInfo -impl news {} { 
+ad_proc -callback application-track::getSpecificInfo -impl news {} { 
         callback implementation 
     } {
    	
 	upvar $query_name my_query
 	upvar $elements_name my_elements
 
-	
-
 	set my_query {
-		SELECT news.publish_title as name, news.item_creator as creator,news.publish_body as message,news.pretty_publish_date as initial_date, news.publish_date as finish_date
+		SELECT news.publish_title as name, news.pretty_publish_date as initial_date, news.publish_date as finish_date
 		FROM news_items_approved news,dotlrn_communities_full com
 		WHERE community_id=:class_instance_id
 		and apm_package__parent_id(news.package_id) = com.package_id }
@@ -145,16 +82,6 @@ ad_proc -callback application-track::getApplicationName -impl news {} {
 	            display_col name	                                    
 	 	    html {align center}	 	    
 		                
-	        }
-	        creator {
-	            label "Creator"
-	            display_col creator 	      	              
-	 	    html {align center}	 	          
-	        }
-	        message {
-	            label "Message"
-	            display_col message 	      	              
-	 	    html {align center}	 	          
 	        }
 	        initial_date {
 	            label "Initial Date"
@@ -168,4 +95,4 @@ ad_proc -callback application-track::getApplicationName -impl news {} {
 	        }
 	}
         return "OK"
-    }         
+    }      

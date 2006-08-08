@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="de_DE" charset="ISO-8859-1">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="de_DE" charset="ISO-8859-1">
 
   <msg key="active">aktiv</msg>
   <msg key="Active_Revision">Aktive Version</msg>
@@ -35,6 +35,7 @@
   <msg key="HTML">HTML</msg>
   <msg key="It_will_go_live_on">Das Veröffentlichungsdatum ist der</msg>
   <msg key="It_will_move_into_archive_on">Das Archivierungsdatum ist der</msg>
+  <msg key="Lead">Kurztext</msg>
   <msg key="Log_Entry">Protokolleintrag</msg>
   <msg key="lt__When_youre_done_clic">Um die fertiggestellte Ankündigung zu überprüfen, klicken Sie auf 'Vorschau'. </msg>
   <msg key="lt_And_be_live_until_rev">Veröffentlicht bis zur Aufhebung der Freigabe</msg>

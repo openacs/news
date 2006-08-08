@@ -76,11 +76,10 @@ if {[string match $html_p t]} {
 } else {
     set mime_type "text/plain"
 }
-
-
 # do insert: unfortunately the publish_body cannot be supplied through the PL/SQL function
 # we therefore have to do this in a second step 
 set news_id [db_exec_plsql create_news_item {}]
+
 
 #
 # RAL: For postgres, we need NOT store the data in a blob.  The
@@ -122,9 +121,20 @@ if { !$news_admin_p } {
     ad_returnredirect ""
 }
 
+# news item is live
+
+# send out rss
+
 if {$live_revision_p \
     && [rss_support::subscription_exists \
             -summary_context_id $package_id \
             -impl_name news]} {
     news_update_rss -summary_context_id $package_id
 }
+
+# send out notifications
+if { $live_revision_p } {
+	news_do_notification $package_id $news_id
+}
+
+ad_returnredirect ""

@@ -124,6 +124,13 @@ set rss_exists [rss_support::subscription_exists \
                     -summary_context_id $package_id \
                     -impl_name news]
 set rss_url "[news_util_get_url $package_id]rss/rss.xml"
+
+set notification_chunk [notification::display::request_widget \
+                        -type one_news_item_notif \
+                        -object_id $package_id \
+                        -pretty_name "News" \
+                        -url [ad_return_url] \
+                        ]
 ad_return_template
 
 

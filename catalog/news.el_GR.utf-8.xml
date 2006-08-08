@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.0d5" locale="el_GR" charset="utf-8">
+<message_catalog package_key="news" package_version="5.2.0d6" locale="el_GR" charset="utf-8">
 
   <msg key="active">ενεργά</msg>
   <msg key="Administer">Διαχείριση</msg>
