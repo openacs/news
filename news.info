@@ -38,12 +38,10 @@
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="DisplayMax"  default="10" description="Number of news item headlines displayed per page at most."/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageFormat"  default="jpg" description="Image format to use when converting images, e.g. png, gif, jpg"/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageGeometry"  default="120x150" description="Geometry specification for scaling images in news, e.g. 120x150 scales images to have a maximum width of 120 px and a maximum height of 150 px."/>
+            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageUploadTypes"  default="image/jpeg,image/gif,image/png,image/jpg" description="Acceptable MIME Types for Image Upload in News package"/>             
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="MaxFileSizekB"  default="1024" description="maximum filesize in kB"/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ShowSearchInterfaceP"  default="1" description="Interfacing to site-wide-search with a Search-box. (SWS is required)."/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="SolicitCommentsP"  default="1" description="Whether we allow comments on news items."/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageFormat"  default="jpg" description="Image format to use when converting images, e.g. png, gif, jpg"/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageGeometry"  default="120x150" description="Geometry specification for scaling images in news, e.g. 120x150 scales images to have a maximum width of 120 px and a maximum height of 150 px."/>
-            <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageUploadTypes"  default="image/jpeg,image/gif,image/png,image/jpg" description="Acceptable MIME Types for Image Upload in News package"/>             
         </parameters>
 
     </version>
