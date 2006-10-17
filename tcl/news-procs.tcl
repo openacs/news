@@ -387,10 +387,20 @@ ad_proc -public news_do_notification {
 
     set package_id [ad_conn package_id]
     # get the title and teaser for latest news item for the given package id
-    if { [db_0or1row "get_news" "select title, lead from cr_newsx where news_id = :news_id"] } {
-	set new_content "$title\n\n"
-	append new_content "$lead\n\n"
- 	append new_content "Read more about it at [news_util_get_url $news_package_id]" 
+    if { [db_0or1row "get_news" "select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body as body,html_p from news_items_live_or_submitted where news_id =
+ :news_id"] } {
+        set new_content "$title\n\n$lead"
+	set html_content [ad_html_text_convert "$title\n\n$lead"]
+	if {$html_p} {
+	    append new_content "\n\n[ad_html_text_convert -from text/html -to text/plain $body]"
+	    append html_content "<br /><br />$body"
+	} else {
+	    append new_content "\n\n$body"
+	    append html_content "<br /><br />[ad_html_text_convert "$body"]"
+	}
+        append new_content "\n\n[string range - 70]"
+        append new_content "\n\n[parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]]item?item_id=$item_id \n\n"
+	append html_content "<br /><br />[ad_html_text_convert "Read more about it at \n [parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]item?item_id=$item_id"]<br /><br />"
     }
 
     # Notifies the users that requested notification for the specific news item
@@ -398,7 +408,8 @@ ad_proc -public news_do_notification {
     notification::new \
         -type_id [notification::type::get_type_id -short_name one_news_item_notif] \
         -object_id $news_package_id \
-        -notif_subject "Latest News" \
-        -notif_text $new_content
+        -notif_subject $title \
+        -notif_text $new_content \
+	-notif_html $html_content
 
 }
