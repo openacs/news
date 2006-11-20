@@ -30,8 +30,10 @@ set vars {action publish_title publish_lead publish_body html_p
 
 if {[info exists item_id]} { lappend vars item_id revision_log }
 
+set button [list [list [list [_ news.Upload] ok]]]
+
 form create img -html {enctype multipart/form-data} \
-    -edit_buttons {{{Upload} {ok}}}
+    -edit_buttons $button
 
 foreach var $vars {
     element create img $var -datatype string -widget hidden -optional
@@ -40,12 +42,11 @@ foreach var $vars {
 element create img upload \
     -datatype file \
     -widget file \
-    -label {File} \
+    -label {#news.File#} \
     -html [list accept [parameter::get -parameter ImageUploadTypes]] \
     -validate [list img_type \
                    {test_file_type [ns_queryget upload.tmpfile]} \
-                   "Image must be one of the following types: [parameter::get -parameter ImageUploadTypes]" \
-                  ]
+                   "[_ news.Image_must_be_one_of_the_following_types] [parameter::get -parameter ImageUploadTypes]"]
 
 # clear the upload file value on every request, as it otherwise it displays
 # filename, tmppath, mime type which isn't at all useful

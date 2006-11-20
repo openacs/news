@@ -21,6 +21,11 @@
   #news.lt_To_the_readers_it_wil#
 </p>
 
+<form action="image-choose" method="post">
+	@image_vars;noquote@
+	<input type="submit" value="#news.Choose_an_image#">
+</form>
+
    <include src=news publish_body=@publish_body;noquote@ 
                      publish_lead=@publish_lead@
                      publish_image=@publish_image@
@@ -35,7 +40,7 @@
   </form>
 <if @action@ eq "News Item">
   @edit_action;noquote@ @image_vars;noquote@
-  <input type="submit" value="Return to edit">
+  <input type="submit" value="#news.Return_to_edit#">
 </if>
 </p>
 

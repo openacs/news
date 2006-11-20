@@ -17,6 +17,8 @@
   <msg key="Back_to_news_list">Zurück zur Auflistung der Ankündigungen</msg>
   <msg key="Body">Text</msg>
   <msg key="bytes">Bytes</msg>
+  <msg key="Choose_an_image">Wählen Sie ein Bild aus...</msg>
+  <msg key="Choose_an_image_to_upload_and_press">Wählen Sie ein Bild aus und drücken Sie dann auf 'Hochladen' für die Vorschau. Wenn es Ihnen gefällt drücken Sie anschließend auf 'Übernehmen', um das Bild für die Ankündigung zu verwenden.</msg>
   <msg key="Comments">Kommentare</msg>
   <msg key="Confirm">Bestätigen
 </msg>
@@ -29,10 +31,12 @@
   <msg key="Database_Error">Datenbankfehler</msg>
   <msg key="Delete">Löschen</msg>
   <msg key="Error">Fehler</msg>
+  <msg key="File">Datei</msg>
   <msg key="Go">Los</msg>
   <msg key="going_live_no_archive">Veröffentlichung in %n_days_until_publish% Tagen, kein Archivierungsdatum festgelegt</msg>
   <msg key="going_live_with_archive">Veröffentlichung in %n_days_until_publish% Tagen, Archivierung in %n_days_until_archive% Tagen</msg>
   <msg key="HTML">HTML</msg>
+  <msg key="Image_must_be_one_of_the_following_types">Das Bild muß aus einem der folgenden Formate bestehen: </msg>
   <msg key="It_will_go_live_on">Das Veröffentlichungsdatum ist der</msg>
   <msg key="It_will_move_into_archive_on">Das Archivierungsdatum ist der</msg>
   <msg key="Lead">Kurztext</msg>
@@ -90,12 +94,15 @@
   <msg key="Preview_news_item">Ankündigung in der Vorschau anzeigen</msg>
   <msg key="Publication_Date">Veröffentlichungsdatum</msg>
   <msg key="Publish">Veröffentlichen</msg>
+  <msg key="Publish_archive_dates_incorrect"></msg>
   <msg key="Published">Veröffentlicht</msg>
   <msg key="published_no_archive">Veröffentlicht, kein Archivierungsdatum festgelegt</msg>
   <msg key="published_scheduled_for_archive">Veröffentlicht, Archivierung in %n_days_until_archive% Tagen</msg>
   <msg key="Release">Freigeben</msg>
   <msg key="Release_Date">Veröffentlichungsdatum</msg>
+  <msg key="Return_to_edit">Zurück, um zu ändern</msg>
   <msg key="rev">Vers.</msg>
+  <msg key="Revise">Bearbeiten</msg>
   <msg key="revise">Neue Version hinzufügen</msg>
   <msg key="Revision">Version</msg>
   <msg key="Revision_log">Protokolleintrag</msg>
@@ -114,6 +121,11 @@
   <msg key="The_text_is_formatted_as">Format:</msg>
   <msg key="Title">Betreff</msg>
   <msg key="Unapproved">Nicht freigegeben</msg>
+  <msg key="Upload">Hochladen</msg>
+  <msg key="Upload_Image">Bild hochladen</msg>
+  <msg key="use_preview_to_revise_image">verwenden Sie die Vorschau, um das Bild zu überprüfen.</msg>
+  <msg key="Use_the_following_form_to_define">Verwenden Sie das nachfolgende Formular, um Ihre Ankündigung anzulegen. Felder mit  sind Pflichtfelder. Sobald Sie fertig sind, können Sie über die 'Vorschau' die Ankündigung überprüfen und ein Bild hochladen.</msg>
   <msg key="Yes">Ja</msg>
+  <msg key="You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both">Sie können entweder eine Textnachricht hochladen oder die Nachricht direkt eingeben, aber nicht beides.</msg>
   <msg key="Your_news_item">Ihre Ankündigung</msg>
 </message_catalog>
