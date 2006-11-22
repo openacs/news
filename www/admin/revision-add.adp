@@ -3,7 +3,8 @@
 <property name="title">@title;noquote@</property>
 
 
-<p>#news.Use_the_following_form_to_define#</p>
+<p>Use the following form to define your news item.Note that the fields marked with <span class="formRequired">*</span> are required.
+When you're done click 'Preview' to see how the news item will look and to choose an image for the article.</p>
 
 <form action="../preview" method="post" enctype="multipart/form-data">
 @hidden_vars;noquote@
@@ -31,7 +32,7 @@
 
 <p class="formLabel">Image</p>
 <p class="formWidget"><if @image_url@ not nil><img src="@image_url@"></if>
-      [#news.use_preview_to_revise_image#]
+      [use 'preview' to revise image]
 </p>
 
 <p class="formLabel">#news.Release_Date#</p>

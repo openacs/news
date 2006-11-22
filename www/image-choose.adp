@@ -1,8 +1,10 @@
 <master>
-<property name="title">#news.Upload_Image#</property>
+<property name="title">Upload Image</property>
 <property name="context"></property>
 
-<p>#news.Choose_an_image_to_upload_and_press#</p>
+<p>Choose an image to upload and press the 'Upload' button to preview
+it. When you're happy, press 'Accept' to use that image in the
+article.</p>
 
 <if @image_url@ not nil><img src="@image_url@"></if>
 <if @mode@ eq preview>

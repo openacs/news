@@ -55,7 +55,7 @@ ad_page_contract {
 	    ad_complain "[_ news.lt_Publish_body_is_missi]"
 	    return
 	} elseif { ![empty_string_p $publish_body] && $file_size > 0 } {
-	    ad_complain "[_ news.You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both]"
+	    ad_complain "You can either upload a news item or enter text in the box provided, but not both."
 	    return
 	}
     }
@@ -150,7 +150,7 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
                publish_date(year) publish_date(month) publish_date(day)]
          || ![regexp $exp $archive_date_ansi match \
                   archive_date(year) archive_date(month) archive_date(day)] } {
-        ad_return_complaint 1 "[_ news.Publish_archive_dates_incorrect]"
+        ad_return_complaint 1 {<li>Publish/archive dates incorrect</li>}
     }
 }
 

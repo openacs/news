@@ -76,7 +76,7 @@ if { $item_exist_p } {
     }
 
     if {[permission::permission_p -object_id $item_id -privilege write] } {
-        set edit_link "<a href=\"admin/revision-add?item_id=$item_id\">[_ news.Revise]</a>"
+        set edit_link "<a href=\"admin/revision-add?item_id=$item_id\">Revise</a>"
     } else {
         set edit_link ""
     }

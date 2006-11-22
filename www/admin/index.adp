@@ -60,7 +60,6 @@
        </p>
      </if>
        </form>
-       </td></tr></table>
 </else>
 
 
