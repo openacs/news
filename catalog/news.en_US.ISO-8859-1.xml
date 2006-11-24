@@ -112,6 +112,7 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Search">Search</msg>
   <msg key="Select">Select</msg>
   <msg key="Show_archived_news">Show archived news</msg>
+  <msg key="show_content_news_items_publish_title">Show content of %news_items.publish_title%</msg>
   <msg key="show_it_permanently">(show it permanently)</msg>
   <msg key="Show_live_news">Show live news</msg>
   <msg key="Status">Status</msg>
