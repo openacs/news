@@ -38,7 +38,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Arquivar como do Próximo Mes</msg>
   <msg key="lt_Archive_as_of_Next_We">Arquivar como da Semana Seguinte</msg>
   <msg key="lt_cannot_be_applied_to_">non pode aplicarse ao(s) seguinte(s) ítem(s):</msg>
-  <msg key="lt_Cant_upload_a_publica">Non podo carregar unha publicación no campo texto e un ficheiro non vacío.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Clicar no identificador do ítem para aprobalo/revogalo.</msg>
   <msg key="lt_Click_on_revise_to_ed">Clicar en &quot;revisar&quot; para editar un ítem.</msg>
   <msg key="lt_Could_not_find_corres">Non se puido encontrar a revisión da notícia solicitada</msg>

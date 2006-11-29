@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Arkivér fra næste måned</msg>
   <msg key="lt_Archive_as_of_Next_We">Arkivér fra næste uge</msg>
   <msg key="lt_cannot_be_applied_to_">kan ikke udføres på følgende emne(r):</msg>
-  <msg key="lt_Cant_upload_a_publica">Kan ikke uploade en udgivelse i tekstfeltet sammen med en ikke-tom fil.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Klik på ID-nummer for at godkende en nyhed eller for at trække én tilbage.</msg>
   <msg key="lt_Click_on_revise_to_ed">Klik på &quot;ændr&quot; for at redigere en nyhed.</msg>
   <msg key="lt_Could_not_find_corres">Kunne ikke finde den revision, der passer til den ønskede nyhed</msg>

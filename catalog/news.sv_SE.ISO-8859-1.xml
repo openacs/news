@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Arkivera om en månad</msg>
   <msg key="lt_Archive_as_of_Next_We">Arkivera om en vecka</msg>
   <msg key="lt_cannot_be_applied_to_">kan inte utföras på följande nyhet(er):</msg>
-  <msg key="lt_Cant_upload_a_publica">Kan inte ladda upp en publikation i textfältet och en ej tom fil.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Klicka på ID# (nyhetens ID-nummer) för att godkänna/återkalla en nyhet.</msg>
   <msg key="lt_Click_on_revise_to_ed">Klicka på &quot;revidera&quot; för att att redigera en nyhet.</msg>
   <msg key="lt_Could_not_find_corres">Kunde inte finna en revision som motsvarar den efterfrågade nyheten</msg>

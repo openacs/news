@@ -38,7 +38,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Arquivar como do Próximo Mês</msg>
   <msg key="lt_Archive_as_of_Next_We">Arquivar como da Próxima Semana</msg>
   <msg key="lt_cannot_be_applied_to_">não pode ser aplicada ao(s) seguinte(s) item(s):</msg>
-  <msg key="lt_Cant_upload_a_publica">Não se pode carregar uma publicação no campo texto e um ficheiro não vazio.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Clique no ID# do item para aprovar/revogar um item.</msg>
   <msg key="lt_Click_on_revise_to_ed">Clique em &quot;revisão&quot; para editar um item.</msg>
   <msg key="lt_Could_not_find_corres">Não foi possível encontrar uma revisão correspondente á noticia pedida</msg>

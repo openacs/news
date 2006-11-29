@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">다음 달 오늘 기록</msg>
   <msg key="lt_Archive_as_of_Next_We">다음 주 오늘 기록</msg>
   <msg key="lt_cannot_be_applied_to_">다음 항목에 적용할 수 없습니다.</msg>
-  <msg key="lt_Cant_upload_a_publica">텍스트 필드에 출판물을 업로드 할 수 없고 비지 않은 파일을 업로드할 수 없습니다.</msg>
   <msg key="lt_Click_on_item_ID_to_a">항목을 승인/철회하기 위해 항목 아이디#를 클릭하시오.</msg>
   <msg key="lt_Click_on_revise_to_ed">항목을 수정하기 위해 &quot;개정&quot;을 클릭하시오.</msg>
   <msg key="lt_Could_not_find_corres">요청한 뉴스 항목에 일치하는 개정을 찾지 못했습니다.</msg>

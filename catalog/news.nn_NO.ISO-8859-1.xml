@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Blir arkivert neste månad</msg>
   <msg key="lt_Archive_as_of_Next_We">Blir arkivert neste veke</msg>
   <msg key="lt_cannot_be_applied_to_">kan ikkje nyttast for følgjande innlegg:</msg>
-  <msg key="lt_Cant_upload_a_publica">Kan ikkje både laste opp ein tekst i tekst-feltet og ei fil som ikkje er tom</msg>
   <msg key="lt_Click_on_item_ID_to_a">Klikk på innlegget sitt ID# for å godkjenne/forkaste det.</msg>
   <msg key="lt_Click_on_revise_to_ed">Klikk på &quot;revider&quot; for å redigere eit innlegg på nytt.</msg>
   <msg key="lt_Could_not_find_corres">Kunne ikkje finne den ønskte utgåva av dette meldingsinnlegget</msg>

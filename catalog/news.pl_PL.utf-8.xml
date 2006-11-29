@@ -42,7 +42,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Archiwizuj z początkiem następnego miesiąca</msg>
   <msg key="lt_Archive_as_of_Next_We">Archiwizuj z początkiem następnego tygodnia</msg>
   <msg key="lt_cannot_be_applied_to_">nie może być zastosowany do następujących wiadomości:</msg>
-  <msg key="lt_Cant_upload_a_publica">Nie można utworzyć publikacji z pustym polem tekstowym i plikiem.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Kliknij na ID# wiadomość by ją zatwierdzić lub odrzucić.</msg>
   <msg key="lt_Click_on_revise_to_ed">Kliknij na &quot;sprawdź&quot; by edytować wiadomość.</msg>
   <msg key="lt_Could_not_find_corres">Nie mogę znaleźć odpowiedniej wersji żądanej wiadomości</msg>

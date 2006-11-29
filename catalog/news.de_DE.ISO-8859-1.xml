@@ -42,7 +42,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Ab nächstem Monat archivieren</msg>
   <msg key="lt_Archive_as_of_Next_We">Ab nächster Woche archivieren</msg>
   <msg key="lt_cannot_be_applied_to_">kann an folgenden Elementen nicht ausgeführt werden:</msg>
-  <msg key="lt_Cant_upload_a_publica">Can't upload a publication in the text-field and a non-empty file.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Klicken Sie auf die ID, um eine Ankündigung freizugeben/die Freigabe aufzuheben.</msg>
   <msg key="lt_Click_on_revise_to_ed">Klicken Sie auf 'Neue Version hinzufügen', um eine Ankündigung zu bearbeiten.</msg>
   <msg key="lt_Could_not_find_corres">Die gewünschte Version der Ankündigung konnte nicht gefunden werden.</msg>

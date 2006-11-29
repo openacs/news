@@ -42,7 +42,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Archivar como del mes siguiente</msg>
   <msg key="lt_Archive_as_of_Next_We">Archivar como de la próxima semana</msg>
   <msg key="lt_cannot_be_applied_to_">no se pudo aplicar a los siguientes elementos:</msg>
-  <msg key="lt_Cant_upload_a_publica">No se pudo subir la publicación al fichero texto no vacío.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Pulse el identificador del elemento para aprobar/revocar un elemento.</msg>
   <msg key="lt_Click_on_revise_to_ed">Pulse en &quot;revisar&quot; para editar un elemento.</msg>
   <msg key="lt_Could_not_find_corres">No se pudo encontrar la revisión correspondiente al elemento solicitado</msg>

@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Заархивировать в Следующем Месяце</msg>
   <msg key="lt_Archive_as_of_Next_We">Заархивировать на Следующей Неделе</msg>
   <msg key="lt_cannot_be_applied_to_">не может быть произведен в отношении следующих новостей:</msg>
-  <msg key="lt_Cant_upload_a_publica">Не могу загрузить текст в тестовом поле и/или не пустом файле.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Щелкните по коду новости для того чтобы подтвердить/отменить.</msg>
   <msg key="lt_Click_on_revise_to_ed">Щелкните по &quot;пересмотреть&quot; чтобы изменить новость.</msg>
   <msg key="lt_Could_not_find_corres">Не могу найти запрошенную версию новости</msg>

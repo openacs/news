@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Arxivar com del mes següent </msg>
   <msg key="lt_Archive_as_of_Next_We">Arxivar com de la setmana pròxima</msg>
   <msg key="lt_cannot_be_applied_to_">no s'ha pogut aplicar al(s) element(s) següent(s):</msg>
-  <msg key="lt_Cant_upload_a_publica">No es pot carregar la publicació al camp de text que no estiga buit. </msg>
   <msg key="lt_Click_on_item_ID_to_a">Polseu l'identificador de l'element per a aprovar/revocar un element. </msg>
   <msg key="lt_Click_on_revise_to_ed">Pitgeu en &quot;revisar&quot; per a editar un element.</msg>
   <msg key="lt_Could_not_find_corres">No s'ha pogut trobar la revisió corresponent a l'element sol·licitat </msg>
