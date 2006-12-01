@@ -107,6 +107,7 @@
   <msg key="Search">Buscar</msg>
   <msg key="Select">Seleccionar</msg>
   <msg key="Show_archived_news">Mostrar noticias archivadas</msg>
+  <msg key="show_content_news_items_publish_title">Ver contenido de %news_items.publish_title%</msg>
   <msg key="show_it_permanently">(mostrar siempre)</msg>
   <msg key="Show_live_news">Mostrar noticias actuales</msg>
   <msg key="Status">Estado</msg>
