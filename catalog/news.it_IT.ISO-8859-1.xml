@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">Achivio del mese seguente</msg>
   <msg key="lt_Archive_as_of_Next_We">Archivio della settimana seguente</msg>
   <msg key="lt_cannot_be_applied_to_">non può essere applicato ai seguenti elementi:</msg>
-  <msg key="lt_Cant_upload_a_publica">Non posso caricare una pubblicazione che sia contemporaneamente nel campo testo e in un file non vuoto.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Clicca sull'elemento ID# per approvarlo/revocare l'approvazione</msg>
   <msg key="lt_Click_on_revise_to_ed">Clicca su &amp;quot;revisione&amp;quot; per modificare un elemento.</msg>
   <msg key="lt_Could_not_find_corres">Non ho trovato la revisione corrispondente alla news richiesta</msg>

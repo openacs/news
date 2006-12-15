@@ -43,7 +43,6 @@ When you're done click 'Preview' to see how the news item will appear.</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Archive as of Next Month</msg>
   <msg key="lt_Archive_as_of_Next_We">Archive as of Next Week</msg>
   <msg key="lt_cannot_be_applied_to_">cannot be applied to the following item(s):</msg>
-  <msg key="lt_Cant_upload_a_publica">Can't upload a publication in the text-field and a non-empty file.</msg>
   <msg key="lt_Click_on_item_ID_to_a">Click on item ID# to approve/revoke an item.</msg>
   <msg key="lt_Click_on_revise_to_ed">Click on &quot;revise&quot; to edit an item.</msg>
   <msg key="lt_Could_not_find_corres">Could not find corresponding revision to requested news item</msg>
@@ -112,6 +111,7 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Search">Search</msg>
   <msg key="Select">Select</msg>
   <msg key="Show_archived_news">Show archived news</msg>
+  <msg key="show_content_news_items_publish_title">Show content of %news_items.publish_title%</msg>
   <msg key="show_it_permanently">(show it permanently)</msg>
   <msg key="Show_live_news">Show live news</msg>
   <msg key="Status">Status</msg>

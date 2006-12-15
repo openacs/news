@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">下月存档</msg>
   <msg key="lt_Archive_as_of_Next_We">下周存档</msg>
   <msg key="lt_cannot_be_applied_to_">不可用于下面新闻：</msg>
-  <msg key="lt_Cant_upload_a_publica">不可在文本区域或非空文件中上传新闻。</msg>
   <msg key="lt_Click_on_item_ID_to_a">单击新闻ID#批准/撤消</msg>
   <msg key="lt_Click_on_revise_to_ed">单击“修订”，编辑新闻。</msg>
   <msg key="lt_Could_not_find_corres">找不到申请新闻的相应版本</msg>

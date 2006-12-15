@@ -70,10 +70,6 @@ ad_page_contract {
 	}
     }
 
-    img_file_valid -requires {imgfile} {
-        if {![ImageMagick::validate_tmp_file $imgfile]} { ad_complain }
-    }
-
 }  -properties {
 
     title:onevalue
@@ -105,6 +101,10 @@ if { [string match $action "News Item"] } {
     set title "[_ news.Preview] $action"
 }
 set context [list $title]
+
+if {[info exists imgfile]} {
+    unset imgfile
+}
 
 # create a new revision of the image if we've come back from the image-choose
 # page and we are revising

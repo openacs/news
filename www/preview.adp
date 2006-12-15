@@ -21,11 +21,6 @@
   #news.lt_To_the_readers_it_wil#
 </p>
 
-<form action="image-choose" method="post">
-	@image_vars;noquote@
-	<input type="submit" value="Choose an image...">
-</form>
-
    <include src=news publish_body=@publish_body;noquote@ 
                      publish_lead=@publish_lead@
                      publish_image=@publish_image@

@@ -56,7 +56,7 @@ if { [string equal "live" $view] } {
     where  publish_date < sysdate 
     and    archive_date < sysdate
     and    package_id = :package_id"]} {
-	set view_switch_link "<a href=?view=archive>[_ news.Show_archived_news]</a>"
+	set view_switch_link "<a href=\"?view=archive\" title=\"[_ news.Show_archived_news]\">[_ news.Show_archived_news]</a>"
     } else { 
 	set view_switch_link ""
     }

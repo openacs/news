@@ -40,7 +40,6 @@
   <msg key="lt_Archive_as_of_Next_Mo">यह अभिलेख मे जायेगा</msg>
   <msg key="lt_Archive_as_of_Next_We">अगले सप्ताह तक का अभिलेख</msg>
   <msg key="lt_cannot_be_applied_to_">निम्नलिखित विषय(यो) पर लागू नही होता</msg>
-  <msg key="lt_Cant_upload_a_publica">विवरण क्षेत्र व फ़ाइल जो खाली नही है उस प्रकाशन को अपलोड नही किया जा सकता</msg>
   <msg key="lt_Click_on_item_ID_to_a">विषय को रद्द/अनुयोजित करने के लिये आईडी# विषय पर दबाइये</msg>
   <msg key="lt_Click_on_revise_to_ed">विषय को सम्पादित करने के लिये &quot;सन्शोधन&quot; पर दबाइये</msg>
   <msg key="lt_Could_not_find_corres">निवेदित समाचार विषय का सम्बन्धित सन्शोधन नही मिला</msg>
@@ -73,7 +72,6 @@
   <msg key="Make_Permanent">स्थायी बनाइये</msg>
   <msg key="manage">प्रबन्धित कीजिए</msg>
   <msg key="never">कभी नही</msg>
-  <msg key="News">समाचार </msg>
   <msg key="News_Archive">समाचार अभीलेख</msg>
   <msg key="News_item">समाचार विषय </msg>
   <msg key="News_item_submitted">समाचार विषय जमा करा दिया गया</msg>
