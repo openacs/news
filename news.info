@@ -24,7 +24,6 @@
         <requires url="notifications" version="5.2.0d1" />
 
         <callbacks>
-            <callback type="after-mount"  proc="news::install::after_mount"/>
             <callback type="before-uninstall"  proc="news::sc::unregister_news_fts_impl"/>
             <callback type="after-install"  proc="news::install::after_install"/>
             <callback type="after-instantiate"  proc="news::install::after_instantiate"/>
