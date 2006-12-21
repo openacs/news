@@ -408,8 +408,9 @@ ad_proc -public news_do_notification {
     notification::new \
         -type_id [notification::type::get_type_id -short_name one_news_item_notif] \
         -object_id $news_package_id \
-        -notif_subject $title \
+        -notif_subject "Latest News" \
         -notif_text $new_content \
-	-notif_html $html_content
+	-notif_html $html_content \
+        -notif_date $publish_date
 
 }
