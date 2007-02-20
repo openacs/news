@@ -17,6 +17,8 @@
   <msg key="Back_to_news_list">Back to news list</msg>
   <msg key="Body">Body</msg>
   <msg key="bytes">bytes</msg>
+  <msg key="Choose_an_image">Choose an image...</msg>
+  <msg key="Choose_an_image_to_upload_and_press">Choose an image to upload and press the 'Upload' button to preview it. When you're happy, press 'Accept' to use that image in the article.</msg>
   <msg key="Comments">Comments</msg>
   <msg key="Confirm">Confirm</msg>
   <msg key="Confirm_Action">Confirm Action:</msg>
@@ -28,11 +30,13 @@
   <msg key="Database_Error">Database Error</msg>
   <msg key="Delete">Delete</msg>
   <msg key="Error">Error</msg>
+  <msg key="File">File</msg>
   <msg key="Go">Go</msg>
   <msg key="going_live_no_archive">Going live in %n_days_until_publish% days, not scheduled for archive</msg>
   <msg key="going_live_with_archive">Going live in %n_days_until_publish% days, scheduled for archive in %n_days_until_archive% days</msg>
   <msg key="History">History</msg>
   <msg key="HTML">HTML</msg>
+  <msg key="Image_must_be_one_of_the_following_types">Image must be one of the following types: </msg>
   <msg key="It_will_go_live_on">It will go live on</msg>
   <msg key="It_will_move_into_archive_on">It will move into the archive on</msg>
   <msg key="Lead">Lead</msg>
@@ -94,13 +98,16 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Preview_news_item">Preview news item</msg>
   <msg key="Publication_Date">Publication Date</msg>
   <msg key="Publish">Publish</msg>
+  <msg key="Publish_archive_dates_incorrect"></msg>
   <msg key="Published">Published</msg>
   <msg key="published_no_archive">Published, not scheduled for archive</msg>
   <msg key="published_scheduled_for_archive">Published, archived in %n_days_until_archive% days</msg>
   <msg key="Release">Release</msg>
   <msg key="Release_Date">Release Date</msg>
+  <msg key="Return_to_edit">Return to edit</msg>
   <msg key="Rev">Rev.</msg>
   <msg key="rev">rev.</msg>
+  <msg key="Revise">Revise</msg>
   <msg key="revise">revise</msg>
   <msg key="Revision">Revision</msg>
   <msg key="Revision_history">Revision history</msg>
@@ -116,11 +123,16 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Show_live_news">Show live news</msg>
   <msg key="Status">Status</msg>
   <msg key="Submit_a_news_item">Submit a news item</msg>
-  <msg key="Thank_You">Thank You!</msg>
+  <msg key="Thank_You">Thank You</msg>
   <msg key="The_action">The action</msg>
   <msg key="The_text_is_formatted_as">The text is formatted as</msg>
   <msg key="Title">Title</msg>
   <msg key="Unapproved">Unapproved</msg>
+  <msg key="Upload">Upload</msg>
+  <msg key="Upload_Image">Upload Image</msg>
+  <msg key="use_preview_to_revise_image">use 'preview' to revise image</msg>
+  <msg key="Use_the_following_form_to_define">Use the following form to define your news item.Note that the fields marked with  are required. When you're done click 'Preview' to see how the news item will look and to choose an image for the article.</msg>
   <msg key="Yes">Yes</msg>
+  <msg key="You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both">You can either upload a news item or enter text in the box provided, but not both.</msg>
   <msg key="Your_news_item">Your news item</msg>
 </message_catalog>
