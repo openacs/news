@@ -2,7 +2,7 @@
 <property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
 
-<h1>@title;noquote@<h1>
+<h1>@title;noquote@</h1>
 <p>#news.lt_Your_news_item_will_b#</p>
 <p>
   <if @news_admin_p@ ne 0>
