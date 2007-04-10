@@ -1,7 +1,8 @@
 <master>
-<property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
+<h1>@title;noquote@</h1>
 
 <p>#news.Use_the_following_form_to_define#</p>
 
