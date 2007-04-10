@@ -1,7 +1,9 @@
 <master>
-<property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
+<property name="context">@context;noquote@</property>
 <property name="focus">news.publish_title</property>
+
+<h1>@title;noquote@</h1>
 
 <p>Use the following form to define your news item.Note that the fields marked with <span class="formRequired">*</span> are required.
 When you're done click 'Preview' to see how the news item will look and to choose an image for the article.</p>
