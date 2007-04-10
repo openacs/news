@@ -19,7 +19,9 @@
 </if>
 
 <ul>
-<li>@comment_link;noquote@</li>
+<if @comment_link@ not nil>
+  <li>@comment_link;noquote@</li>
+</if>
 <if @edit_link@ not nil>
   <li>@edit_link;noquote@</li>
 </if>
