@@ -1,9 +1,8 @@
 <master>
-
-<property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
-
+<h1>@title;noquote@</h1>
 <if @item_exist_p@ eq "0">
    <h3>#news.lt_Could_not_find_the_re#</h3>
 </if>
