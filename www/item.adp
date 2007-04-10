@@ -4,7 +4,7 @@
 
 <h1>@title;noquote@</h1>
 <if @item_exist_p@ eq "0">
-   <h3>#news.lt_Could_not_find_the_re#</h3>
+   <h2>#news.lt_Could_not_find_the_re#</h2>
 </if>
 <else>
 <include src=news
@@ -14,8 +14,8 @@
     creator_link=@creator_link;noquote@>
 
 <if @comments@ ne "">
-<h3>#news.Comments#</h3>
-@comments;noquote@
+  <h2>#news.Comments#</h2>
+  @comments;noquote@
 </if>
 
 <ul>
