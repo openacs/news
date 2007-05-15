@@ -1,11 +1,10 @@
 <master>
-
-<property name="context">@context;noquote@</property>
 <property name="title">@title;noquote@</property>
+<property name="context">@context;noquote@</property>
 
-
+<h1>@title;noquote@</h1>
 <if @item_exist_p@ eq "0">
-   <h3>#news.lt_Could_not_find_the_re#</h3>
+   <h2>#news.lt_Could_not_find_the_re#</h2>
 </if>
 <else>
 <include src=news
@@ -15,12 +14,14 @@
     creator_link=@creator_link;noquote@>
 
 <if @comments@ ne "">
-<h3>#news.Comments#</h3>
-@comments;noquote@
+  <h2>#news.Comments#</h2>
+  @comments;noquote@
 </if>
 
 <ul>
-<li>@comment_link;noquote@</li>
+<if @comment_link@ not nil>
+  <li>@comment_link;noquote@</li>
+</if>
 <if @edit_link@ not nil>
   <li>@edit_link;noquote@</li>
 </if>
