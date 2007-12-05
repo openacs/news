@@ -5,6 +5,15 @@
   <msg key="Administer">Διαχείριση</msg>
   <msg key="Administration">Διαχείριση </msg>
   <msg key="All">Όλα</msg>
+  <msg key="Body">Κείμενο</msg>
+  <msg key="Create_News_Item">Δημιουργία Νέων</msg>
   <msg key="Delete">Διαγραφή</msg>
   <msg key="Error">Σφάλμα</msg>
+  <msg key="HTML">HTML</msg>
+  <msg key="Lead">Σύντομη περιγραφή</msg>
+  <msg key="or_upload_text_file">ή ανέβασμα αρχείου κειμένου:</msg>
+  <msg key="Plain_text">Απλό κείμενο</msg>
+  <msg key="Preview">Προεπισκόπιση</msg>
+  <msg key="The_text_is_formatted_as">Το κείμενο είναι τύπου</msg>
+  <msg key="Title">Τίτλος</msg>
 </message_catalog>
