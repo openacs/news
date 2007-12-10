@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.2.0d6" locale="es_ES" charset="ISO-8859-1">
+<message_catalog package_key="news" locale="es_ES" charset="ISO-8859-1">
 
   <msg key="active">activo</msg>
   <msg key="Active_Revision">Revisión actual</msg>
@@ -43,8 +43,8 @@
   <msg key="Log_Entry">Registro</msg>
   <msg key="lt__When_youre_done_clic">. Una vez terminado, pulse 'Vista previa' para ver la noticias.</msg>
   <msg key="lt_And_be_live_until_rev">Y estará hasta que se revoque</msg>
-  <msg key="lt_Archive_as_of_Next_Mo">Archivar como del mes siguiente</msg>
-  <msg key="lt_Archive_as_of_Next_We">Archivar como de la próxima semana</msg>
+  <msg key="lt_Archive_as_of_Next_Mo">Archivar el mes siguiente</msg>
+  <msg key="lt_Archive_as_of_Next_We">Archivar la próxima semana</msg>
   <msg key="lt_cannot_be_applied_to_">no se pudo aplicar a los siguientes elementos:</msg>
   <msg key="lt_Click_on_item_ID_to_a">Pulse el identificador del elemento para aprobar/revocar un elemento.</msg>
   <msg key="lt_Click_on_revise_to_ed">Pulse en &quot;revisar&quot; para editar un elemento.</msg>

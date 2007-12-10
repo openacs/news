@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<message_catalog package_key="news" package_version="5.2.0d6" locale="pt_BR" charset="ISO-8859-1">
+<message_catalog package_key="news" locale="pt_BR" charset="ISO-8859-1">
 
   <msg key="active">ativo</msg>
   <msg key="Active_Revision">Revisão Ativa</msg>

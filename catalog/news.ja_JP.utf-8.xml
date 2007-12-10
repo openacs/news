@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<message_catalog package_key="news" package_version="5.2.0d6" locale="ja_JP" charset="utf-8">
+<message_catalog package_key="news" locale="ja_JP" charset="utf-8">
 
   <msg key="Author">作成者</msg>
   <msg key="Delete">削除</msg>
