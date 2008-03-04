@@ -188,7 +188,9 @@ if { $news_admin_p == 1 || [string equal [parameter::get -parameter ApprovalPoli
 # if uploaded file, read it into publish_body and massage it
 if {[info exists file_size]} {
     if { $file_size > 0 } {
-        set publish_body [read [open ${text_file.tmpfile}]]
+        set fd [open ${text_file.tmpfile}]
+        set publish_body [read $fd]
+        close $fd
     }
 
     # close any open HTML tags in any case
