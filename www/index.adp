@@ -25,7 +25,7 @@
 
     <multiple name=news_items>
       <p> @news_items.publish_date@: <a href="item?item_id=@news_items.item_id@" title="#news.show_content_news_items_publish_title#">@news_items.publish_title@</a></li>
-        <if @news_items.publish_lead@ not nil><br />@news_items.publish_lead@</if></p>
+        <if @news_items.publish_lead@ not nil><br>@news_items.publish_lead@</if></p>
     </multiple>
 
     <if @rss_exists@ true>

@@ -18,9 +18,9 @@ When you're done click 'Preview' to see how the news item will look and to choos
 <p class="formWidget"><textarea id="publish_lead" name=publish_lead cols=50 rows=3>@publish_lead@</textarea></p>
 
 <p class="formLabel"><label for="publish_body">#news.Body#</label><span class="formRequired">*</span></p>
-<p class="formWidget"><textarea id="publish_body" name=publish_body cols=50 rows=20  wrap=soft>@publish_body@</textarea><br />
-<span class="advancedAdmin"><label for="text_file">#news.or_upload_text_file#</label><br /></span>
-<p class="formWidget"><span class="advancedAdmin"><input type=file id="text_file" name=text_file size=40><br /></span>
+<p class="formWidget"><textarea id="publish_body" name=publish_body cols=50 rows=20  wrap=soft>@publish_body@</textarea><br>
+<span class="advancedAdmin"><label for="text_file">#news.or_upload_text_file#</label><br></span>
+<p class="formWidget"><span class="advancedAdmin"><input type=file id="text_file" name=text_file size=40><br></span>
 #news.The_text_is_formatted_as# &nbsp;
       <input type=radio name=html_p value="f" id="plain"<if @html_p@ false> checked</if>> <label for="plain">#news.Plain_text#</label>&nbsp;
       <input type=radio name=html_p value="t" id="html"<if @html_p@ true> checked</if>> <label for="html">#news.HTML#</label>
@@ -31,7 +31,7 @@ When you're done click 'Preview' to see how the news item will look and to choos
 <p class="formWidget">@publish_date_select;noquote@</p>
 
 <p class="formLabel"><label for="archive_date">#news.Archive_Date#</label></p>
-<p class="formWidget">@archive_date_select;noquote@<br />
+<p class="formWidget">@archive_date_select;noquote@<br>
 <input type=checkbox name=permanent_p value=t id="never" <if @permanent_p@ true> checked</if>> <b><label for="never">#news.never#</label></b> #news.show_it_permanently#</p>
 </p>
 </if>

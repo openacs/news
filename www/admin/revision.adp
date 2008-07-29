@@ -9,11 +9,11 @@
 
 <else>
 <p>	
-  #news.Author#: @creator_link;noquote@<br />
-  #news.Revision_number#: @revision_no@<br />
-  #news.Creation_Date#: @creation_date@<br />
-  #news.Creation_IP#: @creation_ip@<br />
-  #news.Release_Date#: @publish_date@<br />
+  #news.Author#: @creator_link;noquote@<br>
+  #news.Revision_number#: @revision_no@<br>
+  #news.Creation_Date#: @creation_date@<br>
+  #news.Creation_IP#: @creation_ip@<br>
+  #news.Release_Date#: @publish_date@<br>
   #news.Archive_Date#: @archive_date@
 </p>
 <hr>

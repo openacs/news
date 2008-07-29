@@ -16,9 +16,9 @@
 <p class="formWidget"><textarea id="publish_lead" name=publish_lead cols=50 rows=3>@publish_lead@</textarea></p>
 
 <p class="formLabel"><label for="publish_body">#news.Body#</label><span class="formRequired">*</span></p>
-<p class="formWidget"><textarea id="publish_body" name=publish_body cols=50 rows=20>@publish_body@</textarea><br />
-<span class="advancedAdmin"><label for="text_file">#news.or_upload_text_file#</label><br /></span>
-<p class="formWidget"><span class="advancedAdmin"><input type=file id="text_file" name=text_file size=40><br /></span>
+<p class="formWidget"><textarea id="publish_body" name=publish_body cols=50 rows=20>@publish_body@</textarea><br>
+<span class="advancedAdmin"><label for="text_file">#news.or_upload_text_file#</label><br></span>
+<p class="formWidget"><span class="advancedAdmin"><input type=file id="text_file" name=text_file size=40><br></span>
 #news.The_text_is_formatted_as# &nbsp;
       <if @html_p@ not nil and @html_p@ ne "f"> 
         <input type=radio name=html_p value="f" id="plain"> <label for="plain">#news.Plain_text#</label>&nbsp;
@@ -39,7 +39,7 @@
 <p class="formWidget">@publish_date_select;noquote@</p>
 
 <p class="formLabel">#news.Archive_Date#</p>
-<p class="formWidget">@archive_date_select;noquote@<br />
+<p class="formWidget">@archive_date_select;noquote@<br>
 <input type=checkbox name=permanent_p value=t id="never"> <b><label for="never">#news.never#</label></b> #news.show_it_permanently#</p>
 
 <p class="formLabel"><label for="revision_log">#news.Revision_log#</label><span class="formRequired">*</span></p>

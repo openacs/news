@@ -16,7 +16,7 @@
 		<h3><a href="@news.url@">@news.title@</a></h3>
 	</else>
 	
-	<p>@news.lead@<br />@news.date@</p>
+	<p>@news.lead@<br>@news.date@</p>
 	</multiple>
 	<p><a href="@base_url@">More news...</a></p>
 	</else>
