@@ -400,7 +400,7 @@ ad_proc -public news_do_notification {
 	}
         append new_content "\n\n[string repeat - 70]"
         append new_content "\n\n[parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]]item?item_id=$item_id \n\n"
-	append html_content "<br><br><hr />[ad_html_text_convert "\n [parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]item?item_id=$item_id"]<br><br>"
+	append html_content "<br><br><hr>[ad_html_text_convert "\n [parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]item?item_id=$item_id"]<br><br>"
     }
 
     # Notifies the users that requested notification for the specific news item
