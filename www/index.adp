@@ -14,8 +14,8 @@
     <if @allow_search_p@ eq "1" and @search_url@ ne "">
       <div>#news.Search#
         <form action="@search_url@search">
-          <input type="text"  name="q" value="" />
-          <input type="submit" name="search" value="Search" />
+          <input type="text"  name="q" value="">
+          <input type="submit" name="search" value="Search">
         </form>
       </div>
     </if>
@@ -29,8 +29,8 @@
     </multiple>
 
     <if @rss_exists@ true>
-      <p><a href="@rss_url@" title="#rss-support.Syndication_Feed#">#rss-support.Syndication_Feed# <img
-            src="/resources/rss-support/xml.gif" alt="Subscribe via RSS" /></a></p></if>
+      <p><a href="@rss_url@" title="#rss-support.Syndication_Feed#">#rss-support.Syndication_Feed# <img src="/resources/rss-support/xml.gif" alt="Subscribe via RSS"></a></p>
+    </if>
 
     <p>@pagination_link;noquote@</p>
   </else>
