@@ -35,16 +35,7 @@ permission::require_permission \
 
 
 # live view of a news item in its active revision
-set item_exist_p [db_0or1row one_item "
-select item_id,
-       live_revision,
-       publish_title,
-       html_p,
-       publish_date,
-       '<a href=/shared/community-member?user_id=' || creation_user || '>' || item_creator ||  '</a>' as creator_link
-from   news_items_live_or_submitted
-where  item_id = :item_id"]
-
+set item_exist_p [db_0or1row one_item {}]
 
 if { $item_exist_p } {
 
@@ -54,33 +45,39 @@ if { $item_exist_p } {
     # RAL: publish_body is already snagged in the 1st query above for postgres.
     #
     set get_content [db_map get_content]
-    if {![string match "" $get_content]} {
-        set publish_body [db_string get_content "select  content
-        from    cr_revisions
-        where   revision_id = :live_revision"]
+    if { $get_content ne "" } {
+        set publish_body [db_string get_content {}]
     }
 
     # text-only body
-    if {[info exists html_p] && [string equal $html_p "f"]} {
-        set publish_body [ad_text_to_html -- $publish_body]
+    if { !$html_p } {
+        set publish_body "<p>[ad_text_to_html -- $publish_body]</p>"
     }
     
+    # Footer actions
+    set footer_links [list]
+
     if { [ad_parameter SolicitCommentsP "news" 0] &&
          [ad_permission_p $item_id general_comments_create] } {
-        set comment_link [general_comments_create_link $item_id "[ad_conn package_url]item?item_id=$item_id"]
-        set comments [general_comments_get_comments -print_content_p 1 -print_attachments_p 1 \
-                $item_id "[ad_conn package_url]item?item_id=$item_id"]
+
+        lappend footer_links [general_comments_create_link \
+                                  -link_attributes { class="button" } \
+                                  $item_id \
+                                  "[ad_conn package_url]item?item_id=$item_id"]
+
+        set comments [general_comments_get_comments \
+                          -print_content_p 1 \
+                          -print_attachments_p 1 \
+                          $item_id "[ad_conn package_url]item?item_id=$item_id"]
     } else {
-        set comment_link ""
         set comments ""
     }
 
     if {[permission::permission_p -object_id $item_id -privilege write] } {
-        set edit_link "<a href=\"admin/revision-add?item_id=$item_id\">[_ news.Revise]</a>"
-    } else {
-        set edit_link ""
+        lappend footer_links "<a href=\"admin/revision-add?item_id=$item_id\" class=\"button\">[_ news.Revise]</a>"
     }
 
+    set footer_links [join $footer_links "</li>\n<li>"]
 
     set title $publish_title
     set context [list $title]
@@ -88,36 +85,13 @@ if { $item_exist_p } {
 
     set image_id [news_get_image_id $item_id]
     set publish_image ""
-    if {![empty_string_p $image_id]} {
+    if { $image_id ne "" } {
          set image_url "image/$image_id"
          set publish_image $image_url
-         ns_log Notice "$image_url"
+         ns_log Debug "$image_url"
     }
 } else {
-    set context {}
-    set title "[_ news.Error]"
+    set title [_ news.Error]
+    set contect [list $title]
+    ad_return_complaint 1 [_ news.lt_Could_not_find_the_re]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
