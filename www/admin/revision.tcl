@@ -30,21 +30,7 @@ ad_page_contract {
 
 
 # Access a news item in a particular revision
-set item_exist_p [db_0or1row one_item "
-    select item_id,
-           revision_id,
-           content_revision.get_number(:revision_id) as revision_no,
-           publish_title,
-           publish_lead,
-           html_p,
-           publish_date,
-           archive_date,
-           creation_ip,
-           creation_date,
-           '<a href=/shared/community-member?user_id=' || creation_user || '>' || item_creator ||  '</a>' as creator_link
-    from   news_item_revisions
-    where  item_id = :item_id
-    and    revision_id = :revision_id"]
+set item_exist_p [db_0or1row one_item {}]
 
 if { $item_exist_p } {
 
@@ -52,10 +38,8 @@ if { $item_exist_p } {
     # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
     #
     set get_content [db_map get_content]
-    if {![string match $get_content ""]} {
-	set publish_body [db_string get_content "select  content
-	from    cr_revisions
-	where   revision_id = :revision_id"]
+    if { $get_content ne "" } {
+        set publish_body [db_string get_content {}]
     }
     
     # text-only body
@@ -65,17 +49,19 @@ if { $item_exist_p } {
     #if {[info exists html_p] && ![string equal $html_p "t"]} {
     #    set publish_body "[ad_quotehtml $publish_body]"
     #}
-    if {[info exists html_p] && [string equal $html_p "f"]} {
+    if { !$html_p } {
     	set publish_body [ad_text_to_html -- $publish_body]
     }
 
-    set title "Revision"
+    set title [_ news.Revision]
     set context [list [list "item?[export_vars -url item_id]" [_ news.One_Item]] $title]
+
+    set creation_date_pretty [lc_time_fmt $creation_date %q]
+    set publish_date_pretty [lc_time_fmt $publish_date %q]
+    set archive_date_pretty [lc_time_fmt $archive_date %q]
     
 } else {
-    set context {}
-    set title "[_ news.Error]"
+    ad_return_complaint 1 [_ news.lt_Could_not_find_corres]
 }
 
 ad_return_template
-
