@@ -87,7 +87,7 @@ if { $immediate_approve_p } {
             {value "[split $archive_date_ansi -]"}
             {format {$lc_format}}
         }
-        {Permanent_p:text(checkbox)
+        {Permanent_p:text(checkbox),optional
             {label "[_ news.never]"}
             {options {{"#news.show_it_permanently#" t}}}}
     }
