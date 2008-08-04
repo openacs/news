@@ -36,6 +36,7 @@
   <msg key="going_live_with_archive">Será publicada en %n_days_until_publish% días, agendada para archivar en %n_days_until_archive% días</msg>
   <msg key="History">Histórico</msg>
   <msg key="HTML">HTML</msg>
+  <msg key="Image">Image</msg>
   <msg key="Image_must_be_one_of_the_following_types">La imagen debe ser de algunos de los tipos siguientes:</msg>
   <msg key="It_will_go_live_on">Saldrá publicado el</msg>
   <msg key="It_will_move_into_archive_on">Se moverá al archivo el</msg>
