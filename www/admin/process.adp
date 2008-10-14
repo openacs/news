@@ -22,6 +22,6 @@
 
   <form method=post action=process-2>	
     @hidden_vars;noquote@
-    <blockquote><input type=submit value="#news.Yes#"></blockquote>
+    <div><input type=submit value="#news.Yes#"></div>
   </form>
 </else>
