@@ -99,7 +99,7 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Preview_news_item">Preview news item</msg>
   <msg key="Publication_Date">Publication Date</msg>
   <msg key="Publish">Publish</msg>
-  <msg key="Publish_archive_dates_incorrect"></msg>
+  <msg key="Publish_archive_dates_incorrect">Incorrect publish date</msg>
   <msg key="Published">Published</msg>
   <msg key="published_no_archive">Published, not scheduled for archive</msg>
   <msg key="published_scheduled_for_archive">Published, archived in %n_days_until_archive% days</msg>

@@ -95,6 +95,7 @@
   <msg key="Preview_news_item">Vista previa de la noticia</msg>
   <msg key="Publication_Date">Fecha de publicación</msg>
   <msg key="Publish">Publicar</msg>
+  <msg key="Publish_archive_dates_incorrect">Fecha de publicación incorrecta</msg>
   <msg key="Published">Publicado</msg>
   <msg key="published_no_archive">Publicada, no agendada para archivar</msg>
   <msg key="published_scheduled_for_archive">Publicada, se archivará en %n_days_until_archive% días</msg>
