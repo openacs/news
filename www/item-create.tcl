@@ -41,18 +41,56 @@ if { [ad_permission_p $package_id news_admin] || [string equal "open" [ad_parame
 set title "[_ news.Create_News_Item]"
 set context [list $title]
 
-if { ![empty_string_p $archive_date_ansi] } {
-    set proj_archival_date $archive_date_ansi
-} else {
-    set proj_archival_date [db_string week "select sysdate + [ad_parameter ActiveDays news 14] from dual"]
+set lc_format [lc_get formbuilder_date_format]
+
+db_1row get_dates {}
+
+if { $publish_date_ansi eq "" || $publish_date_ansi eq "now"} {
+    set publish_date_ansi $date_today
+}
+if { $archive_date_ansi eq "" } {
+    set archive_date_ansi $date_proj
 }
 
-set publish_date_select [dt_widget_datetime -default $publish_date_ansi publish_date days]
-set archive_date_select [dt_widget_datetime -default $proj_archival_date archive_date days]
+ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -form {
+    {action:text(hidden)
+        {value "News Item"}}
+    {publish_title:text(text) 
+        {label "[_ news.Title]"}
+        {html {maxlength 400 size 61}}
+        {value $publish_title}}
+    {publish_lead:text(textarea),optional
+        {label "[_ news.Lead]"}
+        {html {cols 60 rows 3}}
+        {value $publish_lead}}
+    {publish_body:text(textarea),optional
+        {label "[_ news.Body]"}
+        {html {cols 60 rows 20}}
+        {value $publish_body}}
+    {text_file:text(file),optional
+        {label "[_ news.or_upload_text_file]"}}
+    {html_p:text(radio)
+        {label "[_ news.The_text_is_formatted_as]"}
+        {options {{"#news.Plain_text#" f} {"#news.HTML#" t}}}
+        {value $html_p}}
+}
+
+if { $immediate_approve_p } {
+    ad_form -extend -name "news" -form {
+        {publish_date:date,optional
+            {label "[_ news.Release_Date]"}
+            {value "[split $publish_date_ansi -]"}
+            {format {$lc_format}}
+        }
+        {archive_date:date,optional
+            {label "[_ news.Archive_Date]"}
+            {value "[split $archive_date_ansi -]"}
+            {format {$lc_format}}
+        }
+        {Permanent_p:text(checkbox),optional
+            {label "[_ news.never]"}
+            {options {{"#news.show_it_permanently#" t}}}}
+    }
+}
 
 ad_return_template
-
-
-
-
-

@@ -29,16 +29,18 @@
                      creator_link = @creator_link;noquote@>
 
 
-<p>
+<div>
     @form_action;noquote@
-    @hidden_vars;noquote@
-     <input type=submit value="#news.Confirm#">
-  </form>
+     <div>@hidden_vars;noquote@</div>
+     <div class="form-button"><input type=submit value="#news.Confirm#"></div>
+    </form>
 <if @action@ eq "News Item">
-  @edit_action;noquote@ @image_vars;noquote@
-  <input type="submit" value="Return to edit">
+  @edit_action;noquote@ 
+  <div>@image_vars;noquote@</div>
+  <div class="form-button"><input type="submit" value="Return to edit"></div>
+  </form>
 </if>
-</p>
+</div>
 
 
 

@@ -29,69 +29,80 @@ ad_page_contract {
     hidden_vars:onevalue
 }
 
-db_1row news_item_info {
-    select
-        item_name,
-        creator_id,
-        item_creator
-    from
-        news_item_full_active
-    where item_id = :item_id
-}
+db_1row news_item_info {}
 
-set title "Add revision"
+set title [_ news.Add_a_new_revision]
 set context [list $title]
 
 # get active revision of news item
-db_1row item  "
-select
-    item_id, 
-    package_id,   
-    revision_id,
-    publish_title,
-    publish_lead,
-    html_p,
-    publish_date,
-    NVL(archive_date, sysdate+[ad_parameter ActiveDays "news" 14]) as archive_date,
-    status
-from   
-    news_item_full_active    
-where  
-    item_id = :item_id"
+db_1row item {}
 
 # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
 # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
 #
 set get_content [db_map get_content]
 
-if {![string match $get_content ""]} {
-    set publish_body [db_string get_content "select  content
-    from    cr_revisions
-    where   revision_id = :revision_id"]
+if { $get_content ne "" } {
+    set publish_body [db_string get_content {}]
 }
 
-
-set never_checkbox "<input type=checkbox name=permanent_p value=t"
-if {[string equal $status "permanent"]} {
-    append never_checkbox "checked"
-}
-append never_checkbox ">"
-
-
-set publish_date_select [dt_widget_datetime -default $publish_date publish_date days]
-set archive_date_select [dt_widget_datetime -default $archive_date archive_date days]
-
+set lc_format [lc_get formbuilder_date_format]
 
 set action "[_ news.Revision]"
-set hidden_vars [export_form_vars item_id action]
 
 set image_id [news_get_image_id $item_id]
-if {![empty_string_p $image_id]} { set image_url "../image/$image_id" }
+set image_html ""
+if { $image_id ne "" } { 
+    set image_url "../image/$image_id" 
+    set image_html [subst {<br><img src="$image_url">}]
+}
+
+ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart/form-data"} -action "../preview" -form {
+    {publish_title:text(text)
+        {label "[_ news.Title]"}
+        {html {size 61 maxlength 400}}
+        {value $publish_title}
+    }
+    {publish_lead:text(textarea),optional
+        {label "[_ news.Lead]"}
+        {html {cols 60 rows 3}}
+        {value $publish_lead}
+    }
+    {publish_body:text(textarea),optional
+        {label "[_ news.Body]"}
+        {html {cols 60 rows 20}}
+        {value $publish_body}
+    }
+    {text_file:file(file),optional
+        {label "[_ news.or_upload_text_file]"}
+    }
+    {html_p:text(radio)
+        {label "[_ news.The_text_is_formatted_as]"}
+        {options {{"#news.Plain_text#" f} {"#news.HTML#" t}}}
+        {value $html_p}
+    }
+    {news_image:text(inform)
+        {label "[_ news.Image]"}
+        {value "[_ news.use_preview_to_revise_image]\n$image_html"}
+    }
+    {publish_date:date,optional
+        {label "[_ news.Release_Date]"}
+        {value "[split $publish_date -]"}
+        {format {$lc_format}}
+    }
+    {archive_date:date,optional
+        {label "[_ news.Archive_Date]"}
+        {value "[split $archive_date -]"}
+        {format {$lc_format}}
+    }
+    {permanent_p:text(checkbox),optional
+        {label "[_ news.never]"}
+        {options {{"#news.show_it_permanently#" t}}}
+    }
+    {revision_log:text(text)
+        {label "[_ news.Revision_log]"}
+        {html {size 61 maxlength 400}}
+    }
+}
 
 ad_return_template
-
-
-
-
-
-

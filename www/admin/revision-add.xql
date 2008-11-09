@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <queryset>
 
-<fullquery name="news_item_info">      
+  <fullquery name="news_item_info">      
       <querytext>
       
     select
@@ -13,7 +13,14 @@
     where item_id = :item_id
 
       </querytext>
-</fullquery>
+  </fullquery>
 
+  <fullquery name="get_content">      
+    <querytext>
+      select  content
+      from    cr_revisions
+      where   revision_id = :revision_id
+    </querytext>
+  </fullquery>
 
 </queryset>

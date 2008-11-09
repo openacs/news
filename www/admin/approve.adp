@@ -34,7 +34,7 @@
 <p class="formWidget">@publish_date_select;noquote@</p>
 
 <p class="formLabel"><label for="archive_date">#news.Archive_Date#</p>
-<p class="formWidget">@archive_date_select;noquote@<br />
+<p class="formWidget">@archive_date_select;noquote@<br>
 <input type=checkbox name=permanent_p value=t id="never"> <b><label for="never">#news.never#</label></b> #news.show_it_permanently#</p>
 
 

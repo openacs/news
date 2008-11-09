@@ -4,10 +4,10 @@
 <property name="title">@title;noquote@</property>
 
 <ul>
-  <li><a href="../item-create">#news.Create_a_news_item#</a>
+  <li><a href="../item-create">#news.Create_a_news_item#</a></li>
   <li><if @rss_exists@ true>#rss-support.Rss_feed_active# [<a
   href="rss">#rss-support.Remove_feed#</a>]</if><else>#rss-support.Rss_feed_inactive#[<a href="rss">
-  #rss-support.Create_feed#</a>]</else>
+  #rss-support.Create_feed#</a>]</else></li>
     </ul>
 
 <p>
@@ -39,9 +39,9 @@
         <tr class="even">
         </else>
           <td align=center><input type=checkbox name=n_items  value=@news_items.item_id@></td>
-          <td><a href=item?item_id=@news_items.item_id@>@news_items.item_id@</a></td>
-          <td class="adminLink">@news_items.publish_title@ (#news.rev# @news_items.revision_no@) <a href=revision-add?item_id=@news_items.item_id@>#news.revise#</a></td>
-          <td><a href=/shared/community-member?user_id=@news_items.creation_user@>@news_items.item_creator@</a></td>
+          <td><a href="item?item_id=@news_items.item_id@">@news_items.item_id@</a></td>
+          <td class="adminLink">@news_items.publish_title@ (#news.rev# @news_items.revision_no@) <a href="revision-add?item_id=@news_items.item_id@">#news.revise#</a></td>
+          <td><a href="/shared/community-member?user_id=@news_items.creation_user@">@news_items.item_creator@</a></td>
           <td>@news_items.publish_date_pretty@</td>
           <td>@news_items.archive_date_pretty@</td>
           <td>@news_items.pretty_status@</td>

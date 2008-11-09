@@ -36,6 +36,7 @@
   <msg key="going_live_with_archive">Será publicada en %n_days_until_publish% días, agendada para archivar en %n_days_until_archive% días</msg>
   <msg key="History">Histórico</msg>
   <msg key="HTML">HTML</msg>
+  <msg key="Image">Image</msg>
   <msg key="Image_must_be_one_of_the_following_types">La imagen debe ser de algunos de los tipos siguientes:</msg>
   <msg key="It_will_go_live_on">Saldrá publicado el</msg>
   <msg key="It_will_move_into_archive_on">Se moverá al archivo el</msg>
@@ -94,6 +95,7 @@
   <msg key="Preview_news_item">Vista previa de la noticia</msg>
   <msg key="Publication_Date">Fecha de publicación</msg>
   <msg key="Publish">Publicar</msg>
+  <msg key="Publish_archive_dates_incorrect">Fecha de publicación incorrecta</msg>
   <msg key="Published">Publicado</msg>
   <msg key="published_no_archive">Publicada, no agendada para archivar</msg>
   <msg key="published_scheduled_for_archive">Publicada, se archivará en %n_days_until_archive% días</msg>

@@ -171,10 +171,10 @@ if { $news_admin_p == 1 || [string equal [parameter::get -parameter ApprovalPoli
     }
 
     if { ![template::util::date::validate $publish_date_ansi ""] } {
-	set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
+        set publish_date_pretty [lc_time_fmt $publish_date_ansi "%Q"]
     }
     if { ![template::util::date::validate $archive_date_ansi ""] } {
-	set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
+        set archive_date_pretty [lc_time_fmt $archive_date_ansi "%Q"]
     }
 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
@@ -212,8 +212,8 @@ if { [string match $action "News Item"] } {
     set image_vars [export_form_vars publish_title publish_lead publish_body \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action]
-    set form_action "<form method=post action=item-create-3 enctype=multipart/form-data>"
-    set edit_action "<form method=post action=item-create>"
+    set form_action "<form method=post action=item-create-3 enctype=multipart/form-data class=\"inline-form\">"
+    set edit_action "<form method=post action=item-create class=\"inline-form\">"
 
 } else {
 
@@ -223,8 +223,8 @@ if { [string match $action "News Item"] } {
     set image_vars [export_form_vars publish_title publish_lead publish_body \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action item_id revision_log]
-    set form_action "<form method=post action=admin/revision-add-3>"
-    set edit_action "<form method=post action=admin/revision-add>"
+    set form_action "<form method=post action=admin/revision-add-3 class=\"inline-form\">"
+    set edit_action "<form method=post action=admin/revision-add class=\"inline-form\">"
 }
 
 # creator link 
