@@ -13,7 +13,7 @@ ad_page_contract {
     {publish_title {}}
     {publish_lead {}}
     {publish_body:allhtml {}}
-    {html_p {}}
+    {html_p {f}}
     {publish_date_ansi {now}}
     {archive_date_ansi {}}
     {permanent_p {}}
