@@ -238,4 +238,6 @@ if { [info exists html_p] && [string match $html_p "f"] } {
     set publish_body [ad_text_to_html -- $publish_body]
 }
 
+template::head::add_style -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" -media screen
+
 ad_return_template
