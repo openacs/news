@@ -393,13 +393,13 @@ ad_proc -public news_do_notification {
     if { [db_0or1row "get_news" "select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body as body,html_p from news_items_live_or_submitted where news_id =
  :news_id"] } {
         set new_content "$title\n\n$lead"
-        set html_content [ad_html_text_convert "$title\n\n$lead"]
+        set html_content [ad_html_text_convert -- $new_content]
         if {$html_p} {
-            append new_content "\n\n[ad_html_text_convert -from text/html -to text/plain $body]"
+            append new_content "\n\n[ad_html_text_convert -from text/html -to text/plain -- $body]"
             append html_content "<br><br>$body"
         } else {
             append new_content "\n\n$body"
-            append html_content "<br><br>[ad_html_text_convert "$body"]"
+            append html_content "<br><br>[ad_html_text_convert -- $body]"
         }
         append new_content "\n\n[string repeat - 70]"
         append new_content "\n\n[parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]]item?item_id=$item_id \n\n"
