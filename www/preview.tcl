@@ -11,9 +11,9 @@ ad_page_contract {
     action:notnull,trim
     publish_title:notnull,trim
     {publish_lead {}}
-    {publish_body:allhtml,trim ""}
+    {publish_body:html,trim ""}
+    publish_body.format:notnull
     {revision_log: ""}
-    html_p:notnull,trim
     text_file:optional
     text_file.tmpfile:optional,tmpfile
     {publish_date:array ""}
@@ -30,16 +30,6 @@ ad_page_contract {
     img_file_valid "[_ news.image_file_is_invalid]"
 
 } -validate {
-
-    content_html -requires {publish_body html_p} {
-        if { [string equal $html_p "t"] } {
-            set complaint [ad_html_security_check $publish_body]
-            if { ![empty_string_p $complaint] } {
-                ad_complain $complaint
-		return
-            }
-        }
-    }
 
     check_revision_log -requires {action revision_log} {
 	if { ![string match $action "News Item"] && [empty_string_p $revision_log]} {
@@ -77,6 +67,7 @@ ad_page_contract {
     publish_title:onevalue
     publish_lead:onevalue
     publish_body:onevalue
+    publish_format:onevalue
     publish_location:onevalue
     hidden_vars:onevalue
     permanent_p:onevalue
@@ -95,37 +86,15 @@ ad_require_permission $package_id news_create
 
 set news_admin_p [ad_permission_p $package_id news_admin]
 
+# Template parser treats publish_body.format as an array reference
+set publish_format ${publish_body.format}
+
 if { [string match $action "News Item"] } {
     set title "[_ news.Preview_news_item]"
 } else {
     set title "[_ news.Preview] $action"
 }
 set context [list $title]
-
-if {[info exists imgfile]} {
-    unset imgfile
-}
-
-# create a new revision of the image if we've come back from the image-choose
-# page and we are revising
-if {[exists_and_not_null item_id] && [info exists imgfile]} {
-
-    # check user has admin privileges (we can only get here from
-    # admin/revision-add, so all legit users will have admin on package)
-    permission::require_permission \
-        -object_id [ad_conn package_id] -privilege news_admin
-
-    if {[db_0or1row img_item_id {}]} {
-        # add a revision to the existing image item
-        ImageMagick::util::revise_image -file $imgfile -item_id $img_item_id
-    } else {
-        # create a new image item
-        ImageMagick::util::create_image_item -file $imgfile -parent_id $item_id
-    }
-    # delete the tmpfile
-    ImageMagick::delete_tmp_file $imgfile
-}
-
 
 # set up image path
 if {[exists_and_not_null item_id]} {
@@ -192,14 +161,17 @@ if {[info exists file_size]} {
         set publish_body [read $fd]
         close $fd
     }
+}
+
+if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/enhanced" } {
 
     # close any open HTML tags in any case
     set  publish_body [util_close_html_tags $publish_body]
     
     set errors [ad_html_security_check $publish_body]
-    ns_log Notice "errors: $errors"
     if { ![empty_string_p $errors] } {
         ad_return_complaint 1 $errors
+        ad_script_abort
     }
 }
 
@@ -207,9 +179,9 @@ if { [string match $action "News Item"] } {
 
     # form variables for confirmation step
 
-    set hidden_vars [export_form_vars publish_title publish_lead publish_body \
+    set hidden_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
                          publish_date_ansi archive_date_ansi html_p permanent_p imgfile]
-    set image_vars [export_form_vars publish_title publish_lead publish_body \
+    set image_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action]
     set form_action "<form method=post action=item-create-3 enctype=multipart/form-data class=\"inline-form\">"
@@ -218,9 +190,10 @@ if { [string match $action "News Item"] } {
 } else {
 
     # Form vars to carry through Confirmation Page
-    set hidden_vars [export_form_vars item_id revision_log publish_title publish_lead publish_body \
-                         publish_date_ansi archive_date_ansi permanent_p html_p imgfile]
-    set image_vars [export_form_vars publish_title publish_lead publish_body \
+    set hidden_vars [export_form_vars item_id revision_log publish_title publish_lead \
+                         publish_body publish_body.format publish_date_ansi archive_date_ansi \
+                         permanent_p html_p imgfile]
+    set image_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action item_id revision_log]
     set form_action "<form method=post action=admin/revision-add-3 class=\"inline-form\">"
@@ -233,10 +206,6 @@ select first_names || ' ' || last_name
 from   cc_users 
 where  user_id = :user_id"]
 set creator_link "<a href=\"/shared/community-member?user_id=$user_id\">$creator_name</a>"
-
-if { [info exists html_p] && [string match $html_p "f"] } {
-    set publish_body [ad_text_to_html -- $publish_body]
-}
 
 template::head::add_style -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" -media screen
 

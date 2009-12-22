@@ -37,15 +37,6 @@ set context [list $title]
 # get active revision of news item
 db_1row item {}
 
-# workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
-# when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-#
-set get_content [db_map get_content]
-
-if { $get_content ne "" } {
-    set publish_body [db_string get_content {}]
-}
-
 set lc_format [lc_get formbuilder_date_format]
 
 set action "[_ news.Revision]"
@@ -68,22 +59,13 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
         {html {cols 60 rows 3}}
         {value $publish_lead}
     }
-    {publish_body:text(textarea),optional
+    {publish_body:text(richtext),optional
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
-        {value $publish_body}
+        {value "[list $publish_body $publish_format]"}
     }
     {text_file:file(file),optional
         {label "[_ news.or_upload_text_file]"}
-    }
-    {html_p:text(radio)
-        {label "[_ news.The_text_is_formatted_as]"}
-        {options {{"#news.Plain_text#" f} {"#news.HTML#" t}}}
-        {value $html_p}
-    }
-    {news_image:text(inform)
-        {label "[_ news.Image]"}
-        {value "[_ news.use_preview_to_revise_image]\n$image_html"}
     }
     {publish_date:date,optional
         {label "[_ news.Release_Date]"}

@@ -153,7 +153,7 @@ ad_proc news__datasource {
         live_revision,
         publish_title,
         publish_lead,
-        html_p,
+        publish_format,
         publish_date,
         publish_body,
         creation_user,
@@ -175,6 +175,7 @@ ad_proc news__datasource {
                           publish_title $publish_title \
                           publish_title $publish_lead \
                           publish_body $publish_body \
+                          publish_format $publish_format \
                           publish_image {} \
                           creator_link $item_creator ]]
 
@@ -390,17 +391,10 @@ ad_proc -public news_do_notification {
     set instance_name [application_group::closest_ancestor_element  -include_self  -node_id $node_id  -element "instance_name"]
 
     # get the title and teaser for latest news item for the given package id
-    if { [db_0or1row "get_news" "select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body as body,html_p from news_items_live_or_submitted where news_id =
+    if { [db_0or1row "get_news" "select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body, publish_format from news_items_live_or_submitted where news_id =
  :news_id"] } {
-        set new_content "$title\n\n$lead"
-        set html_content [ad_html_text_convert -- $new_content]
-        if {$html_p} {
-            append new_content "\n\n[ad_html_text_convert -from text/html -to text/plain -- $body]"
-            append html_content "<br><br>$body"
-        } else {
-            append new_content "\n\n$body"
-            append html_content "<br><br>[ad_html_text_convert -- $body]"
-        }
+        set new_content "$title\n\n$lead\n\n[ad_html_text_convert -from $publish_format -to text/plain -- $publish_body]"
+        set html_content [ad_html_text_convert -from $publish_format -to text/html -- $publish_body]
         append new_content "\n\n[string repeat - 70]"
         append new_content "\n\n[parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]]item?item_id=$item_id \n\n"
         append html_content "<br><br><hr>[ad_html_text_convert "\n [parameter::get_from_package_key -package_key acs-kernel -parameter SystemURL][news_util_get_url $news_package_id]item?item_id=$item_id"]<br><br>"

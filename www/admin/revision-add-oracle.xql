@@ -12,7 +12,8 @@ select
     revision_id,
     publish_title,
     publish_lead,
-    html_p,
+    publish_body,
+    publish_format,
     publish_date,
     NVL(archive_date, sysdate+[ad_parameter ActiveDays "news" 14]) as archive_date,
     status

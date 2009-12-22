@@ -11,7 +11,6 @@ select
     content_item.get_best_revision(item_id) as revision_id,
     content_revision.get_number(news_id) as revision_no,
     publish_title,
-    html_p,
     to_char(publish_date, 'YYYY-MM-DD HH24:MI:SS') as publish_date_ansi,
     to_char(archive_date, 'YYYY-MM-DD HH24:MI:SS') as archive_date_ansi,
     creation_user,

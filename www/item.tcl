@@ -18,8 +18,8 @@ ad_page_contract {
     publish_title:onevalue
     publish_date:onevalue
     publish_body:onevalue
+    publish_format:onevalue
     publish_image:onevalue
-    html_p:onevalue
     creator_link:onevalue
     comments:onevalue
     comment_link:onevalue
@@ -39,21 +39,6 @@ set item_exist_p [db_0or1row one_item {}]
 
 if { $item_exist_p } {
 
-    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
-    # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-    #
-    # RAL: publish_body is already snagged in the 1st query above for postgres.
-    #
-    set get_content [db_map get_content]
-    if { $get_content ne "" } {
-        set publish_body [db_string get_content {}]
-    }
-
-    # text-only body
-    if { !$html_p } {
-        set publish_body "<p>[ad_text_to_html -- $publish_body]</p>"
-    }
-    
     # Footer actions
     set footer_links [list]
 

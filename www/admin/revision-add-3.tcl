@@ -13,13 +13,16 @@ ad_page_contract {
     item_id:integer
     publish_title:notnull
     publish_lead
-    publish_body:notnull,allhtml,trim
-    html_p:notnull
+    publish_body:notnull,html,trim
+    publish_body.format:notnull
     revision_log:notnull
     publish_date_ansi:notnull
     archive_date_ansi:notnull
     permanent_p:notnull
 }
+
+# Avoid any driver/bindvar nonsense regarding "." in a variable name
+set mime_type ${publish_body.format}
 
 if {[string equal $permanent_p "t"] } {
     set archive_date_ansi [db_null]
@@ -34,13 +37,6 @@ set live_revision_p "t"
 # creation foo 
 set creation_ip [ad_conn "peeraddr"]
 set creation_user [ad_conn "user_id"]
-
-# set mime_type
-if {[string match $html_p t]} {
-    set mime_type "text/html"
-} else {
-    set mime_type "text/plain"
-}
 
 # make new revision the active revision
 set active_revision_p "t"
@@ -86,9 +82,3 @@ if [catch {
     ad_returnredirect "item?item_id=$item_id"
 	
 }    
-
-
-
-
-
-

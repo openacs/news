@@ -10,11 +10,11 @@ ad_page_contract {
     @cvs-id $Id$
 } {
     publish_title:notnull
-    publish_body:notnull,allhtml,trim
+    publish_body:notnull,html,trim
+    publish_body.format:notnull,trim
     {publish_lead {}}
     {publish_date_ansi:trim "[db_null]"}
     {archive_date_ansi:trim "[db_null]"}
-    html_p:notnull
     permanent_p:notnull
     imgfile:optional
 } -validate {
@@ -69,17 +69,12 @@ set creation_date [dt_sysdate]
 set creation_ip [ad_conn "peeraddr"]
 set user_id [ad_conn "user_id"]
 
+# avoid any db weirdness with the "." in the variable name.
+set mime_type ${publish_body.format}
 
-# set mime_type
-if {[string match $html_p t]} {
-    set mime_type "text/html"
-} else {
-    set mime_type "text/plain"
-}
 # do insert: unfortunately the publish_body cannot be supplied through the PL/SQL function
 # we therefore have to do this in a second step 
 set news_id [db_exec_plsql create_news_item {}]
-
 
 #
 # RAL: For postgres, we need NOT store the data in a blob.  The
@@ -87,11 +82,7 @@ set news_id [db_exec_plsql create_news_item {}]
 #
 set content_add [db_map content_add]
 if {![string match $content_add ""]} {
-    db_dml content_add "
-    update cr_revisions
-    set    content = empty_blob()
-    where  revision_id = :news_id
-    returning content into :1" -blobs  [list $publish_body]
+    db_dml content_add {} -blobs  [list $publish_body]
 }
 
 # if an image is specified, we add it here.

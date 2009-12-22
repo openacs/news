@@ -11,7 +11,8 @@
            content_revision.get_number(:revision_id) as revision_no,
            publish_title,
            publish_lead,
-           html_p,
+           publish_body,
+           publish_format,
            publish_date,
            archive_date,
            creation_ip,
@@ -20,15 +21,6 @@
     from   news_item_revisions
     where  item_id = :item_id
     and    revision_id = :revision_id
-      </querytext>
-</fullquery>
-
-
-<fullquery name="get_content">      
-      <querytext>
-      select  content
-    from    cr_revisions
-    where   revision_id = :revision_id
       </querytext>
 </fullquery>
 

@@ -11,12 +11,12 @@
            content_revision__get_number(:revision_id) as revision_no,
            publish_title,
            publish_lead,
-           html_p,
+           publish_body,
+           publish_format,
            publish_date,
            archive_date,
            creation_ip,
            creation_date,
-	   publish_body,
            '<a href="/shared/community-member?user_id=' || creation_user || '">' || item_creator ||  '</a>' as creator_link
     from   news_item_revisions
     where  item_id = :item_id

@@ -12,17 +12,11 @@ ad_page_contract {
 } {
     {publish_title {}}
     {publish_lead {}}
-    {publish_body:allhtml {}}
-    {html_p {f}}
+    {publish_body:html {}}
+    {publish_body.format {}}
     {publish_date_ansi {now}}
     {archive_date_ansi {}}
     {permanent_p {}}
-} -properties {
-    title:onevalue
-    context:onevalue
-    publish_date_select:onevalue
-    archive_date_select:onevalue
-    immediate_approve_p:onevalue
 }
 
 # Authorization by news_create
@@ -63,16 +57,12 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
         {label "[_ news.Lead]"}
         {html {cols 60 rows 3}}
         {value $publish_lead}}
-    {publish_body:text(textarea),optional
+    {publish_body:text(richtext),optional
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
-        {value $publish_body}}
+        {value "[list $publish_body ${publish_body.format}]"}}
     {text_file:text(file),optional
         {label "[_ news.or_upload_text_file]"}}
-    {html_p:text(radio)
-        {label "[_ news.The_text_is_formatted_as]"}
-        {options {{"#news.Plain_text#" f} {"#news.HTML#" t}}}
-        {value $html_p}}
 }
 
 if { $immediate_approve_p } {

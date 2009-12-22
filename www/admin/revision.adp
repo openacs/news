@@ -15,7 +15,8 @@
 <hr>
 <include src="../news"
     publish_title="@publish_title;noquote@ (#news.rev# @revision_no;noquote@)"
-    publish_lead=@publish_lead@
-    publish_body=@publish_body;noquote@
-    creator_link=@creator_link;noquote@
+    publish_lead="@publish_lead@"
+    publish_body="@publish_body;noquote@"
+    publish_format="@publish_format;noquote@"
+    creator_link="@creator_link;noquote@"
 >
