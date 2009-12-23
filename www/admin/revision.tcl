@@ -35,8 +35,6 @@ set item_exist_p [db_0or1row one_item {}]
 
 if { $item_exist_p } {
 
-    set publish_body [ad_html_text_convert -from $publish_format -to text/html -- $publish_body]
-
     set title [_ news.Revision]
     set context [list [list "item?[export_vars -url item_id]" [_ news.One_Item]] $title]
 
