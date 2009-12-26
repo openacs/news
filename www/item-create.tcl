@@ -12,7 +12,7 @@ ad_page_contract {
 } {
     {publish_title {}}
     {publish_lead {}}
-    {publish_body:html {}}
+    {publish_body {}}
     {publish_body.format {}}
     {publish_date_ansi {now}}
     {archive_date_ansi {}}

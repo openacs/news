@@ -13,7 +13,7 @@ ad_page_contract {
     item_id:integer
     publish_title:notnull
     publish_lead
-    publish_body:notnull,html,trim
+    publish_body:notnull,trim
     publish_body.format:notnull
     revision_log:notnull
     publish_date_ansi:notnull

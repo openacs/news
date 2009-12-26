@@ -23,7 +23,7 @@ ad_page_contract {
     publish_title:onevalue
     publish_lead:onevalue
     publish_body:onevalue
-    html_p:onevalue
+    publish_format:onevalue
     archive_date:onevalue
     never_checkbox:onevalue
     hidden_vars:onevalue
