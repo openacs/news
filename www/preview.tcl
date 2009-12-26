@@ -11,7 +11,7 @@ ad_page_contract {
     action:notnull,trim
     publish_title:notnull,trim
     {publish_lead {}}
-    {publish_body:trim ""}
+    {publish_body:allhtml,trim ""}
     publish_body.format:notnull
     {revision_log: ""}
     text_file:optional
@@ -30,22 +30,6 @@ ad_page_contract {
     img_file_valid "[_ news.image_file_is_invalid]"
 
 } -validate {
-
-    content_html -requires {publish_body publish_body.format} {
-        # Note: this is the *only* check against disallowed HTML tags in the
-        # news posting system.  Currently, each path for creating or revising
-        # a news items passes through this preview script, so it's safe.  But if
-        # in the future someone modifies the package to, say, use self-submit forms
-        # the check will need to be added as a validator for each ad_form call.
-        if { ${publish_body.format} eq "text/html" || 
-             ${publish_body.format} eq "text/enhanced" } {
-            set complaint [ad_html_security_check $publish_body]
-            if { ![empty_string_p $complaint] } {
-                ad_complain $complaint
-		return
-            }
-        }
-    }
 
     check_revision_log -requires {action revision_log} {
 	if { ![string match $action "News Item"] && [empty_string_p $revision_log]} {
@@ -184,6 +168,12 @@ if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/en
     # close any open HTML tags in any case
     set  publish_body [util_close_html_tags $publish_body]
     
+    # Note: this is the *only* check against disallowed HTML tags in the
+    # news posting system.  Currently, each path for creating or revising
+    # a news items passes through this preview script, so it's safe.  But if
+    # in the future someone modifies the package to, say, use self-submit forms
+    # the check will need to be added as a validator for each ad_form call.
+
     set errors [ad_html_security_check $publish_body]
     if { ![empty_string_p $errors] } {
         ad_return_complaint 1 $errors

@@ -10,7 +10,7 @@ ad_page_contract {
     @cvs-id $Id$
 } {
     publish_title:notnull
-    publish_body:notnull,trim
+    publish_body:allhtml,notnull,trim
     publish_body.format:notnull,trim
     {publish_lead {}}
     {publish_date_ansi:trim "[db_null]"}
