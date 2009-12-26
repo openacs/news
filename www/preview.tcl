@@ -32,6 +32,11 @@ ad_page_contract {
 } -validate {
 
     content_html -requires {publish_body publish_body.format} {
+        # Note: this is the *only* check against disallowed HTML tags in the
+        # news posting system.  Currently, each path for creating or revising
+        # a news items passes through this preview script, so it's safe.  But if
+        # in the future someone modifies the package to, say, use self-submit forms
+        # the check will need to be added as a validator for each ad_form call.
         if { ${publish_body.format} eq "text/html" || 
              ${publish_body.format} eq "text/enhanced" } {
             set complaint [ad_html_security_check $publish_body]
