@@ -96,6 +96,17 @@ if { [string match $action "News Item"] } {
 }
 set context [list $title]
 
+# DRB: not sure about the accuracy of this comment so am leaving this.
+# if we've come back from the image page, set up dates again
+if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
+    set exp {([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})}
+    if { ![regexp $exp $publish_date_ansi match \
+               publish_date(year) publish_date(month) publish_date(day)]
+         || ![regexp $exp $archive_date_ansi match \
+                  archive_date(year) archive_date(month) archive_date(day)] } {
+        ad_return_complaint 1 "[_ news.Publish_archive_dates_incorrect]"
+    }
+}
 # deal with Dates, granularity is 'day'
 
 # with news_admin privilege fill in publish and archive dates
