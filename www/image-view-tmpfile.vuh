@@ -1,6 +1,0 @@
-# serves a temporary image file
-set filename [ad_conn path_info]
-
-regexp {^/(.*)$} $filename match filename
-
-ImageMagick::serve_tmp_file $filename

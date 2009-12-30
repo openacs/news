@@ -1,6 +1,0 @@
-# serves an image from the CR
-
-if {[regexp {^/([0-9]+)$} [ad_conn path_info] match image_id]} {
-    permission::require_permission -object_id $image_id -privilege read
-    cr_write_content -revision_id $image_id
-}
