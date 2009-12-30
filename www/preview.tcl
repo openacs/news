@@ -14,8 +14,6 @@ ad_page_contract {
     {publish_body:allhtml,trim ""}
     publish_body.format:notnull
     {revision_log: ""}
-    text_file:optional
-    text_file.tmpfile:optional,tmpfile
     {publish_date:array ""}
     {archive_date:array ""}
     {permanent_p: "f"}
@@ -34,28 +32,6 @@ ad_page_contract {
     check_revision_log -requires {action revision_log} {
 	if { ![string match $action "News Item"] && [empty_string_p $revision_log]} {
 	    ad_complain "[_ news.lt_You_must_supply_a_rev]"
-	    return
-	}
-    }
-
-    check_upload_one -requires {publish_body text_file.tmpfile text_file} {
-	set file_size [file size ${text_file.tmpfile}]
-	# !XOR condition (don't want to have both)
-	if { [empty_string_p $publish_body] && $file_size==0 } {
-	    ad_complain "[_ news.lt_Publish_body_is_missi]"
-	    return
-	} elseif { ![empty_string_p $publish_body] && $file_size > 0 } {
-	    ad_complain "[_ news.You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both]"
-	    return
-	}
-    }
-
-    max_size -requires {text_file.tmpfile text_file} {
-	set b [file size ${text_file.tmpfile}]
-
-	set b_max [expr 1000*[ad_parameter MaxFileSizeKb "news" 1024]]
-	if { $b > $b_max } {
-	    ad_complain "[_ news.lt_Your_document_is_larg] ([util_commify_number $b_max] [_ news.bytes])"
 	    return
 	}
     }
@@ -136,15 +112,6 @@ if { $news_admin_p == 1 || [string equal [parameter::get -parameter ApprovalPoli
 	return
     }
 
-}
-
-# if uploaded file, read it into publish_body and massage it
-if {[info exists file_size]} {
-    if { $file_size > 0 } {
-        set fd [open ${text_file.tmpfile}]
-        set publish_body [read $fd]
-        close $fd
-    }
 }
 
 if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/enhanced" } {
