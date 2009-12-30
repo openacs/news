@@ -96,33 +96,6 @@ if { [string match $action "News Item"] } {
 }
 set context [list $title]
 
-# set up image path
-if {[exists_and_not_null item_id]} {
-    set image_id [news_get_image_id $item_id]
-    if { ![empty_string_p $image_id] } {
-        set publish_image "image/$image_id"
-    } else {
-        set publish_image {}
-    }
-    set img_file {}
-} elseif {[info exists imgfile]} { 
-    set publish_image "image-view-tmpfile/$imgfile"
-} else {
-    set publish_image {}
-    set imgfile {}
-}
-
-# if we've come back from the image page, set up dates again
-if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
-    set exp {([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})}
-    if { ![regexp $exp $publish_date_ansi match \
-               publish_date(year) publish_date(month) publish_date(day)]
-         || ![regexp $exp $archive_date_ansi match \
-                  archive_date(year) archive_date(month) archive_date(day)] } {
-        ad_return_complaint 1 "[_ news.Publish_archive_dates_incorrect]"
-    }
-}
-
 # deal with Dates, granularity is 'day'
 
 # with news_admin privilege fill in publish and archive dates

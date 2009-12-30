@@ -61,8 +61,6 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
         {value "[list $publish_body ${publish_body.format}]"}}
-    {text_file:text(file),optional
-        {label "[_ news.or_upload_text_file]"}}
 }
 
 if { $immediate_approve_p } {

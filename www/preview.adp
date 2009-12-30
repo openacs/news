@@ -28,7 +28,6 @@
    <include src=news publish_body = "@publish_body;noquote@"
                      publish_format = "@publish_format;noquote@"
                      publish_lead = "@publish_lead@"
-                     publish_image = "@publish_image@"
                      publish_title = "@publish_title;noquote@"
                      creator_link = "@creator_link;noquote@">
 </div>

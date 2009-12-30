@@ -41,13 +41,6 @@ set lc_format [lc_get formbuilder_date_format]
 
 set action "[_ news.Revision]"
 
-set image_id [news_get_image_id $item_id]
-set image_html ""
-if { $image_id ne "" } { 
-    set image_url "../image/$image_id" 
-    set image_html [subst {<br><img src="$image_url">}]
-}
-
 ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart/form-data"} -action "../preview" -form {
     {publish_title:text(text)
         {label "[_ news.Title]"}

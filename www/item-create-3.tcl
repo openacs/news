@@ -16,14 +16,6 @@ ad_page_contract {
     {publish_date_ansi:trim "[db_null]"}
     {archive_date_ansi:trim "[db_null]"}
     permanent_p:notnull
-    imgfile:optional
-} -validate {
-     imgfile_valid {
-         if { [exists_and_not_null imgfile]
-              && ![ImageMagick::validate_tmp_file $imgfile] } {
-             ad_complain
-         }
-     }
 } -errors {
      imgfile_valid {Image file invalid}
 }  -properties {
@@ -85,18 +77,7 @@ if {![string match $content_add ""]} {
     db_dml content_add {} -blobs  [list $publish_body]
 }
 
-# if an image is specified, we add it here.
-if {[exists_and_not_null imgfile]} {
-    # ImageMagick package will check its tmp directory for the file, so no
-    # need to expand the path.
-    db_1row item {
-        select item_id from cr_revisions where revision_id = :news_id
-    }
-    ImageMagick::util::create_image_item -file $imgfile -parent_id $item_id
-    ImageMagick::delete_tmp_file $imgfile
-}
-
-    #update RSS if it is enabled
+#update RSS if it is enabled
 
 if { !$news_admin_p } {
     

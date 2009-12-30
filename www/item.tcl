@@ -19,7 +19,6 @@ ad_page_contract {
     publish_date:onevalue
     publish_body:onevalue
     publish_format:onevalue
-    publish_image:onevalue
     creator_link:onevalue
     comments:onevalue
     comment_link:onevalue
@@ -68,13 +67,6 @@ if { $item_exist_p } {
     set context [list $title]
     set publish_title {}
 
-    set image_id [news_get_image_id $item_id]
-    set publish_image ""
-    if { $image_id ne "" } {
-         set image_url "image/$image_id"
-         set publish_image $image_url
-         ns_log Debug "$image_url"
-    }
 } else {
     set title [_ news.Error]
     set contect [list $title]

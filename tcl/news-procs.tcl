@@ -82,63 +82,6 @@ ad_proc news_util_get_url {
 
 }
 
-ad_proc test_file_type {
-    imgsrc
-} {
-    Used in form validation to check that the uploaded file type really is
-    what it's meant to be (invokes 'identify' on the file).
-
-    @author Tom Ayles (tom@beatniq.net)
-} {
-    set mime_types [split \
-                        [parameter::get -parameter ImageUploadTypes] \
-                        {,}]
-    if {[catch \
-             {array set img_props [ImageMagick::identify $imgsrc]} \
-             errmsg]} {
-        return 0
-    }
-    set mime_type "image/[string tolower $img_props(format)]"
-    if {[lsearch $mime_types $mime_type] < 0} {
-        return 0
-    }
-    return 1
-}
-
-ad_proc news_revision_set_image_id {
-    revision_id
-    image_id
-} {
-    Associates an image with a revision of a news item.
-    
-    @author simon@simonbuckle.com
-} {
-    set creation_user [ad_conn user_id]
-    set peeraddr [ad_conn peeraddr]
-
-    db_exec_plsql set_image_rel {}
-}
-
-ad_proc news_revision_get_image_id {
-    revision_id
-} {
-    Returns the image id if there is one associated with this image, empty string otherwise
-    
-    @author simon@simonbuckle.com
-} {
-    return [relation::get_object_two -object_id_one $revision_id -rel_type "relationship"]
-}
-
-ad_proc news_get_image_id {
-    item_id
-} {
-    Retrieves the image associated with the given news item.
-
-    @author Tom Ayles (tom@beatniq.net)
-} {
-    return [db_string img {} -default {}]
-}
-
 ad_proc news__datasource {
     object_id
 } {
