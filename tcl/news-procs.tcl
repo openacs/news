@@ -258,9 +258,10 @@ ad_proc -private news__rss_datasource {
     db_foreach get_news_items {} {
         set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
 
-        set content_as_text [ad_html_text_convert -from $mime_type -to text/plain -- $content]
-        # for now, support only full content in feed
-        set description $content_as_text
+        # content doesn't need to be convert to plain text. moreover it will look much
+        # better in HTML
+        set content_as_html [ad_html_text_convert -from $mime_type -to text/html -- $content]
+        set description $content_as_html
 
         # Always convert timestamp to GMT
         set entry_date_ansi [lc_time_tz_convert -from [lang::system::timezone] -to "Etc/GMT" -time_value $last_modified]
@@ -270,7 +271,7 @@ ad_proc -private news__rss_datasource {
                            link $entry_url \
                            title $title \
                            description $description \
-                           value $content_as_text \
+                           value $content_as_html \
                            timestamp $entry_timestamp]
 
         if { $counter == 0 } {
@@ -278,8 +279,11 @@ ad_proc -private news__rss_datasource {
             incr counter
         }
     }
-    set column_array(channel_title) "OpenACS News"
-    set column_array(channel_description) "OpenACS News"
+
+    set news_title [_ news.system_name_News [list system_name [ad_system_name]]]
+
+    set column_array(channel_title) $news_title
+    set column_array(channel_description) $news_title
     set column_array(items) $items
     set column_array(channel_language) ""
     set column_array(channel_copyright) ""

@@ -124,6 +124,7 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Show_live_news">Show live news</msg>
   <msg key="Status">Status</msg>
   <msg key="Submit_a_news_item">Submit a news item</msg>
+  <msg key="system_name_News">%system_name% News</msg>
   <msg key="Thank_You">Thank You</msg>
   <msg key="The_action">The action</msg>
   <msg key="The_text_is_formatted_as">The text is formatted as</msg>

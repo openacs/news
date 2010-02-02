@@ -120,6 +120,7 @@
   <msg key="Show_live_news">Mostrar noticias actuales</msg>
   <msg key="Status">Estado</msg>
   <msg key="Submit_a_news_item">Enviar una noticia</msg>
+  <msg key="system_name_News">Noticias de %system_name%</msg>
   <msg key="Thank_You">¡Gracias!</msg>
   <msg key="The_action">La acción</msg>
   <msg key="The_text_is_formatted_as">Formato del texto</msg>
