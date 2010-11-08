@@ -135,9 +135,7 @@ aa_register_component "db-news-globals" {
 } {
     aa_export_vars {_news_cr_root_folder_id _news_cr_news_root_folder_id}
     
-    set _news_cr_root_folder_id [db_string get-cr-root-folder {
-        select content_item.get_root_folder from dual
-    }]
+    set _news_cr_root_folder_id [content::item::get_root_folder]
     set p_parent_id $_news_cr_root_folder_id
     set _news_cr_news_root_folder_id [db_string get-cr-news-root-folder {
         select item_id
