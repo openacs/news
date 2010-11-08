@@ -55,7 +55,7 @@ begin
     --
     -- this will be used for 2xClick protection
     if p_item_id is null then
-        select acs_object_id_seq.nextval
+        select nextval(''t_acs_object_id_seq'')
         into   v_id
         from   dual;
     else
