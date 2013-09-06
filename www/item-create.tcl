@@ -26,7 +26,7 @@ permission::require_permission -object_id $package_id -privilege news_create
 
 # Furthermore, with news_admin privilege, items are approved immediately
 # or if open approval policy 
-if { [permission::permission_p -object_id $package_id -privilege news_admin] || [string equal "open" [ad_parameter ApprovalPolicy "news" "open"]] } {
+if { [permission::permission_p -object_id $package_id -privilege news_admin] || [string equal "open" [parameter::get -parameter ApprovalPolicy -default "open"]] } {
     set immediate_approve_p 1
 } else {
     set immediate_approve_p 0

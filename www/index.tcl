@@ -84,7 +84,7 @@ db_multirow -extend { publish_date news_item_url } news_items item_list {} {
 }
 
 # TODO: pagination
-set max_dspl [ad_parameter DisplayMax "news" 10]
+set max_dspl [parameter::get -parameter DisplayMax -default 10]
 template::list::create -name news -multirow news_items -actions $actions_list -no_data [_ news.lt_There_are_no_news_ite] -elements {
     publish_date {
         label "[_ news.Release_Date]"

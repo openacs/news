@@ -31,7 +31,7 @@ permission::require_permission -object_id $package_id -privilege news_create
 
 set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
 # get instance-wide approval policy : [closed|wait|open]
-set approval_policy [ad_parameter ApprovalPolicy "news" "wait"]
+set approval_policy [parameter::get -parameter ApprovalPolicy -default "wait"]
 
 # the news_admin or an open approval policy allow immediate publishing
 if { $news_admin_p == 1 || [string equal $approval_policy "open"] } { 
@@ -81,7 +81,7 @@ if {![string match $content_add ""]} {
 
 if { !$news_admin_p } {
     
-    if { ![string equal "open" [ad_parameter ApprovalPolicy "news" "wait"]] } {
+    if { ![string equal "open" [parameter::get -parameter ApprovalPolicy -default "wait"]] } {
 	# case: user submitted news item, is returned to a Thank-you page
 	set title "[_ news.News_item_submitted]"
 	set context [list $title]

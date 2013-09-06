@@ -29,7 +29,7 @@ set context [list $title]
 
 
 # pre-set date widgets with defaults
-set proj_archival_date [db_string week "select sysdate + [ad_parameter ActiveDays "news" 14] from dual"]
+set proj_archival_date [db_string week "select sysdate + [parameter::get -parameter ActiveDays -default 14] from dual"]
 set publish_date_select [dt_widget_datetime -default now publish_date days]
 set archive_date_select [dt_widget_datetime -default $proj_archival_date archive_date days]
 
