@@ -58,9 +58,9 @@ set user_id [auth::require_login]
 set package_id [ad_conn package_id]
 
 # only people with at least write-permission beyond this point
-ad_require_permission $package_id news_create
+permission::require_permission -object_id $package_id -privilege news_create
 
-set news_admin_p [ad_permission_p $package_id news_admin]
+set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
 
 # Template parser treats publish_body.format as an array reference
 set publish_format ${publish_body.format}

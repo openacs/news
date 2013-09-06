@@ -561,9 +561,9 @@ aa_register_case -cats {
 
     aa_log "Check the correct groups have the right privileges."
     aa_true "Check public have news_read privilege" \
-        [ad_permission_p $the_public_id news_read]
+        [permission::permission_p -object_id $the_public_id -privilege news_read]
     aa_true "Check registered_users have news_create privilege" \
-        [ad_permission_p $registered_users_id news_read]
+        [permission::permission_p -object_id $registered_users_id -privilege news_read]
 }
 
 

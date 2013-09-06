@@ -25,7 +25,7 @@ ad_page_contract {
 
 
 set package_id [ad_conn package_id]
-ad_require_permission $package_id news_read
+permission::require_permission -object_id $package_id -privilege news_read
 
 
 set context {} 
@@ -57,8 +57,8 @@ if { [string equal "live" $view] } {
 }
 
 # switches for privilege-enabled links: admin for news_admin, submit for registered users
-set news_admin_p [ad_permission_p $package_id news_admin]
-set news_create_p [ad_permission_p $package_id news_create]
+set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
+set news_create_p [permission::permission_p -object_id $package_id -privilege news_create]
 
 if { $news_admin_p } {
     lappend actions_list [_ news.Create_a_news_item] \

@@ -42,7 +42,7 @@ if { $item_exist_p } {
     set footer_links [list]
 
     if { [ad_parameter SolicitCommentsP "news" 0] &&
-         [ad_permission_p $item_id general_comments_create] } {
+         [permission::permission_p -object_id $item_id -privilege general_comments_create] } {
 
         lappend footer_links [general_comments_create_link \
                                   -link_attributes { class="button" } \

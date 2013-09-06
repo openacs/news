@@ -26,10 +26,10 @@ ad_page_contract {
 
 #  news_create permissions
 set package_id [ad_conn package_id]
-ad_require_permission $package_id news_create
+permission::require_permission -object_id $package_id -privilege news_create
 
 
-set news_admin_p [ad_permission_p $package_id news_admin]
+set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
 # get instance-wide approval policy : [closed|wait|open]
 set approval_policy [ad_parameter ApprovalPolicy "news" "wait"]
 
