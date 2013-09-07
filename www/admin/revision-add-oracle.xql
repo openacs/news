@@ -15,7 +15,7 @@ select
     publish_body,
     publish_format,
     publish_date,
-    NVL(archive_date, sysdate+[ad_parameter ActiveDays "news" 14]) as archive_date,
+    NVL(archive_date, sysdate+[parameter::get -parameter ActiveDays -default 14]) as archive_date,
     status
 from   
     news_item_full_active    

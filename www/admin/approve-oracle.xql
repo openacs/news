@@ -5,7 +5,7 @@
 
 <fullquery name="week">      
       <querytext>
-      select sysdate + [ad_parameter ActiveDays "news" 14] from dual
+      select sysdate + [parameter::get -parameter ActiveDays -default 14] from dual
       </querytext>
 </fullquery>
 

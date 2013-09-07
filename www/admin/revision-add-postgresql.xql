@@ -16,7 +16,7 @@ select
     publish_format,
     to_char(publish_date, 'YYYY-MM-DD') as publish_date,
     publish_body,
-    to_char(coalesce(archive_date, current_timestamp + interval '[ad_parameter ActiveDays "news" 14] days'), 'YYYY-MM-DD') as archive_date,
+    to_char(coalesce(archive_date, current_timestamp + interval '[parameter::get -parameter ActiveDays -default 14] days'), 'YYYY-MM-DD') as archive_date,
     status
 from   
     news_item_full_active    

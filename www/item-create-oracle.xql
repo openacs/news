@@ -5,7 +5,7 @@
 
   <fullquery name="get_dates">      
     <querytext>
-      select to_char(sysdate + [ad_parameter ActiveDays "news" 14], 'YYYY-MM-DD') as date_proj,
+      select to_char(sysdate + [parameter::get -parameter ActiveDays -default 14], 'YYYY-MM-DD') as date_proj,
              to_char(sysdate, 'YYYY-MM-DD') as date_today 
       from dual
     </querytext>
