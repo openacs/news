@@ -136,23 +136,23 @@ if { [string match $action "News Item"] } {
 
     # form variables for confirmation step
 
-    set hidden_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
-                         publish_date_ansi archive_date_ansi html_p permanent_p imgfile]
-    set image_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
+    set hidden_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
+                         publish_date_ansi archive_date_ansi html_p permanent_p imgfile}]
+    set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
-                        permanent_p action]
+                        permanent_p action}]
     set form_action "<form method=post action=item-create-3 enctype=multipart/form-data class=\"inline-form\">"
     set edit_action "<form method=post action=item-create class=\"inline-form\">"
 
 } else {
 
     # Form vars to carry through Confirmation Page
-    set hidden_vars [export_form_vars item_id revision_log publish_title publish_lead \
+    set hidden_vars [export_vars -form {item_id revision_log publish_title publish_lead \
                          publish_body publish_body.format publish_date_ansi archive_date_ansi \
-                         permanent_p html_p imgfile]
-    set image_vars [export_form_vars publish_title publish_lead publish_body publish_body.format \
+                         permanent_p html_p imgfile}]
+    set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
-                        permanent_p action item_id revision_log]
+                        permanent_p action item_id revision_log}]
     set form_action "<form method=post action=admin/revision-add-3 class=\"inline-form\">"
     set edit_action "<form method=post action=admin/revision-add class=\"inline-form\">"
 }

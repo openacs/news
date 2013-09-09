@@ -60,7 +60,7 @@ db_multirow items item_list "
         item_id in ([join $bind_id_list ","])"
 
 
-set hidden_vars [export_form_vars return_url]
+set hidden_vars [export_vars -form {return_url}]
 
 ad_return_template
 

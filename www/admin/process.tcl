@@ -30,7 +30,7 @@ ad_page_contract {
 # in the case of (Re-)Publish, redirect to approve
 if {[string equal "publish" $action]} {
     
-    ad_returnredirect "approve?[export_url_vars n_items]"
+    ad_returnredirect "approve?[export_vars -url {n_items}]"
     ad_script_abort
 }
 
@@ -92,6 +92,6 @@ if { ![info exist halt_p] || $halt_p==0 } {
 	
 }
 
-set hidden_vars [export_form_vars action n_items item_id]
+set hidden_vars [export_vars -form {action n_items item_id}]
 
 ad_return_template
