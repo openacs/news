@@ -1,6 +1,6 @@
 <master>
 <property name="context">@context;noquote@</property>
-<property name="title">@title;noquote@</property>
+<property name="doc(title)">@title;noquote@</property>
 
 <if @halt_p@ not nil and @unapproved:rowcount@ gt 0>
   <h3>#news.Error#</h3>

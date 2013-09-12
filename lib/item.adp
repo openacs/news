@@ -1,7 +1,7 @@
 <master>
 
   <property name="context">@context;noquote@</property>
-  <property name="title">@title;noquote@</property>
+  <property name="doc(title)">@title;noquote@</property>
 
 
   <if @item_exist_p@ false>

@@ -1,7 +1,7 @@
 <master>
 <property name="context">@context;noquote@</property>
 <p>
-<property name="title">@title;noquote@</property>
+<property name="doc(title)">@title;noquote@</property>
 
 <ul>
   <li><a href="../item-create">#news.Create_a_news_item#</a></li>
