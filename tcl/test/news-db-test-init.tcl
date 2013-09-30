@@ -45,7 +45,7 @@ aa_register_init_class "mount-news-package" {
         switch [string trim $url] {
             "/_test/news/" {
                 set _news_node_id $node_id
-                if {$object_id != ""} {
+                if {$object_id ne ""} {
                     set _news_package_id $object_id
                 }
             }
@@ -163,7 +163,7 @@ aa_register_component "db-news-item-create" {
     aa_export_vars {p_full_details p_title p_text p_package_id p_is_live
         p_approval_user p_approval_ip p_approval_date p_archive_date 
         news_id}
-    if {$p_full_details == "t"} {
+    if {$p_full_details eq "t"} {
         set p_approval_user [ad_conn "user_id"]
         set p_approval_ip   [ad_conn "peeraddr"]
         set p_approval_date [dt_sysdate]
@@ -227,7 +227,7 @@ aa_register_component "db-news-revision-create" {
         p_description
         p_approval_user p_approval_ip p_approval_date p_archive_date 
         revision_id}
-    if {$p_full_details == "t"} {
+    if {$p_full_details eq "t"} {
         set p_approval_user [ad_conn "user_id"]
         set p_approval_ip   [ad_conn "peeraddr"]
         set p_approval_date [dt_sysdate]
@@ -312,7 +312,7 @@ aa_register_component "db-news-set-approve" {
         p_approval_user p_approval_date p_approval_ip
         p_live_revision_p}
 
-    if {$p_approve_p == "f"} {
+    if {$p_approve_p eq "f"} {
         db_exec_plsql set-approve-default {
             begin
             content_item.set_approve-default(revision_id =>     :p_revision_id,
@@ -470,7 +470,7 @@ aa_register_component "db-news-archive" {
     p_archive_date<br>
 } {
     aa_export_vars {p_item_id p_archive_date}
-    if {$p_archive_date == ""} {
+    if {$p_archive_date eq ""} {
         db_exec_plsql archive-default {
             begin
             news.archive(:p_item_id, null);
@@ -769,11 +769,11 @@ aa_register_case -cats {
         } else {
             aa_equals "Check package_id correct"    $package_id $_news_package_id
             aa_equals "Check archive_date correct"  \
-                [string range $archive_date 0 [expr [string length $p_archive_date]-1]] \
+                [string range $archive_date 0 [string length $p_archive_date]-1] \
                 $p_archive_date
             aa_equals "Check approval_user correct" $approval_user $p_approval_user
             aa_equals "Check approval_date correct" \
-                [string range $approval_date 0 [expr [string length $p_approval_date] - 1]] \
+                [string range $approval_date 0 [string length $p_approval_date]-1] \
                 $p_approval_date
             aa_equals "Check approval_ip correct"   $approval_ip $p_approval_ip
         }
@@ -934,11 +934,11 @@ aa_register_case -cats {
             aa_log "Check the cr_news fields for the second revision"
             aa_equals "Check package_id correct"    $package_id $_news_package_id
             aa_equals "Check archive_date correct"  \
-                [string range $archive_date 0 [expr [string length $p_archive_date]-1]] \
+                [string range $archive_date 0 [string length $p_archive_date]-1] \
                 $p_archive_date
             aa_equals "Check approval_user correct" $approval_user $p_approval_user
             aa_equals "Check approval_date correct" \
-                [string range $approval_date 0 [expr [string length $p_approval_date] - 1]] \
+                [string range $approval_date 0 [string length $p_approval_date]-1] \
                 $p_approval_date
             aa_equals "Check approval_ip correct"   $approval_ip $p_approval_ip
 
@@ -1074,7 +1074,7 @@ aa_register_case -cats {
         set p_news_id $news_id
         aa_call_component db-get-cr-news-row
         aa_equals "Check the explicitly set archive_date is $p_archive_date" \
-            [string range $archive_date 0 [expr [string length $p_archive_date] - 1]] \
+            [string range $archive_date 0 [string length $p_archive_date]-1] \
             $p_archive_date
 
         #
@@ -1096,7 +1096,7 @@ aa_register_case -cats {
         aa_true "Check the cr_news row was found" $retrieval_ok_p
         set todays_date [clock format [clock seconds] -format "%Y-%m-%d"]
         aa_equals "Check the explicitly set archive_date is $todays_date" \
-            [string range $archive_date 0 [expr [string length $todays_date] - 1]] \
+            [string range $archive_date 0 [string length $todays_date]-1] \
             $todays_date
     }
 } {
@@ -1227,16 +1227,16 @@ aa_register_case -cats {
             aa_error "cr_news row not found for new revision news_id $revision1_id"
         } else {
             aa_equals "Check the archive_date is correct" \
-                [string range $archive_date 0 [expr [string length $p_archive_date]-1]] \
+                [string range $archive_date 0 [string length $p_archive_date]-1] \
                 $p_archive_date
             aa_equals "Check the approval_date is correct" \
-                [string range $approval_date 0 [expr [string length $p_approval_date]-1]] \
+                [string range $approval_date 0 [string length $p_approval_date]-1] \
                 $p_approval_date
             aa_equals "Check the aprroval_user is correct" \
-                [string range $approval_user 0 [expr [string length $p_approval_user]-1]] \
+                [string range $approval_user 0 [string length $p_approval_user]-1] \
                 $p_approval_user
             aa_equals "Check the approval_ip is correct" \
-                [string range $approval_ip 0 [expr [string length $p_approval_ip]-1]] \
+                [string range $approval_ip 0 [string length $p_approval_ip]-1] \
                 $p_approval_ip
         }
 
@@ -1249,7 +1249,7 @@ aa_register_case -cats {
             aa_error "cr_revisions row not found for new revision revision_id $revision1_id"
         } else {
             aa_equals "Check revision 1 publish_date is null" \
-                [string range $publish_date 0 [expr [string length $p_publish_date]-1]] \
+                [string range $publish_date 0 [string length $p_publish_date]-1] \
                 $p_publish_date
         }
     }

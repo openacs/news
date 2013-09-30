@@ -30,7 +30,7 @@ ad_page_contract {
 } -validate {
 
     check_revision_log -requires {action revision_log} {
-	if { ![string match $action "News Item"] && [empty_string_p $revision_log]} {
+	if { ![string match $action "News Item"] && $revision_log eq ""} {
 	    ad_complain "[_ news.lt_You_must_supply_a_rev]"
 	    return
 	}
@@ -126,7 +126,7 @@ if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/en
     # the check will need to be added as a validator for each ad_form call.
 
     set errors [ad_html_security_check $publish_body]
-    if { ![empty_string_p $errors] } {
+    if { $errors ne "" } {
         ad_return_complaint 1 $errors
         ad_script_abort
     }

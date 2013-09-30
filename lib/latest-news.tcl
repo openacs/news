@@ -32,16 +32,16 @@ if { [info exists max_age] } {
 foreach param {id class} { if { ![info exists $param] } { set $param {} } }
 if { ![info exists show_empty_p] } { set show_empty_p 1 }
 
-if { ![exists_and_not_null package_id]
-     && ![exists_and_not_null base_url] } {
+if { (![info exists package_id] || $package_id eq "")
+     && (![info exists base_url] || $base_url eq "") } {
     error "must supply package_id and/or base_url"
 }
 
-if { ![exists_and_not_null package_id] } {
+if { ![info exists package_id] || $package_id eq "" } {
     set package_id [site_node::get_element \
                         -url $base_url -element object_id]
 }
-if { ![exists_and_not_null base_url] } {
+if { ![info exists base_url] || $base_url eq "" } {
     set base_url [lindex [site_node::get_url_from_object_id \
                               -object_id $package_id] 0]
 }

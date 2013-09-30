@@ -33,7 +33,7 @@ set context {}
 set actions_list [list]
 
 # view switch in live | archived news
-if { [string equal "live" $view] } {
+if {"live" eq $view} {
 
     set title [apm_instance_name_from_id $package_id]
     set view_clause [db_map view_clause_live]

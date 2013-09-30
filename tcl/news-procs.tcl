@@ -108,7 +108,7 @@ ad_proc news__datasource {
     set url_stub [news_util_get_url $package_id]
     set url "[ad_url]${url_stub}item/$item_id"
 
-    if {[empty_string_p $publish_lead]} {
+    if {$publish_lead eq ""} {
         set publish_lead $publish_body
     }
 
@@ -174,7 +174,7 @@ ad_proc news_pretty_status {
     set now_seconds [clock scan now]
     set n_days_until_archive {}
 
-    if { ![empty_string_p $archive_date] } { 
+    if { $archive_date ne "" } { 
         set archive_date_seconds [clock scan $archive_date]
 
         if { $archive_date_seconds > $now_seconds } {
@@ -183,7 +183,7 @@ ad_proc news_pretty_status {
         }
     }
 
-    if { ![empty_string_p $publish_date] } {
+    if { $publish_date ne "" } {
         # The item has been published or is scheduled to be published
 
         set publish_date_seconds [clock scan $publish_date]

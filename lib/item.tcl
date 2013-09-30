@@ -56,14 +56,14 @@ if { $item_exist_p } {
     # RAL: publish_body is already snagged in the 1st query above for postgres.
     #
     set get_content [db_map get_content]
-    if {![string match "" $get_content]} {
+    if {$get_content ne ""} {
 	set publish_body [db_string get_content "select  content
 	from    cr_revisions
 	where   revision_id = :live_revision"]
     }
 
     # text-only body
-    if {[info exists html_p] && [string equal $html_p "f"]} {
+    if {[info exists html_p] && $html_p eq "f"} {
 	set publish_body [ad_text_to_html -- $publish_body]
     }
     
@@ -86,7 +86,7 @@ if { $item_exist_p } {
 
     # get image info, if any
     set image_id [news_get_image_id $item_id]
-    if {![empty_string_p $image_id]} {
+    if {$image_id ne ""} {
         set publish_image "image/$image_id"
     } else {
         set publish_image {}

@@ -34,7 +34,7 @@ set news_admin_p [permission::permission_p -object_id $package_id -privilege new
 set approval_policy [parameter::get -parameter ApprovalPolicy -default "wait"]
 
 # the news_admin or an open approval policy allow immediate publishing
-if { $news_admin_p == 1 || [string equal $approval_policy "open"] } { 
+if { $news_admin_p == 1 || $approval_policy eq "open" } { 
 
     set approval_user [ad_conn "user_id"]
     set approval_ip [ad_conn "peeraddr"]
@@ -52,7 +52,7 @@ if { $news_admin_p == 1 || [string equal $approval_policy "open"] } {
 
 # RAL: This was missing and allows the user to "never expire" a news
 # item.
-if {[string equal $permanent_p "t"] } {
+if {$permanent_p eq "t"} {
     set archive_date_ansi [db_null]
 } 
 
@@ -81,7 +81,7 @@ if {![string match $content_add ""]} {
 
 if { !$news_admin_p } {
     
-    if { ![string equal "open" [parameter::get -parameter ApprovalPolicy -default "wait"]] } {
+    if { "open" ne [parameter::get -parameter ApprovalPolicy -default "wait"] } {
 	# case: user submitted news item, is returned to a Thank-you page
 	set title "[_ news.News_item_submitted]"
 	set context [list $title]
