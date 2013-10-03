@@ -179,7 +179,7 @@ ad_proc news_pretty_status {
 
         if { $archive_date_seconds > $now_seconds } {
             # Scheduled for archive
-            set n_days_until_archive [expr ($archive_date_seconds - $now_seconds) / 86400]
+            set n_days_until_archive [expr {($archive_date_seconds - $now_seconds) / 86400}]
         }
     }
 
@@ -190,7 +190,7 @@ ad_proc news_pretty_status {
         if { $publish_date_seconds > $now_seconds } {
             # Will be published in the future
 
-            set n_days_until_publish [expr ($publish_date_seconds - $now_seconds) / 86400]
+            set n_days_until_publish [expr {($publish_date_seconds - $now_seconds) / 86400}]
         }
     }
 
