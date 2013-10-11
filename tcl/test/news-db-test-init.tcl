@@ -163,7 +163,7 @@ aa_register_component "db-news-item-create" {
     aa_export_vars {p_full_details p_title p_text p_package_id p_is_live
         p_approval_user p_approval_ip p_approval_date p_archive_date 
         news_id}
-    if {$p_full_details eq "t"} {
+    if {$p_full_details == "t"} {
         set p_approval_user [ad_conn "user_id"]
         set p_approval_ip   [ad_conn "peeraddr"]
         set p_approval_date [dt_sysdate]
@@ -227,7 +227,7 @@ aa_register_component "db-news-revision-create" {
         p_description
         p_approval_user p_approval_ip p_approval_date p_archive_date 
         revision_id}
-    if {$p_full_details eq "t"} {
+    if {$p_full_details == "t"} {
         set p_approval_user [ad_conn "user_id"]
         set p_approval_ip   [ad_conn "peeraddr"]
         set p_approval_date [dt_sysdate]
@@ -312,7 +312,7 @@ aa_register_component "db-news-set-approve" {
         p_approval_user p_approval_date p_approval_ip
         p_live_revision_p}
 
-    if {$p_approve_p eq "f"} {
+    if {$p_approve_p == "f"} {
         db_exec_plsql set-approve-default {
             begin
             content_item.set_approve-default(revision_id =>     :p_revision_id,

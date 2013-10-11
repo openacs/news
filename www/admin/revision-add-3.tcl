@@ -24,7 +24,7 @@ ad_page_contract {
 # Avoid any driver/bindvar nonsense regarding "." in a variable name
 set mime_type ${publish_body.format}
 
-if {$permanent_p eq "t"} {
+if {$permanent_p == "t"} {
     set archive_date_ansi [db_null]
 } 
 

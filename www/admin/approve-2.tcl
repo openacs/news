@@ -23,7 +23,7 @@ ad_page_contract {
 
 set publish_date_ansi $publish_date(date)
 
-if {$permanent_p eq "t"} {
+if {$permanent_p == "t"} {
 
     set archive_date_ansi [db_null]
 

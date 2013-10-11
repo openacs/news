@@ -63,7 +63,7 @@ if { $item_exist_p } {
     }
 
     # text-only body
-    if {[info exists html_p] && $html_p eq "f"} {
+    if {[info exists html_p] && $html_p == "f"} {
 	set publish_body [ad_text_to_html -- $publish_body]
     }
     
