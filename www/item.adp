@@ -4,7 +4,7 @@
 
 <h1>@title;noquote@</h1>
 
-<include src=news
+<include src="/packages/news/lib/news"
     publish_title = "@publish_title;noquote@"
     publish_body = "@publish_body;noquote@"
     publish_format = "@publish_format;noquote@"
