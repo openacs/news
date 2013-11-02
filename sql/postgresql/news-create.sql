@@ -43,23 +43,29 @@ end;
 
 -- assign permission to defined contexts within ACS by default
 --
-create function inline_0 ()
-returns integer as '
-declare
+
+
+--
+-- procedure inline_0/0
+--
+CREATE OR REPLACE FUNCTION inline_0(
+
+) RETURNS integer AS $$
+DECLARE
     default_context  acs_objects.object_id%TYPE;
     registered_users acs_objects.object_id%TYPE;
     the_public       acs_objects.object_id%TYPE;
-begin
-    default_context  := acs__magic_object_id(''default_context'');
-    registered_users := acs__magic_object_id(''registered_users'');
-    the_public       := acs__magic_object_id(''the_public'');
+BEGIN
+    default_context  := acs__magic_object_id('default_context');
+    registered_users := acs__magic_object_id('registered_users');
+    the_public       := acs__magic_object_id('the_public');
     
 
     -- give the public permission to read by default
     PERFORM acs_permission__grant_permission (
         default_context, -- object_id
         the_public,      -- grantee_id
-        ''news_read''    -- privilege
+        'news_read'    -- privilege
     );
 
     -- give registered users permission to upload items by default
@@ -67,12 +73,13 @@ begin
     PERFORM acs_permission__grant_permission (
          default_context,  -- object_id
          registered_users, -- grantee_id
-         ''news_create''   -- privilege
+         'news_create'   -- privilege
        );
 
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 select inline_0 ();
 drop function inline_0 ();
@@ -188,32 +195,39 @@ end;
 -- *** CREATE THE NEWS FOLDER as our CONTAINER ***
 
 -- create 1 news folder; different instances are filtered by package_id
-create function inline_0 ()
-returns integer as '
-declare
+
+
+--
+-- procedure inline_0/0
+--
+CREATE OR REPLACE FUNCTION inline_0(
+
+) RETURNS integer AS $$
+DECLARE
     v_folder_id cr_folders.folder_id%TYPE;
-begin
+BEGIN
     v_folder_id := content_folder__new(
-        ''news'', -- name
-        ''news'', -- label
-        ''News Item Root Folder, all news items go in here'', -- description
+        'news', -- name
+        'news', -- label
+        'News Item Root Folder, all news items go in here', -- description
 	null      -- parent_id
     );
 -- associate content types with news folder
     PERFORM content_folder__register_content_type (
         v_folder_id, -- folder_id
-        ''news'',    -- content_type
-        ''t''        -- include_subtypes
+        'news',    -- content_type
+        't'        -- include_subtypes
     );
     PERFORM content_folder__register_content_type (
         v_folder_id,          -- folder_id
-        ''content_revision'', -- content_type
-        ''t''                 -- include_subtypes
+        'content_revision', -- content_type
+        't'                 -- include_subtypes
     );
 
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 select inline_0 ();
 drop function inline_0 ();

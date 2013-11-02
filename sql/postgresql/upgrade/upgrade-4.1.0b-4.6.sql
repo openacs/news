@@ -4,13 +4,22 @@
 
 -- new function news__clone
 
-create or replace function news__clone (integer, integer)
-returns integer as '
-declare
- p_new_package_id   alias for $1;   --default null,
- p_old_package_id   alias for $2;   --default null
+
+
+-- added
+select define_function_args('news__clone','new_package_id,old_package_id');
+
+--
+-- procedure news__clone/2
+--
+CREATE OR REPLACE FUNCTION news__clone(
+   p_new_package_id integer, --default null,
+   p_old_package_id integer  --default null
+
+) RETURNS integer AS $$
+DECLARE
  one_news		record;	 
-begin
+BEGIN
         for one_news in select
                             publish_date,
                             cr.content as text,
@@ -60,5 +69,6 @@ begin
 
         end loop;
  return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
