@@ -1,5 +1,4 @@
-# /packages/news/www/item.tcl
-
+# /packages/news/lib/item.tcl
 ad_page_contract {
     
     Page to view one item (live or archived) in its active revision
@@ -36,17 +35,17 @@ permission::require_permission \
 
 
 # live view of a news item in its active revision
-set item_exist_p [db_0or1row one_item "
+set item_exist_p [db_0or1row "" "
 select item_id,
        live_revision,
        publish_title,
        publish_lead,
-       html_p,
+       publish_format,
+       publish_body,
        publish_date,
        '<a href=\"/shared/community-member?user_id=' || creation_user || '\">' || item_creator ||  '</a>' as creator_link
 from   news_items_live_or_submitted
 where  item_id = :item_id"]
-
 
 if { $item_exist_p } {
 
@@ -84,20 +83,20 @@ if { $item_exist_p } {
         set comments ""
     }
 
-    # get image info, if any
-    set image_id [news_get_image_id $item_id]
-    if {$image_id ne ""} {
-        set publish_image "image/$image_id"
-    } else {
-        set publish_image {}
-    }
+    set publish_image {}
+    # # get image info, if any
+    # set image_id [news_get_image_id $item_id]
+    # if {$image_id ne ""} {
+    #     set publish_image "image/$image_id"
+    # } else {
+    #     set publish_image {}
+    # }
 
     if {[permission::permission_p -object_id $item_id -privilege write] } {
         set edit_link "<a href=\"admin/revision-add?item_id=$item_id\">Revise</a>"
     } else {
         set edit_link ""
     }
-
 
     set title $publish_title
     set context [list $title]
