@@ -11,7 +11,7 @@ ad_page_contract {
 } {
 
    {view:trim "live"}
-   page:optional
+   page:integer,optional
 
 } -properties {
 
