@@ -8,7 +8,7 @@ ad_page_contract {
     
 } {
 
-    item_id:integer,notnull
+    item_id:naturalnum,notnull
 
 } -properties {
     title:onevalue
