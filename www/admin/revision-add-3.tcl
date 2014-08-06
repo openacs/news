@@ -10,7 +10,7 @@ ad_page_contract {
     @cvs-id $Id$
 
 } { 
-    item_id:integer
+    item_id:naturalnum,notnull
     publish_title:notnull
     publish_lead
     publish_body:allhtml,notnull,trim

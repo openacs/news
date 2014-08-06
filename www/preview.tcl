@@ -7,7 +7,7 @@ ad_page_contract {
     @cvs-id $Id$
     
 } {
-    {item_id:integer ""}
+    {item_id:naturalnum ""}
     action:notnull,trim
     publish_title:notnull,trim
     {publish_lead {}}
