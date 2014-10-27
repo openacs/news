@@ -52,7 +52,7 @@ if { $news_admin_p == 1 || $approval_policy eq "open" } {
 
 # RAL: This was missing and allows the user to "never expire" a news
 # item.
-if {$permanent_p eq "t"} {
+if {$permanent_p == "t"} {
     set archive_date_ansi [db_null]
 } 
 

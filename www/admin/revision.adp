@@ -13,7 +13,7 @@
   #news.Archive_Date#: @archive_date_pretty@
 </p>
 <hr>
-<include src="../news"
+<include src="/packages/news/lib/news"
     publish_title="@publish_title;noquote@ (#news.rev# @revision_no;noquote@)"
     publish_lead="@publish_lead@"
     publish_body="@publish_body;noquote@"

@@ -1,36 +1,41 @@
-select define_function_args ('news__new','item_id,locale,publish_date,text,nls_language,title,mime_type;text/plain,package_id,archive_date,approval_user,approval_date,approval_ip,relation_tag,creation_ip,creation_user,is_live_p;f,lead');
 
-create or replace function news__new (integer,varchar,timestamptz,text,varchar,varchar,
-       varchar,integer,timestamptz,integer,timestamptz,varchar,varchar,
-       varchar,integer,boolean, varchar)
-returns integer as '
-declare
-    p_item_id       alias for $1;  -- default null
+-- old define_function_args ('news__new','item_id,locale,publish_date,text,nls_language,title,mime_type;text/plain,package_id,archive_date,approval_user,approval_date,approval_ip,relation_tag,creation_ip,creation_user,is_live_p;f,lead')
+-- new
+select define_function_args('news__new','item_id;null,locale;null,publish_date;null,text;null,nls_language;null,title;null,mime_type;text/plain,package_id;null,archive_date;null,approval_user;null,approval_date;null,approval_ip;null,relation_tag;null,creation_ip;null,creation_user;null,is_live_p;f,lead');
+
+
+
+
+--
+-- procedure news__new/17
+--
+CREATE OR REPLACE FUNCTION news__new(
+   p_item_id integer,           -- default null
+   p_locale varchar,            -- default null,
+   p_publish_date timestamptz,  -- default null
+   p_text text,                 -- default null
+   p_nls_language varchar,      -- default null
+   p_title varchar,             -- default null
+   p_mime_type varchar,         -- default 'text/plain'
+   p_package_id integer,        -- default null
+   p_archive_date timestamptz,  -- default null
+   p_approval_user integer,     -- default null
+   p_approval_date timestamptz, -- default null
+   p_approval_ip varchar,       -- default null
+   p_relation_tag varchar,      -- default null
+   p_creation_ip varchar,       -- default null
+   p_creation_user integer,     -- default null
+   p_is_live_p boolean,         -- default 'f'
+   p_lead varchar
+
+) RETURNS integer AS $$
+DECLARE
     --
-    p_locale        alias for $2;  -- default null,
     --
-    p_publish_date  alias for $3;  -- default null
-    p_text          alias for $4;  -- default null
-    p_nls_language  alias for $5;  -- default null
-    p_title         alias for $6;  -- default null
-    p_mime_type     alias for $7;  -- default ''text/plain''
     --
-    p_package_id    alias for $8;  -- default null
-    p_archive_date  alias for $9;  -- default null
-    p_approval_user alias for $10; -- default null
-    p_approval_date alias for $11; -- default null
-    p_approval_ip   alias for $12; -- default null
     --
-    p_relation_tag  alias for $13; -- default null
     --
-    -- REMOVED: p_item_subtype  alias for $14; -- default ''content_revision''
-    -- REMOVED: p_content_type  alias for $15; -- default ''news''
-    -- REMOVED: p_creation_date alias for $16; -- default current_timestamp
-    p_creation_ip   alias for $14; -- default null
-    p_creation_user alias for $15; -- default null
     --
-    p_is_live_p     alias for $16; -- default ''f''
-    p_lead          alias for $17;
 
     v_news_id       integer;
     v_item_id       integer;
@@ -39,8 +44,8 @@ declare
     v_parent_id     integer;
     v_name          varchar;
     v_log_string    varchar;
-begin
-    select content_item__get_id(''news'',null,''f'')
+BEGIN
+    select content_item__get_id('news',null,'f')
     into   v_parent_id
     from   dual;
     --
@@ -53,9 +58,9 @@ begin
         v_id := p_item_id;
     end if;
     --
-    v_name := ''news-'' || to_char(current_timestamp,''YYYYMMDD'') || ''-'' || v_id;
+    v_name := 'news-' || to_char(current_timestamp,'YYYYMMDD') || '-' || v_id;
     --
-    v_log_string := ''initial submission'';
+    v_log_string := 'initial submission';
     --
     v_item_id := content_item__new(
         v_name,               -- name
@@ -66,8 +71,8 @@ begin
         p_creation_user,      -- creation_user
 	p_package_id,         -- context_id
         p_creation_ip,        -- creation_ip
-        ''content_item'',     -- item_subtype
-        ''news'',             -- content_type
+        'content_item',     -- item_subtype
+        'news',             -- content_type
         p_title,              -- title
 	null,                 -- description
         p_mime_type,          -- mime_type
@@ -76,7 +81,7 @@ begin
 	null,                 -- data
         null,                 -- relation_tag
         p_is_live_p,           -- live_p
-	''text'',	      -- storage_type
+	'text',	      -- storage_type
         p_package_id          -- package_id
     );
 
@@ -111,30 +116,39 @@ begin
          p_approval_date,
          p_approval_ip);
     -- make this revision live when immediately approved
-    if p_is_live_p = ''t'' then
+    if p_is_live_p = 't' then
         update
             cr_items
         set
             live_revision = v_revision_id,
-            publish_status = ''ready''
+            publish_status = 'ready'
         where
             item_id = v_item_id;
     end if;
     v_news_id := v_revision_id;
     return v_news_id;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 
-create or replace function news__revision_set_active (integer)
-returns integer as '
-declare
-    p_revision_id alias for $1;
+
+
+-- added
+select define_function_args('news__revision_set_active','revision_id');
+
+--
+-- procedure news__revision_set_active/1
+--
+CREATE OR REPLACE FUNCTION news__revision_set_active(
+   p_revision_id integer
+) RETURNS integer AS $$
+DECLARE
     v_news_item_p boolean;
     v_item_id cr_items.item_id%TYPE;
     v_title acs_objects.title%TYPE;
-    -- could be used to check if really a ''news'' item
-begin
+    -- could be used to check if really a 'news' item
+BEGIN
 
     select item_id, title into v_item_id, v_title
     from cr_revisions
@@ -142,7 +156,7 @@ begin
 
     update cr_items
     set live_revision = p_revision_id,
-        publish_status = ''ready''
+        publish_status = 'ready'
     where item_id = v_item_id;
 
     -- We update the acs_objects title as well.
@@ -151,5 +165,6 @@ begin
     where object_id = v_item_id and (title != v_title or title is null);
 
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;

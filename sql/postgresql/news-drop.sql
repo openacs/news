@@ -5,9 +5,15 @@
 -- $Id$
 
 -- unregister content_types from folder
-create function inline_0 ()
-returns integer as '
-declare
+
+
+--
+-- procedure inline_0/0
+--
+CREATE OR REPLACE FUNCTION inline_0(
+
+) RETURNS integer AS $$
+DECLARE
     v_folder_id	  cr_folders.folder_id%TYPE;
     v_item_id     cr_items.item_id%TYPE;
     -- RAL: commented out, not used. GC should be probably dealt with in
@@ -15,8 +21,8 @@ declare
     -- v_gc_id       general_comments.comment_id%TYPE;
     -- v_gc_msg_id   acs_messages.message_id%TYPE;
     v_item_cursor RECORD;
-begin
-    select content_item__get_id(''news'', null, ''f'') into v_folder_id from dual;
+BEGIN
+    select content_item__get_id('news', null, 'f') into v_folder_id from dual;
 
     -- delete all contents of news folder
     FOR v_item_cursor IN
@@ -31,24 +37,25 @@ begin
     -- unregister_content_types
     PERFORM content_folder__unregister_content_type (
         v_folder_id,        -- folder_id
-        ''content_revision'', -- content_type
-        ''t''                 -- include_subtypes
+        'content_revision', -- content_type
+        't'                 -- include_subtypes
     );
     PERFORM content_folder__unregister_content_type (
         v_folder_id, -- folder_id
-        ''news'',      -- content_type
-        ''t''          -- include_subtypes
+        'news',      -- content_type
+        't'          -- include_subtypes
     );
 
-    -- this table must not hold reference to ''news'' type
-    delete from cr_folder_type_map where content_type = ''news'';
+    -- this table must not hold reference to 'news' type
+    delete from cr_folder_type_map where content_type = 'news';
 
     -- delete news folder
     PERFORM content_folder__delete(v_folder_id);
 
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 select inline_0 ();
 drop function inline_0 ();
@@ -79,49 +86,56 @@ select content_type__drop_type(
 
 
 -- delete privileges;
-create function inline_0 ()
-returns integer as '
-declare
+
+
+--
+-- procedure inline_0/0
+--
+CREATE OR REPLACE FUNCTION inline_0(
+
+) RETURNS integer AS $$
+DECLARE
     default_context  acs_objects.object_id%TYPE;
     registered_users acs_objects.object_id%TYPE;
     the_public       acs_objects.object_id%TYPE;
-begin
-    PERFORM acs_privilege__remove_child(''news_admin'',''news_approve'');
-    PERFORM acs_privilege__remove_child(''news_admin'',''news_create'');
-    PERFORM acs_privilege__remove_child(''news_admin'',''news_delete'');
-    PERFORM acs_privilege__remove_child(''news_admin'',''news_read'');
+BEGIN
+    PERFORM acs_privilege__remove_child('news_admin','news_approve');
+    PERFORM acs_privilege__remove_child('news_admin','news_create');
+    PERFORM acs_privilege__remove_child('news_admin','news_delete');
+    PERFORM acs_privilege__remove_child('news_admin','news_read');
 
-    PERFORM acs_privilege__remove_child(''read'',''news_read'');
-    PERFORM acs_privilege__remove_child(''create'',''news_create'');
-    PERFORM acs_privilege__remove_child(''delete'',''news_delete'');
-    PERFORM acs_privilege__remove_child(''admin'',''news_approve'');
+    PERFORM acs_privilege__remove_child('read','news_read');
+    PERFORM acs_privilege__remove_child('create','news_create');
+    PERFORM acs_privilege__remove_child('delete','news_delete');
+    PERFORM acs_privilege__remove_child('admin','news_approve');
 
-    PERFORM acs_privilege__remove_child(''admin'',''news_admin'');
+    PERFORM acs_privilege__remove_child('admin','news_admin');
 
-    default_context  := acs__magic_object_id(''default_context'');
-    registered_users := acs__magic_object_id(''registered_users'');
-    the_public       := acs__magic_object_id(''the_public'');
+    default_context  := acs__magic_object_id('default_context');
+    registered_users := acs__magic_object_id('registered_users');
+    the_public       := acs__magic_object_id('the_public');
 
     PERFORM acs_permission__revoke_permission (
         default_context,  -- object_id
     	registered_users, -- grantee_id
-    	''news_create''   -- privilege
+    	'news_create'   -- privilege
     );
     PERFORM acs_permission__revoke_permission (
         default_context, -- object_id
 	the_public,      -- grantee_id
-	''news_read''    -- privilege
+	'news_read'    -- privilege
     );
 
-    PERFORM acs_privilege__drop_privilege(''news_approve'');
-    PERFORM acs_privilege__drop_privilege(''news_create'');
-    PERFORM acs_privilege__drop_privilege(''news_delete'');
-    PERFORM acs_privilege__drop_privilege(''news_read'');
-    PERFORM acs_privilege__drop_privilege(''news_admin'');
+    PERFORM acs_privilege__drop_privilege('news_approve');
+    PERFORM acs_privilege__drop_privilege('news_create');
+    PERFORM acs_privilege__drop_privilege('news_delete');
+    PERFORM acs_privilege__drop_privilege('news_read');
+    PERFORM acs_privilege__drop_privilege('news_admin');
 
     return 0;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 select inline_0 ();
 drop function inline_0 ();

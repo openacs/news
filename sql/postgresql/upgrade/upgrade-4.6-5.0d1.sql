@@ -6,38 +6,47 @@
 
 --- **** Recreate function. This will drop the views as well.
 drop function news__status (integer) cascade;
-create function news__status (timestamptz, timestamptz)
-returns varchar as '
-declare
-    p_publish_date alias for $1;
-    p_archive_date alias for $2;
-begin
+
+
+-- added
+select define_function_args('news__status','publish_date,archive_date');
+
+--
+-- procedure news__status/2
+--
+CREATE OR REPLACE FUNCTION news__status(
+   p_publish_date timestamptz,
+   p_archive_date timestamptz
+) RETURNS varchar AS $$
+DECLARE
+BEGIN
     if p_publish_date is not null then
         if p_publish_date > current_timestamp then
             -- Publishing in the future
             if p_archive_date is null then 
-                return ''going_live_no_archive'';
+                return 'going_live_no_archive';
             else 
-                return ''going_live_with_archive'';
+                return 'going_live_with_archive';
             end if;  
         else
             -- Published in the past
             if p_archive_date is null then
-                 return ''published_no_archive'';
+                 return 'published_no_archive';
             else
                 if p_archive_date > current_timestamp then
-                     return ''published_with_archive'';
+                     return 'published_with_archive';
                 else 
-                    return ''archived'';
+                    return 'archived';
                 end if;
             end if;
         end if;
     else
         -- publish_date null
-        return ''unapproved'';
+        return 'unapproved';
     end if;
-end;
-' language 'plpgsql';
+END;
+
+$$ LANGUAGE plpgsql;
 
 -- **** Recreate views with calls to new status function
 create view news_items_live_or_submitted

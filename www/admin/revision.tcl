@@ -9,8 +9,8 @@ ad_page_contract {
     
 } {
 
-    item_id:notnull
-    revision_id:notnull
+    item_id:naturalnum,notnull
+    revision_id:naturalnum,notnull
 
 } -properties {
 

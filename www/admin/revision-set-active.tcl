@@ -10,8 +10,8 @@ ad_page_contract {
     
 } {
 
-    item_id:integer,notnull
-    new_rev_id:integer,notnull
+    item_id:naturalnum,notnull
+    new_rev_id:naturalnum,notnull
     
 }
 

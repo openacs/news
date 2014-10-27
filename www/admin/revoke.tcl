@@ -10,7 +10,7 @@ ad_page_contract {
     @cvs-id $Id$
 
 } {
-    item_id:notnull
+    item_id:naturalnum,notnull
     {revision_id: ""}
 } 
 
