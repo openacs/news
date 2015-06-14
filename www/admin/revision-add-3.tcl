@@ -18,7 +18,7 @@ ad_page_contract {
     revision_log:notnull
     publish_date_ansi:notnull
     archive_date_ansi:notnull
-    permanent_p:notnull
+    permanent_p:boolean,notnull
 }
 
 # Avoid any driver/bindvar nonsense regarding "." in a variable name

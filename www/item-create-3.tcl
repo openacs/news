@@ -15,7 +15,7 @@ ad_page_contract {
     {publish_lead {}}
     {publish_date_ansi:trim "[db_null]"}
     {archive_date_ansi:trim "[db_null]"}
-    permanent_p:notnull
+    permanent_p:boolean,notnull
 } -errors {
      imgfile_valid {Image file invalid}
 }  -properties {

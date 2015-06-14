@@ -16,7 +16,7 @@ ad_page_contract {
     {publish_body.format {}}
     {publish_date_ansi {now}}
     {archive_date_ansi {}}
-    {permanent_p {}}
+    {permanent_p:boolean {}}
 }
 
 # Authorization by news_create
