@@ -36,7 +36,7 @@
 <div>
     @form_action;noquote@
      <div>@hidden_vars;noquote@</div>
-     <div class="form-button"><input type=submit value="#news.Confirm#"></div>
+     <div class="form-button"><input type="submit" value="#news.Confirm#"></div>
     </form>
 <if @action@ eq "News Item">
   @edit_action;noquote@ 

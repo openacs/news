@@ -9,7 +9,7 @@
     <multiple name=unapproved>
      <li><b>@unapproved.publish_title@</b> - @unapproved.creation_date_pretty@
             contributed by @unapproved.item_creator@
-	 [ <a href=item?item_id=@unapproved.item_id@><b>#news.manage#</b></a> ]
+	 [ <a href="item?item_id=@unapproved.item_id@"><b>#news.manage#</b></a> ]
     </multiple>
   </ul>
   <br>
@@ -22,6 +22,6 @@
 
   <form method=post action=process-2>	
     @hidden_vars;noquote@
-    <div><input type=submit value="#news.Yes#"></div>
+    <div><input type="submit" value="#news.Yes#"></div>
   </form>
 </else>
