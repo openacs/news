@@ -30,7 +30,7 @@ ad_page_contract {
 # in the case of (Re-)Publish, redirect to approve
 if {"publish" eq $action} {
     
-    ad_returnredirect "approve?[export_vars -url {n_items}]"
+    ad_returnredirect [export_vars -base approve {n_items}]
     ad_script_abort
 }
 
