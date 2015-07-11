@@ -5,10 +5,10 @@
 <h1>@title;noquote@</h1>
 
 <include src="/packages/news/lib/news"
-    publish_title = "@publish_title;noquote@"
-    publish_body = "@publish_body;noquote@"
-    publish_format = "@publish_format;noquote@"
-    creator_link = "@creator_link;noquote@">
+    publish_title="@publish_title;noquote@"
+    publish_body="@publish_body;noquote@"
+    publish_format="@publish_format;noquote@"
+    creator_link="@creator_link;noquote@">
 
 <if @comments@ ne "">
   <h2>#news.Comments#</h2>
