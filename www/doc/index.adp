@@ -22,6 +22,6 @@ admin, you must ask the latter to do so.
 Please file bugs in the <a href="http://openacs.org/bugtracker/openacs/">Bucktracker</a>.
 <hr><address><a href="mailto:stefan\@arsdigita.com">Stefan
 Deusch</a></address><br>
-Last modified: $Id: index.html,v 1.3 2002/11/30 17:39:42 jeffd Exp
-$
+Last modified: $Id: index.html,v 1.3.22.1 2015/08/20 18:23:34
+gustafn Exp $
 </body>
