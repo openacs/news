@@ -2,17 +2,21 @@
 <property name="context">{/doc/news {News}} {News Design Document}</property>
 <property name="doc(title)">News Design Document</property>
 <master>
-
-<body>
 <h2>News Design Document</h2>
-by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a><hr><h3>I. Essentials</h3><ul>
+
+by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
+<hr>
+<h3>I. Essentials</h3>
+<ul>
 <li>User directory: <a href="/news/">/news/</a>
 </li><li>Tcl procedures: <a href="/api-doc/procs-file-view?path=packages/news/tcl/news-procs.tcl">/tcl/news-procs.tcl</a>
 </li><li>Requirements document: <a href="/doc/news/requirements">/doc/news/requirements.html</a>
 </li><li>Data model: <a href="/doc/sql/display-sql?url=news-create.sql&amp;package_key=news">news-create.sql</a>
 , <a href="/doc/sql/display-sql?url=news-sws.sql&amp;package_key=news">news-sws.sql</a>
 </li>
-</ul><h3>II. Introduction</h3>
+</ul>
+<h3>II. Introduction</h3>
+
 Most Web services and almost all corporate sites have a
 comany.com/news/ service. These can be used in a variety of ways,
 e.g. for advertising or dissemination of related news items. News
@@ -24,6 +28,7 @@ ACS installation is being used for a company - and subcommunity
 news coverage where several organizations are using the same ACS
 server
 <h3>III. Historical Considerations</h3>
+
 News applications previous to ACS 4 were less integrated into the
 site and had less functionality. This version scopes instances
 implicitly through use of the acs-permissioning system. The old
@@ -31,12 +36,14 @@ news allowed to edit the items, the new one allows version control.
 The administrator can switch back to a historic version of a news
 item.
 <h3>IV. Competitive Analysis</h3>
+
 The News application is consistent with the functionality of
 similar systems on the Internet. It is built with ACS 4 and relies
 on the object oriented nature of ACS 4. It is best used in
 conjunction with other ACS applications such as general-comments,
 site-wide-search, and file storage.
 <h3>V. Design</h3>
+
 Published or archived news items are presented as entries in a
 hyperlinked list. Single news items are presented by taking
 advantage of the ACS Templating system. The default news template
@@ -50,6 +57,7 @@ is in the file news.adp which takes
 \@creator_link\@
 </pre></li>
 </ul>
+
 as input. Publishers may wish to provide their own templates,
 however even more flexibility can be introduced by supplying the
 news body in HTML format. If someone submits a news body with
@@ -63,10 +71,14 @@ not need its own content management. For instance, one can download
 and install the ACS4 file-storage module from the <a href="http://www.arsdigita.com/acs-repository/">acs-repository</a>,
 upload some photographs in gif or jpeg format, and then link it
 into the HTML news body, somewhat like this: &lt;img
-src="http://myserver.org/file-storage/download/Fig1.gif"&gt;</p><p>If someone submits a news body with inconsistent HTML tags, the
+src="http://myserver.org/file-storage/download/Fig1.gif"&gt;</p>
+<p>If someone submits a news body with inconsistent HTML tags, the
 News application attempts to close these tags in the preview
-page.</p><h3>VI. API</h3>
+page.</p>
+<h3>VI. API</h3>
+
 Much of the API is covered in the <a href="/doc/sql/display-sql?url=news-create.sql&amp;package_key=news">news-create.sql</a>
+
 file. The news package body holds all of the PL/SQL functions and
 procedures.
 <ul>
@@ -78,12 +90,16 @@ item</li><li>news.revision_delete: delete a revision from an exisiting news
 item (not used)</li><li>news.revision_activate: make a revision the active
 revision</li>
 </ul>
+
 The Tcl procedures are, see <a href="/api-doc/procs-file-view?path=packages/news/tcl/news-procs.tcl">/tcl/news-procs.tcl</a>
+
 file.
 <ul>
 <li>news_items_archive: archives items at a certain date</li><li>news_items_make_permanent: removes archival date from
 items</li><li>news_items_delete: deletes news items</li>
-</ul><h3>VII. Data Model Discussion</h3>
+</ul>
+<h3>VII. Data Model Discussion</h3>
+
 The News application makes use of the exisiting ACS Content
 Repository service. A news item consists of a row-entry in the
 table cr_item, where all of the meta-information that isn't already
@@ -112,12 +128,14 @@ create table cr_news (
     approval_ip                 varchar2(50)
 );
 </pre>
+
 Note that different package instances of the News application can
 be distinguished by the column 'package_id' (and not by the
 inherited context_id in acs_objects). We therefore need only a
 single cr_folder named 'news' to hold all news items.
 <p>The data model in the context of the content repository are
-futher characterized by following:</p><ul>
+futher characterized by following:</p>
+<ul>
 <li>The items are assigned to the folder 'news' in the content
 repository.</li><li>The PL/SQL API provides procedures and functions to create,
 delete, approve, archive, query, release, or revise a news
@@ -125,6 +143,7 @@ item.</li><li>A new revision generates an entry in cr_news and cr_revisions
 in parallel and updates the live_revision in cr_items.</li><li>The release date is stored in the publish_date column of
 cr_revisions,</li><li>The archive_date is supplemented by cr_news.</li>
 </ul>
+
 A reminder to the column release_date is necessary here: Its
 granularity is only one day, i.e. the relase date is for instance
 2001-01-01 00:00 (always at midnight). If someone wants to present
@@ -132,13 +151,17 @@ a view of 'new items' since last login (which can be more than once
 since 00:00), one can use cr_news.approval_date for differentiating
 since this is time-stamped by sysdate.
 <h4>Permissions</h4>
+
 With the ACS4 permissions model, the news administrator need no
 longer coincide with the site administrator. This need only be the
 case right after installation. The News application has a
 hierarchical set of permissions which can be assigned to any party
-as needed. The news root privilege is <code>news_admin</code> which
-comprises <code>news_create, news_delete,</code> and
-<code>news_read</code>.
+as needed. The news root privilege is <code>news_admin</code>
+ which
+comprises <code>news_create, news_delete,</code>
+ and
+<code>news_read</code>
+.
 <p>By default, the <code>news_admin</code> permission inherits from
 the site-wide admin. The <code>news_read</code> permission is
 assigned to the public so that all users, including non-registered
@@ -150,15 +173,22 @@ place automatically by setting the parameter <i>ApprovalPolicy</i>
 to 'open'. The news privileges can be changed in /permissions/ by
 the administrator on the /news/admin/index page. The needs of an
 individual site, e.g. sharing the news administration duties among
-several individuals, are thus covered.</p><h4>Legal Transactions</h4><h5>User Pages</h5><ul>
+several individuals, are thus covered.</p>
+<h4>Legal Transactions</h4>
+<h5>User Pages</h5>
+<ul>
 <li>View published news item list: index?view=active</li><li>View archived news item list: index?view=archive</li><li>View one news item: revision</li><li>Preview one news item before publishing/approving: preview</li>
-</ul><h4>News Administrator Pages</h4><ul>
+</ul>
+<h4>News Administrator Pages</h4>
+<ul>
 <li>View one news item with administrative information:
 admin/revision</li><li>Administer news items: admin/index</li><li>Administer one news item: admin/item</li><li>Add/suggest a new news item: item-create</li><li>Edit existing news coverage by adding a revision:
 admin/revision-add</li><li>Archive existing news coverage:
 admin/process?action=archive</li><li>Make permanent existing news coverage:
 admin/process?action=make_permanent</li><li>Approve existing news coverage: admin/approve</li><li>De-activate existing news coverage: admin/revoke</li><li>Delete existing news coverage: admin/process?action=delete</li><li>Set one revision the active one: admin/revision-set-active</li>
-</ul><h3>VIII. User Interface</h3>
+</ul>
+<h3>VIII. User Interface</h3>
+
 The publicly accessible pages are in the root directory of the
 mounted instance. The administrative pages are in /news/admin/. No
 privilege check is needed in the news/admin/ directory.
@@ -166,15 +196,19 @@ privilege check is needed in the news/admin/ directory.
 item</b> only appear for parties which possess the appropriate
 privileges. Viewers not authorized to view the index page (i.e.
 parties who were denied the <code>news_read</code> permission) are
-shown the the site-wide 'not-authorized' template.</p><p>The news gateway defaults to serving the parameter
+shown the the site-wide 'not-authorized' template.</p>
+<p>The news gateway defaults to serving the parameter
 <code>DisplayMax</code>, see sec. XI below, number of news items or
 archived items. The rest of the items can be viewed with a centered
 paging link at the bottom of the page. The link <code>archived
-items | live items</code> appears if such exist.</p><p>The /admin/index page shows a table of the active revisions of
-each news item. News items can have the status of:</p><ul>
+items | live items</code> appears if such exist.</p>
+<p>The /admin/index page shows a table of the active revisions of
+each news item. News items can have the status of:</p>
+<ul>
 <li>unapproved (only if a non-news-admin uploaded something), the
 news_admin is approved automatically</li><li>approved and awaiting release</li><li>published (= approved and live)</li><li>archived</li>
 </ul>
+
 The /admin/index page has a dimensional slider to select items with
 the corresponding status. To each selected view, a SELECT box with
 allowable operations (on the items checked at their checkbox in the
@@ -189,9 +223,12 @@ must be accompanied by a revision log string to describe the
 changes. The /admin/item administration page shows the audit
 history of an item in a similar format as that of the files shown
 in <a href="http://cvs.arsdigita.com">cvs.arsdigita.com</a>. be
-added.</p><p>Function of the archive date: The archive status is either a
+added.</p>
+<p>Function of the archive date: The archive status is either a
 date in the future after the release date or null for permanently
-live items.</p><h3>IX. Making News Searchable with Site-Wide-Search</h3>
+live items.</p>
+<h3>IX. Making News Searchable with Site-Wide-Search</h3>
+
 Follow the setup instruction in site-wide-search and read the
 design doc. You have to follow specifically these steps:
 <ol>
@@ -212,10 +249,13 @@ hours.
      
 </pre>
 </li>
-</ol><p>To drop an instance of the News application correctly, follow
-these steps:</p><ol>
+</ol>
+<p>To drop an instance of the News application correctly, follow
+these steps:</p>
+<ol>
 <li>drop news, and source news-sws-drop.sql</li><li>source site-wide-search/sql/content-revision-sws-drop.sql</li><li>source sws-package-all-drop.sql</li>
 </ol>
+
 As can be seen from the function news__sws.sws_req_permission each
 searchable item requires an access permission. For users with the
 privilege 'news_admin', no permission (null) is required and all
@@ -226,6 +266,7 @@ already be archived). The search results, shown in the mounted
 directory of site-wide-search, don't distinguish between 'live' and
 'archived' items.
 <h3>X. General Comments</h3>
+
 This release allows general comments using the general-comments
 package. The policy of general comments is determined by the
 parameter SolicitCommentsP, see below. In order to work correctly,
@@ -237,7 +278,9 @@ general-comments package.
 <p>The most important integration of the comments facility is
 reflected in the news.delete procedure of the package news. Before
 the news item is deleted, all possible dependent comments inlcuding
-picture attachments are dropped.</p><h3>XI. Parameters</h3>
+picture attachments are dropped.</p>
+<h3>XI. Parameters</h3>
+
 The news application has three customizable parameters which have
 to be set for each package instance through the site-map manager.
 <ul>
@@ -248,7 +291,9 @@ administrator.</li><li>ShowSearchInterfaceP...[0,1] whether we show a 'Search Bo
 searching news items with site-wide-search (must be
 installed).</li><li>SolicitCommentsP...[1,0] whether we allow comments on a news
 item or not</li>
-</ul><h3>XII. Acceptance Tests</h3>
+</ul>
+<h3>XII. Acceptance Tests</h3>
+
 You should test adding, viewing, editing, changing revisions,
 changing status and deleting a news item:
 <ul>
@@ -256,15 +301,19 @@ changing status and deleting a news item:
 side with the correct number of days left for display.</li><li>Verify that the new revision is active, and that it is
 displayed on the user side.</li><li>On the admin side, archive the item.</li><li>Ensure that the user now sees it as an archived item.</li><li>On the admin side, make the item permanent.</li><li>Ensure that the user now sees it as a live item.</li><li>Delete the item.</li>
 </ul>
+
 Uploads of up to 10.000-character news items was tested
 successfully. HTML uploads appear correctly. However, some HTML
 tags are filtered site-wide against malicious spamming. The
-site-wide admin can turn them on/of at <a href="/admin/site-map">setting ACS Kernel parameters</a> at ACS Kernel
+site-wide admin can turn them on/of at <a href="/admin/site-map">setting ACS Kernel parameters</a>
+ at ACS Kernel
 [set parameters].<br>
+
 Pure text uploads preserve their formatting from the textarea - a
 &lt;pre&gt; tag is wrapped around. That way the textarea for
 entering the news body is used as a formatting editor.
-<h3>XIII. Future Improvements</h3><ul>
+<h3>XIII. Future Improvements</h3>
+<ul>
 <li>Use e-mail notification on submission and release, such as
 supplied by ACS Notification in PL/SQL only.</li><li>Allow for more MIME types, especially Microsoft Word, and use
 the corresponding Intermedia filter to render as HTML.</li><li>Add news categorization to the data model that allows to order
@@ -272,8 +321,12 @@ news articles by categories without creating new application
 instances (e.g. sports, education, health, literature, music ,
 politics, ...) - this also needs a UI to create categories and a
 mapping table.</li>
-</ul><h3>XIV. Authors</h3>
-Please mail suggestions or bug reports to <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a><h3>XV. Revision History</h3><table cellpadding="2" cellspacing="2" width="90%" bgcolor="#EFEFEF">
+</ul>
+<h3>XIV. Authors</h3>
+
+Please mail suggestions or bug reports to <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
+<h3>XV. Revision History</h3>
+<table cellpadding="2" cellspacing="2" width="90%" bgcolor="#EFEFEF">
 <tr bgcolor="#E0E0E0">
 <th width="10%">Document Revision #</th><th width="50%">Action Taken, Notes</th><th>When?(mm/dd/yyyy)</th><th>By Whom?</th>
 </tr><tr>
@@ -288,4 +341,3 @@ Please mail suggestions or bug reports to <a href="mailto:stefan\@arsdigita.com"
 <td>1.2</td><td>Alpha release wrap up</td><td>1/25/2001</td><td>Stefan Deusch</td>
 </tr>
 </table>
-</body>
