@@ -186,3 +186,9 @@ ad_proc -public enable_intervals_and_methods {type_id} {
 	-type_id $type_id \
 	-delivery_method_id [notification::delivery::get_id -short_name email]
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

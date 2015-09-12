@@ -95,3 +95,9 @@ if { ![info exist halt_p] || $halt_p==0 } {
 set hidden_vars [export_vars -form {action n_items item_id}]
 
 ad_return_template
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

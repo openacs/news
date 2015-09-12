@@ -77,3 +77,9 @@ set rss_exists [rss_support::subscription_exists \
                     -impl_name news]
 set rss_feed_url [news_util_get_url $package_id]rss/rss.xml
 
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

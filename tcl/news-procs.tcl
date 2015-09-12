@@ -358,3 +358,9 @@ ad_proc -public news_do_notification {
         -notif_date $publish_date
 
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

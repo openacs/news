@@ -82,3 +82,9 @@ if [catch {
     ad_returnredirect "item?item_id=$item_id"
 	
 }    
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

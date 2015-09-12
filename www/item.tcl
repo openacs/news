@@ -72,3 +72,9 @@ if { $item_exist_p } {
     set contect [list $title]
     ad_return_complaint 1 [_ news.lt_Could_not_find_the_re]
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

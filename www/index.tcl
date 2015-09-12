@@ -113,3 +113,9 @@ set notification_chunk [notification::display::request_widget \
                         -url [ad_return_url] \
                         ]
 ad_return_template
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:
