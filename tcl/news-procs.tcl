@@ -116,7 +116,7 @@ ad_proc news__datasource {
                      [list \
                           item_id $object_id \
                           publish_title $publish_title \
-                          publish_title $publish_lead \
+                          publish_lead $publish_lead \
                           publish_body $publish_body \
                           publish_format $publish_format \
                           publish_image {} \

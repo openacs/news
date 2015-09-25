@@ -7,7 +7,7 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="5.9.0d1" url="http://openacs.org/repository/download/apm/news-5.9.0d1.apm">
+    <version name="5.9.0d2" url="http://openacs.org/repository/download/apm/news-5.9.0d2.apm">
         <owner url="http://opeancs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
         <release-date>2007-06-15</release-date>
@@ -16,7 +16,7 @@
         <maturity>2</maturity>
         <package_instance_name>#news.News#</package_instance_name>
 
-        <provides url="news" version="5.9.0d1"/>
+        <provides url="news" version="5.9.0d2"/>
         <requires url="acs-content-repository" version="5.8.1"/>
         <requires url="acs-datetime" version="5.8.1"/>
         <requires url="acs-kernel" version="5.8.1"/>
