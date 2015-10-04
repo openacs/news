@@ -7,21 +7,21 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="5.9.0b1" url="http://openacs.org/repository/download/apm/news-5.9.0b1.apm">
+    <version name="5.9.0b2" url="http://openacs.org/repository/download/apm/news-5.9.0b2.apm">
         <owner url="http://opeancs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
-        <release-date>2015-09-25</release-date>
+        <release-date>2015-10-04</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
         <maturity>2</maturity>
         <package_instance_name>#news.News#</package_instance_name>
 
-        <provides url="news" version="5.9.0b1"/>
-        <requires url="acs-content-repository" version="5.9.0b1"/>
-        <requires url="acs-datetime" version="5.9.0b1"/>
-        <requires url="acs-kernel" version="5.9.0b1"/>
-        <requires url="general-comments" version="5.9.0b1"/>
-        <requires url="notifications" version="5.9.0b1"/>
+        <provides url="news" version="5.9.0b2"/>
+        <requires url="acs-content-repository" version="5.9.0b2"/>
+        <requires url="acs-datetime" version="5.9.0b2"/>
+        <requires url="acs-kernel" version="5.9.0b2"/>
+        <requires url="general-comments" version="5.9.0b2"/>
+        <requires url="notifications" version="5.9.0b2"/>
         <requires url="rss-support" version="0.3"/>
 
         <callbacks>
