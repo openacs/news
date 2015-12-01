@@ -17,11 +17,11 @@
         <package_instance_name>#news.News#</package_instance_name>
 
         <provides url="news" version="5.9.0b2"/>
-        <requires url="acs-content-repository" version="5.9.0b2"/>
-        <requires url="acs-datetime" version="5.9.0b2"/>
-        <requires url="acs-kernel" version="5.9.0b2"/>
-        <requires url="general-comments" version="5.9.0b2"/>
-        <requires url="notifications" version="5.9.0b2"/>
+        <requires url="acs-content-repository" version="5.9.0"/>
+        <requires url="acs-datetime" version="5.9.0"/>
+        <requires url="acs-kernel" version="5.9.0"/>
+        <requires url="general-comments" version="5.9.0"/>
+        <requires url="notifications" version="5.9.0"/>
         <requires url="rss-support" version="0.3"/>
 
         <callbacks>
