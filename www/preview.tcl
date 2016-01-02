@@ -158,10 +158,11 @@ if { [string match $action "News Item"] } {
 }
 
 # creator link 
-set creator_name [db_string creator "
-select first_names || ' ' || last_name 
-from   cc_users 
-where  user_id = :user_id"]
+set creator_name [db_string creator {
+    select first_names || ' ' || last_name 
+    from   cc_users 
+    where  user_id = :user_id
+}]
 set creator_link "<a href=\"/shared/community-member?user_id=$user_id\">$creator_name</a>"
 
 template::head::add_style -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" -media screen

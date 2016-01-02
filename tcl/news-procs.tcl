@@ -17,13 +17,7 @@ ad_proc news_items_archive { id_list when } {
 } {
 
     foreach id $id_list {
-	db_exec_plsql news_item_archive {
-	    begin
-	    news.archive(
-	        item_id => :id,
-	        archive_date => :when);
-	    end;
-	}
+	db_exec_plsql news_item_archive {}
     }
 
 }
@@ -37,11 +31,7 @@ ad_proc news_items_make_permanent { id_list } {
 } {
 
     foreach id  $id_list {
-	db_exec_plsql news_item_make_permanent {
-	    begin
-	        news.make_permanent(:id);
-	    end;
-	}
+	db_exec_plsql news_item_make_permanent {}
     }
 
 }
@@ -54,11 +44,7 @@ ad_proc news_items_delete { id_list } {
 } { 
 
     foreach id $id_list {
-	db_exec_plsql news_item_delete {
-	    begin
-	        news.del(:id);
-	    end;
-	}
+	db_exec_plsql news_item_delete {}
     }
 
 }
@@ -72,12 +58,7 @@ ad_proc news_util_get_url {
 
     set url_stub ""
 
-    db_0or1row get_url_stub "
-        select site_node__url(node_id) as url_stub
-        from site_nodes
-        where object_id=:package_id
-    "
-
+    db_0or1row get_url_stub {}
     return $url_stub
 
 }
@@ -238,7 +219,7 @@ ad_proc -public news__last_updated {
 
     @error
 } {
-    return [db_string get_last_updated ""]
+    return [db_string get_last_updated {}]
 }
 
 ad_proc -private news__rss_datasource {
@@ -338,8 +319,10 @@ ad_proc -public news_do_notification {
     set instance_name [application_group::closest_ancestor_element  -include_self  -node_id $node_id  -element "instance_name"]
 
     # get the title and teaser for latest news item for the given package id
-    if { [db_0or1row "get_news" "select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body, publish_format from news_items_live_or_submitted where news_id =
- :news_id"] } {
+    if { [db_0or1row get_news {
+        select item_id, publish_date, publish_title as title, publish_lead as lead, publish_body, publish_format
+        from news_items_live_or_submitted where news_id = :news_id
+    }] } {
         set new_content "$title\n\n$lead\n\n[ad_html_text_convert -from $publish_format -to text/plain -- $publish_body]"
         set html_content [ad_html_text_convert -from $publish_format -to text/html -- $publish_body]
         append new_content "\n\n[string repeat - 70]"

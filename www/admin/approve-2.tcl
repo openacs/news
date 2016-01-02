@@ -47,20 +47,7 @@ set live_revision_p "t"
 
 foreach id $revision_id {
     
-    db_exec_plsql news_item_approve_publish {
-	begin
-        news.set_approve(
-	    approve_p       => 't',
-	    revision_id     => :id,
-	    publish_date    => :publish_date_ansi,
-            archive_date    => :archive_date_ansi,
-            approval_user   => :approval_user,
-            approval_date   => :approval_date,
-            approval_ip     => :approval_ip,
-            live_revision_p => :live_revision_p
-         );
-    end;
-    }       
+    db_exec_plsql news_item_approve_publish {}       
 
 }
 set package_id [ad_conn package_id]

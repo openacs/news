@@ -525,14 +525,14 @@ aa_register_case -cats {
     # Extract the list of all privileges and privilege heirachies.
     #
     set priv_list {}
-    db_foreach "get-privileges" {
+    db_foreach get-privileges {
         select privilege from acs_privileges
     } {
         lappend priv_list $privilege
     }
 
     set priv_h_list {}
-    db_foreach "get-privilege-heirarchys" {
+    db_foreach get-privilege-heirarchys {
         select privilege, child_privilege from acs_privilege_hierarchy
     } {
         lappend priv_h_list "$privilege,$child_privilege"
@@ -666,7 +666,7 @@ aa_register_case -cats {
 } "check-object-type" {
     Checks the news object type.
 } {
-    set news_type_exists_p [db_0or1row "get-news-type-info" {
+    set news_type_exists_p [db_0or1row get-news-type-info {
         select supertype
         from acs_object_types
         where object_type = 'news'
@@ -677,7 +677,7 @@ aa_register_case -cats {
     if {$news_type_exists_p} {
         aa_equals "Check the supertype is content_revision" $supertype "content_revision"
 
-        db_foreach "get-news-type-attribs" {
+        db_foreach get-news-type-attribs {
             select attribute_name
             from acs_attributes
             where object_type = 'news'
@@ -692,7 +692,7 @@ aa_register_case -cats {
             aa_true "Check $attribute_name exists" {[lsearch $attribs $attribute_name] != -1}
         }
 
-        set news_folder_exists_p [db_0or1row "get-news-cr-folder" {
+        set news_folder_exists_p [db_0or1row get-news-cr-folder {
             select folder_id
             from cr_folders
             where label = 'news'

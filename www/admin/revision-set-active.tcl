@@ -16,11 +16,7 @@ ad_page_contract {
 }
 
 
-db_exec_plsql update_forum {
-    begin
-       news.revision_set_active (:new_rev_id);
-    end;
-}
+db_exec_plsql update_forum {}
     
 ad_returnredirect "item?item_id=$item_id"
 

@@ -130,7 +130,7 @@ ad_proc -private news::install::before_uninstantiate {
     
     @error 
 } {
-    news_items_delete [db_list dead_news ""]
+    news_items_delete [db_list dead_news {}]
     rss_support::del_subscription -summary_context_id $package_id -owner news -impl_name news
 }
 
