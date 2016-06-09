@@ -7,3 +7,9 @@ if {[regexp {^/([0-9]+)} [ad_conn path_info] match item_id]} {
 }
 
 rp_internal_redirect /packages/news/lib/item
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

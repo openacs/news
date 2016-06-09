@@ -1,2 +1,7 @@
 set package_id [ad_conn package_id]
 rp_internal_redirect /rss/news/${package_id}/rss.xml
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:
