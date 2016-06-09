@@ -169,7 +169,7 @@ users, have access to /news/. By default, the
 <code>news_create</code> permission is assigned to registered
 users. However, they can only submit a news items, but not approve
 it. Approval requires news_admin privilege or can be set to take
-place automatically by setting the parameter <i>ApprovalPolicy</i>
+place automatically by setting the parameter <em>ApprovalPolicy</em>
 to 'open'. The news privileges can be changed in /permissions/ by
 the administrator on the /news/admin/index page. The needs of an
 individual site, e.g. sharing the news administration duties among
@@ -192,8 +192,8 @@ admin/process?action=make_permanent</li><li>Approve existing news coverage: admi
 The publicly accessible pages are in the root directory of the
 mounted instance. The administrative pages are in /news/admin/. No
 privilege check is needed in the news/admin/ directory.
-<p>The corresponding links for <b>Administer</b> and <b>Create news
-item</b> only appear for parties which possess the appropriate
+<p>The corresponding links for <strong>Administer</strong> and <strong>Create news
+item</strong> only appear for parties which possess the appropriate
 privileges. Viewers not authorized to view the index page (i.e.
 parties who were denied the <code>news_read</code> permission) are
 shown the the site-wide 'not-authorized' template.</p>
@@ -218,7 +218,7 @@ archived items, one can re-publish or delete them.
 <p>Note, that releasing/revoking can be done for an item
 individually as well, following the ID# link in the second column
 which leads to /admin/item. On that page, a new revision can be
-added. There is no UI to <i>edit</i> a revision; A new revision
+added. There is no UI to <em>edit</em> a revision; A new revision
 must be accompanied by a revision log string to describe the
 changes. The /admin/item administration page shows the audit
 history of an item in a similar format as that of the files shown
@@ -235,7 +235,7 @@ design doc. You have to follow specifically these steps:
 <li>download and install acs-interface from <a href="http://www.arsdigita.com/acs-repository/">www.arsdigita.com/acs-repository/</a>
 </li><li>download and install site-wide-search from <a href="http://www.arsdigita.com/acs-repository/">www.arsdigita.com/acs-repository/</a>
 </li><li>restart server</li><li>run SQL setup script for site-wide-search, specifically
-<b>sws-package-all.sql</b>, by hand.</li><li>cd into news/sql and source news-sws.sql</li><li>mount site-wide-search, e.g. under /search - an instance must
+<strong>sws-package-all.sql</strong>, by hand.</li><li>cd into news/sql and source news-sws.sql</li><li>mount site-wide-search, e.g. under /search - an instance must
 be mounted for each package you intend to have search
 functionality</li><li>if you want to search your items immediately, you must compile
 the index manually - otherwise it is scheduled to run every 2

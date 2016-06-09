@@ -35,8 +35,8 @@ items typically derive from sources external to the organization in
 question.</p>
 <h3>III. System/Application Overview</h3>
 
-The News application shall make use of the <b>content
-repository</b>
+The News application shall make use of the <strong>content
+repository</strong>
  service. Each news item consists of an entry in
 <code>cr_items</code>
  and keeps track of revisions in
