@@ -63,12 +63,13 @@ however even more flexibility can be introduced by supplying the
 news body in HTML format. If someone submits a news body with
 inconsistent HTML tags, the News application attempts to close
 these tags in the preview page.
-<p>The news body can have a MIME format of "text/plain" or
-"text/html". Using HTML, the publisher can hyperlink images, audio-
-and video files into the publication body from other sites or from
-the local file storage module. This way, the news application does
-not need its own content management. For instance, one can download
-and install the ACS4 file-storage module from the <a href="http://www.arsdigita.com/acs-repository/">acs-repository</a>,
+<p>The news body can have a MIME format of "text/plain"
+or "text/html". Using HTML, the publisher can hyperlink
+images, audio- and video files into the publication body from other
+sites or from the local file storage module. This way, the news
+application does not need its own content management. For instance,
+one can download and install the ACS4 file-storage module from the
+<a href="http://www.arsdigita.com/acs-repository/">acs-repository</a>,
 upload some photographs in gif or jpeg format, and then link it
 into the HTML news body, somewhat like this: &lt;img
 src="http://myserver.org/file-storage/download/Fig1.gif"&gt;</p>
@@ -102,9 +103,9 @@ items</li><li>news_items_delete: deletes news items</li>
 
 The News application makes use of the exisiting ACS Content
 Repository service. A news item consists of a row-entry in the
-table cr_item, where all of the meta-information that isn't already
-stored in acs_objects concerning these items is placed, one or
-several rows in the revision table cr_revisions, and a custom
+table cr_item, where all of the meta-information that isn&#39;t
+already stored in acs_objects concerning these items is placed, one
+or several rows in the revision table cr_revisions, and a custom
 table, cr_news, which holds the remainder of the information
 necessary to describe a news item. cr_news items are children of
 cr_revision items.
@@ -136,8 +137,8 @@ single cr_folder named 'news' to hold all news items.
 <p>The data model in the context of the content repository are
 futher characterized by following:</p>
 <ul>
-<li>The items are assigned to the folder 'news' in the content
-repository.</li><li>The PL/SQL API provides procedures and functions to create,
+<li>The items are assigned to the folder 'news' in the
+content repository.</li><li>The PL/SQL API provides procedures and functions to create,
 delete, approve, archive, query, release, or revise a news
 item.</li><li>A new revision generates an entry in cr_news and cr_revisions
 in parallel and updates the live_revision in cr_items.</li><li>The release date is stored in the publish_date column of
@@ -147,9 +148,9 @@ cr_revisions,</li><li>The archive_date is supplemented by cr_news.</li>
 A reminder to the column release_date is necessary here: Its
 granularity is only one day, i.e. the relase date is for instance
 2001-01-01 00:00 (always at midnight). If someone wants to present
-a view of 'new items' since last login (which can be more than once
-since 00:00), one can use cr_news.approval_date for differentiating
-since this is time-stamped by sysdate.
+a view of 'new items' since last login (which can be more
+than once since 00:00), one can use cr_news.approval_date for
+differentiating since this is time-stamped by sysdate.
 <h4>Permissions</h4>
 
 With the ACS4 permissions model, the news administrator need no
@@ -169,11 +170,12 @@ users, have access to /news/. By default, the
 <code>news_create</code> permission is assigned to registered
 users. However, they can only submit a news items, but not approve
 it. Approval requires news_admin privilege or can be set to take
-place automatically by setting the parameter <em>ApprovalPolicy</em>
-to 'open'. The news privileges can be changed in /permissions/ by
-the administrator on the /news/admin/index page. The needs of an
-individual site, e.g. sharing the news administration duties among
-several individuals, are thus covered.</p>
+place automatically by setting the parameter
+<em>ApprovalPolicy</em> to 'open'. The news privileges can
+be changed in /permissions/ by the administrator on the
+/news/admin/index page. The needs of an individual site, e.g.
+sharing the news administration duties among several individuals,
+are thus covered.</p>
 <h4>Legal Transactions</h4>
 <h5>User Pages</h5>
 <ul>
@@ -192,11 +194,12 @@ admin/process?action=make_permanent</li><li>Approve existing news coverage: admi
 The publicly accessible pages are in the root directory of the
 mounted instance. The administrative pages are in /news/admin/. No
 privilege check is needed in the news/admin/ directory.
-<p>The corresponding links for <strong>Administer</strong> and <strong>Create news
-item</strong> only appear for parties which possess the appropriate
-privileges. Viewers not authorized to view the index page (i.e.
-parties who were denied the <code>news_read</code> permission) are
-shown the the site-wide 'not-authorized' template.</p>
+<p>The corresponding links for <strong>Administer</strong> and
+<strong>Create news item</strong> only appear for parties which
+possess the appropriate privileges. Viewers not authorized to view
+the index page (i.e. parties who were denied the
+<code>news_read</code> permission) are shown the the site-wide
+'not-authorized' template.</p>
 <p>The news gateway defaults to serving the parameter
 <code>DisplayMax</code>, see sec. XI below, number of news items or
 archived items. The rest of the items can be viewed with a centered
@@ -258,13 +261,13 @@ these steps:</p>
 
 As can be seen from the function news__sws.sws_req_permission each
 searchable item requires an access permission. For users with the
-privilege 'news_admin', no permission (null) is required and all
-available revisions are searched as well. For all other users a
-'news_read' permission is returned on the published revision, i.e.
-search results from the live revision (even though they might
-already be archived). The search results, shown in the mounted
-directory of site-wide-search, don't distinguish between 'live' and
-'archived' items.
+privilege 'news_admin', no permission (null) is required
+and all available revisions are searched as well. For all other
+users a 'news_read' permission is returned on the published
+revision, i.e. search results from the live revision (even though
+they might already be archived). The search results, shown in the
+mounted directory of site-wide-search, don&#39;t distinguish
+between 'live' and 'archived' items.
 <h3>X. General Comments</h3>
 
 This release allows general comments using the general-comments
@@ -287,8 +290,8 @@ to be set for each package instance through the site-map manager.
 <li>ActiveDays...number of days between relase and archival</li><li>DisplayMax ... how many items are shown on the index page
 (valid for live and archived items)</li><li>ApprovalPolicy...[open|wait] if open, submitted items are
 approved immediately, wait means approval by the
-administrator.</li><li>ShowSearchInterfaceP...[0,1] whether we show a 'Search Box' for
-searching news items with site-wide-search (must be
+administrator.</li><li>ShowSearchInterfaceP...[0,1] whether we show a 'Search
+Box' for searching news items with site-wide-search (must be
 installed).</li><li>SolicitCommentsP...[1,0] whether we allow comments on a news
 item or not</li>
 </ul>

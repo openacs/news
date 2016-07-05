@@ -77,8 +77,8 @@ Administrator is the subsite admininstator for the Boston office
 subsite. Instead of spamming the employees in the office with
 Boston news, she decides to enable the News package for their
 subsite. First, she checks that the News package is installed and
-enabled for office subsites. If it's not, then Jane must ask Judy
-Sitewide Administrator to do this. Once the News package is
+enabled for office subsites. If it&#39;s not, then Jane must ask
+Judy Sitewide Administrator to do this. Once the News package is
 installed and enabled for office subsites, Jane enables the News
 application specifically for the Boston Office subsite. Jane can
 also change the configuration of the News application for the
@@ -115,18 +115,18 @@ news_admin<br>
 10.30.50 Specify the intended parent/child relations between these
 privileges.</p>
 <p>10.40 Parameters<br>
-10.40.10 Provide a parameter 'MakeSearchable' which indicates
-whether news item content should be accessible through the ACS
-Content service package<br>
-10.40.20 Provide a 'MaxDisplay' parameter which indicates the
-maximum number of items to be displayed per site page<br>
-10.40.30 Provide a 'DaysUntilArchive' parameter indicating the
-default days until a news items is archived. This parameter should
-be able to be overridden on a per news item basis through the
-administration pages.<br>
-10.40.40 Provide an 'AllowCommentsP' parameter indicating general
-policy regarding whether or not news items should be able to be
-commented upon.<br>
+10.40.10 Provide a parameter 'MakeSearchable' which
+indicates whether news item content should be accessible through
+the ACS Content service package<br>
+10.40.20 Provide a 'MaxDisplay' parameter which indicates
+the maximum number of items to be displayed per site page<br>
+10.40.30 Provide a 'DaysUntilArchive' parameter indicating
+the default days until a news items is archived. This parameter
+should be able to be overridden on a per news item basis through
+the administration pages.<br>
+10.40.40 Provide an 'AllowCommentsP' parameter indicating
+general policy regarding whether or not news items should be able
+to be commented upon.<br>
 10.40.50 Provide a 'NotifyByEmailOnUploadP' if the news
 administrator should be notified via email upon news items
 submission<br>
@@ -142,8 +142,8 @@ published items<br>
 its associated template format together with a link for
 comments<br>
 
-20.40 Ensure that non 'text/html' news bodies are converted to HTML
-using Intermedia text filters
+20.40 Ensure that non 'text/html' news bodies are converted
+to HTML using Intermedia text filters
 <h4>VI.3 Registered User Interface</h4>
 <br>
 
@@ -178,7 +178,8 @@ items<br>
 adminstration<br>
 
 40.60 Provide various archive functions on multiple items, like
-'archive next day|week|month' for a set of selected items.<br>
+'archive next day|week|month' for a set of selected
+items.<br>
 
 40.70 Allow for the approve functions to operate on multiple items
 simultaneously<br>
@@ -218,8 +219,8 @@ viewed<br>
 
 60.30 Provide a display of the ranking of most seen items<br>
 
-60.40 Provide a Yahoo-like 'Mail this news article to a Friend'
-link
+60.40 Provide a Yahoo-like 'Mail this news article to a
+Friend' link
 <hr>
 <address><a href="mailto:stefan\@arsdigita.com">stefan\@arsdigita.com</a></address>
 <br>
