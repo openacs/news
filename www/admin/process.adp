@@ -7,16 +7,16 @@
   #news.The_action# <span style="color:red">@action@</span> #news.lt_cannot_be_applied_to_#
   <ul> 
     <multiple name=unapproved>
-     <li><b>@unapproved.publish_title@</b> - @unapproved.creation_date_pretty@
+     <li><strong>@unapproved.publish_title@</strong> - @unapproved.creation_date_pretty@
             contributed by @unapproved.item_creator@
-	 [ <a href="item?item_id=@unapproved.item_id@"><b>#news.manage#</b></a> ]
+	 [ <a href="item?item_id=@unapproved.item_id@"><strong>#news.manage#</strong></a> ]
     </multiple>
   </ul>
   <br>
   #news.lt_Manage_the_items_indi#
 </if>	
 <else>
-  <b>#news.lt_Do_you_really_want_to# <span style="color:red">@action_pretty@</span><br> #news.lt_on_the_following_news#</b>
+  <strong>#news.lt_Do_you_really_want_to# <span style="color:red">@action_pretty@</span><br> #news.lt_on_the_following_news#</strong>
 
   <listtemplate name="news_items"></listtemplate>
 
