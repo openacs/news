@@ -28,8 +28,7 @@
 
 <form action="approve-2" method="post" enctype="multipart/form-data">
 @hidden_vars;noquote@
-<input type="hidden" name="revision_id" value='<multiple name="items">@items.revision_id@ </multiple>'>
-
+<input type="hidden" name="revision_id" value="<multiple name="items">@items.revision_id@ </multiple>">
 <p class="formLabel"><label for="publish_date">#news.Release_Date#</label></p>
 <p class="formWidget">@publish_date_select;noquote@</p>
 
