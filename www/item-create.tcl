@@ -26,7 +26,9 @@ permission::require_permission -object_id $package_id -privilege news_create
 
 # Furthermore, with news_admin privilege, items are approved immediately
 # or if open approval policy 
-if { [permission::permission_p -object_id $package_id -privilege news_admin] || [string equal "open" [parameter::get -parameter ApprovalPolicy -default "open"]] } {
+if { [permission::permission_p -object_id $package_id -privilege news_admin]
+     || [parameter::get -parameter ApprovalPolicy -default "open"] eq "open"
+ } {
     set immediate_approve_p 1
 } else {
     set immediate_approve_p 0
@@ -80,8 +82,6 @@ if { $immediate_approve_p } {
             {options {{"#news.show_it_permanently#" t}}}}
     }
 }
-
-ad_return_template
 
 # Local variables:
 #    mode: tcl

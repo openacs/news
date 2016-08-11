@@ -37,8 +37,8 @@ set approval_policy [parameter::get -parameter ApprovalPolicy -default "wait"]
 # the news_admin or an open approval policy allow immediate publishing
 #
 if { $news_admin_p == 1 || $approval_policy eq "open" } { 
-    set approval_user [ad_conn "user_id"]
-    set approval_ip [ad_conn "peeraddr"]
+    set approval_user [ad_conn user_id]
+    set approval_ip [ad_conn peeraddr]
     set approval_date [dt_sysdate]
     set live_revision_p "t"
 } else {
@@ -55,8 +55,8 @@ if {$permanent_p == "t"} {
 
 # get creation_foo
 set creation_date [dt_sysdate]
-set creation_ip [ad_conn "peeraddr"]
-set user_id [ad_conn "user_id"]
+set creation_ip [ad_conn peeraddr]
+set user_id [ad_conn user_id]
 
 # avoid any db weirdness with the "." in the variable name.
 set mime_type ${publish_body.format}
@@ -68,7 +68,7 @@ set news_id [db_exec_plsql create_news_item {}]
 # call. The blob stuff is just needed for Oracle.
 #
 set content_add [db_map content_add]
-if {![string match $content_add ""]} {
+if {$content_add ne ""} {
     db_dml content_add {} -blobs  [list $publish_body]
 }
 
