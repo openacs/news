@@ -42,7 +42,7 @@ set creation_user [ad_conn "user_id"]
 set active_revision_p "t"
 
 # Insert is 2-step process, same as in item-create-3.tcl
-if [catch { 
+if {[catch { 
     set revision_id [db_exec_plsql create_news_item_revision {}]
 
     set content_add [db_map content_add]
@@ -55,7 +55,7 @@ if [catch {
         } -blobs  [list $publish_body]
     }
    
-} errmsg ] {
+} errmsg ]} {
 	
     set complaint " [_ news.lt_The_database_did_not_] \
        [_ news.lt_See_details_for_the_e]\n\n\t<p><b>$errmsg</b>"
