@@ -390,7 +390,9 @@ BEGIN
         null,            -- revision_id
         p_creation_date, -- creation_date
         p_creation_user, -- creation_user
-        p_creation_ip    -- creation_ip
+        p_creation_ip,   -- creation_ip
+	null,            -- content_length
+        p_package_id     -- package_id
     );
     -- create new news entry with new revision
     insert into cr_news
@@ -415,7 +417,6 @@ BEGIN
     end if;
     return v_revision_id;
 END;
-
 $$ LANGUAGE plpgsql;
 
 
