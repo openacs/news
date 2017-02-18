@@ -67,3 +67,8 @@ BEGIN
     return v_revision_id;
 END;
 $$ LANGUAGE plpgsql;
+
+--
+-- Remove leftover from old installations (perform cleanup which was missing since Feb 2005)
+--
+DROP FUNCTION IF EXISTS news__new(integer, character varying, timestamp with time zone, text, character varying, character varying, character varying, integer, timestamp with time zone, integer, timestamp with time zone, character varying, character varying, character varying, integer, boolean);
