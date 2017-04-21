@@ -175,7 +175,7 @@ file (real player) for live reports.
 items<br>
 
 40.50 Provide a selection box with commands for collective
-adminstration<br>
+administration<br>
 
 40.60 Provide various archive functions on multiple items, like
 'archive next day|week|month' for a set of selected

@@ -532,7 +532,7 @@ aa_register_case -cats {
     }
 
     set priv_h_list {}
-    db_foreach get-privilege-heirarchys {
+    db_foreach get-privilege-hierarchies {
         select privilege, child_privilege from acs_privilege_hierarchy
     } {
         lappend priv_h_list "$privilege,$child_privilege"

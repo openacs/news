@@ -45,7 +45,7 @@
       </querytext>
 </fullquery>
  
-<fullquery name="_news__check-permissions.get-privilege-hierachys">
+<fullquery name="_news__check-permissions.get-privilege-hierarchies">
       <querytext>
         select privilege, child_privilege from acs_privilege_hierarchy
       </querytext>

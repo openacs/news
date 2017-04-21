@@ -18,7 +18,7 @@ by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
 <h3>II. Introduction</h3>
 
 Most Web services and almost all corporate sites have a
-comany.com/news/ service. These can be used in a variety of ways,
+company.com/news/ service. These can be used in a variety of ways,
 e.g. for advertising or dissemination of related news items. News
 items are such that they cease to be news after a while. When this
 happens, these news items should automatically disappear into the
@@ -135,7 +135,7 @@ be distinguished by the column 'package_id' (and not by the
 inherited context_id in acs_objects). We therefore need only a
 single cr_folder named 'news' to hold all news items.
 <p>The data model in the context of the content repository are
-futher characterized by following:</p>
+further characterized by following:</p>
 <ul>
 <li>The items are assigned to the folder 'news' in the
 content repository.</li><li>The PL/SQL API provides procedures and functions to create,
@@ -280,7 +280,7 @@ For administration of comments, one has to go into the site-wide
 general-comments package.
 <p>The most important integration of the comments facility is
 reflected in the news.delete procedure of the package news. Before
-the news item is deleted, all possible dependent comments inlcuding
+the news item is deleted, all possible dependent comments including
 picture attachments are dropped.</p>
 <h3>XI. Parameters</h3>
 
@@ -306,7 +306,7 @@ displayed on the user side.</li><li>On the admin side, archive the item.</li><li
 </ul>
 
 Uploads of up to 10.000-character news items was tested
-successfully. HTML uploads appear correctly. However, some HTML
+successfuly. HTML uploads appear correctly. However, some HTML
 tags are filtered site-wide against malicious spamming. The
 site-wide admin can turn them on/of at <a href="/admin/site-map">setting ACS Kernel parameters</a>
  at ACS Kernel
