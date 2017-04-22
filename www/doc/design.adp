@@ -306,7 +306,7 @@ displayed on the user side.</li><li>On the admin side, archive the item.</li><li
 </ul>
 
 Uploads of up to 10.000-character news items was tested
-successfuly. HTML uploads appear correctly. However, some HTML
+successfully. HTML uploads appear correctly. However, some HTML
 tags are filtered site-wide against malicious spamming. The
 site-wide admin can turn them on/of at <a href="/admin/site-map">setting ACS Kernel parameters</a>
  at ACS Kernel

@@ -61,7 +61,7 @@ to leave comments.</li>
 <h3>IV. Use-cases and User-scenarios</h3>
 
 The different classes of users are of the following categories:
-adminstrators, submitters, and readers.<br>
+administrators, submitters, and readers.<br>
 
 The administrative power is either site-wide or instance-wide.
 Typical user scenarios are as such:
