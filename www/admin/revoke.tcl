@@ -15,14 +15,7 @@ ad_page_contract {
 } 
 
 
-db_exec_plsql news_item_revoke {
-    begin
-        news.set_approve(
-            approve_p    => 'f',
-            revision_id  => :revision_id
-        );
-    end;
-}
+db_exec_plsql news_item_revoke {}
 
 ad_returnredirect "item?item_id=$item_id"
 
@@ -33,3 +26,9 @@ ad_returnredirect "item?item_id=$item_id"
 
 
 
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

@@ -17,7 +17,7 @@ ad_proc -callback merge::MergeShowUserInfo -impl news {
     ns_log Notice $msg
     set result [list $msg]
 
-    set news [db_list_of_lists getaprovednews { *SQL* }]
+    set news [db_list_of_lists getaprovednews {}]
 
     lappend result $news
 
@@ -34,7 +34,7 @@ ad_proc -callback merge::MergePackageUser -impl news {
     ns_log Notice $msg
     set result [list $msg]
 
-    db_dml update_from_news_approval { *SQL* }
+    db_dml update_from_news_approval {}
 
     lappend result "Merge of news is done"
 
@@ -96,3 +96,9 @@ ad_proc -callback application-track::getSpecificInfo -impl news {} {
 	}
         return "OK"
     }      
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

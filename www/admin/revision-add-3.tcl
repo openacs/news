@@ -42,39 +42,24 @@ set creation_user [ad_conn "user_id"]
 set active_revision_p "t"
 
 # Insert is 2-step process, same as in item-create-3.tcl
-if [catch { 
-    set revision_id [db_exec_plsql create_news_item_revision "
-    begin
-        :1 := news.revision_new(
-            item_id       => :item_id,
-            publish_date  => :publish_date_ansi,
-            title         => :publish_title,   
-            description   => :revision_log,
-            mime_type     => :mime_type,
-            package_id    => [ad_conn package_id],
-            archive_date  => :archive_date_ansi,
-            approval_user => :approval_user,
-            approval_date => :approval_date,
-            approval_ip   => :approval_ip,
-            creation_ip   => :creation_ip,
-            creation_user => :creation_user,
-            make_active_revision_p => :active_revision_p);
-    end;"]
+if {[catch { 
+    set revision_id [db_exec_plsql create_news_item_revision {}]
 
     set content_add [db_map content_add]
     if {![string match $content_add ""]} {    
-	db_dml content_add "
-	update cr_revisions
-	set    content = empty_blob()
-	where  revision_id = :revision_id
-	returning content into :1" -blobs  [list $publish_body]
+	db_dml content_add {
+            update cr_revisions
+            set    content = empty_blob()
+            where  revision_id = :revision_id
+            returning content into :1
+        } -blobs  [list $publish_body]
     }
    
-} errmsg ] {
+} errmsg ]} {
 	
-    set complaint " [_ news.lt_The_database_did_not_]
-    [_ news.lt_See_details_for_the_e]\n\n\t<p><b>$errmsg</b>"
-    ad_return_error "[_ news.Database_Error]" "$complaint" 
+    set complaint " [_ news.lt_The_database_did_not_] \
+       [_ news.lt_See_details_for_the_e]\n\n\t<p><b>$errmsg</b>"
+    ad_return_error [_ news.Database_Error] $complaint
     ad_script_abort
 	
 } else {
@@ -82,3 +67,9 @@ if [catch {
     ad_returnredirect "item?item_id=$item_id"
 	
 }    
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

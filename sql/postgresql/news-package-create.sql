@@ -8,12 +8,9 @@
 
 -- *** PACKAGE NEWS, plsql to create content_item ***
 
--- old define_function_args ('news__new','item_id,locale,publish_date,text,nls_language,title,mime_type;text/plain,package_id,archive_date,approval_user,approval_date,approval_ip,relation_tag,creation_ip,creation_user,is_live_p;f,lead')
--- new
+
+
 select define_function_args('news__new','item_id;null,locale;null,publish_date;null,text;null,nls_language;null,title;null,mime_type;text/plain,package_id;null,archive_date;null,approval_user;null,approval_date;null,approval_ip;null,relation_tag;null,creation_ip;null,creation_user;null,is_live_p;f,lead');
-
-
-
 
 --
 -- procedure news__new/17
@@ -42,7 +39,6 @@ DECLARE
     v_news_id       integer;
     v_item_id       integer;
     v_id            integer;
-    v_revision_id   integer;
     v_parent_id     integer;
     v_name          varchar;
     v_log_string    varchar;
@@ -59,11 +55,10 @@ BEGIN
     else
         v_id := p_item_id;
     end if;
-    --
+
     v_name := 'news-' || to_char(current_timestamp,'YYYYMMDD') || '-' || v_id;
-    --
     v_log_string := 'initial submission';
-    --
+
     v_item_id := content_item__new(
         v_name,               -- name
         v_parent_id,          -- parent_id
@@ -73,33 +68,31 @@ BEGIN
         p_creation_user,      -- creation_user
 	p_package_id,         -- context_id
         p_creation_ip,        -- creation_ip
-        'content_item',     -- item_subtype
-        'news',             -- content_type
+        'content_item',       -- item_subtype
+        'news',               -- content_type
         p_title,              -- title
-	null,                 -- description
+	v_log_string,         -- description
         p_mime_type,          -- mime_type
         p_nls_language,       -- nls_language
         null,                 -- text
-	null,                 -- data
+	p_text,               -- data
         null,                 -- relation_tag
         p_is_live_p,          -- live_p
-	'text',	      -- storage_type
+	'text',	              -- storage_type
         p_package_id          -- package_id
     );
 
-    v_revision_id := content_revision__new(
-        p_title,           -- title
-        v_log_string,      -- description
-        p_publish_date,    -- publish_date
-        p_mime_type,       -- mime_type
-        p_nls_language,    -- nls_language
-        p_text,            -- data
-        v_item_id,         -- item_id
-	null,              -- revision_id
-        current_timestamp, -- creation_date
-        p_creation_user,   -- creation_user
-        p_creation_ip      -- creation_ip
-    );
+    --
+    -- get the newly created revision_id as news_id
+    --
+    v_news_id := content_item__get_live_revision(v_item_id);
+
+    --
+    -- setting publish_date to the provided p_publish_date
+    --
+    update cr_revisions
+    set publish_date = p_publish_date
+    where revision_id = v_news_id;
 
     insert into cr_news
         (news_id,
@@ -110,36 +103,22 @@ BEGIN
          approval_date,
          approval_ip)
     values
-        (v_revision_id,
+        (v_news_id,
          p_lead,
          p_package_id,
          p_archive_date,
          p_approval_user,
          p_approval_date,
          p_approval_ip);
-    -- make this revision live when immediately approved
-    if p_is_live_p = 't' then
-        update
-            cr_items
-        set
-            live_revision = v_revision_id,
-            publish_status = 'ready'
-        where
-            item_id = v_item_id;
-    end if;
-    v_news_id := v_revision_id;
 
     return v_news_id;
 END;
-
 $$ LANGUAGE plpgsql;
 
 
 
 -- deletes a news item along with all its revisions and possible attachements
 
-
--- added
 select define_function_args('news__delete','item_id');
 
 --
@@ -164,15 +143,15 @@ BEGIN
         -- images
         delete from images
             where image_id in (select latest_revision
-                               from cr_items 
+                               from cr_items
                                where parent_id = v_cm.message_id);
         PERFORM acs_message__delete(v_cm.message_id);
         delete from general_comments
             where comment_id = v_cm.message_id;
     END LOOP;
-    delete from cr_news 
-    where news_id in (select revision_id 
-                      from   cr_revisions 
+    delete from cr_news
+    where news_id in (select revision_id
+                      from   cr_revisions
                       where  item_id = v_item_id);
     PERFORM content_item__delete(v_item_id);
     return 0;
@@ -184,8 +163,6 @@ $$ LANGUAGE plpgsql;
 -- (re)-publish a news item out of the archive by nulling the archive_date
 -- this only applies to the currently active revision
 
-
--- added
 select define_function_args('news__make_permanent','item_id');
 
 --
@@ -209,8 +186,6 @@ $$ LANGUAGE plpgsql;
 -- archive a news item
 -- this only applies to the currently active revision
 
-
--- added
 select define_function_args('news__archive','item_id,archive_date;current_timestamp');
 
 --
@@ -218,35 +193,19 @@ select define_function_args('news__archive','item_id,archive_date;current_timest
 --
 CREATE OR REPLACE FUNCTION news__archive(
    p_item_id integer,
-   p_archive_date timestamptz -- default current_timestamp
+   p_archive_date timestamptz DEFAULT current_timestamp
 
 ) RETURNS integer AS $$
 DECLARE
 BEGIN
-    update cr_news  
+    update cr_news
     set    archive_date = p_archive_date
     where  news_id = content_item__get_live_revision(p_item_id);
 
     return 0;
 END;
-
 $$ LANGUAGE plpgsql;
 
--- RAL: an overloaded version using current_timestamp for archive_date
-
-
---
--- procedure news__archive/1
---
-CREATE OR REPLACE FUNCTION news__archive(
-   p_item_id integer
-) RETURNS integer AS $$
-DECLARE
-BEGIN
-    return news__archive (p_item_id, current_timestamp);
-END;
-
-$$ LANGUAGE plpgsql;
 
 
 -- approve/unapprove a specific revision
@@ -274,11 +233,11 @@ DECLARE
     v_item_id         cr_items.item_id%TYPE;
 BEGIN
     select item_id into v_item_id
-    from   cr_revisions 
+    from   cr_revisions
     where  revision_id = p_revision_id;
     -- unapprove an revision (does not mean to knock out active revision)
     if p_approve_p = 'f' then
-        update  cr_news 
+        update  cr_news
         set     approval_date = null,
                 approval_user = null,
                 approval_ip   = null,
@@ -293,14 +252,14 @@ BEGIN
         update  cr_revisions
         set     publish_date  = p_publish_date
         where   revision_id   = p_revision_id;
-        --  
-        update  cr_news 
+        --
+        update  cr_news
         set archive_date  = p_archive_date,
             approval_date = p_approval_date,
             approval_user = p_approval_user,
             approval_ip   = p_approval_ip
         where news_id     = p_revision_id;
-        -- 
+        --
         -- cannot use content_item.set_live_revision because it sets publish_date to sysdate
         if p_live_revision_p = 't' then
             update  cr_items
@@ -336,11 +295,11 @@ BEGIN
     if p_publish_date is not null then
         if p_publish_date > current_timestamp then
             -- Publishing in the future
-            if p_archive_date is null then 
+            if p_archive_date is null then
                 return 'going_live_no_archive';
-            else 
+            else
                 return 'going_live_with_archive';
-            end if;  
+            end if;
         else
             -- Published in the past
             if p_archive_date is null then
@@ -348,7 +307,7 @@ BEGIN
             else
                 if p_archive_date > current_timestamp then
                      return 'published_with_archive';
-                else 
+                else
                     return 'archived';
                 end if;
             end if;
@@ -375,7 +334,7 @@ CREATE OR REPLACE FUNCTION news__name(
 DECLARE
     v_news_title cr_revisions.title%TYPE;
 BEGIN
-    select title 
+    select title
     into v_news_title
     from cr_revisions
     where revision_id = p_news_id;
@@ -386,9 +345,9 @@ END;
 $$ LANGUAGE plpgsql;
 
 
--- 
+--
 -- API for Revision management
--- 
+--
 
 
 -- added
@@ -431,23 +390,25 @@ BEGIN
         null,            -- revision_id
         p_creation_date, -- creation_date
         p_creation_user, -- creation_user
-        p_creation_ip    -- creation_ip
+        p_creation_ip,   -- creation_ip
+	null,            -- content_length
+        p_package_id     -- package_id
     );
     -- create new news entry with new revision
     insert into cr_news
-        (news_id, 
+        (news_id,
          lead,
          package_id,
-         archive_date, 
-         approval_user, 
-         approval_date, 
+         archive_date,
+         approval_user,
+         approval_date,
          approval_ip)
     values
-        (v_revision_id, 
+        (v_revision_id,
          p_lead,
          p_package_id,
-         p_archive_date, 
-         p_approval_user, 
+         p_archive_date,
+         p_approval_user,
          p_approval_date,
          p_approval_ip);
     -- make active revision if indicated
@@ -456,7 +417,6 @@ BEGIN
     end if;
     return v_revision_id;
 END;
-
 $$ LANGUAGE plpgsql;
 
 
@@ -515,7 +475,7 @@ CREATE OR REPLACE FUNCTION news__clone(
 
 ) RETURNS integer AS $$
 DECLARE
- one_news		record;	 
+ one_news record;
 BEGIN
         for one_news in select
                             publish_date,
@@ -535,18 +495,18 @@ BEGIN
 			    ci.live_revision,
 			    cr.revision_id,
 			    cn.lead
-                        from 
-                            cr_items ci, 
+                        from
+                            cr_items ci,
                             cr_revisions cr,
                             cr_news cn,
                             acs_objects ao
                         where
 			    cn.package_id = p_old_package_id
                         and ((ci.item_id = cr.item_id
-                            and ci.live_revision = cr.revision_id 
-                            and cr.revision_id = cn.news_id 
+                            and ci.live_revision = cr.revision_id
+                            and cr.revision_id = cn.news_id
                             and cr.revision_id = ao.object_id)
-                        or (ci.live_revision is null 
+                        or (ci.live_revision is null
                             and ci.item_id = cr.item_id
                             and cr.revision_id = content_item__get_latest_revision(ci.item_id)
                             and cr.revision_id = cn.news_id
@@ -607,6 +567,5 @@ BEGIN
 END;
 
 $$ LANGUAGE plpgsql;
-
 
 

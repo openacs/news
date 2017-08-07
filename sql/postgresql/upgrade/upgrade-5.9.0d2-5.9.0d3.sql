@@ -1,0 +1,11 @@
+select define_function_args('news__new','item_id;null,locale;null,publish_date;null,text;null,nls_language;null,title;null,mime_type;text/plain,package_id;null,archive_date;null,approval_user;null,approval_date;null,approval_ip;null,relation_tag;null,creation_ip;null,creation_user;null,is_live_p;f,lead');
+select define_function_args('news__delete','item_id');
+select define_function_args('news__make_permanent','item_id');
+select define_function_args('news__archive','item_id,archive_date;current_timestamp');
+select define_function_args('news__set_approve','revision_id,approve_p;t,publish_date;null,archive_date;null,approval_user;null,approval_date;current_timestamp,approval_ip;null,live_revision_p;t');
+select define_function_args('news__status','publish_date,archive_date');
+select define_function_args('news__name','news_id');
+select define_function_args('news__revision_new','item_id,publish_date;null,text;null,title,description,mime_type;text/plain,package_id;null,archive_date;null,approval_user;null,approval_date;null,approval_ip;null,creation_date;current_timestamp,creation_ip;null,creation_user;null,make_active_revision_p;f,lead');
+select define_function_args('news__revision_set_active','revision_id');
+select define_function_args('news__clone','old_package_id,new_package_id');
+select define_function_args('news__revision_delete','revision_id');

@@ -42,3 +42,8 @@ if {[rss_support::subscription_exists \
 }
 
 ad_returnredirect -message $message "./"
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

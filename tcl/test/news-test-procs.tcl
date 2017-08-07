@@ -82,3 +82,9 @@ ad_proc -private news::test::get_news_status {
 } {
     return [db_string select_status {}]
 }
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

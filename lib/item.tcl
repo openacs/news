@@ -35,8 +35,8 @@ permission::require_permission \
 
 
 # live view of a news item in its active revision
-set item_exist_p [db_0or1row "" "
-select item_id,
+set item_exist_p [db_0or1row get_news_info {
+    select item_id,
        live_revision,
        publish_title,
        publish_lead,
@@ -44,8 +44,9 @@ select item_id,
        publish_body,
        publish_date,
        '<a href=\"/shared/community-member?user_id=' || creation_user || '\">' || item_creator ||  '</a>' as creator_link
-from   news_items_live_or_submitted
-where  item_id = :item_id"]
+    from   news_items_live_or_submitted
+    where  item_id = :item_id
+}]
 
 if { $item_exist_p } {
 
@@ -56,9 +57,11 @@ if { $item_exist_p } {
     #
     set get_content [db_map get_content]
     if {$get_content ne ""} {
-	set publish_body [db_string get_content "select  content
-	from    cr_revisions
-	where   revision_id = :live_revision"]
+	set publish_body [db_string get_content {
+            select  content
+            from    cr_revisions
+            where   revision_id = :live_revision
+        }]
     }
 
     # text-only body
@@ -130,3 +133,9 @@ if { $item_exist_p } {
 
 
 
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

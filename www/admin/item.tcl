@@ -100,3 +100,9 @@ template::list::create -name news_items -multirow item -actions [list [_ news.Ad
 }
 
 ad_return_template
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

@@ -30,7 +30,7 @@ ad_page_contract {
 } -validate {
 
     check_revision_log -requires {action revision_log} {
-	if { ![string match $action "News Item"] && $revision_log eq ""} {
+	if { $action eq "News Item" && $revision_log eq ""} {
 	    ad_complain "[_ news.lt_You_must_supply_a_rev]"
 	    return
 	}
@@ -65,7 +65,7 @@ set news_admin_p [permission::permission_p -object_id $package_id -privilege new
 # Template parser treats publish_body.format as an array reference
 set publish_format ${publish_body.format}
 
-if { [string match $action "News Item"] } {
+if { $action eq "News Item" } {
     set title "[_ news.Preview_news_item]"
 } else {
     set title "[_ news.Preview] $action"
@@ -86,7 +86,7 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
 # deal with Dates, granularity is 'day'
 
 # with news_admin privilege fill in publish and archive dates
-if { $news_admin_p == 1 || [string equal [parameter::get -parameter ApprovalPolicy] "open"] } {
+if { $news_admin_p == 1 || [parameter::get -parameter ApprovalPolicy] eq "open" } {
 
     if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } { 
 	set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
@@ -132,7 +132,7 @@ if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/en
     }
 }
 
-if { [string match $action "News Item"] } {
+if { $action eq "News Item" } {
 
     # form variables for confirmation step
 
@@ -141,8 +141,8 @@ if { [string match $action "News Item"] } {
     set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action}]
-    set form_action "<form method=post action=item-create-3 enctype=multipart/form-data class=\"inline-form\">"
-    set edit_action "<form method=post action=item-create class=\"inline-form\">"
+    set form_action "<form method='post' action='item-create-3' enctype='multipart/form-data' class='inline-form'>"
+    set edit_action "<form method='post' action='item-create' class='inline-form'>"
 
 } else {
 
@@ -153,17 +153,24 @@ if { [string match $action "News Item"] } {
     set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
                         publish_date_ansi archive_date_ansi html_p \
                         permanent_p action item_id revision_log}]
-    set form_action "<form method=post action=admin/revision-add-3 class=\"inline-form\">"
-    set edit_action "<form method=post action=admin/revision-add class=\"inline-form\">"
+    set form_action "<form method='post' action='admin/revision-add-3' class='inline-form'>"
+    set edit_action "<form method='post' action='admin/revision-add' class='inline-form'>"
 }
 
 # creator link 
-set creator_name [db_string creator "
-select first_names || ' ' || last_name 
-from   cc_users 
-where  user_id = :user_id"]
-set creator_link "<a href=\"/shared/community-member?user_id=$user_id\">$creator_name</a>"
+set creator_name [db_string creator {
+    select first_names || ' ' || last_name 
+    from   cc_users 
+    where  user_id = :user_id
+}]
+set creator_link "<a href='/shared/community-member?user_id=$user_id'>[ns_quotehtml $creator_name]</a>"
 
 template::head::add_style -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" -media screen
 
 ad_return_template
+
+# Local variables:
+#    mode: tcl
+#    tcl-indent-level: 4
+#    indent-tabs-mode: nil
+# End:

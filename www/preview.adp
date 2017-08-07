@@ -9,7 +9,7 @@
 <p>
   <if @news_admin_p@ ne 0>
    #news.It_will_go_live_on# @publish_date_pretty@.   
-    <if @permanent_p@ eq "t">
+    <if @permanent_p;literal@ true>
       #news.lt_And_be_live_until_rev#
     </if>
     <else>	

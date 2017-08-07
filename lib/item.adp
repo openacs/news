@@ -4,7 +4,7 @@
   <property name="doc(title)">@title;literal@</property>
 
 
-  <if @item_exist_p@ false>
+  <if @item_exist_p;literal@ false>
     <p>#news.lt_Could_not_find_the_re#</p>
   </if>
   <else>
