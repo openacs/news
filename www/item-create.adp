@@ -2,6 +2,7 @@
 <property name="doc(title)">@title;literal@</property>
 <property name="context">@context;literal@</property>
 <property name="focus">news.publish_title</property>
+<property name="displayed_object_id">@package_id;literal@</property>
 
 <h1>@title;noquote@</h1>
 
