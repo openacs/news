@@ -39,7 +39,7 @@ set view_link [ad_dimensional $view_slider]
 set view_option [ad_dimensional_sql $view_slider]
 
 # define action on selected views, unapproved, archived, approved need restriction
-switch $view {
+switch -- $view {
     "unapproved" { 
         set select_actions "<option value=\"publish\">[_ news.Publish]" 
     }

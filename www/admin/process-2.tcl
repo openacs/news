@@ -22,7 +22,7 @@ ad_page_contract {
 }
 
 
-switch $action {
+switch -- $action {
     
     delete {
 	news_items_delete $n_items
