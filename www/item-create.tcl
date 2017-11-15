@@ -39,7 +39,9 @@ set context [list $title]
 
 set lc_format [lc_get formbuilder_date_format]
 
-db_1row get_dates {}
+set date_today [clock format [clock seconds] -format %Y-%m-%d]
+set active_days [parameter::get -parameter ActiveDays -default 14]
+set date_proj [clock format [clock scan "$active_days days"] -format %Y-%m-%d]
 
 if { $publish_date_ansi eq "" || $publish_date_ansi eq "now"} {
     set publish_date_ansi $date_today
