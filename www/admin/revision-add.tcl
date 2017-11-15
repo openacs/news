@@ -37,6 +37,11 @@ set context [list $title]
 # get active revision of news item
 db_1row item {}
 
+if {$archive_date eq ""} {
+    set active_days [parameter::get -parameter ActiveDays -default 14]
+    set archive_date [clock format [clock scan "$active_days days"] -format %Y-%m-%d]
+}
+
 set lc_format [lc_get formbuilder_date_format]
 
 set action "[_ news.Revision]"
