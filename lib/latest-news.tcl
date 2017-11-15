@@ -51,7 +51,7 @@ set script "# /packages/news/lib/latest-news.tcl
 set max_age_filter {$max_age_filter}
 set n $n
 set package_id $package_id
-db_list_of_lists ls {} -bind { package_id $package_id max_age $max_age max_age_pg {$max_age days} }"
+db_list_of_lists ls {} -bind { package_id $package_id max_age $max_age }"
 
 multirow create news item_id title lead publish_date url date
 util_memoize_flush $script
@@ -65,8 +65,6 @@ foreach row [util_memoize $script $cache] {
 
     multirow append news $item_id $title $lead $publish_date $url $date
 }
-
-ad_return_template
 
 # Local variables:
 #    mode: tcl

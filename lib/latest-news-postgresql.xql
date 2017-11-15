@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <queryset>
 
 <rdbms><type>postgresql</type><version>7.3</version></rdbms>
@@ -17,9 +18,5 @@ ORDER BY
   publish_date DESC, item_id DESC
 LIMIT $n
 </querytext></fullquery>
-
-<partialquery name="max_age_filter"><querytext>
-       AND age(publish_date) < interval :max_age_pg 
-</querytext></partialquery>
 
 </queryset>
