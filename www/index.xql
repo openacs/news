@@ -4,7 +4,7 @@
 
 <fullquery name="archived_p">      
       <querytext>
-        select 1 where exists (
+        select 1 from dual where exists (
     select 1 from news_items_approved
      where publish_date < current_timestamp 
        and archive_date < current_timestamp
@@ -15,7 +15,7 @@
  
 <fullquery name="live_p">      
       <querytext>
-        select 1 where exists (      
+        select 1 from dual where exists (      
     select 1
     from   news_items_approved
     where  publish_date < current_timestamp 
