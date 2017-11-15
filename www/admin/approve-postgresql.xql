@@ -3,13 +3,6 @@
 <queryset>
    <rdbms><type>postgresql</type><version>7.1</version></rdbms>
 
-<fullquery name="week">      
-      <querytext>
-      select to_char(current_timestamp + interval '[parameter::get -parameter ActiveDays -default 14] days', 'YYYY-MM-DD')
-      </querytext>
-</fullquery>
-
-
 <partialquery name="revision_select">      
       <querytext>
 

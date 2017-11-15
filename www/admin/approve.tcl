@@ -30,7 +30,7 @@ set context [list $title]
 
 # pre-set date widgets with defaults
 set active_days [parameter::get -parameter ActiveDays -default 14]
-set proj_archival_date [db_string week {}]
+set proj_archival_date [clock format [clock scan "$active_days days"] -format %Y-%m-%d]
 set publish_date_select [dt_widget_datetime -default now publish_date days]
 set archive_date_select [dt_widget_datetime -default $proj_archival_date archive_date days]
 
@@ -62,13 +62,6 @@ db_multirow items item_list "
 
 
 set hidden_vars [export_vars -form {return_url}]
-
-ad_return_template
-
-
-
-
-
 
 
 # Local variables:
