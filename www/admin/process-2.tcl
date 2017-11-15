@@ -29,7 +29,7 @@ switch -- $action {
     }
     
     "archive now" {
-	set when [db_string archive_now {}]
+	set when [clock format [clock seconds] -format %Y-%m-%d]
 	news_items_archive $n_items $when
     }
     
@@ -50,94 +50,6 @@ switch -- $action {
 }
 
 ad_returnredirect ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Local variables:
 #    mode: tcl
