@@ -13,7 +13,7 @@ select
     publish_format,
     to_char(publish_date, 'YYYY-MM-DD') as publish_date,
     publish_body,
-    to_char(archive_date, 'YYYY-MM-DD') as archive_date
+    to_char(archive_date, 'YYYY-MM-DD') as archive_date,
     status
 from   
     news_item_full_active    
