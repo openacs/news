@@ -56,17 +56,17 @@ if {[catch {
     }
    
 } errmsg ]} {
-	
+
     set complaint " [_ news.lt_The_database_did_not_] \
        [_ news.lt_See_details_for_the_e]\n\n\t<p><b>$errmsg</b>"
     ad_return_error [_ news.Database_Error] $complaint
     ad_script_abort
-	
+
 } else {
-	
+
     ad_returnredirect "item?item_id=$item_id"
-	
-}    
+    ad_script_abort
+}
 
 # Local variables:
 #    mode: tcl

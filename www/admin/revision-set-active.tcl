@@ -19,12 +19,7 @@ ad_page_contract {
 db_exec_plsql update_forum {}
     
 ad_returnredirect "item?item_id=$item_id"
-
-
-
-
-
-
+ad_script_abort
 
 # Local variables:
 #    mode: tcl

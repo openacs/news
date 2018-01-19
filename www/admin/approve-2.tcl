@@ -56,14 +56,9 @@ if {[rss_support::subscription_exists \
             -impl_name news]} {
     news_update_rss -summary_context_id $package_id
 }
+
 ad_returnredirect "$return_url"
-
-
-
-
-
-
-
+ad_script_abort
 
 # Local variables:
 #    mode: tcl

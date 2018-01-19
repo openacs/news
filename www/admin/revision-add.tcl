@@ -45,7 +45,7 @@ if {$archive_date eq ""} {
 set lc_format [lc_get formbuilder_date_format]
 
 set action "[_ news.Revision]"
-
+ns_log notice "NEWS REVISION"
 ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart/form-data"} -action "../preview" -form {
     {publish_title:text(text)
         {label "[_ news.Title]"}
@@ -60,6 +60,7 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
     {publish_body:text(richtext),optional
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
+        {options {editor ckeditor5 JSEditorClass ClassicEditor}}
         {value "[list $publish_body $publish_format]"}
     }
     {text_file:file(file),optional

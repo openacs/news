@@ -85,6 +85,7 @@ if { !$news_admin_p } {
 } else {    
     # case: administrator returned to index page
     ad_returnredirect ""
+    ad_script_abort
 }
 
 # news item is live
@@ -104,6 +105,7 @@ if { $live_revision_p } {
 }
 
 ad_returnredirect ""
+ad_script_abort
 
 # Local variables:
 #    mode: tcl
