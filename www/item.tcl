@@ -71,6 +71,7 @@ if { $item_exist_p } {
     set title [_ news.Error]
     set contect [list $title]
     ad_return_complaint 1 [_ news.lt_Could_not_find_the_re]
+    ad_script_abort
 }
 
 # Local variables:

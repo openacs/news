@@ -44,6 +44,7 @@ if { $item_exist_p } {
     
 } else {
     ad_return_complaint 1 [_ news.lt_Could_not_find_corres]
+    ad_script_abort
 }
 
 ad_return_template

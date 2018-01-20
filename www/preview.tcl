@@ -80,7 +80,8 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
                publish_date(year) publish_date(month) publish_date(day)]
          || ![regexp $exp $archive_date_ansi match \
                   archive_date(year) archive_date(month) archive_date(day)] } {
-        ad_return_complaint 1 "[_ news.Publish_archive_dates_incorrect]"
+        ad_return_complaint 1 [_ news.Publish_archive_dates_incorrect]
+        ad_script_abort
     }
 }
 # deal with Dates, granularity is 'day'
