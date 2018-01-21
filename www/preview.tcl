@@ -110,7 +110,7 @@ if { $news_admin_p == 1 || [parameter::get -parameter ApprovalPolicy] eq "open" 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
 	ad_return_error "[_ news.Scheduling_Error]" \
             "[_ news.lt_The_archive_date_must]"
-	return
+	ad_script_abort
     }
 
 }
