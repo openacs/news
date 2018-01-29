@@ -57,16 +57,22 @@ ad_page_contract {
 set user_id [auth::require_login]
 set package_id [ad_conn package_id]
 
-# only people with at least write-permission beyond this point
-permission::require_permission -object_id $package_id -privilege news_create
+#
+# Only people with news_create permission beyond this point
+#
+permission::require_permission \
+    -object_id $package_id \
+    -privilege news_create
 
-set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
+set news_admin_p [permission::permission_p \
+                      -object_id $package_id \
+                      -privilege news_admin]
 
 # Template parser treats publish_body.format as an array reference
 set publish_format ${publish_body.format}
 
 if { $action eq "News Item" } {
-    set title "[_ news.Preview_news_item]"
+    set title [_ news.Preview_news_item]
 } else {
     set title "[_ news.Preview] $action"
 }
@@ -108,11 +114,11 @@ if { $news_admin_p == 1 || [parameter::get -parameter ApprovalPolicy] eq "open" 
     }
 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
-	ad_return_error "[_ news.Scheduling_Error]" \
-            "[_ news.lt_The_archive_date_must]"
+	ad_return_error \
+            [_ news.Scheduling_Error] \
+            [_ news.lt_The_archive_date_must]
 	ad_script_abort
     }
-
 }
 
 if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/enhanced" } {
@@ -137,23 +143,28 @@ if { $action eq "News Item" } {
 
     # form variables for confirmation step
 
-    set hidden_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
-                         publish_date_ansi archive_date_ansi html_p permanent_p imgfile}]
-    set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
-                        publish_date_ansi archive_date_ansi html_p \
-                        permanent_p action}]
+    set hidden_vars [export_vars -form {
+        publish_title publish_lead publish_body publish_body.format 
+        publish_date_ansi archive_date_ansi html_p permanent_p imgfile
+    }]
+    set image_vars [export_vars -form {
+        publish_title publish_lead publish_body publish_body.format
+        publish_date_ansi archive_date_ansi html_p permanent_p action
+    }]
     set form_action "<form method='post' action='item-create-3' enctype='multipart/form-data' class='inline-form'>"
     set edit_action "<form method='post' action='item-create' class='inline-form'>"
 
 } else {
 
     # Form vars to carry through Confirmation Page
-    set hidden_vars [export_vars -form {item_id revision_log publish_title publish_lead \
-                         publish_body publish_body.format publish_date_ansi archive_date_ansi \
-                         permanent_p html_p imgfile}]
-    set image_vars [export_vars -form {publish_title publish_lead publish_body publish_body.format \
-                        publish_date_ansi archive_date_ansi html_p \
-                        permanent_p action item_id revision_log}]
+    set hidden_vars [export_vars -form {
+        item_id revision_log publish_title publish_lead publish_body publish_body.format
+        publish_date_ansi archive_date_ansi permanent_p html_p imgfile
+    }]
+    set image_vars [export_vars -form {
+        publish_title publish_lead publish_body publish_body.format 
+        publish_date_ansi archive_date_ansi html_p permanent_p action item_id revision_log
+    }]
     set form_action "<form method='post' action='admin/revision-add-3' class='inline-form'>"
     set edit_action "<form method='post' action='admin/revision-add' class='inline-form'>"
 }
@@ -166,7 +177,9 @@ set creator_name [db_string creator {
 }]
 set creator_link "<a href='/shared/community-member?user_id=$user_id'>[ns_quotehtml $creator_name]</a>"
 
-template::head::add_style -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" -media screen
+template::head::add_style \
+    -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" \
+    -media screen
 
 ad_return_template
 
