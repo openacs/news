@@ -63,7 +63,7 @@ drop function inline_0 ();
 
 
 -- Til: after adding content_type__drop_type above, dropping the table
--- and the index explicitely was not necessary anymore. Leaving the calls
+-- and the index explicitly was not necessary anymore. Leaving the calls
 -- commented out here though, so that they can be reactivated in case the lock
 -- situation mentioned in the original comment below occurs for some reason.
 

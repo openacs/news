@@ -519,7 +519,7 @@ aa_register_case -cats {
 } "check-permissions" {
     Checks the news related permissions.
     Checks that the permissions exist, and that they have the correct
-    heirachy.
+    hierarchy.
 } {
     #
     # Extract the list of all privileges and privilege heirachies.
