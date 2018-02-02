@@ -11,7 +11,7 @@ ad_page_contract {
 
 } {
     item_id:naturalnum,notnull
-    {revision_id: ""}
+    {revision_id:integer ""}
 } 
 
 

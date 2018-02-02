@@ -4,7 +4,7 @@ ad_page_contract {
 
     This page makes the insert of publish_date and archive_date (optionally)
     into cr_revisions and cr_news(news_id) resp. without intermediate confirmation.
-    The administrator is redirected to return_url
+    The administrator is redirected to return_url:localurl
   
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
@@ -12,8 +12,8 @@ ad_page_contract {
 
 } { 
     revision_id:naturalnum,notnull
-    {return_url: ""}
-    {permanent_p: "f"}
+    {return_url:localurl ""}
+    {permanent_p:boolean "f"}
     {publish_date:array,date ""}
     {archive_date:array,date ""}
 }

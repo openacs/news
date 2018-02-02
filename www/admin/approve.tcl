@@ -11,8 +11,8 @@ ad_page_contract {
 
 } {
     n_items:notnull
-    {revision_id: ""}
-    {return_url: ""}
+    {revision_id:integer ""}
+    {return_url:localurl ""}
 } -properties {
     
     items:multirow

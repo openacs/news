@@ -12,11 +12,11 @@ ad_page_contract {
     publish_title:notnull,trim
     {publish_lead {}}
     {publish_body:allhtml,trim ""}
-    publish_body.format:notnull
-    {revision_log: ""}
+    publish_body.format:token,notnull
+    {revision_log ""}
     {publish_date:array ""}
     {archive_date:array ""}
-    {permanent_p: "f"}
+    {permanent_p:boolean "f"}
     publish_date_ansi:optional
     archive_date_ansi:optional
     imgfile:optional

@@ -9,8 +9,8 @@ ad_page_contract {
     @cvs-id $Id$
 
 } {
-  {orderby: "item_id"}
-  {view: "published"}
+  {orderby:token "item_id"}
+  {view:word "published"}
   {column_names:array ""}
 } -properties {
     title:onevalue
