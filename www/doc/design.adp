@@ -87,7 +87,7 @@ procedures.
 when the general public can submit news items). Approving means
 setting the publish date.</li><li>news.status: returns info as to permanent, when it will
 archive, when it will be released</li><li>news.revision_add: add a new revision to an existing news
-item</li><li>news.revision_delete: delete a revision from an exisiting news
+item</li><li>news.revision_delete: delete a revision from an existing news
 item (not used)</li><li>news.revision_activate: make a revision the active
 revision</li>
 </ul>
@@ -101,7 +101,7 @@ items</li><li>news_items_delete: deletes news items</li>
 </ul>
 <h3>VII. Data Model Discussion</h3>
 
-The News application makes use of the exisiting ACS Content
+The News application makes use of the existing ACS Content
 Repository service. A news item consists of a row-entry in the
 table cr_item, where all of the meta-information that isn&#39;t
 already stored in acs_objects concerning these items is placed, one
@@ -146,7 +146,7 @@ cr_revisions,</li><li>The archive_date is supplemented by cr_news.</li>
 </ul>
 
 A reminder to the column release_date is necessary here: Its
-granularity is only one day, i.e. the relase date is for instance
+granularity is only one day, i.e. the release date is for instance
 2001-01-01 00:00 (always at midnight). If someone wants to present
 a view of 'new items' since last login (which can be more
 than once since 00:00), one can use cr_news.approval_date for
@@ -287,7 +287,7 @@ picture attachments are dropped.</p>
 The news application has three customizable parameters which have
 to be set for each package instance through the site-map manager.
 <ul>
-<li>ActiveDays...number of days between relase and archival</li><li>DisplayMax ... how many items are shown on the index page
+<li>ActiveDays...number of days between release and archival</li><li>DisplayMax ... how many items are shown on the index page
 (valid for live and archived items)</li><li>ApprovalPolicy...[open|wait] if open, submitted items are
 approved immediately, wait means approval by the
 administrator.</li><li>ShowSearchInterfaceP...[0,1] whether we show a 'Search

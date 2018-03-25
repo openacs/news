@@ -108,7 +108,7 @@ PL/SQL functions and procedures.
 <li>news.status: returns info as to permanent, when it will archive, 
     when it will be released
 <li>news.revision_add: add a new revision to an existing news item
-<li>news.revision_delete: delete a revision from an exisiting news item (not used)
+<li>news.revision_delete: delete a revision from an existing news item (not used)
 <li>news.revision_activate: make a revision the active revision
 </ul>
 
@@ -124,7 +124,7 @@ The Tcl procedures are, see
 
 <h3>VII. Data Model Discussion</h3> 
 
-The News application makes use of the exisiting ACS Content Repository service.
+The News application makes use of the existing ACS Content Repository service.
 A news item consists of a row-entry in the table cr_item, where all of the 
 meta-information that isn't already stored in acs_objects concerning these 
 items is placed, one or several rows in the revision table cr_revisions, 
@@ -169,7 +169,7 @@ in parallel and updates the live_revision in cr_items.
 <li> The archive_date is supplemented by cr_news.
 </ul>
 A reminder to the column release_date is necessary here: Its granularity is only 
-one day, i.e. the relase date is for instance 2001-01-01 00:00 (always at midnight). 
+one day, i.e. the release date is for instance 2001-01-01 00:00 (always at midnight). 
 If someone wants to present a view of 'new items' since last login (which can be 
 more than once since 00:00), one can use cr_news.approval_date for differentiating 
 since this is time-stamped by sysdate. 
@@ -330,7 +330,7 @@ are dropped.
 
 The news application has three customizable parameters which 
 have to be set for each package instance through the site-map manager. 
-<ul><li>ActiveDays...number of days between relase and archival
+<ul><li>ActiveDays...number of days between release and archival
     <li>DisplayMax ... how many items are shown on the index 
          page (valid for live and archived items)
      <li>ApprovalPolicy...[open|wait] if open, submitted items are 
