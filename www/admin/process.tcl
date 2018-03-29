@@ -68,7 +68,7 @@ if {[regexp -nocase {archive|permanent} $action ]} {
 } 
 
 # proceed if no errors
-if { ![info exist halt_p] || $halt_p==0 } {
+if { ![info exists halt_p] || $halt_p==0 } {
 
     template::list::create \
         -name news_items \
