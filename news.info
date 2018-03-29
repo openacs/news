@@ -8,7 +8,7 @@
     <singleton-p>f</singleton-p>
     
     <version name="5.10.0d1" url="http://openacs.org/repository/download/apm/news-5.10.0d1.apm">
-        <owner url="http://opeancs.org">OpenACS</owner>
+        <owner url="http://openacs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
         <release-date>2017-08-06</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
