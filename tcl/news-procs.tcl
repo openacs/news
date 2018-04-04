@@ -175,7 +175,7 @@ ad_proc news_pretty_status {
         }
     }
 
-    # Message lookup may use vars n_days_until_archive and n_days_until_publis
+    # Message lookup may use vars n_days_until_archive and n_days_until_publish
     return [_ $news_status_keys($status)]
 }
 

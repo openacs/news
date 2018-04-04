@@ -357,7 +357,7 @@ create or replace package body news
 
 
 
-    -- the status function returns information on the puplish or archive status
+    -- the status function returns information on the publish or archive status
     -- it does not make any checks on the order of publish_date and archive_date
     function status (
         publish_date     in cr_revisions.publish_date%TYPE,
