@@ -235,7 +235,7 @@ create or replace package body news
     end new;
 
 
-    -- deletes a news item along with all its revisions and possibnle attachements
+    -- deletes a news item along with all its revisions and possibnle attachments
     procedure delete (
         item_id in cr_items.item_id%TYPE
     ) is

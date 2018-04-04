@@ -117,7 +117,7 @@ $$ LANGUAGE plpgsql;
 
 
 
--- deletes a news item along with all its revisions and possible attachements
+-- deletes a news item along with all its revisions and possible attachments
 
 select define_function_args('news__delete','item_id');
 
