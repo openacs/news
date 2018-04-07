@@ -69,8 +69,9 @@ aa_register_init_class "mount-news-package" {
         }
         # If an old news package exists, delete it.
         if {$_news_node_id != -1} {
-            aa_log "Deleting existing node instance."
-            site_map_unmount_application -delete_p t -sync_p t $_news_node_id 
+            aa_log "Unmont and delete existing node instance."
+            site_node::unmount -node_id $_news_node_id
+            site_node::delete -node_id $_news_node_id
             if {$_news_package_id != -1} {
                 aa_log "Deleting existing package instance."
                 set p_package_id $_news_package_id
@@ -90,7 +91,7 @@ aa_register_init_class "mount-news-package" {
                                   -package_name "News test" \
                                   -package_key news]
 
-        set _news_node_id [site_node_id "/_test/news/"]
+        set _news_node_id [site_node::get_node_id -url "/_test/news/"]
     } _news_package_mounted_err]} {
         set _news_node_id -1
         set _test_node_id -1
@@ -104,7 +105,8 @@ aa_register_init_class "mount-news-package" {
     # Unmount the news package and delete its directory.
     #
     if {$_news_package_mounted_p} {
-        site_map_unmount_application -delete_p t $_news_node_id 
+        site_node::unmount -node_id $_news_node_id
+        site_node::delete -node_id $_news_node_id
         site_node::delete -node_id $_test_node_id
         set p_package_id $_news_package_id
         rss_support::del_subscription -summary_context_id $p_package_id -owner news -impl_name news
