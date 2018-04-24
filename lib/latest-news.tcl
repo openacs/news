@@ -56,10 +56,7 @@ db_list_of_lists ls {} -bind { package_id $package_id max_age $max_age }"
 multirow create news item_id title lead publish_date url date
 util_memoize_flush $script
 foreach row [util_memoize $script $cache] {
-    set item_id [lindex $row 0]
-    set title [lindex $row 1]
-    set lead [lindex $row 2]
-    set publish_date [lindex $row 3]
+    lassign $row item_id title lead publish_date
     set url "${base_url}item?item_id=$item_id"
     set date [lc_time_fmt $publish_date {%x}]
 
