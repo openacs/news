@@ -233,7 +233,7 @@ ad_proc -private news__rss_datasource {
     # TODO make limit a parameter
     set limit 15 
 
-    set items [list]
+    set items {}
     set counter 0
     set package_url [news_util_get_url $summary_context_id]
     db_foreach get_news_items {} {
