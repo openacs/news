@@ -32,5 +32,5 @@ Please file bugs in the <a href="http://openacs.org/bugtracker/openacs/">Bucktra
 Deusch</a></address>
 <br>
 
-Last modified: $&zwnj;Id: index.html,v 1.3.22.2 2015/08/21 10:28:48
-gustafn Exp $
+Last modified: $&zwnj;Id: index.html,v 1.4 2017/08/07 23:48:12 gustafn
+Exp $
