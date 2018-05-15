@@ -1,4 +1,4 @@
-<comment>This is the default template to render news items in admin/. THis template is used as well by search!</comment>
+<comment>This is the default template to render news items in admin/. This template is used as well by search!</comment>
 
 <if @publish_title@ not nil><h1 class="newsTitle">@publish_title@</h1></if>
 <if @publish_image@ not nil><img class="newsImage" src="@publish_image@" alt="News image"></if>
