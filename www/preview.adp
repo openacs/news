@@ -7,7 +7,7 @@
 
 <p>#news.lt_Your_news_item_will_b#</p>
 <p>
-  <if @news_admin_p;literal@ ne 0>
+  <if @news_admin_p;literal@ true>
    #news.It_will_go_live_on# @publish_date_pretty@.
     <if @permanent_p;literal@ true>
       #news.lt_And_be_live_until_rev#
