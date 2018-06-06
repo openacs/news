@@ -1,47 +1,48 @@
-# include fragment to show latest news stories
-#
-# parameters:
-#   package_id - ID of the news instance to use as a source
-#   base_url - base URL of the news instance to use as a source
-#   n - The number of stories to show, default 2
-#   max_age - The limit on the recency of news items, in days, default no limit
-#   id - CSS id
-#   class - CSS class
-#   show_empty_p - show element even if empty, default 1
-#   cache - cache period, default 0 for no caching
-#
-# @author Tom Ayles (tom@beatniq.net)
-# @creation-date 2003-12-17
-# @cvs-id $Id$
-#
+ad_include_contract {
+    Show latest news stories
 
-# parameter processing... n is interpolated into the query (as bind variables
-# are not supported in PGSQL LIMIT construct), so we have to check its validity
-if { [info exists n] } {
-    if { ![string is integer $n] } { error {n must be an integer} }
-} else {
-    set n 2
+    @author Tom Ayles (tom@beatniq.net)
+    @creation-date 2003-12-17
+    @cvs-id $Id$
+
+    @param package_id    ID of the news instance to use as a source
+    @param base_url      base URL of the news instance to use as a source
+    @param n             The number of stories to show, default 2
+    @param max_age       The limit on the recency of news items, in days, default no limit
+    @param id            CSS id
+    @param class         CSS class
+    @param show_empty_p  show element even if empty, default 1
+    @param cache         cache period, default 0 for no caching
+} {
+    {package_id:integer ""}
+    {base_url:localurl ""}
+    {n:integer,notnull 2}
+    {max_age ""}
+    {id:word ""}
+    {class:word ""}
+    {show_empty_p:boolean,notnull 1}
+    {cache:integer,notnull 0}
+} -validate {
+    package_id_or_base_url {
+        if { $package_id eq "" && $base_url eq "" } {
+            ad_complain
+        }
+    }
+} -errors {
+    package_id_or_base_url {must supply package_id and/or base_url}
 }
-if { ![info exists cache] } { set cache 0 }
-if { [info exists max_age] } {
+
+if { $max_age ne "" } {
     set max_age_filter [db_map max_age_filter]
 } else {
-    set max_age {}
-    set max_age_filter {}
-}
-foreach param {id class} { if { ![info exists $param] } { set $param {} } }
-if { ![info exists show_empty_p] } { set show_empty_p 1 }
-
-if { (![info exists package_id] || $package_id eq "")
-     && (![info exists base_url] || $base_url eq "") } {
-    error "must supply package_id and/or base_url"
+    set max_age_filter ""
 }
 
-if { ![info exists package_id] || $package_id eq "" } {
+if { $package_id eq "" } {
     set package_id [site_node::get_element \
                         -url $base_url -element object_id]
 }
-if { ![info exists base_url] || $base_url eq "" } {
+if { $base_url eq "" } {
     set base_url [lindex [site_node::get_url_from_object_id \
                               -object_id $package_id] 0]
 }
