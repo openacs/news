@@ -14,7 +14,7 @@ ad_page_contract {
     publish_title:notnull
     publish_lead
     publish_body:allhtml,notnull,trim
-    publish_body.format:notnull
+    publish_body.format:path,notnull
     revision_log:notnull
     publish_date_ansi:notnull
     archive_date_ansi:notnull

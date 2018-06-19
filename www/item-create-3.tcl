@@ -11,7 +11,7 @@ ad_page_contract {
 } {
     publish_title:notnull
     publish_body:allhtml,notnull,trim
-    publish_body.format:notnull,trim
+    publish_body.format:path,notnull,trim
     {publish_lead {}}
     {publish_date_ansi:trim "[db_null]"}
     {archive_date_ansi:trim "[db_null]"}

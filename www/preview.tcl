@@ -12,7 +12,7 @@ ad_page_contract {
     publish_title:notnull,trim
     {publish_lead {}}
     {publish_body:allhtml,trim ""}
-    publish_body.format:notnull
+    publish_body.format:path,notnull
     {revision_log ""}
     {publish_date:array ""}
     {archive_date:array ""}
