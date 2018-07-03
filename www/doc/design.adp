@@ -192,7 +192,7 @@ privilege check is needed in the news/admin/ directory.
 <strong>Create news item</strong> only appear for parties which
 possess the appropriate privileges. Viewers not authorized to view
 the index page (i.e. parties who were denied the
-<code>news_read</code> permission) are shown the the site-wide
+<code>news_read</code> permission) are shown the site-wide
 'not-authorized' template.</p>
 <p>The news gateway defaults to serving the parameter
 <code>DisplayMax</code>, see sec. XI below, number of news items or
