@@ -312,7 +312,7 @@ entering the news body is used as a formatting editor.
 <ul>
 <li>Use e-mail notification on submission and release, such as
 supplied by ACS Notification in PL/SQL only.</li><li>Allow for more MIME types, especially Microsoft Word, and use
-the corresponding Intermedia filter to render as HTML.</li><li>Add news categorization to the data model that allows to order
+the corresponding Intermedia filter to render as HTML.</li><li>Add news categorization to the data model that allows one to order
 news articles by categories without creating new application
 instances (e.g. sports, education, health, literature, music ,
 politics, ...) - this also needs a UI to create categories and a
