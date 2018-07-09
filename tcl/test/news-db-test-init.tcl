@@ -315,25 +315,9 @@ aa_register_component "db-news-set-approve" {
         p_live_revision_p}
 
     if {$p_approve_p == "f"} {
-        db_exec_plsql set-approve-default {
-            begin
-            content_item.set_approve-default(revision_id =>     :p_revision_id,
-                                             approve_p =>       :p_approve_p);
-            end;
-        }
+        db_exec_plsql set-approve-default {}
     } else {
-        db_exec_plsql set-approve {
-            begin
-            content_item.set_approve(revision_id =>     :p_revision_id,
-                                     approve_p =>       :p_approve_p,
-                                     publish_date =>    :p_publish_date
-                                     archive_date =>    :p_archive_date,
-                                     approval_user =>   :p_approval_user,
-                                     approval_date =>   :p_approval_date,
-                                     approvel_ip   =>   :p_approval_id,
-                                     live_revision_p => :p_live_revision_ip);
-            end;
-        }
+        db_exec_plsql set-approve {}
     }
 }
 
@@ -571,13 +555,13 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-views
+# Testcase check_views
 #
 aa_register_case -cats {
     db
     config
 } -on_error {
-} "check-views" {
+} "check_views" {
     Checks the news related views.
     Checks that the views are valid by performing a select from each of them.
 } {
@@ -656,7 +640,7 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-object-type
+# Testcase check_object_type
 #
 aa_register_case -cats {
     db
@@ -665,7 +649,7 @@ aa_register_case -cats {
     The "news" object type doesn't exist, or has isn't configured correctly. 
     The most probable cause of this is that the news package datamodel hasn't been
     installed.
-} "check-object-type" {
+} "check_object_type" {
     Checks the news object type.
 } {
     set news_type_exists_p [db_0or1row get-news-type-info {
@@ -705,14 +689,14 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-package-mount
+# Testcase check_package_mount
 #
 aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
 } -on_error {
-} "check-package-mount" {
+} "check_package_mount" {
     Checks the mountability of the news package.
 } {
     aa_true "Check that the news package mount properly" $_news_package_mounted_p
@@ -727,13 +711,13 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase db-check-news_create
+# Testcase db_check_news_create
 #
 aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
-} "db-check-news-create" {
+} "db_check_news_create" {
     Creates and deletes a simple news article.  Checks contents of cr_news,
     cr_items and cr_revisions table after insert. Calls the news name function to retrieve
     the article name.  Tests <tt>news.new</tt>, <tt>news.delete</tt> and <tt>news.name</tt>.
@@ -813,12 +797,8 @@ aa_register_case -cats {
                 # Call the news.name function to retrieve the item name.
                 #
                 aa_log "Call news.name function to retrieve title of content revision"
-                set p_news_id $news_id
-                set name [db_exec_plsql news-name {
-                    begin
-                    :1 := news.name(news_id => :p_news_id);
-                    end;
-                }]
+                set p_news_id $news_id                
+                set name [db_exec_plsql news-name {}]
                 aa_equals "Check the return from news.name is correct" $name $p_title
             }
         }
@@ -850,7 +830,7 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-news-revision
+# Testcase db_check_news_revision
 #
 aa_register_case -cats {
     db
@@ -866,7 +846,7 @@ aa_register_case -cats {
     <p>
     A posting <a href="http://openacs.org/bboard/q-and-a-fetch-msg.tcl?msg_id=0003CM&topic_id=14&topic=OpenACS%204%2e0%20Testing">
     here</a> at the OpenACS bboard was started concerning this problem.
-} "db-check-news-revision" {
+} "db_check_news_revision" {
     Checks the news database functions for revision creation, deletion and management.
     Tests <tt>news.revison_new</tt>, <tt>news.revision_delete</tt>,
     <tt>news.revision_set_active</tt> functions.
@@ -1014,13 +994,13 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-news-archive
+# Testcase db_check_news_archive
 #
 aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
-} "db-check-news-archive" {
+} "db_check_news_archive" {
     Checks the news database functions make_permanent and news_archive.
 } {
     set news_id -1
@@ -1115,13 +1095,13 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-news-set-approve
+# Testcase db_check_news_set_approve
 #
 aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
-} "db-check-news-set-approve" {
+} "db_check_news_set_approve" {
     Checks the news database function for approving/unapproving news articles.
     Tests <tt>news.set_approve</tt> function.
 } {
@@ -1269,13 +1249,13 @@ aa_register_case -cats {
 
 ################################################################################
 #
-# Testcase check-news-status
+# Testcase db_check_news_status
 #
 aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
-} "db-check-news-status" {
+} "db_check_news_status" {
     Checks the news database function that returns information about a news article publish
     and archive status.
     Tests <tt>news.status</tt> function.
@@ -1336,7 +1316,7 @@ aa_register_case -cats {
         aa_log "Approving revision 1, setting archive date as null"
         set p_revision_id $revision1_id
         set p_approve_p "t"
-        set p_publish_date  "2005-11-01"
+        set p_publish_date  [clock format [clock scan "+ 1 year"] -format %Y-%m-%d] ; # in the future
         set p_archive_date  [db_null]
         set p_approval_user [ad_conn "user_id"]
         set p_approval_date "2001-11-03"
@@ -1357,7 +1337,7 @@ aa_register_case -cats {
         aa_log "Approving revision 1, setting archive date as future value"
         set p_revision_id $revision1_id
         set p_approve_p "t"
-        set p_publish_date  "2005-11-01"
+        set p_publish_date  [clock format [clock scan "+ 1 year"] -format %Y-%m-%d] ; # in the future
         set p_archive_date  "2005-11-10"
         set p_approval_user [ad_conn "user_id"]
         set p_approval_date "2001-11-03"
@@ -1421,7 +1401,7 @@ aa_register_case -cats {
         set p_revision_id $revision1_id
         set p_approve_p "t"
         set p_publish_date  "2000-11-01"
-        set p_archive_date  "2005-11-01"
+        set p_archive_date [clock format [clock scan "+ 1 year"] -format %Y-%m-%d] ; # in the future
         set p_approval_user [ad_conn "user_id"]
         set p_approval_date "2001-11-03"
         set p_approval_ip   [ad_conn "peeraddr"]

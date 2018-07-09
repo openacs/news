@@ -130,7 +130,7 @@
   </querytext>
 </fullquery>
 
-<fullquery name="_news__db-check-news-create.news-name">
+<fullquery name="_news__db_check_news_create.news-name">
   <querytext>
      select news__name(:p_news_id);
   </querytext>
