@@ -1,12 +1,9 @@
-# 
-
 ad_library {
     
     APM callbacks for the news package
     
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-20
-    @arch-tag: 0f0b0270-4074-410a-a5f9-386d402adc46
     @cvs-id $Id$
 }
 

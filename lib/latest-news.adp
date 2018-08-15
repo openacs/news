@@ -1,11 +1,11 @@
-<if @news:rowcount@ gt 0 or @show_empty_p;literal@ true>
+<if @news:rowcount;literal@ gt 0 or @show_empty_p;literal@ true>
     <if @class@ eq "portalElement">
         <h3><a href="@base_url@">News</a></h3>
     </if>
     <else>
         <h2><a href="@base_url@">Latest News</a></h2>
     </else>
-    <if @news:rowcount@ eq 0>
+    <if @news:rowcount;literal@ eq 0>
         <p>No recent news</p>
     </if><else>
     <multiple name="news">

@@ -1,12 +1,9 @@
-# 
-
 ad_page_contract {
     
     Setup or remove rss feed
     
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-23
-    @arch-tag: 4ff5628c-77f1-40ef-86c7-ef247a1ffe4f
     @cvs-id $Id$
 } {
 } -properties {

@@ -13,7 +13,7 @@
 <p>
 
 @view_link;noquote@
-<if @news_items:rowcount@ eq 0>
+<if @news_items:rowcount;literal@ eq 0>
  <em>#news.lt_There_are_no_items_av#</em><p>
 </if>
 <else>
