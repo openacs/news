@@ -3,7 +3,6 @@
 -- 
 -- @author Roel Canicula (roel@solutiongrove.com)
 -- @creation-date 2006-02-02
--- @arch-tag: 8de76e8b-1890-4c1f-947c-a40849ff685d
 -- @cvs-id $Id$
 --
 
