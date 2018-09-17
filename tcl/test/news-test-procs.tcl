@@ -1,5 +1,5 @@
 ad_library {
-  Test cases for the Tcl API of the news package. The test cases are based 
+  Test cases for the Tcl API of the news package. The test cases are based
   on the acs-automated-testing package
 
   @author Peter Marklund
@@ -10,11 +10,13 @@ ad_library {
 namespace eval news {}
 namespace eval news::test {}
 
-aa_register_case news_pretty_status_key {
-    Test the news_pretty_status_key Tcl proc and
-    the news__status PLSQL function.
+aa_register_case \
+    -procs news_pretty_status_key \
+    news_pretty_status_key {
+        Test the news_pretty_status_key Tcl proc and
+        the news__status PLSQL function.
 
-    @author Peter Marklund
+        @author Peter Marklund
 } {
     set now_seconds [clock scan now]
     set offset [expr {60*60*24*10}]
@@ -68,7 +70,7 @@ ad_proc -private news::test::assert_status_pretty {
 } {
     set pretty_status [news_pretty_status -publish_date $publish_date -archive_date $archive_date -status $status]
     aa_true "publish_date=\"$publish_date\" archive_date=\"$archive_date\" status=\"$status\" pretty_status=\"$pretty_status\"" \
-        [expr {$pretty_status ne ""}] 
+        [expr {$pretty_status ne ""}]
 
     set db_news_status [news::test::get_news_status \
                            -publish_date $publish_date \
