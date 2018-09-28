@@ -704,7 +704,7 @@ aa_register_case -cats {
         aa_log "News node_id    :$_news_node_id"
         aa_log "News package_id :$_news_package_id"
     } else {
-        aa_error "Error from initialiser: $_news_package_mounted_err"
+        aa_error "Error from initializer: $_news_package_mounted_err"
     }
 }
 
@@ -725,7 +725,7 @@ aa_register_case -cats {
     set news_id -1
 
     if {!$_news_package_mounted_p} {
-        aa_error "News package not mounted, error from initialiser: $_news_package_mounted_err"
+        aa_error "News package not mounted, error from initializer: $_news_package_mounted_err"
     } else {
         #
         # Attempt to create the article
@@ -854,7 +854,7 @@ aa_register_case -cats {
     set news_id -1
 
     if {!$_news_package_mounted_p} {
-        aa_error "News package not mounted, error from initialiser: $_news_package_mounted_err"
+        aa_error "News package not mounted, error from initializer: $_news_package_mounted_err"
     } else {
         #
         # Create the article
@@ -1006,7 +1006,7 @@ aa_register_case -cats {
     set news_id -1
 
     if {!$_news_package_mounted_p} {
-        aa_error "News package not mounted, error from initialiser: $_news_package_mounted_err"
+        aa_error "News package not mounted, error from initializer: $_news_package_mounted_err"
     } else {
         #
         # Attempt to create the article
@@ -1108,7 +1108,7 @@ aa_register_case -cats {
     set news_id -1
 
     if {!$_news_package_mounted_p} {
-        aa_error "News package not mounted, error from initialiser: $_news_package_mounted_err"
+        aa_error "News package not mounted, error from initializer: $_news_package_mounted_err"
     } else {
         #
         # Create the article
@@ -1263,7 +1263,7 @@ aa_register_case -cats {
     set news_id -1
 
     if {!$_news_package_mounted_p} {
-        aa_error "News package not mounted, error from initialiser: $_news_package_mounted_err"
+        aa_error "News package not mounted, error from initializer: $_news_package_mounted_err"
     } else {
         #
         # Create the article
