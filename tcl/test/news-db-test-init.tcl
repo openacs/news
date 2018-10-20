@@ -508,7 +508,7 @@ aa_register_case -cats {
     hierarchy.
 } {
     #
-    # Extract the list of all privileges and privilege heirachies.
+    # Extract the list of all privileges and privilege hierarchies.
     #
     set priv_list {}
     db_foreach get-privileges {
@@ -529,7 +529,7 @@ aa_register_case -cats {
         aa_true "Check $priv privilege exists" {[lsearch $priv_list $priv] != -1}
     }
 
-    aa_log "Check the news privilege heirachies are correct"
+    aa_log "Check the news privilege hierarchies are correct"
     foreach priv_pair {"read,news_read"
         "delete,news_delete"
         "news_admin,news_read"
