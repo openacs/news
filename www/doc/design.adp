@@ -1,5 +1,5 @@
 
-<property name="context">{/doc/news {News}} {News Design Document}</property>
+<property name="context">{/doc/news/ {News}} {News Design Document}</property>
 <property name="doc(title)">News Design Document</property>
 <master>
 <h2>News Design Document</h2>
@@ -312,8 +312,8 @@ entering the news body is used as a formatting editor.
 <ul>
 <li>Use e-mail notification on submission and release, such as
 supplied by ACS Notification in PL/SQL only.</li><li>Allow for more MIME types, especially Microsoft Word, and use
-the corresponding Intermedia filter to render as HTML.</li><li>Add news categorization to the data model that allows one to order
-news articles by categories without creating new application
+the corresponding Intermedia filter to render as HTML.</li><li>Add news categorization to the data model that allows one to
+order news articles by categories without creating new application
 instances (e.g. sports, education, health, literature, music ,
 politics, ...) - this also needs a UI to create categories and a
 mapping table.</li>
