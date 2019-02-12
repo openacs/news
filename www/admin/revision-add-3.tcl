@@ -2,14 +2,14 @@
 
 ad_page_contract {
 
-    This page adds a new revision to a news item 
+    This page adds a new revision to a news item
     and redirects to the item page of that item
 
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
     @cvs-id $Id$
 
-} { 
+} {
     item_id:naturalnum,notnull
     publish_title:notnull
     publish_lead
@@ -26,7 +26,7 @@ set mime_type ${publish_body.format}
 
 if {$permanent_p == "t"} {
     set archive_date_ansi ""
-} 
+}
 
 # approval foo
 set approval_user [ad_conn "user_id"]
@@ -34,7 +34,7 @@ set approval_ip [ad_conn "peeraddr"]
 set approval_date [dt_sysdate]
 set live_revision_p "t"
 
-# creation foo 
+# creation foo
 set creation_ip [ad_conn "peeraddr"]
 set creation_user [ad_conn "user_id"]
 
@@ -42,19 +42,19 @@ set creation_user [ad_conn "user_id"]
 set active_revision_p "t"
 
 # Insert is 2-step process, same as in item-create-3.tcl
-if {[catch { 
+if {[catch {
     set revision_id [db_exec_plsql create_news_item_revision {}]
 
     set content_add [db_map content_add]
-    if {![string match $content_add ""]} {    
-	db_dml content_add {
+    if {![string match $content_add ""]} {
+        db_dml content_add {
             update cr_revisions
             set    content = empty_blob()
             where  revision_id = :revision_id
             returning content into :1
         } -blobs  [list $publish_body]
     }
-   
+
 } errmsg ]} {
 
     set complaint " [_ news.lt_The_database_did_not_] \

@@ -36,7 +36,7 @@ set approval_policy [parameter::get -parameter ApprovalPolicy -default "wait"]
 #
 # the news_admin or an open approval policy allow immediate publishing
 #
-if { $news_admin_p == 1 || $approval_policy eq "open" } { 
+if { $news_admin_p == 1 || $approval_policy eq "open" } {
     set approval_user [ad_conn user_id]
     set approval_ip [ad_conn peeraddr]
     set approval_date [dt_sysdate]
@@ -51,7 +51,7 @@ if { $news_admin_p == 1 || $approval_policy eq "open" } {
 # Allow the user to "never expire" a news item.
 if {$permanent_p == "t"} {
     set archive_date_ansi ""
-} 
+}
 
 # get creation_foo
 set creation_date [dt_sysdate]
@@ -80,9 +80,9 @@ if { !$news_admin_p } {
         # case: user submitted news item, is returned to a Thank-you page
         set title [_ news.News_item_submitted]
         set context [list $title]
-        ad_return_template item-create-thankyou 
+        ad_return_template item-create-thankyou
     }
-} else {    
+} else {
     # case: administrator returned to index page
     ad_returnredirect ""
     ad_script_abort

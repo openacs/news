@@ -5,12 +5,12 @@ ad_page_contract {
     This page makes the insert of publish_date and archive_date (optionally)
     into cr_revisions and cr_news(news_id) resp. without intermediate confirmation.
     The administrator is redirected to return_url:localurl
-  
+
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
     @cvs-id $Id$
 
-} { 
+} {
     revision_id:naturalnum,notnull
     {return_url:localurl ""}
     {permanent_p:boolean "f"}
@@ -32,10 +32,10 @@ if {$permanent_p == "t"} {
     set archive_date_ansi $archive_date(date)
 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
-	ad_return_error "[_ news.Scheduling_Error]" \
-		"[_ news.lt_The_archive_date_must]"
+        ad_return_error "[_ news.Scheduling_Error]" \
+            "[_ news.lt_The_archive_date_must]"
         ad_script_abort
-    }                     
+    }
 
 }
 
@@ -46,8 +46,8 @@ set live_revision_p "t"
 
 
 foreach id $revision_id {
-    
-    db_exec_plsql news_item_approve_publish {}       
+
+    db_exec_plsql news_item_approve_publish {}
 
 }
 set package_id [ad_conn package_id]

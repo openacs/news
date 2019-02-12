@@ -136,7 +136,7 @@ aa_register_component "db-news-globals" {
     _news_cr_news_root_folder_id
 } {
     aa_export_vars {_news_cr_root_folder_id _news_cr_news_root_folder_id}
-    
+
     set _news_cr_root_folder_id [content::item::get_root_folder]
     set p_parent_id $_news_cr_root_folder_id
     set _news_cr_news_root_folder_id [db_string get-cr-news-root-folder {
@@ -163,7 +163,7 @@ aa_register_component "db-news-item-create" {
     news_id
 } {
     aa_export_vars {p_full_details p_title p_text p_package_id p_is_live
-        p_approval_user p_approval_ip p_approval_date p_archive_date 
+        p_approval_user p_approval_ip p_approval_date p_archive_date
         news_id}
     if {$p_full_details == "t"} {
         set p_approval_user [ad_conn "user_id"]
@@ -224,10 +224,10 @@ aa_register_component "db-news-revision-create" {
     Populates:<br>
     revision_id
 } {
-    aa_export_vars {p_item_id 
+    aa_export_vars {p_item_id
         p_full_details p_title p_text p_package_id p_make_active_revision_p
         p_description
-        p_approval_user p_approval_ip p_approval_date p_archive_date 
+        p_approval_user p_approval_ip p_approval_date p_archive_date
         revision_id}
     if {$p_full_details == "t"} {
         set p_approval_user [ad_conn "user_id"]
@@ -371,7 +371,7 @@ aa_register_component "db-get-cr-news-row" {
     set retrieval_ok_p 1
     if {![db_0or1row get-cr-news-row {
         select package_id, archive_date,
-        approval_user, approval_date, approval_ip 
+        approval_user, approval_date, approval_ip
         from cr_news
         where news_id = :p_news_id
     }]} {
@@ -646,7 +646,7 @@ aa_register_case -cats {
     db
     config
 } -on_error {
-    The "news" object type doesn't exist, or has isn't configured correctly. 
+    The "news" object type doesn't exist, or has isn't configured correctly.
     The most probable cause of this is that the news package datamodel hasn't been
     installed.
 } "check_object_type" {
@@ -797,7 +797,7 @@ aa_register_case -cats {
                 # Call the news.name function to retrieve the item name.
                 #
                 aa_log "Call news.name function to retrieve title of content revision"
-                set p_news_id $news_id                
+                set p_news_id $news_id
                 set name [db_exec_plsql news-name {}]
                 aa_equals "Check the return from news.name is correct" $name $p_title
             }
@@ -820,7 +820,7 @@ aa_register_case -cats {
         set p_item_id $item_id
         aa_call_component db-get-cr-items-row
         aa_false "Check the cr_items row was deleted" {$retrieval_ok_p}
-        
+
         set p_revision_id $news_id
         aa_call_component db-get-cr-revisions-row
         aa_false "Check the cr_revisions row was deleted" {$retrieval_ok_p}
