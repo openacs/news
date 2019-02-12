@@ -13,8 +13,8 @@ ad_page_contract {
     publish_body:allhtml,notnull,trim
     publish_body.format:path,notnull,trim
     {publish_lead {}}
-    {publish_date_ansi:trim "[db_null]"}
-    {archive_date_ansi:trim "[db_null]"}
+    {publish_date_ansi:trim ""}
+    {archive_date_ansi:trim ""}
     permanent_p:boolean,notnull
 } -errors {
      imgfile_valid {Image file invalid}
@@ -42,15 +42,15 @@ if { $news_admin_p == 1 || $approval_policy eq "open" } {
     set approval_date [dt_sysdate]
     set live_revision_p "t"
 } else {
-    set approval_user [db_null]
-    set approval_ip [db_null]
-    set approval_date [db_null]
+    set approval_user ""
+    set approval_ip ""
+    set approval_date ""
     set live_revision_p "f"
 }
 
 # Allow the user to "never expire" a news item.
 if {$permanent_p == "t"} {
-    set archive_date_ansi [db_null]
+    set archive_date_ansi ""
 } 
 
 # get creation_foo

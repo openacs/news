@@ -25,7 +25,7 @@ ad_page_contract {
 set mime_type ${publish_body.format}
 
 if {$permanent_p == "t"} {
-    set archive_date_ansi [db_null]
+    set archive_date_ansi ""
 } 
 
 # approval foo

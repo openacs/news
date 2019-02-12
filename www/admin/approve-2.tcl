@@ -25,7 +25,7 @@ set publish_date_ansi $publish_date(date)
 
 if {$permanent_p == "t"} {
 
-    set archive_date_ansi [db_null]
+    set archive_date_ansi ""
 
 } else {
 

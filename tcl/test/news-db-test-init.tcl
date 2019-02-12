@@ -171,10 +171,10 @@ aa_register_component "db-news-item-create" {
         set p_approval_date [dt_sysdate]
         set p_archive_date  [dt_sysdate]
     } else {
-        set p_approval_user [db_null]
-        set p_approval_ip   [db_null]
-        set p_approval_date [db_null]
-        set p_archive_date  [db_null]
+        set p_approval_user ""
+        set p_approval_ip   ""
+        set p_approval_date ""
+        set p_archive_date  ""
     }
     set news_id [db_exec_plsql item-create {
         begin
@@ -235,10 +235,10 @@ aa_register_component "db-news-revision-create" {
         set p_approval_date [dt_sysdate]
         set p_archive_date  [dt_sysdate]
     } else {
-        set p_approval_user [db_null]
-        set p_approval_ip   [db_null]
-        set p_approval_date [db_null]
-        set p_archive_date  [db_null]
+        set p_approval_user ""
+        set p_approval_ip   ""
+        set p_approval_date ""
+        set p_archive_date  ""
     }
     set revision_id [db_exec_plsql revision-create {
         begin
@@ -1041,7 +1041,7 @@ aa_register_case -cats {
         #
         set p_news_id $news_id
         aa_call_component db-get-cr-news-row
-        aa_equals "Check the archive_date is null" $archive_date [db_null]
+        aa_equals "Check the archive_date is null" $archive_date ""
 
         #
         # Set the archive period, providing an explicit archive date.
@@ -1162,10 +1162,10 @@ aa_register_case -cats {
         if {!$retrieval_ok_p} {
             aa_error "cr_news row not found for new revision news_id $revision2_id"
         } else {
-            aa_equals "Check the archive_date is null"  $archive_date  [db_null]
-            aa_equals "Check the approval_date is null" $approval_date [db_null]
-            aa_equals "Check the aprroval_user is null" $approval_user [db_null]
-            aa_equals "Check the approval_ip is null"   $approval_ip   [db_null]
+            aa_equals "Check the archive_date is null"  $archive_date  ""
+            aa_equals "Check the approval_date is null" $approval_date ""
+            aa_equals "Check the aprroval_user is null" $approval_user ""
+            aa_equals "Check the approval_ip is null"   $approval_ip   ""
         }
 
         #
@@ -1176,7 +1176,7 @@ aa_register_case -cats {
         if {!$retrieval_ok_p} {
             aa_error "cr_revisions row not found for new revision revision_id $revision2_id"
         } else {
-            aa_equals "Check revision 2 publish_date is null" $publish_date [db_null]
+            aa_equals "Check revision 2 publish_date is null" $publish_date ""
         }
 
         #
@@ -1295,10 +1295,10 @@ aa_register_case -cats {
         aa_log "Unapproving revision 1, setting publish_date null, archive_date null"
         set p_revision_id $revision1_id
         set p_approve_p "t"
-        set p_publish_date  [db_null]
-        set p_archive_date  [db_null]
+        set p_publish_date  ""
+        set p_archive_date  ""
         set p_approval_user [ad_conn "user_id"]
-        set p_approval_date [db_null]
+        set p_approval_date ""
         set p_approval_ip   [ad_conn "peeraddr"]
         set p_live_revision_p "t"
         aa_call_component db-news-set-approve
@@ -1317,7 +1317,7 @@ aa_register_case -cats {
         set p_revision_id $revision1_id
         set p_approve_p "t"
         set p_publish_date  [clock format [clock scan "+ 1 year"] -format %Y-%m-%d] ; # in the future
-        set p_archive_date  [db_null]
+        set p_archive_date  ""
         set p_approval_user [ad_conn "user_id"]
         set p_approval_date "2001-11-03"
         set p_approval_ip   [ad_conn "peeraddr"]
@@ -1359,7 +1359,7 @@ aa_register_case -cats {
         set p_revision_id $revision1_id
         set p_approve_p "t"
         set p_publish_date  "2000-11-01"
-        set p_archive_date  [db_null]
+        set p_archive_date  ""
         set p_approval_user [ad_conn "user_id"]
         set p_approval_date "2001-11-03"
         set p_approval_ip   [ad_conn "peeraddr"]
