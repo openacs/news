@@ -212,7 +212,7 @@ allowable operations (on the items checked at their checkbox in the
 first column of the table), is shown. For example, bulk-archiving
 and deleting of published items can be effected in this way. For
 archived items, one can re-publish or delete them.
-<p>Note, that releasing/revoking can be done for an item
+<p>Note that releasing/revoking can be done for an item
 individually as well, following the ID# link in the second column
 which leads to /admin/item. On that page, a new revision can be
 added. There is no UI to <em>edit</em> a revision; A new revision
