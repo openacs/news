@@ -115,12 +115,12 @@ BEGIN
     registered_users := acs__magic_object_id('registered_users');
     the_public       := acs__magic_object_id('the_public');
 
-    PERFORM acs_permission__revoke_permission (
+    PERFORM acs_permission.revoke_permission (
         default_context,  -- object_id
     	registered_users, -- grantee_id
     	'news_create'   -- privilege
     );
-    PERFORM acs_permission__revoke_permission (
+    PERFORM acs_permission.revoke_permission (
         default_context, -- object_id
 	the_public,      -- grantee_id
 	'news_read'    -- privilege
