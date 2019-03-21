@@ -18,7 +18,7 @@
   <msg key="Body">Text</msg>
   <msg key="bytes">Bytes</msg>
   <msg key="Choose_an_image">Wählen Sie ein Bild aus...</msg>
-  <msg key="Choose_an_image_to_upload_and_press">Wählen Sie ein Bild aus und drücken Sie dann auf 'Hochladen' für die Vorschau. Wenn es Ihnen gefällt drücken Sie anschließend auf 'Übernehmen', um das Bild für die Ankündigung zu verwenden.</msg>
+  <msg key="Choose_an_image_to_upload_and_press">Wählen Sie ein Bild aus und drücken Sie dann auf &#39;Hochladen&#39; für die Vorschau. Wenn es Ihnen gefällt drücken Sie anschließend auf &#39;Übernehmen&#39;, um das Bild für die Ankündigung zu verwenden.</msg>
   <msg key="Comments">Kommentare</msg>
   <msg key="Confirm">Bestätigen
 </msg>
@@ -41,13 +41,13 @@
   <msg key="It_will_move_into_archive_on">Das Archivierungsdatum ist der</msg>
   <msg key="Lead">Kurztext</msg>
   <msg key="Log_Entry">Protokolleintrag</msg>
-  <msg key="lt__When_youre_done_clic">Um die fertiggestellte Ankündigung zu überprüfen, klicken Sie auf 'Vorschau'. </msg>
+  <msg key="lt__When_youre_done_clic">Um die fertiggestellte Ankündigung zu überprüfen, klicken Sie auf &#39;Vorschau&#39;. </msg>
   <msg key="lt_And_be_live_until_rev">Veröffentlicht bis zur Aufhebung der Freigabe</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Ab nächstem Monat archivieren</msg>
   <msg key="lt_Archive_as_of_Next_We">Ab nächster Woche archivieren</msg>
   <msg key="lt_cannot_be_applied_to_">kann an folgenden Elementen nicht ausgeführt werden:</msg>
   <msg key="lt_Click_on_item_ID_to_a">Klicken Sie auf die ID, um eine Ankündigung freizugeben/die Freigabe aufzuheben.</msg>
-  <msg key="lt_Click_on_revise_to_ed">Klicken Sie auf 'Neue Version hinzufügen', um eine Ankündigung zu bearbeiten.</msg>
+  <msg key="lt_Click_on_revise_to_ed">Klicken Sie auf &#39;Neue Version hinzufügen&#39;, um eine Ankündigung zu bearbeiten.</msg>
   <msg key="lt_Could_not_find_corres">Die gewünschte Version der Ankündigung konnte nicht gefunden werden.</msg>
   <msg key="lt_Could_not_find_the_re">Die gewünschte Ankündigung konnte nicht gefunden werden.</msg>
   <msg key="lt_Do_the_following_to_t">An den ausgewählten Elementen folgende Aktion ausführen:</msg>
@@ -70,7 +70,7 @@
   <msg key="lt_There_are_no_news_ite">Keine Ankündigungen vorhanden</msg>
   <msg key="lt_To_the_readers_it_wil">Für den Leser wird die Ankündigung wie folgt angezeigt:</msg>
   <msg key="lt_Use_the_following_for">Hier können Sie Ihre Ankündigung erstellen oder bearbeiten. Hinweis:</msg>
-  <msg key="lt_When_youre_done_click">Um die fertiggestellte Ankündigung zu überprüfen, klicken Sie auf 'Vorschau'.</msg>
+  <msg key="lt_When_youre_done_click">Um die fertiggestellte Ankündigung zu überprüfen, klicken Sie auf &#39;Vorschau&#39;.</msg>
   <msg key="lt_You_must_supply_a_rev">Bitte geben Sie einen Protokolleintrag für die neue Version ein.</msg>
   <msg key="lt_Your_document_is_larg">Ihr Dokument überschreitet die zulässige Maximalgröße.</msg>
   <msg key="lt_Your_news_item_will_b">Für die Darstellung Ihrer Ankündigung wird das in news.adp definierte Standard-Template verwendet.</msg>
@@ -123,7 +123,7 @@
   <msg key="Upload">Hochladen</msg>
   <msg key="Upload_Image">Bild hochladen</msg>
   <msg key="use_preview_to_revise_image">verwenden Sie die Vorschau, um das Bild zu überprüfen.</msg>
-  <msg key="Use_the_following_form_to_define">Verwenden Sie das nachfolgende Formular, um Ihre Ankündigung anzulegen. Felder mit  sind Pflichtfelder. Sobald Sie fertig sind, können Sie über die 'Vorschau' die Ankündigung überprüfen und ein Bild hochladen.</msg>
+  <msg key="Use_the_following_form_to_define">Verwenden Sie das nachfolgende Formular, um Ihre Ankündigung anzulegen. Felder mit  sind Pflichtfelder. Sobald Sie fertig sind, können Sie über die &#39;Vorschau&#39; die Ankündigung überprüfen und ein Bild hochladen.</msg>
   <msg key="Yes">Ja</msg>
   <msg key="You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both">Sie können entweder eine Textnachricht hochladen oder die Nachricht direkt eingeben, aber nicht beides.</msg>
   <msg key="Your_news_item">Ihre Ankündigung</msg>
