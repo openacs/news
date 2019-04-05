@@ -1,7 +1,7 @@
 # /packages/news/www/admin/revision-add.tcl
 
 ad_page_contract {
-    
+
     This page serves as UI to add a new revision of a news item
     By default, the fields of the active_revision are filled in.
     Currently only News Admin can do this, not the original submitter though.
@@ -9,11 +9,11 @@ ad_page_contract {
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
     @cvs-id $Id$
-    
+
 } {
 
     item_id:naturalnum,notnull
-    
+
 } -properties {
 
     title:onevalue
