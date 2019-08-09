@@ -212,7 +212,7 @@ provided sample news items<br>
 60.10 Provide a subscriber link to sign up for notifications for
 when a new news item is posted. Ensure that notifications can be
 had at user-specifiable frequency: immediately, daily, weekly,
-montly, and quarterly.<br>
+monthly, and quarterly.<br>
 
 60.20 Provide a counter of how many times an item has been
 viewed<br>

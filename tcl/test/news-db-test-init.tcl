@@ -848,7 +848,7 @@ aa_register_case -cats {
     here</a> at the OpenACS bboard was started concerning this problem.
 } "db_check_news_revision" {
     Checks the news database functions for revision creation, deletion and management.
-    Tests <tt>news.revison_new</tt>, <tt>news.revision_delete</tt>,
+    Tests <tt>news.revision_new</tt>, <tt>news.revision_delete</tt>,
     <tt>news.revision_set_active</tt> functions.
 } {
     set news_id -1
