@@ -493,7 +493,7 @@ aa_register_component "db-news-status" {
 
 ################################################################################
 #
-# Testcase check-permissions
+# Testcase check_permissions
 #
 aa_register_case -cats {
     db
@@ -502,7 +502,7 @@ aa_register_case -cats {
     At least some of the news permission privileges aren't present, or have incorrect
     configurations.  The most probable cause of this is that the news package datamodel
     hasn't been installed.
-} "check-permissions" {
+} "check_permissions" {
     Checks the news related permissions.
     Checks that the permissions exist, and that they have the correct
     hierarchy.
