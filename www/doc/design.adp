@@ -53,7 +53,7 @@ is in the file news.adp which takes
 </ul>
 
 as input. Publishers may wish to provide their own templates,
-however even more flexibility can be introduced by supplying the
+however, even more flexibility can be introduced by supplying the
 news body in HTML format. If someone submits a news body with
 inconsistent HTML tags, the News application attempts to close
 these tags in the preview page.
