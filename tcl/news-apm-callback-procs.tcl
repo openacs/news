@@ -1,7 +1,7 @@
 ad_library {
-    
+
     APM callbacks for the news package
-    
+
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-20
     @cvs-id $Id$
@@ -12,13 +12,13 @@ namespace eval ::news::install {}
 ad_proc -public ::news::install::after_install {
 } {
     Setup service contracts
-    
+
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-20
-    
-    @return 
-    
-    @error 
+
+    @return
+
+    @error
 } {
     news::sc::register_news_fts_impl
     news::install::register_rss
@@ -63,15 +63,15 @@ ad_proc -public ::news::install::after_instantiate {
     -node_id
 } {
     Setup RSS feed per package instance
-    
+
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-20
-    
+
     @param package_id
 
-    @return 
-    
-    @error 
+    @return
+
+    @error
 } {
     set subscr_id [rss_support::add_subscription \
                        -summary_context_id $package_id \
@@ -120,18 +120,18 @@ ad_proc -private news::install::before_uninstantiate {
 
     @author Stan Kaufman (skaufman@epimetrics.com)
     @creation-date 2005-08-03
-    
+
     @param package_id
 
-    @return 
-    
-    @error 
+    @return
+
+    @error
 } {
     news_items_delete [db_list dead_news {}]
     rss_support::del_subscription -summary_context_id $package_id -owner news -impl_name news
 }
 
-ad_proc -public create_news_item_impl { 
+ad_proc -public create_news_item_impl {
 
 } {
     Register the service contract implementation and return the impl_id
