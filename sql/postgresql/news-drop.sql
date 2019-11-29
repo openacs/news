@@ -140,11 +140,26 @@ $$ LANGUAGE plpgsql;
 select inline_0 ();
 drop function inline_0 ();
 
+-- *** Drop News Notification Type ***
+--
+select notification_type__delete((
+       select type_id from notification_types
+        where short_name = 'one_news_item_notif'));
 
--- *** Search contract de-registration ***
+-- *** Service contract de-registration ***
 --
 select acs_sc_impl__delete(
 	   'FtsContentProvider',		-- impl_contract_name
            'news'				-- impl_name
+);
+
+select acs_sc_impl__delete(
+	   'RssGenerationSubscriber',		-- impl_contract_name
+           'news'				-- impl_name
+);
+
+select acs_sc_impl__delete(
+	   'NotificationType',          -- impl_contract_name
+           'news_item_notif_type'	-- impl_name
 );
 

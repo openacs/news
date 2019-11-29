@@ -101,13 +101,13 @@ ad_proc -private news::install::after_upgrade {
 	    5.2.0d4 5.2.0d5 {
 
        		# Create the impl and aliases for a news item
-	        set impl_id [create_news_item_impl]
+	        set impl_id [::news::install::create_news_item_impl]
 
     		# Create the notification type for a news item
-                set type_id [create_news_item_type $impl_id]
+                set type_id [::news::install::create_news_item_type $impl_id]
 
                 # Enable the delivery intervals and delivery methods for a news item
-                enable_intervals_and_methods $type_id
+                ::news::install::enable_intervals_and_methods $type_id
 	    }
 	}
 }
@@ -131,7 +131,7 @@ ad_proc -private news::install::before_uninstantiate {
     rss_support::del_subscription -summary_context_id $package_id -owner news -impl_name news
 }
 
-ad_proc -public create_news_item_impl {
+ad_proc -public ::news::install::create_news_item_impl {
 
 } {
     Register the service contract implementation and return the impl_id
@@ -148,7 +148,7 @@ ad_proc -public create_news_item_impl {
          }]
 }
 
-ad_proc -public create_news_item_type {
+ad_proc -public ::news::install::create_news_item_type {
 	impl_id
 } {
     Create the notification type for one news item
@@ -162,7 +162,7 @@ ad_proc -public create_news_item_type {
 }
 
 
-ad_proc -public enable_intervals_and_methods {type_id} {
+ad_proc -public ::news::install::enable_intervals_and_methods {type_id} {
     Enable the intervals and delivery methods of a specific type
 } {
     # Enable the various intervals and delivery method
