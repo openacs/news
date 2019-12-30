@@ -3,7 +3,7 @@ ad_include_contract {
 } {
     publish_title:optional
     publish_lead:optional
-    publish_body:optional
+    publish_body:html
     creator_link:html
     publish_format:notnull
 }
