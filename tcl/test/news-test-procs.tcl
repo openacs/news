@@ -11,9 +11,9 @@ namespace eval news {}
 namespace eval news::test {}
 
 aa_register_case \
-    -procs news_pretty_status_key \
-    news_pretty_status_key {
-        Test the news_pretty_status_key Tcl proc and
+    -procs news_pretty_status \
+    news_pretty_status {
+        Test the news_pretty_status Tcl proc and
         the news__status PLSQL function.
 
         @author Peter Marklund
