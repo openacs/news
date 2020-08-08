@@ -22,7 +22,7 @@ associated with community member comments as in a forum, however,
 the primary intention of the News application is simply to give
 members access to community related news items. News items are
 listed by date, and when news items are no longer current, they are
-automatically archived after a administrator-specifiable number of
+automatically archived after an administrator-specifiable number of
 days.
 <p>Since administrators may wish to give access to these news items
 by appeal to a variety of access schemes, the News application is
@@ -104,7 +104,7 @@ package.<br>
 10.10.10 cr_news: subtype cr_revisions to define news content
 type<br>
 
-10.10.20 news_templates: use file system for new templates, no
+10.10.20 news_templates: use filesystem for new templates, no
 extra table
 <p>10.30 Privilege<br>
 10.30.10 Provide a site-wide admin level privilege: admin<br>
