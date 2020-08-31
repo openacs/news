@@ -9,7 +9,7 @@ ad_library {
 
 namespace eval ::news::install {}
 
-ad_proc -public ::news::install::after_install {
+ad_proc -private ::news::install::after_install {
 } {
     Setup service contracts
 
@@ -26,7 +26,7 @@ ad_proc -public ::news::install::after_install {
 
 }
 
-ad_proc -public ::news::install::register_rss {
+ad_proc -private ::news::install::register_rss {
 } {
     setup RSS support
 } {
@@ -42,7 +42,7 @@ ad_proc -public ::news::install::register_rss {
     acs_sc::impl::new_from_spec -spec $spec
 }
 
-ad_proc -public ::news::install::register_notifications {
+ad_proc -private ::news::install::register_notifications {
 } {
     setup notifications
 } {
@@ -58,7 +58,7 @@ ad_proc -public ::news::install::register_notifications {
     }
 }
 
-ad_proc -public ::news::install::after_instantiate {
+ad_proc -private ::news::install::after_instantiate {
     -package_id
     -node_id
 } {
@@ -131,7 +131,7 @@ ad_proc -private news::install::before_uninstantiate {
     rss_support::del_subscription -summary_context_id $package_id -owner news -impl_name news
 }
 
-ad_proc -public ::news::install::create_news_item_impl {
+ad_proc -private ::news::install::create_news_item_impl {
 
 } {
     Register the service contract implementation and return the impl_id
@@ -148,7 +148,7 @@ ad_proc -public ::news::install::create_news_item_impl {
     }]
 }
 
-ad_proc -public ::news::install::create_news_item_type {
+ad_proc -private ::news::install::create_news_item_type {
     impl_id
 } {
     Create the notification type for one news item
@@ -161,7 +161,7 @@ ad_proc -public ::news::install::create_news_item_type {
                 -description "Notification of a new news item"]
 }
 
-ad_proc -public ::news::install::enable_intervals_and_methods {type_id} {
+ad_proc -private ::news::install::enable_intervals_and_methods {type_id} {
     Enable the intervals and delivery methods of a specific type
 } {
     # Enable the various intervals and delivery method
