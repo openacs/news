@@ -63,9 +63,6 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
         {options {editor ckeditor5 JSEditorClass ClassicEditor}}
         {value "[list $publish_body $publish_format]"}
     }
-    {text_file:file(file),optional
-        {label "[_ news.or_upload_text_file]"}
-    }
     {publish_date:date,optional
         {label "[_ news.Release_Date]"}
         {value "[split $publish_date -]"}
