@@ -5,9 +5,9 @@
 <listtemplate name="news"></listtemplate>
 
 <p><include src="/packages/notifications/lib/notification-widget" type="one_news_item_notif"
-	 object_id="@package_id;literal@"
-	 pretty_name="News"
-	 url="@news_url;literal@" >
+    object_id="@package_id;literal@"
+    pretty_name="News"
+    url="@news_url;literal@" >
 
 <if @rss_exists_p;literal@ true>
   <p>

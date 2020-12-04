@@ -21,7 +21,7 @@
  <em>#news.lt_There_are_no_items_av#</em><p>
 </if>
 <else>
-<p>	
+<p>
  <table border="0">
    <tr><td>
     <form method=post action=process>
@@ -52,13 +52,13 @@
          </tr>
          </multiple>
        </table>
- 
+
      <if @view@ ne "all">
      <p>
       #news.lt_Do_the_following_to_t#
       <select name=action>
-	@select_actions;noquote@
-       <option value=delete>#news.Delete#</option>	
+        @select_actions;noquote@
+       <option value=delete>#news.Delete#</option>
        </select>
        <input type="submit" value="#news.Go#">
        </p>
@@ -66,12 +66,3 @@
        </form>
        </td></tr></table>
 </else>
-
-
-
-
-
-
-
-
-

@@ -28,10 +28,10 @@ set package_id [ad_conn package_id]
 
 set view_slider [list \
     [list view "[_ news.News_Items]" published [list \
-	[list published "[_ news.Published]" {where "status like 'published%'"}] \
-	[list unapproved "[_ news.Unapproved]" {where "status = 'unapproved'"}] \
-	[list approved "[_ news.Approved]" {where "status like 'going_live%'"}] \
-	[list archived "[_ news.Archived]"     {where "status = 'archived'"}] \
+        [list published "[_ news.Published]" {where "status like 'published%'"}] \
+        [list unapproved "[_ news.Unapproved]" {where "status = 'unapproved'"}] \
+        [list approved "[_ news.Approved]" {where "status like 'going_live%'"}] \
+        [list archived "[_ news.Archived]"     {where "status = 'archived'"}] \
         [list all "[_ news.All]"               {} ] \
     ]]
 ]
@@ -40,25 +40,25 @@ set view_option [ad_dimensional_sql $view_slider]
 
 # define action on selected views, unapproved, archived, approved need restriction
 switch -- $view {
-    "unapproved" { 
-        set select_actions "<option value=\"publish\">[_ news.Publish]" 
+    "unapproved" {
+        set select_actions "<option value=\"publish\">[_ news.Publish]"
     }
-    "archived"   { 
-        set select_actions "<option value=\"publish\">[_ news.Publish]" 
+    "archived"   {
+        set select_actions "<option value=\"publish\">[_ news.Publish]"
     }
-    "approved"   { 
-        set select_actions "<option value=\"make permanent\">[_ news.Make_Permanent]" 
+    "approved"   {
+        set select_actions "<option value=\"make permanent\">[_ news.Make_Permanent]"
     }
     default      {
-	set select_actions "
-	<option value=\"archive now\" selected>[_ news.Archive_Now]</option>
-	<option value=\"archive next week\">[_ news.lt_Archive_as_of_Next_We]</option>
-	<option value=\"archive next month\">[_ news.lt_Archive_as_of_Next_Mo]</option>
-	<option value=\"make permanent\">[_ news.Make_Permanent]"
+        set select_actions "
+            <option value=\"archive now\" selected>[_ news.Archive_Now]</option>
+            <option value=\"archive next week\">[_ news.lt_Archive_as_of_Next_We]</option>
+            <option value=\"archive next month\">[_ news.lt_Archive_as_of_Next_Mo]</option>
+            <option value=\"make permanent\">[_ news.Make_Permanent]"
     }
 }
 
-set title "[_ news.Administration]" 
+set title "[_ news.Administration]"
 set context {}
 
 

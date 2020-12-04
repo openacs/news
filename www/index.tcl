@@ -3,7 +3,7 @@
 ad_page_contract {
 
     Displays a hyperlinked list of published news titles either 'live' or 'archived'
-    
+
     @author Stefan Deusch (stefan@arsdigita.com)
     @creation-date 2000-12-20
     @cvs-id $Id$
@@ -15,11 +15,11 @@ ad_page_contract {
 
 } -properties {
 
-   
+
     title:onevalue
     context:onevalue
     news_admin_p:onevalue
-    news_create_p:onevalue 
+    news_create_p:onevalue
     news_items:multirow
 }
 
@@ -28,7 +28,7 @@ set package_id [ad_conn package_id]
 permission::require_permission -object_id $package_id -privilege news_read
 
 
-set context {} 
+set context {}
 
 set actions_list [list]
 
@@ -43,9 +43,9 @@ if {"live" eq $view} {
             [export_vars -base [ad_conn url] {{view archive}}] \
             [_ news.Show_archived_news]
     }
-    
+
 } else {
-    
+
     set title [apm_instance_name_from_id $package_id]
     set view_clause [db_map view_clause_archived]
 
