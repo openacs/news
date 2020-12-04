@@ -72,11 +72,14 @@ db_multirow -extend { publish_date_pretty archive_date_pretty pretty_status } ne
                            -status $status]
 }
 
-set rss_exists [rss_support::subscription_exists \
-                    -summary_context_id $package_id \
-                    -impl_name news]
-set rss_feed_url [news_util_get_url $package_id]rss/rss.xml
-
+# Check if RSS generation is active and a subscription exists
+set rss_gen_active_p [parameter::get_global_value -package_key rss-support -parameter RssGenActiveP]
+if {$rss_gen_active_p} {
+    set rss_exists_p [rss_support::subscription_exists \
+                        -summary_context_id $package_id \
+                        -impl_name news]
+    set rss_feed_url [news_util_get_url $package_id]rss/rss.xml
+}
 
 # Local variables:
 #    mode: tcl

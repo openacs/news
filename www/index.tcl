@@ -100,11 +100,16 @@ template::list::create -name news -multirow news_items -actions $actions_list -n
     }
 }
 
-# Footer links
-set rss_exists [rss_support::subscription_exists \
-                    -summary_context_id $package_id \
-                    -impl_name news]
-set rss_url "[news_util_get_url $package_id]rss/rss.xml"
+# Check if RSS generation is active and a subscription exists
+if {[parameter::get_global_value -package_key rss-support -parameter RssGenActiveP]} {
+    set rss_exists_p [rss_support::subscription_exists \
+                        -summary_context_id $package_id \
+                        -impl_name news]
+    set rss_url "[news_util_get_url $package_id]rss/rss.xml"
+} else {
+    set rss_exists_p 0
+}
+
 set news_url [ad_return_url]
 
 ad_return_template
