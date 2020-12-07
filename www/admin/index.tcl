@@ -1,5 +1,3 @@
-# /packages/news/www/admin/index.tcl
-
 ad_page_contract {
 
     Display a list of news items summary for administration
@@ -73,7 +71,7 @@ db_multirow -extend { publish_date_pretty archive_date_pretty pretty_status } ne
 }
 
 # Check if RSS generation is active and a subscription exists
-set rss_gen_active_p [parameter::get_global_value -package_key rss-support -parameter RssGenActiveP]
+set rss_gen_active_p [parameter::get_global_value -package_key rss-support -parameter RssGenActiveP -default 1]
 if {$rss_gen_active_p} {
     set rss_exists_p [rss_support::subscription_exists \
                         -summary_context_id $package_id \

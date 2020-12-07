@@ -1,5 +1,3 @@
-# /packages/news/www/index.tcl
-
 ad_page_contract {
 
     Displays a hyperlinked list of published news titles either 'live' or 'archived'
@@ -101,7 +99,7 @@ template::list::create -name news -multirow news_items -actions $actions_list -n
 }
 
 # Check if RSS generation is active and a subscription exists
-if {[parameter::get_global_value -package_key rss-support -parameter RssGenActiveP]} {
+if {[parameter::get_global_value -package_key rss-support -parameter RssGenActiveP -default 1]} {
     set rss_exists_p [rss_support::subscription_exists \
                         -summary_context_id $package_id \
                         -impl_name news]
