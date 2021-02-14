@@ -948,7 +948,7 @@ aa_register_case -cats {
                     $live_revision_id $revision2_id
 
                 #
-                # Okay, lets set the original revision as active.
+                # Okay, let's set the original revision as active.
                 #
                 aa_log "Reset the first revision as live"
                 set p_revision_id $revision1_id
