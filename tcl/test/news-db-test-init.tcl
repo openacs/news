@@ -696,6 +696,8 @@ aa_register_case -cats {
 } -init_classes {
     mount-news-package
 } -on_error {
+} -procs {
+    aa_register_init_class
 } "check_package_mount" {
     Checks the mountability of the news package.
 } {
@@ -715,6 +717,11 @@ aa_register_case -cats {
 #
 aa_register_case -cats {
     db
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } -init_classes {
     mount-news-package
 } "db_check_news_create" {
@@ -836,6 +843,8 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_init_class
 } -on_error {
     This test may have failed because of a bug in the
     content_item.get_latest_revision
@@ -1000,6 +1009,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_archive" {
     Checks the news database functions make_permanent and news_archive.
 } {
@@ -1101,6 +1115,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_set_approve" {
     Checks the news database function for approving/unapproving news articles.
     Tests <tt>news.set_approve</tt> function.
@@ -1255,6 +1274,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_status" {
     Checks the news database function that returns information about a news article publish
     and archive status.
