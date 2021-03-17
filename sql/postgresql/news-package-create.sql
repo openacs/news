@@ -83,9 +83,10 @@ BEGIN
     );
 
     --
-    -- get the newly created revision_id as news_id
-    --
-    v_news_id := content_item__get_live_revision(v_item_id);
+    -- Get the newly created revision_id as news_id.
+    -- Use the "live_revision" (if set) or as fallback 
+    -- the "latest_revision".
+    v_news_id := content_item__get_best_revision(v_item_id);
 
     --
     -- setting publish_date to the provided p_publish_date
