@@ -1,11 +1,11 @@
 # /packages/news/www/preview.tcl
 ad_page_contract {
     This page previews the input from item-create or admin/revision-add
-    
+
     @author stefan@arsdigita.com
     @creation-date 2000-12-18
     @cvs-id $Id$
-    
+
 } {
     {item_id:naturalnum ""}
     action:notnull,trim
@@ -20,7 +20,7 @@ ad_page_contract {
     publish_date_ansi:optional
     archive_date_ansi:optional
     imgfile:optional
-    
+
 } -errors {
 
     publish_title:notnull "[_ news.lt_Please_supply_the_tit]"
@@ -48,7 +48,7 @@ ad_page_contract {
     hidden_vars:onevalue
     permanent_p:onevalue
     html_p:onevalue
-    news_admin_p:onevalue 
+    news_admin_p:onevalue
     form_action:onevalue
     image_url:onevalue
     edit_action:onevalue
@@ -95,12 +95,12 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
 # with news_admin privilege fill in publish and archive dates
 if { $news_admin_p == 1 || [parameter::get -parameter ApprovalPolicy] eq "open" } {
 
-    if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } { 
+    if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } {
 	set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
     } else {
 	set publish_date_ansi ""
     }
-    if { [info exists archive_date(year)] && [info exists archive_date(month)] && [info exists archive_date(day)] } { 
+    if { [info exists archive_date(year)] && [info exists archive_date(month)] && [info exists archive_date(day)] } {
 	set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
     } else {
 	set archive_date_ansi ""
@@ -125,7 +125,7 @@ if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/en
 
     # close any open HTML tags in any case
     set  publish_body [util_close_html_tags $publish_body]
-    
+
     # Note: this is the *only* check against disallowed HTML tags in the
     # news posting system.  Currently, each path for creating or revising
     # a news items passes through this preview script, so it's safe.  But if
@@ -144,7 +144,7 @@ if { $action eq "News Item" } {
     # form variables for confirmation step
 
     set hidden_vars [export_vars -form {
-        publish_title publish_lead publish_body publish_body.format 
+        publish_title publish_lead publish_body publish_body.format
         publish_date_ansi archive_date_ansi html_p permanent_p imgfile
     }]
     set image_vars [export_vars -form {
@@ -162,17 +162,17 @@ if { $action eq "News Item" } {
         publish_date_ansi archive_date_ansi permanent_p html_p imgfile
     }]
     set image_vars [export_vars -form {
-        publish_title publish_lead publish_body publish_body.format 
+        publish_title publish_lead publish_body publish_body.format
         publish_date_ansi archive_date_ansi html_p permanent_p action item_id revision_log
     }]
     set form_action "<form method='post' action='admin/revision-add-3' class='inline-form'>"
     set edit_action "<form method='post' action='admin/revision-add' class='inline-form'>"
 }
 
-# creator link 
+# creator link
 set creator_name [db_string creator {
-    select first_names || ' ' || last_name 
-    from   cc_users 
+    select first_names || ' ' || last_name
+    from   cc_users
     where  user_id = :user_id
 }]
 set creator_link "<a href='/shared/community-member?user_id=$user_id'>[ns_quotehtml $creator_name]</a>"

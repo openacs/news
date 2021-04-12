@@ -2,7 +2,7 @@
 
 ad_page_contract {
 
-    This page enables registered users and the news-admin 
+    This page enables registered users and the news-admin
     to enter news releases.
 
     @author stefan@arsdigita.com
@@ -25,7 +25,7 @@ permission::require_permission -object_id $package_id -privilege news_create
 
 
 # Furthermore, with news_admin privilege, items are approved immediately
-# or if open approval policy 
+# or if open approval policy
 if { [permission::permission_p -object_id $package_id -privilege news_admin]
      || [parameter::get -parameter ApprovalPolicy -default "open"] eq "open"
  } {
@@ -53,7 +53,7 @@ if { $archive_date_ansi eq "" } {
 ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -form {
     {action:text(hidden)
         {value "News Item"}}
-    {publish_title:text(text) 
+    {publish_title:text(text)
         {label "[_ news.Title]"}
         {html {maxlength 400 size 61}}
         {value $publish_title}}
