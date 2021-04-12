@@ -308,7 +308,7 @@ ad_proc -public news_notification_get_url {
 
     @see apm_package_url_from_id
 } {
-    return [apm_package_url_from_id $package_id]
+    return [apm_package_url_from_id $news_package_id]
 }
 
 ad_proc -public news_do_notification {
