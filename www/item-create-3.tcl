@@ -75,15 +75,16 @@ if {$content_add ne ""} {
 #
 # update RSS if it is enabled
 #
-if { !$news_admin_p } {
-    if { "open" ne [parameter::get -parameter ApprovalPolicy -default "wait"] } {
-        # case: user submitted news item, is returned to a Thank-you page
-        set title [_ news.News_item_submitted]
-        set context [list $title]
-        set return_url item-create-thankyou
-    }
+if { !$news_admin_p &&
+     "open" ne [parameter::get -parameter ApprovalPolicy -default "wait"] } {
+    # A regular user submitted a news item needing approval: return to
+    # a Thank-you page.
+    set title [_ news.News_item_submitted]
+    set context [list $title]
+    set return_url item-create-thankyou
 } else {
-    # case: administrator returned to index page
+    # News does not need approval or user is an administrator: return
+    # to index page.
     set return_url ""
 }
 
