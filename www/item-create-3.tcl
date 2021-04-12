@@ -80,12 +80,11 @@ if { !$news_admin_p } {
         # case: user submitted news item, is returned to a Thank-you page
         set title [_ news.News_item_submitted]
         set context [list $title]
-        ad_return_template item-create-thankyou
+        set return_url item-create-thankyou
     }
 } else {
     # case: administrator returned to index page
-    ad_returnredirect ""
-    ad_script_abort
+    set return_url ""
 }
 
 # news item is live
@@ -104,7 +103,7 @@ if { $live_revision_p } {
     news_do_notification $package_id $news_id
 }
 
-ad_returnredirect ""
+ad_returnredirect $return_url
 ad_script_abort
 
 # Local variables:
