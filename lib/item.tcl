@@ -1,18 +1,18 @@
 # /packages/news/lib/item.tcl
 ad_page_contract {
-    
+
     Page to view one item (live or archived) in its active revision
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
     @cvs-id $Id$
-    
+
 } {
 
     item_id:naturalnum,notnull
 
 } -properties {
     title:onevalue
-    context:onevalue 
+    context:onevalue
     item_exist_p:onevalue
     publish_title:onevalue
     publish_lead:onevalue
@@ -50,7 +50,7 @@ set item_exist_p [db_0or1row get_news_info {
 
 if { $item_exist_p } {
 
-    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
+    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails!
     # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
     #
     # RAL: publish_body is already snagged in the 1st query above for postgres.
@@ -68,7 +68,7 @@ if { $item_exist_p } {
     if {[info exists html_p] && $html_p == "f"} {
 	set publish_body [ad_text_to_html -- $publish_body]
     }
-    
+
     if { [parameter::get -parameter SolicitCommentsP -default 0]} {
 
         if {[permission::permission_p -object_id $item_id -privilege general_comments_create] } {
