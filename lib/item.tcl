@@ -50,20 +50,6 @@ set item_exist_p [db_0or1row get_news_info {
 
 if { $item_exist_p } {
 
-    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails!
-    # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-    #
-    # RAL: publish_body is already snagged in the 1st query above for postgres.
-    #
-    set get_content [db_map get_content]
-    if {$get_content ne ""} {
-	set publish_body [db_string get_content {
-            select  content
-            from    cr_revisions
-            where   revision_id = :live_revision
-        }]
-    }
-
     # text-only body
     if {[info exists html_p] && $html_p == "f"} {
 	set publish_body [ad_text_to_html -- $publish_body]
