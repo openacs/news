@@ -43,12 +43,17 @@ set item_exist_p [db_0or1row get_news_info {
        publish_format,
        publish_body,
        publish_date,
-       '<a href=\"/shared/community-member?user_id=' || creation_user || '\">' || item_creator ||  '</a>' as creator_link
+       creation_user,
+       item_creator
     from   news_items_live_or_submitted
     where  item_id = :item_id
 }]
 
 if { $item_exist_p } {
+
+    set creator_link [acs_community_member_link \
+                          -user_id $creation_user \
+                          -label $item_creator]
 
     # text-only body
     if {[info exists html_p] && $html_p == "f"} {
