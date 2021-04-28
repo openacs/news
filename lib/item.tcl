@@ -110,30 +110,6 @@ if { $item_exist_p } {
     set title "[_ news.Error]"
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Local variables:
 #    mode: tcl
 #    tcl-indent-level: 4
