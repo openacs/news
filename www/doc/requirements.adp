@@ -104,8 +104,8 @@ package.<br>
 10.10.10 cr_news: subtype cr_revisions to define news content
 type<br>
 
-10.10.20 news_templates: use filesystem for new templates, no
-extra table
+10.10.20 news_templates: use filesystem for new templates, no extra
+table
 <p>10.30 Privilege<br>
 10.30.10 Provide a site-wide admin level privilege: admin<br>
 10.30.20 Provide an instance-wide admin level privilege:
