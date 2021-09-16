@@ -10,7 +10,7 @@
     <version name="5.10.0" url="http://openacs.org/repository/download/apm/news-5.10.0.apm">
         <owner url="http://openacs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
-        <release-date>2017-08-06</release-date>
+        <release-date>2021-09-15</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
         <maturity>2</maturity>
