@@ -233,7 +233,26 @@ ad_proc -private news__rss_datasource {
     set items [list]
     set counter 0
     set package_url [news_util_get_url $summary_context_id]
-    db_foreach get_news_items {} {
+    db_foreach get_news_items {
+        select cn.*,
+        ci.item_id,
+        cr.content,
+        cr.title,
+        cr.mime_type,
+        cr.description,
+        to_char(o.last_modified, 'YYYY-MM-DD HH24:MI:SS') as last_modified
+        from cr_news cn,
+        cr_revisions cr,
+        cr_items ci,
+        acs_objects o
+        where cn.package_id=:summary_context_id
+        and cr.revision_id=cn.news_id
+        and cn.news_id=o.object_id
+        and cr.item_id=ci.item_id
+        and cr.revision_id=ci.live_revision
+        order by o.last_modified desc
+        fetch first :limit rows only
+    } {
         set entry_url [export_vars -base "[ad_url]${package_url}item" {item_id}]
 
         # content doesn't need to be convert to plain text. moreover it will look much
