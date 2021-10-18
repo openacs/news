@@ -9,7 +9,7 @@ ad_page_contract {
     
 } {
 
-    item_id:naturalnum,notnull
+    item_id:object_id,notnull
 
 } -properties {
     title:onevalue
