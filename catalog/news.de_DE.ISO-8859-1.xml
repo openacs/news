@@ -36,7 +36,7 @@
   <msg key="going_live_no_archive">Veröffentlichung in %n_days_until_publish% Tagen, kein Archivierungsdatum festgelegt</msg>
   <msg key="going_live_with_archive">Veröffentlichung in %n_days_until_publish% Tagen, Archivierung in %n_days_until_archive% Tagen</msg>
   <msg key="HTML">HTML</msg>
-  <msg key="Image_must_be_one_of_the_following_types">Das Bild muß aus einem der folgenden Formate bestehen: </msg>
+  <msg key="Image_must_be_one_of_the_following_types">Das Bild eines der folgenden Formate besitzen: </msg>
   <msg key="It_will_go_live_on">Das Veröffentlichungsdatum ist der</msg>
   <msg key="It_will_move_into_archive_on">Das Archivierungsdatum ist der</msg>
   <msg key="Lead">Kurztext</msg>
@@ -62,9 +62,9 @@
   <msg key="lt_Please_supply_the_tit">Bitte geben Sie einen Betreff für die Ankündigung an.</msg>
   <msg key="lt_Publish_body_is_missi">Die Ankündigung hat keinen Inhalt. Geben Sie einen Text ins Eingabefeld ein oder laden Sie eine Datei hoch. </msg>
   <msg key="lt_red_fields_are_requir">Die roten Felder müssen ausgefüllt werden.</msg>
-  <msg key="lt_See_details_for_the_e">See details for the error message below</msg>
+  <msg key="lt_See_details_for_the_e">Die Detailinformation zu diesem Fehler wird nachstehend angeführt</msg>
   <msg key="lt_Select_the_publicatio">Wählen Sie das Veröffentlichungsdatum und das Archivierungsdatum aus:</msg>
-  <msg key="lt_The_archive_date_must">Das Archivierungdatum muss NACH dem Veröffentlichungsdatum sein.</msg>
+  <msg key="lt_The_archive_date_must">Das Archivierungsdatum muss NACH dem Veröffentlichungsdatum sein.</msg>
   <msg key="lt_The_database_did_not_">Ihre Eingaben wurden von der Datenbank nicht angenommen.</msg>
   <msg key="lt_There_are_no_items_av">Keine Ankündigungen vorhanden</msg>
   <msg key="lt_There_are_no_news_ite">Keine Ankündigungen vorhanden</msg>

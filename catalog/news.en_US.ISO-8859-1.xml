@@ -134,7 +134,7 @@ When you&#39;re done click &#39;Preview&#39; to see how the news item will look.
   <msg key="Upload">Upload</msg>
   <msg key="Upload_Image">Upload Image</msg>
   <msg key="use_preview_to_revise_image">use &#39;preview&#39; to revise image</msg>
-  <msg key="Use_the_following_form_to_define">Use the following form to define your news item.Note that the fields marked with  are required. When you&#39;re done click &#39;Preview&#39; to see how the news item will look and to choose an image for the article.</msg>
+  <msg key="Use_the_following_form_to_define">Use the following form to define your news item. Note that the fields marked with  are required. When you&#39;re done click &#39;Preview&#39; to see how the news item will look and to choose an image for the article.</msg>
   <msg key="Yes">Yes</msg>
   <msg key="You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both">You need either to upload a news item or to enter text in the box provided, but not both.</msg>
   <msg key="Your_news_item">Your news item</msg>
