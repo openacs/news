@@ -93,7 +93,7 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
 # deal with Dates, granularity is 'day'
 
 # with news_admin privilege fill in publish and archive dates
-if { $news_admin_p == 1 || [parameter::get -parameter ApprovalPolicy] eq "open" } {
+if { $news_admin_p || [parameter::get -parameter ApprovalPolicy] eq "open" } {
 
     if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } {
 	set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
