@@ -30,10 +30,10 @@ ad_page_contract {
 } -validate {
 
     check_revision_log -requires {action revision_log} {
-	if { $action eq "News Item" && $revision_log eq ""} {
-	    ad_complain "[_ news.lt_You_must_supply_a_rev]"
-	    return
-	}
+        if { $action eq "News Item" && $revision_log eq ""} {
+            ad_complain "[_ news.lt_You_must_supply_a_rev]"
+            return
+        }
     }
 
 }  -properties {
@@ -96,14 +96,14 @@ if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
 if { $news_admin_p || [parameter::get -parameter ApprovalPolicy] eq "open" } {
 
     if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } {
-	set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
+        set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
     } else {
-	set publish_date_ansi ""
+        set publish_date_ansi ""
     }
     if { [info exists archive_date(year)] && [info exists archive_date(month)] && [info exists archive_date(day)] } {
-	set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
+        set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
     } else {
-	set archive_date_ansi ""
+        set archive_date_ansi ""
     }
 
     if { ![template::util::date::validate $publish_date_ansi ""] } {
@@ -114,10 +114,10 @@ if { $news_admin_p || [parameter::get -parameter ApprovalPolicy] eq "open" } {
     }
 
     if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
-	ad_return_error \
+        ad_return_error \
             [_ news.Scheduling_Error] \
             [_ news.lt_The_archive_date_must]
-	ad_script_abort
+        ad_script_abort
     }
 }
 
