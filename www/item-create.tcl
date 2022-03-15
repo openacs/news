@@ -61,7 +61,7 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
         {label "[_ news.Lead]"}
         {html {cols 60 rows 3}}
         {value $publish_lead}}
-    {publish_body:text(richtext),optional
+    {publish_body:text(richtext)
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
         {value "[list $publish_body ${publish_body.format}]"}}
