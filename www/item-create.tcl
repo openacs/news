@@ -14,8 +14,8 @@ ad_page_contract {
     {publish_lead {}}
     {publish_body:allhtml {}}
     {publish_body.format {}}
-    {publish_date_ansi {now}}
-    {archive_date_ansi {}}
+    {publish_date_ansi:clock(%Y-%m-%d) {now}}
+    {archive_date_ansi:clock(%Y-%m-%d) {}}
     {permanent_p:boolean {}}
 }
 
@@ -36,8 +36,6 @@ if { [permission::permission_p -object_id $package_id -privilege news_admin]
 
 set title "[_ news.Create_News_Item]"
 set context [list $title]
-
-set lc_format [lc_get formbuilder_date_format]
 
 set date_today [clock format [clock seconds] -format %Y-%m-%d]
 set active_days [parameter::get -parameter ActiveDays -default 14]
@@ -70,15 +68,13 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
 
 if { $immediate_approve_p } {
     ad_form -extend -name "news" -form {
-        {publish_date:date,optional
+        {publish_date:h5date,optional
             {label "[_ news.Release_Date]"}
-            {value "[split $publish_date_ansi -]"}
-            {format {$lc_format}}
+            {value $publish_date_ansi}
         }
-        {archive_date:date,optional
+        {archive_date:h5date,optional
             {label "[_ news.Archive_Date]"}
-            {value "[split $archive_date_ansi -]"}
-            {format {$lc_format}}
+            {value $archive_date_ansi}
         }
         {permanent_p:text(checkbox),optional
             {label "[_ news.never]"}
