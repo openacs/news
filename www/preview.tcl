@@ -130,11 +130,11 @@ if { $action eq "News Item" } {
     # Form vars to carry through Confirmation Page
     set hidden_vars [export_vars -form {
         item_id revision_log publish_title publish_lead publish_body publish_body.format
-        publish_date archive_date_ansi permanent_p html_p imgfile
+        publish_date archive_date permanent_p html_p imgfile
     }]
     set image_vars [export_vars -form {
         publish_title publish_lead publish_body publish_body.format
-        publish_date archive_date_ansi html_p permanent_p action item_id revision_log
+        publish_date archive_date html_p permanent_p action item_id revision_log
     }]
     set form_action "<form method='post' action='admin/revision-add-3' class='inline-form'>"
     set edit_action "<form method='post' action='admin/revision-add' class='inline-form'>"
@@ -151,8 +151,6 @@ set creator_link "<a href='/shared/community-member?user_id=$user_id'>[ns_quoteh
 template::head::add_style \
     -style ".news-item-preview { color: inherit; background-color: #eeeeee; margin: 1em 4em 1em 4em; padding: 1em; }" \
     -media screen
-
-ad_return_template
 
 # Local variables:
 #    mode: tcl
