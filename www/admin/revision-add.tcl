@@ -12,7 +12,7 @@ ad_page_contract {
 
 } {
 
-    item_id:naturalnum,notnull
+    item_id:object_id,notnull
 
 } -properties {
 
@@ -42,8 +42,6 @@ if {$archive_date eq ""} {
     set archive_date [clock format [clock scan "$active_days days"] -format %Y-%m-%d]
 }
 
-set lc_format [lc_get formbuilder_date_format]
-
 set action "[_ news.Revision]"
 ns_log notice "NEWS REVISION"
 ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart/form-data"} -action "../preview" -form {
@@ -63,15 +61,13 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
         {options {editor ckeditor5 JSEditorClass ClassicEditor}}
         {value "[list $publish_body $publish_format]"}
     }
-    {publish_date:date,optional
+    {publish_date:h5date,optional
         {label "[_ news.Release_Date]"}
-        {value "[split $publish_date -]"}
-        {format {$lc_format}}
+        {value $publish_date}
     }
-    {archive_date:date,optional
+    {archive_date:h5date,optional
         {label "[_ news.Archive_Date]"}
-        {value "[split $archive_date -]"}
-        {format {$lc_format}}
+        {value $archive_date}
     }
     {permanent_p:text(checkbox),optional
         {label "[_ news.never]"}

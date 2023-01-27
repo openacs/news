@@ -14,8 +14,8 @@ ad_page_contract {
     {publish_lead {}}
     {publish_body:allhtml {}}
     {publish_body.format {}}
-    {publish_date_ansi:clock(%Y-%m-%d) {now}}
-    {archive_date_ansi:clock(%Y-%m-%d) {}}
+    {publish_date:clock(%Y-%m-%d) {now}}
+    {archive_date:clock(%Y-%m-%d) {}}
     {permanent_p:boolean {}}
 }
 
@@ -41,11 +41,11 @@ set date_today [clock format [clock seconds] -format %Y-%m-%d]
 set active_days [parameter::get -parameter ActiveDays -default 14]
 set date_proj [clock format [clock scan "$active_days days"] -format %Y-%m-%d]
 
-if { $publish_date_ansi eq "" || $publish_date_ansi eq "now"} {
-    set publish_date_ansi $date_today
+if { $publish_date eq "" || $publish_date eq "now"} {
+    set publish_date $date_today
 }
-if { $archive_date_ansi eq "" } {
-    set archive_date_ansi $date_proj
+if { $archive_date eq "" } {
+    set archive_date $date_proj
 }
 
 ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -form {
@@ -70,11 +70,11 @@ if { $immediate_approve_p } {
     ad_form -extend -name "news" -form {
         {publish_date:h5date,optional
             {label "[_ news.Release_Date]"}
-            {value $publish_date_ansi}
+            {value $publish_date}
         }
         {archive_date:h5date,optional
             {label "[_ news.Archive_Date]"}
-            {value $archive_date_ansi}
+            {value $archive_date}
         }
         {permanent_p:text(checkbox),optional
             {label "[_ news.never]"}

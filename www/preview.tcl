@@ -14,11 +14,9 @@ ad_page_contract {
     {publish_body:allhtml,trim ""}
     publish_body.format:path,notnull
     {revision_log ""}
-    {publish_date:array ""}
-    {archive_date:array ""}
+    {publish_date:clock(%Y-%m-%d) ""}
+    {archive_date:clock(%Y-%m-%d) ""}
     {permanent_p:boolean "f"}
-    publish_date_ansi:optional
-    archive_date_ansi:optional
     imgfile:optional
 
 } -errors {
@@ -78,42 +76,15 @@ if { $action eq "News Item" } {
 }
 set context [list $title]
 
-# DRB: not sure about the accuracy of this comment so am leaving this.
-# if we've come back from the image page, set up dates again
-if {[info exists publish_date_ansi] && [info exists archive_date_ansi]} {
-    set exp {([0-9]{4})-([0-9]{1,2})-([0-9]{1,2})}
-    if { ![regexp $exp $publish_date_ansi match \
-               publish_date(year) publish_date(month) publish_date(day)]
-         || ![regexp $exp $archive_date_ansi match \
-                  archive_date(year) archive_date(month) archive_date(day)] } {
-        ad_return_complaint 1 [_ news.Publish_archive_dates_incorrect]
-        ad_script_abort
-    }
-}
 # deal with Dates, granularity is 'day'
 
 # with news_admin privilege fill in publish and archive dates
 if { $news_admin_p || [parameter::get -parameter ApprovalPolicy] eq "open" } {
 
-    if { [info exists publish_date(year)] && [info exists publish_date(month)] && [info exists publish_date(day)] } {
-        set publish_date_ansi "$publish_date(year)-$publish_date(month)-$publish_date(day)"
-    } else {
-        set publish_date_ansi ""
-    }
-    if { [info exists archive_date(year)] && [info exists archive_date(month)] && [info exists archive_date(day)] } {
-        set archive_date_ansi "$archive_date(year)-$archive_date(month)-$archive_date(day)"
-    } else {
-        set archive_date_ansi ""
-    }
+    set publish_date_pretty [lc_time_fmt $publish_date "%Q"]
+    set archive_date_pretty [lc_time_fmt $archive_date "%Q"]
 
-    if { ![template::util::date::validate $publish_date_ansi ""] } {
-        set publish_date_pretty [lc_time_fmt $publish_date_ansi "%Q"]
-    }
-    if { ![template::util::date::validate $archive_date_ansi ""] } {
-        set archive_date_pretty [lc_time_fmt $archive_date_ansi "%Q"]
-    }
-
-    if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
+    if { [dt_interval_check $archive_date $publish_date] >= 0 } {
         ad_return_error \
             [_ news.Scheduling_Error] \
             [_ news.lt_The_archive_date_must]
@@ -145,11 +116,11 @@ if { $action eq "News Item" } {
 
     set hidden_vars [export_vars -form {
         publish_title publish_lead publish_body publish_body.format
-        publish_date_ansi archive_date_ansi html_p permanent_p imgfile
+        publish_date archive_date html_p permanent_p imgfile
     }]
     set image_vars [export_vars -form {
         publish_title publish_lead publish_body publish_body.format
-        publish_date_ansi archive_date_ansi html_p permanent_p action
+        publish_date archive_date html_p permanent_p action
     }]
     set form_action "<form method='post' action='item-create-3' enctype='multipart/form-data' class='inline-form'>"
     set edit_action "<form method='post' action='item-create' class='inline-form'>"
@@ -159,11 +130,11 @@ if { $action eq "News Item" } {
     # Form vars to carry through Confirmation Page
     set hidden_vars [export_vars -form {
         item_id revision_log publish_title publish_lead publish_body publish_body.format
-        publish_date_ansi archive_date_ansi permanent_p html_p imgfile
+        publish_date archive_date_ansi permanent_p html_p imgfile
     }]
     set image_vars [export_vars -form {
         publish_title publish_lead publish_body publish_body.format
-        publish_date_ansi archive_date_ansi html_p permanent_p action item_id revision_log
+        publish_date archive_date_ansi html_p permanent_p action item_id revision_log
     }]
     set form_action "<form method='post' action='admin/revision-add-3' class='inline-form'>"
     set edit_action "<form method='post' action='admin/revision-add' class='inline-form'>"
