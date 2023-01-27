@@ -11,7 +11,7 @@ ad_page_contract {
     @cvs-id $Id$
 
 } {
-    revision_id:naturalnum,notnull
+    revision_id:naturalnum,notnull,multiple
     {return_url:localurl ""}
     {permanent_p:boolean "f"}
     {publish_date:array,date ""}
