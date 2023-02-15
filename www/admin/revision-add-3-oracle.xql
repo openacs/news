@@ -9,13 +9,13 @@
     begin
         :1 := news.revision_new(
             item_id       => :item_id,
-            publish_date  => :publish_date_ansi,
+            publish_date  => :publish_date,
             title         => :publish_title,   
             lead          => :publish_lead,
             description   => :revision_log,
             mime_type     => :mime_type,
             package_id    => [ad_conn package_id],
-            archive_date  => :archive_date_ansi,
+            archive_date  => :archive_date,
             approval_user => :approval_user,
             approval_date => :approval_date,
             approval_ip   => :approval_ip,

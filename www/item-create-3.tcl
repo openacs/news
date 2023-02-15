@@ -13,8 +13,8 @@ ad_page_contract {
     publish_body:allhtml,notnull,trim
     publish_body.format:path,notnull,trim
     {publish_lead {}}
-    {publish_date_ansi:trim ""}
-    {archive_date_ansi:trim ""}
+    {publish_date:clock(%Y-%m-%d) {}}
+    {archive_date:clock(%Y-%m-%d) {}}
     permanent_p:boolean,notnull
 } -errors {
      imgfile_valid {Image file invalid}
@@ -50,7 +50,7 @@ if { $news_admin_p || $approval_policy eq "open" } {
 
 # Allow the user to "never expire" a news item.
 if {$permanent_p} {
-    set archive_date_ansi ""
+    set archive_date ""
 }
 
 # get creation_foo
