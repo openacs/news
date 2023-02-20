@@ -57,11 +57,12 @@ ad_proc news_util_get_url {
     return [apm_package_url_from_id $package_id]
 }
 
-ad_proc news__datasource {
+ad_proc -private news__datasource {
     object_id
 } {
-    Implementation for the FtsContentProvider.datasource Service
-    Contract.
+    This proc implements the 'datasource' operation of the
+    FtsContentProvider Service Contract and should not be invoke
+    directly.
 
     @author Jeff Davis (davis@xarg.net)
 } {
@@ -116,10 +117,15 @@ ad_proc news__datasource {
 }
 
 
-ad_proc news__url {
+ad_proc -private news__url {
     object_id
 } {
     Returns the URL for specified news object.
+
+    This proc implements the 'url' operation of the
+    'FtsContentProvider' Service Contract and should not be invoked
+    directly.
+
     @author Robert Locke
 } {
     db_1row get {}
@@ -201,20 +207,21 @@ ad_proc -private news::sc::register_news_fts_impl {} {
 }
 
 
-ad_proc -public news__last_updated {
+ad_proc -private news__last_updated {
     package_id
 } {
 
     Return the timestamp of the most recent item in this news instance.
+
+    This proc implements the 'lastUpdated' operation of the
+    'RssGenerationSubscriber' Service Contract and should not be invoked
+    directly.
 
     @author Dave Bauer (dave@thedesignexperience.org)
     @creation-date 2005-01-22
 
     @param package_id
 
-    @return
-
-    @error
 } {
     return [db_string get_last_updated {}]
 }
@@ -222,8 +229,9 @@ ad_proc -public news__last_updated {
 ad_proc -private news__rss_datasource {
     summary_context_id
 } {
-    This procedure implements the "datasource" operation of the
-    RssGenerationSubscriber service contract.
+    This procedure implements the 'datasource' operation of the
+    'RssGenerationSubscriber' Service Contract and should not be
+    invoked directly.
 
     @author Dave Bauer (dave@thedesignexperience.org)
 } {
