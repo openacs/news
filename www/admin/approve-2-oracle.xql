@@ -10,8 +10,8 @@
         news.set_approve(
 	    approve_p       => 't',
 	    revision_id     => :id,
-	    publish_date    => :publish_date_ansi,
-            archive_date    => :archive_date_ansi,
+	    publish_date    => :publish_date,
+            archive_date    => :archive_date,
             approval_user   => :approval_user,
             approval_date   => :approval_date,
             approval_ip     => :approval_ip,

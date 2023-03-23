@@ -9,8 +9,8 @@
         select news__set_approve(
             :id,                -- p_revision_id
             't',                -- p_approve_p
-	    :publish_date_ansi, -- p_publish_date
-	    :archive_date_ansi, -- p_archive_date
+	    :publish_date,      -- p_publish_date
+	    :archive_date,      -- p_archive_date
 	    :approval_user,     -- p_approval_user
 	    :approval_date,     -- p_approval_date
 	    :approval_ip,       -- p_approval_ip

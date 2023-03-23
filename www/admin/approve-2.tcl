@@ -14,24 +14,20 @@ ad_page_contract {
     revision_id:naturalnum,notnull,multiple
     {return_url:localurl ""}
     {permanent_p:boolean "f"}
-    {publish_date:array,date ""}
-    {archive_date:array,date ""}
+    {publish_date:clock(%Y-%m-%d) ""}
+    {archive_date:clock(%Y-%m-%d) ""}
 }
 
 
 # read dates and prepare in ANSI form
 
-set publish_date_ansi $publish_date(date)
+if {$permanent_p} {
 
-if {$permanent_p == "t"} {
-
-    set archive_date_ansi ""
+    set archive_date ""
 
 } else {
 
-    set archive_date_ansi $archive_date(date)
-
-    if { [dt_interval_check $archive_date_ansi $publish_date_ansi] >= 0 } {
+    if { [dt_interval_check $archive_date $publish_date] >= 0 } {
         ad_return_error "[_ news.Scheduling_Error]" \
             "[_ news.lt_The_archive_date_must]"
         ad_script_abort
