@@ -1,8 +1,7 @@
 if {[regexp {^/([0-9]+)} [ad_conn path_info] match item_id]} {
-    if {[ns_set find [rp_getform] item_id] == -1} {
-        rp_form_put item_id $item_id
-    } else {
-        ns_set update [rp_getform] item_id $item_id
+    set form [ns_getform]
+    if { $form ne "" } {
+        ns_set update $form item_id $item_id
     }
 }
 
