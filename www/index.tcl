@@ -8,8 +8,8 @@ ad_page_contract {
 
 } {
 
-   {view:trim "live"}
-   page:naturalnum,optional
+    {view:oneof(live|archive),trim "live"}
+    page:naturalnum,optional
 
 } -properties {
 
@@ -30,13 +30,23 @@ set context {}
 
 set actions_list [list]
 
-# view switch in live | archived news
-if {"live" eq $view} {
+set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
+set news_create_p [permission::permission_p -object_id $package_id -privilege news_create]
+
+#
+# We do not let "regular users" see archived news.
+#
+set can_see_archived_p [expr {$news_admin_p || $news_create_p}]
+
+#
+# View switch in live | archived news
+#
+if {!$can_see_archived_p || "live" eq $view} {
 
     set title [apm_instance_name_from_id $package_id]
     set view_clause [db_map view_clause_live]
 
-    if { [db_0or1row archived_p {}]} {
+    if { $can_see_archived_p && [db_0or1row archived_p {}]} {
         lappend actions_list [_ news.Show_archived_news] \
             [export_vars -base [ad_conn url] {{view archive}}] \
             [_ news.Show_archived_news]
@@ -54,10 +64,10 @@ if {"live" eq $view} {
     }
 }
 
-# switches for privilege-enabled links: admin for news_admin, submit for registered users
-set news_admin_p [permission::permission_p -object_id $package_id -privilege news_admin]
-set news_create_p [permission::permission_p -object_id $package_id -privilege news_create]
-
+#
+# Switches for privilege-enabled links: admin for news_admin, submit
+# for registered users
+#
 if { $news_admin_p } {
     lappend actions_list [_ news.Create_a_news_item] \
         "item-create" \
@@ -65,12 +75,10 @@ if { $news_admin_p } {
     lappend actions_list [_ news.Administer] \
         "admin/" \
         [_ news.Administer]
-} else {
-    if { $news_create_p } {
-        lappend actions_list [_ news.Submit_a_news_item] \
-            "item-create" \
-            [_ news.Submit_a_news_item]
-    }
+} elseif { $news_create_p } {
+    lappend actions_list [_ news.Submit_a_news_item] \
+        "item-create" \
+        [_ news.Submit_a_news_item]
 }
 
 
