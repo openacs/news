@@ -50,7 +50,8 @@ set item_exist_p [db_0or1row one_item {
       from news_items_live_or_submitted
      where item_id = :item_id
        and (:can_write_news_item_p = 't'
-            or archive_date is null)
+            or archive_date is null
+            or archive_date > current_timestamp)
 }]
 
 if { $item_exist_p } {
