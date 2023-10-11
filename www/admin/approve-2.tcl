@@ -13,7 +13,7 @@ ad_page_contract {
 } {
     revision_id:naturalnum,notnull,multiple
     {return_url:localurl ""}
-    {permanent_p:boolean "f"}
+    {permanent_p:boolean,notnull "f"}
     {publish_date:clock(%Y-%m-%d) ""}
     {archive_date:clock(%Y-%m-%d) ""}
 }

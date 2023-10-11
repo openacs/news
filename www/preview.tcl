@@ -1,4 +1,3 @@
-# /packages/news/www/preview.tcl
 ad_page_contract {
     This page previews the input from item-create or admin/revision-add
 
@@ -16,7 +15,7 @@ ad_page_contract {
     {revision_log ""}
     {publish_date:clock(%Y-%m-%d) ""}
     {archive_date:clock(%Y-%m-%d) ""}
-    {permanent_p:boolean "f"}
+    {permanent_p:boolean,notnull "f"}
     imgfile:optional
 
 } -errors {
