@@ -58,7 +58,6 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
     {publish_body:text(richtext),optional
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
-        {options {editor ckeditor5 JSEditorClass ClassicEditor}}
         {value "[list $publish_body $publish_format]"}
     }
     {publish_date:h5date,optional
