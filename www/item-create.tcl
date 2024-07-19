@@ -64,7 +64,6 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
         {html {cols 60 rows 20}}
         {value "[list $publish_body ${publish_body.format}]"}}
 }
-#        {options {editor ckeditor5 JSEditorClass InlineEditor}}
 
 if { $immediate_approve_p } {
     ad_form -extend -name "news" -form {
