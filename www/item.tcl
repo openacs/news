@@ -91,7 +91,7 @@ if { $item_exist_p } {
 
 } else {
     set title [_ news.Error]
-    set contect [list $title]
+    set context [list $title]
     ad_return_complaint 1 [_ news.lt_Could_not_find_the_re]
     ad_script_abort
 }
