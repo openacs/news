@@ -2,6 +2,10 @@
 <property name="context">{/doc/news/ {News}} {News Design Document}</property>
 <property name="doc(title)">News Design Document</property>
 <master>
+<style>
+div.sect2 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 16px;}
+div.sect3 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 6px;}
+</style>              
 <h2>News Design Document</h2>
 
 by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
@@ -49,13 +53,7 @@ hyperlinked list. Single news items are presented by taking
 advantage of the ACS Templating system. The default news template
 is in the file news.adp which takes
 <ul>
-<li><pre>
-\@publish_title\@
-</pre></li><li><pre>
-\@publish_body\@
-</pre></li><li><pre>
-\@creator_link\@
-</pre></li>
+<li><pre>\@publish_title\@</pre></li><li><pre>\@publish_body\@</pre></li><li><pre>\@creator_link\@</pre></li>
 </ul>
 
 as input. Publishers may wish to provide their own templates,
@@ -249,8 +247,7 @@ hours.
         sws_service.rebuild_index;
      end; 
      /
-     
-</pre>
+     </pre>
 </li>
 </ol>
 <p>To drop an instance of the News application correctly, follow

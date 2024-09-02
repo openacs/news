@@ -2,6 +2,10 @@
 <property name="context">{/doc/news/ {News}} {News Package Requirements}</property>
 <property name="doc(title)">News Package Requirements</property>
 <master>
+<style>
+div.sect2 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 16px;}
+div.sect3 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 6px;}
+</style>              
 <h2>News Package Requirements</h2>
 
 by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
