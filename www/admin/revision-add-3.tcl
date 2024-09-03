@@ -16,8 +16,8 @@ ad_page_contract {
     publish_body:allhtml,notnull,trim
     publish_body.format:path,notnull
     revision_log:notnull
-    publish_date_ansi:notnull
-    archive_date_ansi:notnull
+    publish_date:clock(%Y-%m-%d),notnull
+    archive_date:clock(%Y-%m-%d),notnull
     permanent_p:boolean,notnull
 }
 

@@ -2,6 +2,10 @@
 <property name="context">{/doc/news/ {News}} {News Package Requirements}</property>
 <property name="doc(title)">News Package Requirements</property>
 <master>
+<style>
+div.sect2 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 16px;}
+div.sect3 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 6px;}
+</style>              
 <h2>News Package Requirements</h2>
 
 by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
@@ -18,11 +22,11 @@ fashion. So it comes as no surprise that the dissemination of news
 items to other members is one of the ways in which online
 communities best realize this goal. The News application allows
 community members to do just this. Posted news items can be
-associated with community member comments as in a forum, however
+associated with community member comments as in a forum, however,
 the primary intention of the News application is simply to give
 members access to community related news items. News items are
 listed by date, and when news items are no longer current, they are
-automatically archived after a administrator-specifiable number of
+automatically archived after an administrator-specifiable number of
 days.
 <p>Since administrators may wish to give access to these news items
 by appeal to a variety of access schemes, the News application is
@@ -104,8 +108,8 @@ package.<br>
 10.10.10 cr_news: subtype cr_revisions to define news content
 type<br>
 
-10.10.20 news_templates: use file system for new templates, no
-extra table
+10.10.20 news_templates: use filesystem for new templates, no extra
+table
 <p>10.30 Privilege<br>
 10.30.10 Provide a site-wide admin level privilege: admin<br>
 10.30.20 Provide an instance-wide admin level privilege:
@@ -212,7 +216,7 @@ provided sample news items<br>
 60.10 Provide a subscriber link to sign up for notifications for
 when a new news item is posted. Ensure that notifications can be
 had at user-specifiable frequency: immediately, daily, weekly,
-montly, and quarterly.<br>
+monthly, and quarterly.<br>
 
 60.20 Provide a counter of how many times an item has been
 viewed<br>

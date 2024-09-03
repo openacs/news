@@ -40,6 +40,7 @@
   <msg key="Image_must_be_one_of_the_following_types">La imagen debe ser de algunos de los tipos siguientes:</msg>
   <msg key="It_will_go_live_on">Saldrá publicado el</msg>
   <msg key="It_will_move_into_archive_on">Se moverá al archivo el</msg>
+  <msg key="Latest_News">Últimas noticias</msg>
   <msg key="Lead">Encabezado</msg>
   <msg key="Log_Entry">Registro</msg>
   <msg key="lt__When_youre_done_clic">. Una vez terminado, pulse 'Vista previa' para ver la noticias.</msg>

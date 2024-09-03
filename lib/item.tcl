@@ -1,18 +1,18 @@
 # /packages/news/lib/item.tcl
 ad_page_contract {
-    
+
     Page to view one item (live or archived) in its active revision
     @author stefan@arsdigita.com
     @creation-date 2000-12-20
     @cvs-id $Id$
-    
+
 } {
 
     item_id:naturalnum,notnull
 
 } -properties {
     title:onevalue
-    context:onevalue 
+    context:onevalue
     item_exist_p:onevalue
     publish_title:onevalue
     publish_lead:onevalue
@@ -43,32 +43,23 @@ set item_exist_p [db_0or1row get_news_info {
        publish_format,
        publish_body,
        publish_date,
-       '<a href=\"/shared/community-member?user_id=' || creation_user || '\">' || item_creator ||  '</a>' as creator_link
+       creation_user,
+       item_creator
     from   news_items_live_or_submitted
     where  item_id = :item_id
 }]
 
 if { $item_exist_p } {
 
-    # workaround to get blobs with >4000 chars into a var, content.blob_to_string fails! 
-    # when this'll work, you get publish_body by selecting 'publish_body' directly from above view
-    #
-    # RAL: publish_body is already snagged in the 1st query above for postgres.
-    #
-    set get_content [db_map get_content]
-    if {$get_content ne ""} {
-	set publish_body [db_string get_content {
-            select  content
-            from    cr_revisions
-            where   revision_id = :live_revision
-        }]
-    }
+    set creator_link [acs_community_member_link \
+                          -user_id $creation_user \
+                          -label $item_creator]
 
     # text-only body
     if {[info exists html_p] && $html_p == "f"} {
 	set publish_body [ad_text_to_html -- $publish_body]
     }
-    
+
     if { [parameter::get -parameter SolicitCommentsP -default 0]} {
 
         if {[permission::permission_p -object_id $item_id -privilege general_comments_create] } {
@@ -109,30 +100,6 @@ if { $item_exist_p } {
     set context {}
     set title "[_ news.Error]"
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Local variables:
 #    mode: tcl

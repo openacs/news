@@ -2,6 +2,10 @@
 <property name="context">{/doc/news/ {News}} {News Design Document}</property>
 <property name="doc(title)">News Design Document</property>
 <master>
+<style>
+div.sect2 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 16px;}
+div.sect3 > div.itemizedlist > ul.itemizedlist > li.listitem {margin-top: 6px;}
+</style>              
 <h2>News Design Document</h2>
 
 by <a href="mailto:stefan\@arsdigita.com">Stefan Deusch</a>
@@ -53,7 +57,7 @@ is in the file news.adp which takes
 </ul>
 
 as input. Publishers may wish to provide their own templates,
-however even more flexibility can be introduced by supplying the
+however, even more flexibility can be introduced by supplying the
 news body in HTML format. If someone submits a news body with
 inconsistent HTML tags, the News application attempts to close
 these tags in the preview page.
@@ -212,7 +216,7 @@ allowable operations (on the items checked at their checkbox in the
 first column of the table), is shown. For example, bulk-archiving
 and deleting of published items can be effected in this way. For
 archived items, one can re-publish or delete them.
-<p>Note, that releasing/revoking can be done for an item
+<p>Note that releasing/revoking can be done for an item
 individually as well, following the ID# link in the second column
 which leads to /admin/item. On that page, a new revision can be
 added. There is no UI to <em>edit</em> a revision; A new revision

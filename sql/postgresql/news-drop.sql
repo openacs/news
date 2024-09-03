@@ -115,12 +115,12 @@ BEGIN
     registered_users := acs__magic_object_id('registered_users');
     the_public       := acs__magic_object_id('the_public');
 
-    PERFORM acs_permission__revoke_permission (
+    PERFORM acs_permission.revoke_permission (
         default_context,  -- object_id
     	registered_users, -- grantee_id
     	'news_create'   -- privilege
     );
-    PERFORM acs_permission__revoke_permission (
+    PERFORM acs_permission.revoke_permission (
         default_context, -- object_id
 	the_public,      -- grantee_id
 	'news_read'    -- privilege
@@ -140,11 +140,26 @@ $$ LANGUAGE plpgsql;
 select inline_0 ();
 drop function inline_0 ();
 
+-- *** Drop News Notification Type ***
+--
+select notification_type__delete((
+       select type_id from notification_types
+        where short_name = 'one_news_item_notif'));
 
--- *** Search contract de-registration ***
+-- *** Service contract de-registration ***
 --
 select acs_sc_impl__delete(
 	   'FtsContentProvider',		-- impl_contract_name
            'news'				-- impl_name
+);
+
+select acs_sc_impl__delete(
+	   'RssGenerationSubscriber',		-- impl_contract_name
+           'news'				-- impl_name
+);
+
+select acs_sc_impl__delete(
+	   'NotificationType',          -- impl_contract_name
+           'news_item_notif_type'	-- impl_name
 );
 

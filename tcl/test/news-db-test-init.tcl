@@ -493,7 +493,7 @@ aa_register_component "db-news-status" {
 
 ################################################################################
 #
-# Testcase check-permissions
+# Testcase check_permissions
 #
 aa_register_case -cats {
     db
@@ -502,7 +502,7 @@ aa_register_case -cats {
     At least some of the news permission privileges aren't present, or have incorrect
     configurations.  The most probable cause of this is that the news package datamodel
     hasn't been installed.
-} "check-permissions" {
+} "check_permissions" {
     Checks the news related permissions.
     Checks that the permissions exist, and that they have the correct
     hierarchy.
@@ -696,6 +696,8 @@ aa_register_case -cats {
 } -init_classes {
     mount-news-package
 } -on_error {
+} -procs {
+    aa_register_init_class
 } "check_package_mount" {
     Checks the mountability of the news package.
 } {
@@ -715,6 +717,11 @@ aa_register_case -cats {
 #
 aa_register_case -cats {
     db
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } -init_classes {
     mount-news-package
 } "db_check_news_create" {
@@ -836,6 +843,8 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_init_class
 } -on_error {
     This test may have failed because of a bug in the
     content_item.get_latest_revision
@@ -848,7 +857,7 @@ aa_register_case -cats {
     here</a> at the OpenACS bboard was started concerning this problem.
 } "db_check_news_revision" {
     Checks the news database functions for revision creation, deletion and management.
-    Tests <tt>news.revison_new</tt>, <tt>news.revision_delete</tt>,
+    Tests <tt>news.revision_new</tt>, <tt>news.revision_delete</tt>,
     <tt>news.revision_set_active</tt> functions.
 } {
     set news_id -1
@@ -948,7 +957,7 @@ aa_register_case -cats {
                     $live_revision_id $revision2_id
 
                 #
-                # Okay, lets set the original revision as active.
+                # Okay, let's set the original revision as active.
                 #
                 aa_log "Reset the first revision as live"
                 set p_revision_id $revision1_id
@@ -1000,6 +1009,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_archive" {
     Checks the news database functions make_permanent and news_archive.
 } {
@@ -1101,6 +1115,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_set_approve" {
     Checks the news database function for approving/unapproving news articles.
     Tests <tt>news.set_approve</tt> function.
@@ -1255,6 +1274,11 @@ aa_register_case -cats {
     db
 } -init_classes {
     mount-news-package
+} -procs {
+    aa_register_component
+    aa_call_component
+    aa_export_vars
+    aa_register_init_class
 } "db_check_news_status" {
     Checks the news database function that returns information about a news article publish
     and archive status.

@@ -18,7 +18,7 @@
   <msg key="Body">Body</msg>
   <msg key="bytes">bytes</msg>
   <msg key="Choose_an_image">Choose an image...</msg>
-  <msg key="Choose_an_image_to_upload_and_press">Choose an image to upload and press the 'Upload' button to preview it. When you're happy, press 'Accept' to use that image in the article.</msg>
+  <msg key="Choose_an_image_to_upload_and_press">Choose an image to upload and press the &#39;Upload&#39; button to preview it. When you&#39;re happy, press &#39;Accept&#39; to use that image in the article.</msg>
   <msg key="Comments">Comments</msg>
   <msg key="Confirm">Confirm</msg>
   <msg key="Confirm_Action">Confirm Action:</msg>
@@ -44,13 +44,13 @@
   <msg key="Lead">Lead</msg>
   <msg key="Log_Entry">Log Entry</msg>
   <msg key="lt__When_youre_done_clic">. 
-When you're done click 'Preview' to see how the news item will appear.</msg>
+When you&#39;re done click &#39;Preview&#39; to see how the news item will appear.</msg>
   <msg key="lt_And_be_live_until_rev">And be live until revoked.</msg>
   <msg key="lt_Archive_as_of_Next_Mo">Archive as of Next Month</msg>
   <msg key="lt_Archive_as_of_Next_We">Archive as of Next Week</msg>
   <msg key="lt_cannot_be_applied_to_">cannot be applied to the following item(s):</msg>
   <msg key="lt_Click_on_item_ID_to_a">Click on item ID# to approve/revoke an item.</msg>
-  <msg key="lt_Click_on_revise_to_ed">Click on &quot;revise&quot; to edit an item.</msg>
+  <msg key="lt_Click_on_revise_to_ed">Click on &#34;revise&#34; to edit an item.</msg>
   <msg key="lt_Could_not_find_corres">Could not find corresponding revision to requested news item</msg>
   <msg key="lt_Could_not_find_the_re">Could not find the requested news item</msg>
   <msg key="lt_Do_the_following_to_t">Do the following to the selected items:</msg>
@@ -76,7 +76,7 @@ When you're done click 'Preview' to see how the news item will appear.</msg>
   <msg key="lt_Use_the_following_for">Use the following form to define your news item.
 Note that the</msg>
   <msg key="lt_When_youre_done_click">.
-When you're done click 'Preview' to see how the news item will look.</msg>
+When you&#39;re done click &#39;Preview&#39; to see how the news item will look.</msg>
   <msg key="lt_You_must_supply_a_rev">You must supply a revision log information.</msg>
   <msg key="lt_Your_document_is_larg">Your document is larger than the maximum size allowed</msg>
   <msg key="lt_Your_news_item_will_b">Your news item will be presented using the Default template defined in news.adp.</msg>
@@ -133,8 +133,8 @@ When you're done click 'Preview' to see how the news item will look.</msg>
   <msg key="Unapproved">Unapproved</msg>
   <msg key="Upload">Upload</msg>
   <msg key="Upload_Image">Upload Image</msg>
-  <msg key="use_preview_to_revise_image">use 'preview' to revise image</msg>
-  <msg key="Use_the_following_form_to_define">Use the following form to define your news item.Note that the fields marked with  are required. When you're done click 'Preview' to see how the news item will look and to choose an image for the article.</msg>
+  <msg key="use_preview_to_revise_image">use &#39;preview&#39; to revise image</msg>
+  <msg key="Use_the_following_form_to_define">Use the following form to define your news item. Note that the fields marked with  are required. When you&#39;re done click &#39;Preview&#39; to see how the news item will look and to choose an image for the article.</msg>
   <msg key="Yes">Yes</msg>
   <msg key="You_can_either_upload_a_news_item_or_enter_text_in_the_box_provided_but_not_both">You need either to upload a news item or to enter text in the box provided, but not both.</msg>
   <msg key="Your_news_item">Your news item</msg>

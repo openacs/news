@@ -38,19 +38,6 @@
       </querytext>
 </fullquery>
 
-
-<fullquery name="_news__check-permissions.get-privileges">
-      <querytext>
-        select privilege from acs_privileges
-      </querytext>
-</fullquery>
- 
-<fullquery name="_news__check-permissions.get-privilege-hierarchies">
-      <querytext>
-        select privilege, child_privilege from acs_privilege_hierarchy
-      </querytext>
-</fullquery>
-
 <fullquery name="_news__check-object-type.get-news-type-info">
       <querytext>
         select object_type, supertype

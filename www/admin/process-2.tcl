@@ -1,8 +1,6 @@
-# /packages/news/www/admin/process-2.tcl
-
 ad_page_contract {
 
-    Confirmation page for News-admin to apply a drastical action to one or more
+    Confirmation page for news-admin to apply a drastic action to one or more
     news item(s), currently this is either 'delete','archive', or 'make permanent'
     The page is thereafter redirected to the administer page where the result is reflected.
     

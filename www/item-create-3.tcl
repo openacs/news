@@ -13,8 +13,8 @@ ad_page_contract {
     publish_body:allhtml,notnull,trim
     publish_body.format:path,notnull,trim
     {publish_lead {}}
-    {publish_date_ansi:trim ""}
-    {archive_date_ansi:trim ""}
+    {publish_date:clock(%Y-%m-%d) {}}
+    {archive_date:clock(%Y-%m-%d) {}}
     permanent_p:boolean,notnull
 } -errors {
      imgfile_valid {Image file invalid}
@@ -36,7 +36,7 @@ set approval_policy [parameter::get -parameter ApprovalPolicy -default "wait"]
 #
 # the news_admin or an open approval policy allow immediate publishing
 #
-if { $news_admin_p == 1 || $approval_policy eq "open" } {
+if { $news_admin_p || $approval_policy eq "open" } {
     set approval_user [ad_conn user_id]
     set approval_ip [ad_conn peeraddr]
     set approval_date [dt_sysdate]
@@ -49,8 +49,8 @@ if { $news_admin_p == 1 || $approval_policy eq "open" } {
 }
 
 # Allow the user to "never expire" a news item.
-if {$permanent_p == "t"} {
-    set archive_date_ansi ""
+if {$permanent_p} {
+    set archive_date ""
 }
 
 # get creation_foo
@@ -75,17 +75,17 @@ if {$content_add ne ""} {
 #
 # update RSS if it is enabled
 #
-if { !$news_admin_p } {
-    if { "open" ne [parameter::get -parameter ApprovalPolicy -default "wait"] } {
-        # case: user submitted news item, is returned to a Thank-you page
-        set title [_ news.News_item_submitted]
-        set context [list $title]
-        ad_return_template item-create-thankyou
-    }
+if { !$news_admin_p &&
+     "open" ne [parameter::get -parameter ApprovalPolicy -default "wait"] } {
+    # A regular user submitted a news item needing approval: return to
+    # a Thank-you page.
+    set title [_ news.News_item_submitted]
+    set context [list $title]
+    set return_url item-create-thankyou
 } else {
-    # case: administrator returned to index page
-    ad_returnredirect ""
-    ad_script_abort
+    # News does not need approval or user is an administrator: return
+    # to index page.
+    set return_url ""
 }
 
 # news item is live
@@ -104,7 +104,7 @@ if { $live_revision_p } {
     news_do_notification $package_id $news_id
 }
 
-ad_returnredirect ""
+ad_returnredirect $return_url
 ad_script_abort
 
 # Local variables:

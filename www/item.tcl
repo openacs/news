@@ -9,7 +9,7 @@ ad_page_contract {
     
 } {
 
-    item_id:naturalnum,notnull
+    item_id:object_id,notnull
 
 } -properties {
     title:onevalue
@@ -32,11 +32,33 @@ permission::require_permission \
     -party_id  $user_id \
     -privilege read
 
+#
+# We do not let "regular users" see archived news.
+#
+set can_write_news_item_p [permission::permission_p -object_id $item_id -privilege write]
 
 # live view of a news item in its active revision
-set item_exist_p [db_0or1row one_item {}]
+set item_exist_p [db_0or1row one_item {
+    select item_id,
+           live_revision,
+           publish_title,
+           publish_body,
+           publish_format,
+           publish_date,
+           creation_user,
+           item_creator
+      from news_items_live_or_submitted
+     where item_id = :item_id
+       and (:can_write_news_item_p = 't'
+            or archive_date is null
+            or archive_date > current_timestamp)
+}]
 
 if { $item_exist_p } {
+
+    set creator_link [acs_community_member_link \
+                          -user_id $creation_user \
+                          -label $item_creator]
 
     # Footer actions
     set footer_links [list]
@@ -57,7 +79,7 @@ if { $item_exist_p } {
         set comments ""
     }
 
-    if {[permission::permission_p -object_id $item_id -privilege write] } {
+    if { $can_write_news_item_p } {
         lappend footer_links "<a href=\"admin/revision-add?item_id=$item_id\" class=\"button\">[_ news.Revise]</a>"
     }
 
@@ -69,7 +91,7 @@ if { $item_exist_p } {
 
 } else {
     set title [_ news.Error]
-    set contect [list $title]
+    set context [list $title]
     ad_return_complaint 1 [_ news.lt_Could_not_find_the_re]
     ad_script_abort
 }

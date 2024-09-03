@@ -28,12 +28,14 @@
 
 <form action="approve-2" method="post" enctype="multipart/form-data">
 @hidden_vars;noquote@
-<input type="hidden" name="revision_id" value="<multiple name="items">@items.revision_id@ </multiple>">
+<multiple name="items">
+<input type="hidden" name="revision_id" value="@items.revision_id@">
+</multiple>
 <p class="formLabel"><label for="publish_date">#news.Release_Date#</label></p>
-<p class="formWidget">@publish_date_select;noquote@</p>
+<p class="formWidget"><input name="publish_date" type="date" value="@publish_date@"></p>
 
 <p class="formLabel"><label for="archive_date">#news.Archive_Date#</p>
-<p class="formWidget">@archive_date_select;noquote@<br>
+<p class="formWidget"><input name="archive_date" type="date" value="@archive_date@"><br>
 <input type="checkbox" name="permanent_p" value="t" id="never"> <strong><label for="never">#news.never#</label></strong> #news.show_it_permanently#</p>
 
 

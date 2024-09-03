@@ -8,13 +8,13 @@
 
         select news__revision_new(
             :item_id,             -- p_item_id
-            :publish_date_ansi,   -- p_publish_date
+            :publish_date,        -- p_publish_date
 	    :publish_body,        -- p_text
             :publish_title,       -- p_title
             :revision_log,        -- p_description
             :mime_type,           -- p_mime_type
             [ad_conn package_id], -- p_package_id
-            :archive_date_ansi,   -- p_archive_date
+            :archive_date,        -- p_archive_date
             :approval_user,       -- p_approval_user
             :approval_date,       -- p_approval_date
             :approval_ip,         -- p_approval_ip

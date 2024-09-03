@@ -62,7 +62,7 @@ BEGIN
     
 
     -- give the public permission to read by default
-    PERFORM acs_permission__grant_permission (
+    PERFORM acs_permission.grant_permission (
         default_context, -- object_id
         the_public,      -- grantee_id
         'news_read'    -- privilege
@@ -70,7 +70,7 @@ BEGIN
 
     -- give registered users permission to upload items by default
     -- However, they must await approval by users with news_admin privilege
-    PERFORM acs_permission__grant_permission (
+    PERFORM acs_permission.grant_permission (
          default_context,  -- object_id
          registered_users, -- grantee_id
          'news_create'   -- privilege
