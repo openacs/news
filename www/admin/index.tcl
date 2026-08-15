@@ -151,7 +151,7 @@ db_multirow -extend {
 } news_items itemlist {} {
     set n_items $item_id
     set item_url [export_vars -base item {item_id}]
-    set revise_url [export_vars -base revision_add {item_id}]
+    set revise_url [export_vars -base revision-add {item_id}]
     set creator_url [acs_community_member_url -user_id $creation_user]
     set publish_date_pretty [lc_time_fmt $publish_date_ansi "%x"]
     set archive_date_pretty [lc_time_fmt $archive_date_ansi "%x"]
