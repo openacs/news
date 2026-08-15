@@ -74,7 +74,7 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
     }
     {revision_log:text(text)
         {label "[_ news.Revision_log]"}
-        {html {size 61 maxlength 400}}
+        {html {size 61 maxlength 400 required required}}
     }
 }
 

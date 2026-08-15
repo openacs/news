@@ -12,7 +12,7 @@ ad_page_contract {
     {publish_lead {}}
     {publish_body:allhtml,trim ""}
     publish_body.format:path,notnull
-    {revision_log ""}
+    {revision_log:trim ""}
     {publish_date:clock(%Y-%m-%d) ""}
     {archive_date:clock(%Y-%m-%d) ""}
     {permanent_p:boolean,notnull "f"}
@@ -26,8 +26,8 @@ ad_page_contract {
 
 } -validate {
 
-    check_revision_log -requires {action revision_log} {
-        if { $action eq "News Item" && $revision_log eq ""} {
+    check_revision_log -requires {item_id revision_log} {
+        if {$item_id ne "" && $revision_log eq ""} {
             ad_complain "[_ news.lt_You_must_supply_a_rev]"
             return
         }
