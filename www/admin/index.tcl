@@ -79,6 +79,13 @@ switch -- $view {
     }
 }
 
+if {$view ne "all"} {
+    lappend bulk_actions \
+        [_ news.Delete] \
+        [export_vars -base process {{action delete}}] \
+        ""
+}
+
 set title "[_ news.Administration]"
 set context {}
 
