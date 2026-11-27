@@ -48,6 +48,8 @@ if { $archive_date eq "" } {
     set archive_date $date_proj
 }
 
+set image_upload_url [news::markdown_image::upload_url]
+
 ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -form {
     {action:text(hidden)
         {value "News Item"}}
@@ -62,6 +64,7 @@ ad_form -name "news" -action "preview" -html {enctype "multipart/form-data"} -fo
     {publish_body:text(richtext)
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
+        {options {image_upload_url $image_upload_url}}
         {value "[list $publish_body ${publish_body.format}]"}}
 }
 

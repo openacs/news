@@ -27,6 +27,31 @@ and want somebody else to do the news administrator, assign him/her
 the privilege 'news_admin' in <a href="/permissions/">/permissions/</a>
 . If you are not the site-wide
 admin, you must ask the latter to do so.
+<h2>Markdown image paste</h2>
+<p>In News 6.0.0d3 or newer, clipboard image uploads are controlled
+by the package instance parameter <tt>AllowImagePasteP</tt>, which
+defaults to <tt>0</tt> (disabled). To enable them for this News
+instance:</p>
+<ol>
+<li>Install and enable Attachments 0.14.2 or newer and install
+<tt>richtext-markdown</tt> 0.1d3 or newer.</li><li>Set the News instance parameter <tt>RichTextEditor</tt> to
+<tt>markdown</tt> and <tt>AllowImagePasteP</tt> to <tt>1</tt>.</li><li>Select <strong>HTML</strong> as the article&#39;s content
+format to use Write/Preview. The <strong>Markdown Text</strong>
+format is a separate content format.</li>
+</ol>
+<p>The image-paste setting does not activate the editor, and
+enabling site-wide richtext editing is not required. Authors still
+need the existing News creation or administration permissions.</p>
+<p>Pasted PNG, JPEG and GIF images are staged privately for
+Preview, then attached to the article item when saved. They remain
+available across revisions and are deleted with the article.
+Delivery supports responsive resized variants through the shared
+Attachments image cache and preserves the originals. No child mount
+or File Storage mapping is required.</p>
+<p>Disabling <tt>AllowImagePasteP</tt> prevents new uploads and
+saving staged images, including from already open editor forms.
+Existing attached images remain viewable. Other content formats
+remain available.</p>
 <h2>Reporting bug</h2>
 
 Please file bugs in the <a href="http://openacs.org/bugtracker/openacs/">Bucktracker</a>

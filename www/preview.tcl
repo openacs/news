@@ -109,6 +109,8 @@ if { ${publish_body.format} eq "text/html" || ${publish_body.format} eq "text/en
     }
 }
 
+news::markdown_image::require_drafts $publish_body $publish_format
+
 if { $action eq "News Item" } {
 
     # form variables for confirmation step

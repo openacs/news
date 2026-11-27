@@ -41,18 +41,31 @@ set creation_user [ad_conn "user_id"]
 # make new revision the active revision
 set active_revision_p "t"
 
+set inline_images [news::markdown_image::require_drafts $publish_body $mime_type]
+if {[dict size $inline_images] > 0} {
+    set package_id [ad_conn package_id]
+    permission::require_permission -object_id $package_id -privilege news_admin
+    if {![news::markdown_image::owns_article $package_id $item_id]} {
+        ns_returnnotfound
+        ad_script_abort
+    }
+}
+
 # Insert is 2-step process, same as in item-create-3.tcl
 if {[catch {
-    set revision_id [db_exec_plsql create_news_item_revision {}]
+    db_transaction {
+        set revision_id [db_exec_plsql create_news_item_revision {}]
 
-    set content_add [db_map content_add]
-    if {![string match $content_add ""]} {
-        db_dml content_add {
-            update cr_revisions
-            set    content = empty_blob()
-            where  revision_id = :revision_id
-            returning content into :1
-        } -blobs  [list $publish_body]
+        set content_add [db_map content_add]
+        if {![string match $content_add ""]} {
+            db_dml content_add {
+                update cr_revisions
+                set    content = empty_blob()
+                where  revision_id = :revision_id
+                returning content into :1
+            } -blobs  [list $publish_body]
+        }
+        news::markdown_image::attach $item_id $inline_images
     }
 
 } errmsg ]} {

@@ -7,21 +7,22 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
 
-    <version name="6.0.0d2" url="http://openacs.org/repository/download/apm/news-6.0.0d2.apm">
+    <version name="6.0.0d3" url="http://openacs.org/repository/download/apm/news-6.0.0d3.apm">
         <owner url="http://openacs.org">OpenACS</owner>
         <summary>Used for announcements and news items.</summary>
-        <release-date>2026-11-25</release-date>
+        <release-date>2026-11-27</release-date>
         <vendor url="http://openacs.org">OpenACS</vendor>
         <description format="text/plain">News publication tool.  Publication of plain text or html news items with support for scheduled publication and commentability.</description>
         <maturity>2</maturity>
         <package_instance_name>#news.News#</package_instance_name>
 
-        <provides url="news" version="6.0.0d2"/>
+        <provides url="news" version="6.0.0d3"/>
         <requires url="acs-content-repository" version="5.10.1"/>
         <requires url="acs-templating" version="6.0.0d12"/>
         <requires url="acs-subsite" version="6.0.0d7"/>
         <requires url="acs-datetime" version="5.9.1"/>
         <requires url="acs-kernel" version="5.10.1"/>
+        <requires url="attachments" version="0.14.2"/>
         <requires url="general-comments" version="5.9.1"/>
         <requires url="notifications" version="5.10.1"/>
         <requires url="rss-support" version="0.5"/>
@@ -35,6 +36,7 @@
         </callbacks>
         <parameters>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="ActiveDays"  default="14" description="Default days between release date and archive date."/>
+            <parameter scope="instance" datatype="number" min_n_values="1" max_n_values="1" name="AllowImagePasteP" default="0" description="Allow signed-in authors to paste PNG, JPEG and GIF images into news articles. Requires richtext-markdown to be installed and selected as the editor, with HTML as the content format. This setting does not activate the editor. Disabling it prevents new uploads and saving staged images; existing attached images remain viewable."/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ApprovalPolicy"  default="wait" description="Approval policy of submitted news items. It must be either of [open|wait|closed]. Submission by the administrator are ApprovalPolicy = 'open'.This approval policy applies only, if we let 'registered users' upload news items."/>
             <parameter datatype="number"  min_n_values="1"  max_n_values="1"  name="DisplayMax"  default="10" description="Number of news item headlines displayed per page at most."/>
             <parameter datatype="string"  min_n_values="1"  max_n_values="1"  name="ImageFormat"  default="jpg" description="Image format to use when converting images, e.g. png, gif, jpg"/>

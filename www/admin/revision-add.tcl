@@ -43,7 +43,13 @@ if {$archive_date eq ""} {
 }
 
 set action "[_ news.Revision]"
-ns_log notice "NEWS REVISION"
+set package_id [ad_conn package_id]
+set image_upload_url ""
+if {[permission::permission_p -object_id $package_id -privilege news_admin]
+    && [news::markdown_image::owns_article $package_id $item_id]} {
+    set image_upload_url [news::markdown_image::upload_url $item_id]
+}
+
 ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart/form-data"} -action "../preview" -form {
     {publish_title:text(text)
         {label "[_ news.Title]"}
@@ -58,6 +64,7 @@ ad_form -name "news_revision" -export {item_id action} -html {enctype "multipart
     {publish_body:text(richtext),optional
         {label "[_ news.Body]"}
         {html {cols 60 rows 20}}
+        {options {image_upload_url $image_upload_url}}
         {value "[list $publish_body $publish_format]"}
     }
     {publish_date:h5date,optional

@@ -61,15 +61,23 @@ set user_id [ad_conn user_id]
 # avoid any db weirdness with the "." in the variable name.
 set mime_type ${publish_body.format}
 
-set news_id [db_exec_plsql create_news_item {}]
+set inline_images [news::markdown_image::require_drafts $publish_body $mime_type]
+db_transaction {
+    set news_id [db_exec_plsql create_news_item {}]
 
-#
-# For postgres, the news # item body is stored in the prior news__new
-# call. The blob stuff is just needed for Oracle.
-#
-set content_add [db_map content_add]
-if {$content_add ne ""} {
-    db_dml content_add {} -blobs  [list $publish_body]
+    #
+    # For postgres, the news # item body is stored in the prior news__new
+    # call. The blob stuff is just needed for Oracle.
+    #
+    set content_add [db_map content_add]
+    if {$content_add ne ""} {
+        db_dml content_add {} -blobs  [list $publish_body]
+    }
+
+    if {[dict size $inline_images] > 0} {
+        set article_id [content::revision::item_id -revision_id $news_id]
+        news::markdown_image::attach $article_id $inline_images
+    }
 }
 
 #
